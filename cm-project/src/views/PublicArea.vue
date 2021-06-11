@@ -1,26 +1,57 @@
 <template>
   <main>
     <div class="row">
-      <div class="base__head mx-auto">
-        <nav class="nav"><IconList /></nav>
+      <header class="base__head mx-auto">
+        <IconList />
+      </header>
+      <div class=" mx-auto">
+        <div class="base__body">
+          <div class="doorBox" v-if="doors">
+            <Room v-for="(item, index) in doors" :key="index" :doors="item" />
+          </div>
+        </div>
       </div>
-      <div base__body></div>
     </div>
   </main>
 </template>
 
 <script>
+import Room from "../components/Room.vue";
 import IconList from "../components/IconList.vue";
 export default {
   data() {
-    return {};
+    return {
+      data: {},
+      doors: [
+        { name: "door1", src: "../../static/imgs/doorSkewL.png" },
+        { name: "door2", src: "../../static/imgs/doorSkewL.png" },
+        { name: "door3", src: "../../static/imgs/door.png" },
+        { name: "door4", src: "../../static/imgs/door.png" },
+        { name: "door5", src: "../../static/imgs/door.png" },
+        { name: "door6", src: "../../static/imgs/doorSkewR.png" },
+        { name: "door7", src: "../../static/imgs/doorSkewR.png" }
+      ]
+    };
   },
-  components: { IconList }
+  components: { IconList, Room }
 };
 </script>
 
 <style scoped>
-.nav {
-  margin-top: 0;
+.base__body {
+  position: relative;
+  max-width: 100vw;
+  width: 100vw;
+  height: 47vw;
+  background-image: url("../../static/imgs/bg.jpeg");
+  background-position: center bottom;
+  background-repeat: none;
+  /* background-attachment: fixed; */
+  background-size: contain;
+  left: 0;
+}
+
+main {
+  margin-right: 0;
 }
 </style>

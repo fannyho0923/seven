@@ -1,46 +1,23 @@
 <template>
   <ul class="ul">
     <div class="base__left">
-      <li>
-        <img class="pointer img-resp" :src="st(1)" alt="gamePic" />
-      </li>
-      <li>
-        <!-- <Chat /> -->
-        <img class="pointer img-resp" :src="st(2)" alt="chatPic" />
-      </li>
-      <li>
-        <!-- <ScreenShot /> -->
-        <img class="pointer img-resp" :src="st(3)" alt="screeShotPic" />
-      </li>
-      <li>
-        <!-- <Contact /> -->
-        <img class="pointer img-resp" :src="st(4)" alt="contactPic" />
-      </li>
-      <li>
-        <!-- <Info /> -->
-        <img class="pointer img-resp" :src="st(5)" alt="InfoPic" />
+      <li class="icon__box" v-for="(item, index) in navs" :key="index">
+        <img
+          v-if="index < 5"
+          class="pointer img-resp"
+          :src="navs[index].src"
+          alt="pic"
+        />
       </li>
     </div>
     <div class="base__right">
-      <li>
-        <img class="pointer img-resp" :src="st(6)" alt="publicPic" />
-      </li>
-      <li>
-        <img class="pointer img-resp" :src="st(7)" alt="homePic" />
-      </li>
-      <li>
-        <img class="pointer img-resp" :src="st(8)" alt="roomPic" />
-      </li>
-      <li>
-        <!-- <Music /> -->
-        <img class="pointer img-resp" :src="st(9)" alt="musicPic" />
-      </li>
-      <li>
-        <!-- <Lang /> -->
-        <img class="pointer img-resp" :src="st(10)" alt="languagePic" />
-      </li>
-      <li>
-        <img class="pointer img-resp" :src="st(11)" alt="exitPix" />
+      <li class="icon__box" v-for="(item, index) in navs" :key="index">
+        <img
+          v-if="index <= 5"
+          class="pointer img-resp"
+          :src="navs[index + 5].src"
+          alt="pic"
+        />
       </li>
     </div>
   </ul>
@@ -56,7 +33,53 @@ import Lang from "./icons/Lang.vue";
 export default {
   data() {
     return {
-      str: ""
+      str: "",
+      navs: [
+        {
+          name: "game",
+          src: "../static/imgs/pic1.png"
+        },
+        {
+          name: "chat",
+          src: "../static/imgs/pic2.png"
+        },
+        {
+          name: "screenShot",
+          src: "../static/imgs/pic3.png"
+        },
+        {
+          name: "contact",
+          src: "../static/imgs/pic4.png"
+        },
+        {
+          name: "info",
+          src: "../static/imgs/pic5.png"
+        },
+        {
+          name: "public",
+          src: "../static/imgs/pic6.png"
+        },
+        {
+          name: "home",
+          src: "../static/imgs/pic7.png"
+        },
+        {
+          name: "room",
+          src: "../static/imgs/pic8.png"
+        },
+        {
+          name: "music",
+          src: "../static/imgs/pic9.png"
+        },
+        {
+          name: "lang",
+          src: "../static/imgs/pic10.png"
+        },
+        {
+          name: "logout",
+          src: "../static/imgs/pic11.png"
+        }
+      ]
     };
   },
   components: { Chat, ScreenShot, Contact, Info, Music, Lang },
@@ -69,7 +92,7 @@ export default {
 </script>
 
 <style scoped>
-li {
+.icon__box {
   list-style: none;
 }
 .ul {
@@ -83,6 +106,6 @@ li {
   display: flex;
 }
 img {
-  background-color: green;
+  background-color: rgb(248, 175, 18);
 }
 </style>
