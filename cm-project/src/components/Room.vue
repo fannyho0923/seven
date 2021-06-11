@@ -60,15 +60,15 @@ export default {
   top: 38%;
 }
 .door3 {
-  left: 25%;
+  left: 24%;
   top: 39%;
 }
 .door4 {
-  left: 45%;
+  left: 38%;
   top: 39%;
 }
 .door5 {
-  left: 65%;
+  left: 52%;
   top: 39%;
 }
 .door6 {
