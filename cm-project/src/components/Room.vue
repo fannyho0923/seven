@@ -7,6 +7,15 @@
       width="147"
       height="328"
     />
+    <div class="circle">
+      <img
+        class="img__avatar img-resp"
+        :src="doors.img"
+        alt="avatar"
+        width="100"
+        height="100"
+      />
+    </div>
   </div>
 </template>
 
@@ -29,6 +38,18 @@ export default {
 .img {
   max-width: 100%;
   width: 100%;
+}
+.circle {
+  position: absolute;
+  max-width: 50px;
+  max-height: 50px;
+  min-width: 5px;
+  min-height: 5px;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  left: 22%;
+  top: 25%;
 }
 .door1 {
   left: 0;
