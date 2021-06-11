@@ -9,6 +9,7 @@
           <div class="doorBox" v-if="doors">
             <Room v-for="(item, index) in doors" :key="index" :doors="item" />
           </div>
+          <Refrigerator />
         </div>
       </div>
     </div>
@@ -18,7 +19,13 @@
 <script>
 import Room from "../components/Room.vue";
 import IconList from "../components/IconList.vue";
+import Refrigerator from "../views/Refrigerator.vue";
 export default {
+  components: {
+    IconList,
+    Room,
+    Refrigerator
+  },
   data() {
     return {
       data: {},
@@ -60,8 +67,7 @@ export default {
         }
       ]
     };
-  },
-  components: { IconList, Room }
+  }
 };
 </script>
 

@@ -7,9 +7,9 @@
       width="147"
       height="328"
     />
-    <div class="circle">
+    <div class="pointer circle">
       <img
-        class="img__avatar img-resp"
+        class="pointer img__avatar img-resp"
         :src="doors.img"
         alt="avatar"
         width="100"
@@ -50,6 +50,7 @@ export default {
   border-radius: 50%;
   left: 22%;
   top: 25%;
+  box-shadow: 0 0 7px gray;
 }
 .door1 {
   left: 0;
