@@ -1,5 +1,5 @@
 <template>
-  <form class="login__form" @submit.prevent="atLogin">
+  <form class="login__form" @submit.prevent="inputDone">
     <div class="inputBox">
       <label class="pop__tit">請輸入資訊</label>
       <br />
@@ -56,10 +56,13 @@ export default {
   props: ["member"],
   methods: {
     atClick() {
+      if (!this.member) {
+        return;
+      }
       this.$emit("sent", true);
     },
-    atLogin() {
-      this.$emit("toLogin", this.nickName);
+    inputDone() {
+      this.$emit("inputDone", this.nickName);
     },
     closePop() {
       this.$emit("closePop");

@@ -6,8 +6,10 @@
           <header class="home__title"><h1>SEVEN</h1></header>
           <div class="all__btn">
             <p class="pointer btn1">使用規則</p>
-            <p class="pointer btn2" @click.self="atClick">創建帳號</p>
-            <p class="pointer btn3">進入公寓</p>
+            <p v-if="!isMember" class="pointer btn2" @click.self="atClick">
+              創建帳號
+            </p>
+            <p class="pointer btn3" @click.self="enter">進入公寓</p>
           </div>
         </section>
         <aside class="home__img">
@@ -21,12 +23,20 @@
         </aside>
       </div>
     </div>
-    <div v-if="this.isPop" class="popup">
+    <div v-if="!this.isRegistered" class="popup">
       <PopupWindow
         :member="isMember"
         @sent="supply"
-        @toLogin="login"
+        @inputDone="inputFine"
         @closePop="closePopup"
+      />
+    </div>
+    <div v-if="this.unLogin" class="popup">
+      <PopupWindow
+        :member="isMember"
+        @sent="supply"
+        @inputDone="LoginFine"
+        @closePop="closePopupLogin"
       />
     </div>
   </main>
@@ -38,27 +48,56 @@ import PopupWindow from "../components/PopupWindow.vue";
 export default {
   data() {
     return {
-      isPop: false,
-      isMember: true
+      isRegistered: true,
+      unLogin: false,
+      isMember: true,
+      pass: false
     };
   },
   components: { PopupWindow },
   methods: {
     atClick() {
-      this.isPop = true;
+      this.isRegistered = false;
     },
     closePopup() {
-      this.isPop = false;
+      this.isRegistered = true;
     },
-    supply() {},
-    login(str) {
+    closePopupLogin() {
+      this.unLogin = false;
+    },
+    inputFine(str) {
+      alert("歡迎" + " " + str + " " + "入住");
+      this.isRegistered = true;
+      this.isMember = true;
+      this.unLogin = false;
+    },
+    LoginFine() {
+      alert("歡迎回家");
+      this.unLogin = false;
+      this.$router.push("/publicArea");
+    },
+    enter() {
+      if (!this.unLogin && this.isMember && this.isRegistered && this.pass) {
+        this.$router.push("/publicArea");
+      }
+      if (!this.isMember) {
+        alert("sorry~您尚未有帳號，請點選創建帳號");
+        this.isRegistered = false;
+      }
+      if (!this.unLogin) {
+        alert("麻煩您先登入");
+        this.unLogin = true;
+      }
+    },
+    supply() {
+      this.isMember = true;
+    },
+    login() {
       //-- write login authencation logic here! --
       let auth = true;
 
       if (auth) {
-        alert("歡迎" + " " + str + " " + "入住");
-        this.isPop = false;
-
+        // enter
         // this.$router.push("/publicArea");
       } else {
         alert("login failed");
