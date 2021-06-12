@@ -6,7 +6,7 @@
           <h1 class="home__title">SEVEN</h1>
           <lable class="pointer btn1">使用規則</lable>
           <lable class="pointer btn2">創建帳號</lable>
-          <lable class="pointer btn3">進入我的公寓</lable>
+          <lable class="pointer btn3">進入公寓</lable>
         </section>
         <aside class="home__img">
           <img
