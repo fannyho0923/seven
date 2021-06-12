@@ -5,11 +5,11 @@
       <div class="base__body text-center">
         <div class="base__tit">
           <label class="label">標題</label>
-          <input type="text" v-model="title" />
+          <input type="text" v-model="title" required />
         </div>
         <label>內容</label>
         <textarea v-model="content"></textarea>
-        <button @:click="add()">存檔</button>
+        <button type="submit" @:click="add()">存檔</button>
       </div>
       <div class="mx-auto text-center">
         <input

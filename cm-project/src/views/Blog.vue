@@ -37,7 +37,7 @@
       </div>
       <button class="pointer post__btn" @:click="add()">發布</button>
       <p>{{ title }}</p>
-      <p>{{ content }}</p>
+      <p style="white-space: pre-wrap;">{{ content }}</p>
     </main>
   </div>
 </template>
