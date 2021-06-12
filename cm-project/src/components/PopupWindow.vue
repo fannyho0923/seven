@@ -9,28 +9,50 @@
         type="text"
         v-model="nickName"
         placeholder="限 5-15 字"
+        minlength="5"
+        maxlength="15"
         required
       />
       <br v-if="!member" />
       <br v-if="!member" />
       <label>User Name</label>
-      <input v-if="member" type="text" v-model="userName" required />
+      <input
+        v-if="member"
+        type="text"
+        v-model="userName"
+        minlength="6"
+        maxlength="20"
+        required
+      />
       <input
         v-else
         type="text"
         v-model="userName"
         placeholder="限 6-20 字"
+        onkeyup="value=value.replace(/[^\w\.\/]/ig,’’)"
+        minlength="6"
+        maxlength="20"
         required
       />
       <br />
       <br />
       <label>Password</label>
-      <input v-if="member" type="password" v-model="password" required />
+      <input
+        v-if="member"
+        type="password"
+        v-model="password"
+        minlength="6"
+        maxlength="20"
+        required
+      />
       <input
         v-else
         type="password"
         v-model="password"
         placeholder="限 6-20 字"
+        onkeyup="value=value.replace(/[^\w\.\/]/ig,’’)"
+        minlength="6"
+        maxlength="20"
         required
       />
       <br />

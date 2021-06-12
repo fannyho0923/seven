@@ -50,7 +50,7 @@ export default {
     return {
       isRegistered: true,
       unLogin: false,
-      isMember: true,
+      isMember: false,
       pass: false
     };
   },
