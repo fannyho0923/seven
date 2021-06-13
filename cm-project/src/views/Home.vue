@@ -35,7 +35,7 @@
       <PopupWindow
         :member="isMember"
         @sent="supply"
-        @inputDone="LoginFine"
+        @inputDone="inputOK"
         @closePop="closePopupLogin"
       />
     </div>
@@ -50,7 +50,7 @@ export default {
     return {
       isRegistered: true,
       unLogin: false,
-      isMember: false,
+      isMember: true,
       pass: false
     };
   },
@@ -71,14 +71,20 @@ export default {
       this.isMember = true;
       this.unLogin = false;
     },
-    LoginFine() {
-      alert("歡迎回家");
+    inputOK() {
+      // alert("歡迎回家");
       this.unLogin = false;
-      this.$router.push("/publicArea");
+      // this.login();
+      // this.$router.push("/publicArea");
     },
     enter() {
+      if ($cookies.get("token") === "ImLogin") {
+        this.$router.push("/publicArea");
+        return;
+      }
       if (!this.unLogin && this.isMember && this.isRegistered && this.pass) {
         this.$router.push("/publicArea");
+        return;
       }
       if (!this.isMember) {
         alert("sorry~您尚未有帳號，請點選創建帳號");
@@ -89,16 +95,22 @@ export default {
         this.unLogin = true;
       }
     },
-    supply() {
-      this.isMember = true;
+    supply(str, str2) {
+      this.userName = str;
+      this.password = str2;
+      console.log(this.userName + "," + this.password);
+      this.login();
     },
     login() {
       //-- write login authencation logic here! --
-      let auth = true;
 
-      if (auth) {
+      if (this.userName == "abcdef" && this.password == "123456") {
+        this.$cookies.set("token", "ImLogin", 60 * 60 * 24 * 14);
+        this.pass = true;
+      }
+      if (this.pass) {
         // enter
-        // this.$router.push("/publicArea");
+        this.$router.push("/publicArea");
       } else {
         alert("login failed");
       }

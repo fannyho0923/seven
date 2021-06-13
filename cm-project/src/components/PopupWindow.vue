@@ -29,7 +29,6 @@
         type="text"
         v-model="userName"
         placeholder="限 6-20 字"
-        onkeyup="value=value.replace(/[^\w\.\/]/ig,’’)"
         minlength="6"
         maxlength="20"
         required
@@ -50,7 +49,6 @@
         type="password"
         v-model="password"
         placeholder="限 6-20 字"
-        onkeyup="value=value.replace(/[^\w\.\/]/ig,’’)"
         minlength="6"
         maxlength="20"
         required
@@ -81,7 +79,8 @@ export default {
       if (!this.member) {
         return;
       }
-      this.$emit("sent", true);
+      // console.log(this.userName + "," + this.password);
+      this.$emit("sent", this.userName, this.password);
     },
     inputDone() {
       this.$emit("inputDone", this.nickName);
