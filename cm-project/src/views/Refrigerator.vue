@@ -1,7 +1,8 @@
 <template>
-  <div class="pointer refrigerator__body">
+  <div class="pointer refrigerator__body" @click="seeMemo">
     <img
-      class="pointer img img-resp"
+      @click="seeMemo"
+      class="pointer img img-resp "
       src="../../static/imgs/refrigerator.png"
       alt="refrigeratorPic"
       width="101"
@@ -11,7 +12,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    seeMemo() {
+      this.$router.push("/memo");
+    }
+  }
+};
 </script>
 
 <style scoped>

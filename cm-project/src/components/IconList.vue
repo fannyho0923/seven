@@ -33,7 +33,6 @@ import Lang from "./icons/Lang.vue";
 export default {
   data() {
     return {
-      str: "",
       navs: [
         {
           name: "game",

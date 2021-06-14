@@ -6,6 +6,7 @@ import Blog from "@/views/Blog.vue";
 import Test from "@/views/Test.vue";
 import PublicArea from "@/views/PublicArea.vue";
 import Refrigerator from "@/views/Refrigerator.vue";
+import Memo from "@/views/Memo.vue";
 import Vue from "vue";
 import Router from "vue-router";
 Vue.use(Router);
@@ -54,6 +55,11 @@ export default new Router({
       path: "/refrigerator",
       name: "Refrigerator",
       component: Refrigerator
+    },
+    {
+      path: "/memo",
+      name: "Memo",
+      component: Memo
     },
     {
       path: "*",
