@@ -186,8 +186,8 @@ export default {
 
   height: 80%;
   /* height: 50%; */
-  background-color: rgb(11, 117, 117);
-  opacity: 0.5;
+  /* background-color: rgb(11, 117, 117); */
+  /* opacity: 0.5; */
   margin-top: 1.2rem;
   transform: translateX(2.5%);
   word-wrap: break-word;

@@ -66,7 +66,7 @@ export default {
 }
 .base__comment {
   position: relative;
-  background-color: salmon;
+  /* background-color: salmon; */
 }
 /* .trash__show {
   visibility: visible;
