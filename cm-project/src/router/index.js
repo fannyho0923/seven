@@ -10,6 +10,10 @@ import Memo from "@/views/Memo.vue";
 import Vue from "vue";
 import Router from "vue-router";
 Vue.use(Router);
+const original = Router.prototype.push;
+Router.prototype.push = function push(location) {
+  return original.call(this, location).catch(err => err);
+};
 export default new Router({
   mode: "history",
   routes: [
