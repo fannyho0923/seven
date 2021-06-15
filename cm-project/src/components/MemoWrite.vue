@@ -1,12 +1,13 @@
 <template>
   <section class="writeBox">
     <h2 class="writeBox__tit mx-auto">Leave your message</h2>
-
     <div class="mx-auto write__body">
       <aside class="imgBox">
+        <!-- 便條照片 -->
         <img class="img img-resp" :src="memoType.src" alt="memoPic" />
       </aside>
       <article class="articleBox">
+        <!-- 給使用者輸入的位置 -->
         <textarea
           class="textarea"
           name=""
@@ -18,9 +19,11 @@
         />
       </article>
     </div>
+    <!-- 完成按鈕 -->
     <button class="mx-auto ok__btn" @click="writeDone(memoType.id)">
       Done
     </button>
+    <!-- 關閉視窗按鈕 -->
     <div class="pointer close__btn" @click="closeWriteBox">
       X
     </div>
@@ -37,13 +40,16 @@ export default {
   props: ["memoType"],
   methods: {
     closeWriteBox() {
+      //關閉寫便條視窗
       this.$emit("closeWriteBox");
     },
     writeDone(id) {
+      //規定要寫輸入文字
       if (!this.content) {
         alert("請輸入文字");
         return;
       }
+      //將使用者輸入文字以及便條id吐出去儲存
       this.$emit("writeDone", this.content, id);
     }
   }
