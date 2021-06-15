@@ -179,19 +179,29 @@ export default {
 }
 /* rwd要再修改 */
 .commentBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   position: absolute;
-  max-width: 740px;
-  /* max-height: 30rem; */
+  max-width: 766px;
+  max-height: 35rem;
   width: 83%;
 
-  height: 80%;
+  height: 65vw;
   /* height: 50%; */
-  /* background-color: rgb(11, 117, 117); */
+  /* background-color: #0b7575; */
+
   /* opacity: 0.5; */
   margin-top: 1.2rem;
   transform: translateX(2.5%);
   word-wrap: break-word;
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.commentBox::-webkit-scrollbar-thumb {
+  background-color: #f10cd3;
+  border-radius: 3px;
 }
 </style>

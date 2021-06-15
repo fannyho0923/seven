@@ -12,7 +12,7 @@
         :style="{ transform: 'rotate(' + memoDeg + 'deg)' }"
         class="article set-inlineBlock"
       >
-        {{ memoStr }}{{ memoDeg }}
+        {{ memoStr }}
       </div>
       <div
         class="trash__btn"
@@ -39,7 +39,7 @@ export default {
 .commentBox {
   position: relative;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .article {
@@ -49,28 +49,31 @@ export default {
   max-height: 70%;
   width: 70%;
   height: 70%;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   word-wrap: break-word;
   overflow: hidden;
   /* text-overflow: ellipsis; */
 }
-.commentBox {
-  width: 10vw;
-  height: 10vw;
-}
+
 .img {
   max-width: 100%;
-  max-height: 100%;
   width: 100%;
-  /* max-height: 100%; */
+  max-height: 100%;
+  height: auto;
 }
 .base__comment {
   position: relative;
-  /* background-color: salmon; */
+  max-width: 10vw;
+  max-height: 10vw;
+  min-width: 150px;
+  min-height: 150px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-/* .trash__show {
-  visibility: visible;
-} */
+
 .trash__btn {
   visibility: visible;
   position: absolute;
