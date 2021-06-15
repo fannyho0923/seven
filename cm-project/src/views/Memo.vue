@@ -213,7 +213,21 @@ export default {
   overflow-y: auto;
 }
 /*隐藏滚轮*/
-.commentBox::-webkit-scrollbar {
+/* .commentBox::-webkit-scrollbar {
   display: none;
+} */
+/* 捲軸底色 */
+.commentBox::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #ffc0cb;
+}
+/* 捲軸寬度 */
+.commentBox::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+/* 捲軸本體顏色 */
+.commentBox::-webkit-scrollbar-thumb {
+  background-color: #bb6573;
 }
 </style>
