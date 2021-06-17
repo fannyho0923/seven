@@ -2,7 +2,7 @@ import axios from "vue-axios";
 
 // baseURL是你API的主要Domain，之後發請求時只要填相對路徑就可以了
 const instance = axios.create({
-  baseURL: "https://your.api.domain.tw/",
+  baseURL: "http://35.201.237.18/",
   headers: { "Content-Type": "application/json" },
   timeout: 20000
 });

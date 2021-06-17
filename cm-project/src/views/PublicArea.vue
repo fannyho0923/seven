@@ -7,7 +7,7 @@
       <div class=" mx-auto">
         <div class="base__body">
           <div class="doorBox" v-if="doors">
-            <Room v-for="(item, index) in doors" :key="index" :doors="item" />
+            <Door v-for="(item, index) in doors" :key="index" :doors="item" />
           </div>
           <Refrigerator />
         </div>
@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import Room from "../components/Room.vue";
+import Door from "../components/Door.vue";
 import IconList from "../components/IconList.vue";
 import Refrigerator from "../views/Refrigerator.vue";
 export default {
   components: {
     IconList,
-    Room,
+    Door,
     Refrigerator
   },
   data() {
@@ -86,6 +86,6 @@ export default {
 }
 
 main {
-  margin-right: 0;
+  margin: 0;
 }
 </style>

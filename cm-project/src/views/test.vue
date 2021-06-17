@@ -1,5 +1,35 @@
 <template>
   <div>
+    <main>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&autoplay=0&rel=0"
+        title="YouTube video player"
+        rel="0"
+        loop="1"
+        iv_load_policy="3"
+        frameborder="0"
+        controls="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <!-- 無法禁用相關視頻。相反，如果該rel參數設置為0，則相關視頻將來自與剛剛播放的視頻相同的頻道。 -->
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/Ed1NhR3CaAQ?controls=0&autoplay=0"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <!-- <object width="425" height="350"><param name="movie" value="http://www.youtube.com/v/ZA22WSVlCZ4"></param><embed src="http://www.youtube.com/watch?v=ZA22WSVlCZ4" type="application/x-shockwave-flash" width="425" height="350"></embed></object> -->
+      <!-- https://youtu.be/7V6Um5U2iH8 -->
+      <!-- https://www.youtube.com/embed/7V6Um5U2iH8 -->
+      <!-- https://www.youtube.com/watch?v=7V6Um5U2iH8 -->
+      <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/7V6Um5U2iH8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+    </main>
     <b-carousel
       id="carousel-1"
       v-model="slide"

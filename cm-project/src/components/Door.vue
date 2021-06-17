@@ -1,4 +1,5 @@
 <template>
+  <!-- 房門圖 -->
   <div :class="doors.name" class="set-inlineBlock base__door">
     <img
       class="img img-resp"
@@ -7,6 +8,7 @@
       width="147"
       height="328"
     />
+    <!-- 房門頭像 -->
     <div class="pointer circle">
       <img
         class="pointer img__avatar img-resp"
@@ -14,6 +16,7 @@
         alt="avatar"
         width="100"
         height="100"
+        @click.self="enterRoom"
       />
     </div>
   </div>
@@ -24,6 +27,12 @@ export default {
   props: {
     doors: {
       type: Object
+    }
+  },
+  methods: {
+    //進入房間
+    enterRoom() {
+      this.$router.push("/room");
     }
   }
 };

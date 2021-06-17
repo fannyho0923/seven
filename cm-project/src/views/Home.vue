@@ -3,6 +3,7 @@
     <div class="row">
       <div class="home__body">
         <section class="home__btn">
+          <!-- 使用規則,創建帳號,進入房間按鈕 -->
           <header class="home__title"><h1>SEVEN</h1></header>
           <div class="all__btn">
             <p class="pointer btn1">使用規則</p>
@@ -12,6 +13,7 @@
             <p class="pointer btn3" @click.self="enter">進入公寓</p>
           </div>
         </section>
+        <!-- 左邊圖示 -->
         <aside class="home__img">
           <img
             class="img img-resp"
@@ -23,6 +25,7 @@
         </aside>
       </div>
     </div>
+    <!-- 註冊的彈跳視窗 -->
     <div v-if="!this.isRegistered" class="popup">
       <PopupWindow
         :member="isMember"
@@ -31,6 +34,7 @@
         @closePop="closePopup"
       />
     </div>
+    <!-- 登入的彈跳視窗 -->
     <div v-if="this.unLogin" class="popup">
       <PopupWindow
         :member="isMember"
@@ -44,6 +48,7 @@
 
 <script>
 import PopupWindow from "../components/PopupWindow.vue";
+// import { userSignUp, userLogIn } from "@/js/all.js";
 
 export default {
   data() {
@@ -51,32 +56,59 @@ export default {
       isRegistered: true,
       unLogin: false,
       isMember: true,
-      pass: false
+      pass: false,
+      nickName: "",
+      userName: 0,
+      password: 0
     };
   },
+  created() {
+    // this.axios.get("http://35.201.237.18/Group/2").then(res => {
+    //   console.log(res);
+    // });
+  },
+
   components: { PopupWindow },
+  // created() {
+  //   userLogIn({
+  //     id: sdfs,
+  //     pw: "123456789"
+  //   })
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  //     .catch(err => {
+  //       console.log(err); //response攔截器會先執行，除非你漏接了，才會進到catch
+  //     });
+  // },
   methods: {
+    //點擊註冊
     atClick() {
       this.isRegistered = false;
     },
+    //關閉註冊彈跳視窗
     closePopup() {
       this.isRegistered = true;
     },
+    //關閉登入彈跳視窗
     closePopupLogin() {
       this.unLogin = false;
     },
+    //送出註冊資料
     inputFine(str) {
       alert("歡迎" + " " + str + " " + "入住");
       this.isRegistered = true;
       this.isMember = true;
       this.unLogin = false;
     },
+    //送出登入資料
     inputOK() {
       // alert("歡迎回家");
       this.unLogin = false;
       // this.login();
       // this.$router.push("/publicArea");
     },
+    //檢查是否已登入過
     enter() {
       if ($cookies.get("token") === "ImLogin") {
         this.$router.push("/publicArea");
@@ -101,9 +133,31 @@ export default {
       console.log(this.userName + "," + this.password);
       this.login();
     },
+    // SignUp() {
+    //   userSignUp({
+    //     id: this.userName,
+    //     pw: this.password,
+    //     userName: this.nickName
+    //   })
+    //     .then(res => {
+    //       console.log(res);
+    //     })
+    //     .catch(err => {
+    //       console.log(err); //response攔截器會先執行，除非你漏接了，才會進到catch
+    //     });
+    // },
     login() {
       //-- write login authencation logic here! --
-
+      // userLogIn({
+      //   id: this.userName,
+      //   pw: this.password
+      // })
+      //   .then(res => {
+      //     console.log(res);
+      //   })
+      //   .catch(err => {
+      //     console.log(err); //response攔截器會先執行，除非你漏接了，才會進到catch
+      //   });
       if (this.userName == "abcdef" && this.password == "123456") {
         this.$cookies.set("token", "ImLogin", 60 * 60 * 24 * 14);
         this.pass = true;
