@@ -1,14 +1,17 @@
 <template>
   <main>
     <div class="row">
+      <!-- 上排導覽 -->
       <header class="base__head mx-auto">
         <IconList />
       </header>
       <div class=" mx-auto">
         <div class="base__body">
+          <!-- 房門 -->
           <div class="doorBox" v-if="doors">
             <Door v-for="(item, index) in doors" :key="index" :doors="item" />
           </div>
+          <!-- 留言冰箱 -->
           <Refrigerator />
         </div>
       </div>
@@ -29,6 +32,7 @@ export default {
   data() {
     return {
       data: {},
+      // 門的名子照片與頭像
       doors: [
         {
           name: "door1",
@@ -84,8 +88,8 @@ export default {
   background-size: contain;
   left: 0;
 }
-
-main {
-  margin: 0;
+/* 解決右邊留白 */
+.row .base__head {
+  margin-right: 0;
 }
 </style>

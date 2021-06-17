@@ -41,12 +41,11 @@
     </main>
   </div>
 </template>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script>
-import Header from "./Header.vue";
+// import Header from "./Header.vue";
 export default {
-  components: { Header },
+  components: {},
   data() {
     return {
       title: "",
@@ -57,12 +56,11 @@ export default {
       image_list: []
     };
   },
-  created() {
-    this.$http.get("../static/data.json").then(response => {
-      console.log(response.data);
-    });
-  },
-  computed: {},
+  // created() {
+  //   this.$http.get("../static/data.json").then(response => {
+  //     console.log(response.data);
+  //   });
+  // },
   methods: {
     previewImage: function(event) {
       var input = event.target;

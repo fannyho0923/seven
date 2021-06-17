@@ -2,7 +2,6 @@ import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import UserInfo from "@/views/UserInfo.vue";
 import Header from "@/views/Header.vue";
-import Blog from "@/views/Blog.vue";
 import Test from "@/views/Test.vue";
 import PublicArea from "@/views/PublicArea.vue";
 import Refrigerator from "@/views/Refrigerator.vue";
@@ -40,11 +39,6 @@ export default new Router({
       path: "/header",
       name: "nav",
       component: Header
-    },
-    {
-      path: "/blog",
-      name: "Blog",
-      component: Blog
     },
     {
       path: "/test",
