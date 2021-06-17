@@ -12,6 +12,8 @@
             alt="wardrobePic"
             width="373"
             height="493"
+            @click="isblink = true"
+            :class="{ blink: isblink }"
           />
         </div>
         <!-- 書櫃:寫個版 -->
@@ -55,7 +57,8 @@ import Computer from "@/components/Computer.vue";
 export default {
   data() {
     return {
-      showBlog: false
+      showBlog: false,
+      isblink: false
     };
   },
   components: {
@@ -91,18 +94,19 @@ export default {
   position: absolute;
   max-width: 18%;
   width: 18%;
-  left: 23%;
+  left: 24%;
   top: 28%;
 }
 .wardrobeImg {
   width: 100%;
+  box-shadow: -1px 0 5px black;
 }
 /* 書櫃 */
 .bookcaseImgBox {
   position: absolute;
   max-width: 10%;
   width: 10%;
-  left: 44%;
+  left: 45.5%;
   top: 44%;
 }
 .bookcaseImg {
@@ -127,6 +131,36 @@ export default {
   height: 16%;
   left: 60.5%;
   top: 38%;
-  background-color: rgba(0, 255, 255, 0.377);
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.blink {
+  color: red;
+  padding: 10px;
+  font-size: 15px;
+  height: 60px;
+  animation: fade 600ms infinite;
+  -webkit-animation: fade 600ms infinite;
 }
 </style>
