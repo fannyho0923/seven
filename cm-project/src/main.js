@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
     console.log(isLogin + "!!!");
     next();
   } else {
-    if (to.path !== "/login") next("/login");
+    if (to.path !== "/home") next("/home");
     else next();
   }
 });

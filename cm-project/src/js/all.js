@@ -44,18 +44,18 @@ export const userLogIn = loginData => {
 export const queryGroup = groupData => {
   return req("get", "/Group", groupData);
 };
-//加入社群v
-export const joinGroup = groupData => {
-  return req("post", "/Group", groupData);
+//新社群v
+export const joinGroup = userSeriel => {
+  return req("post", "/Group/new/" + userSeriel);
 };
 //進入社群空間v
-export const enterGroup = groupData => {
-  return req("get", "/Group", groupData);
+export const enterGroup = userSeriel => {
+  return req("get", "/Group/" + userSeriel);
 };
 //退出社群x
 //進入社群中的玩家空間v
-export const leaveGroup = roomData => {
-  return req("get", "/Group", roomData);
+export const enterRoom = (doorIndex, userSeriel) => {
+  return req("get", "/Group/" + doorIndex + "/" + userSeriel);
 };
 
 // 文章相關的 api

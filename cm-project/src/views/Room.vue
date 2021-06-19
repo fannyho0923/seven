@@ -4,6 +4,15 @@
       <section class="room__body">
         <!-- 相片牆:放相片 -->
         <!-- 衣櫥:換房間樣式 -->
+        <div class="pointer photoImgBox">
+          <img
+            class="pointer photoImg img-resp"
+            src="../../static/imgs/room/photo.png"
+            alt="photoPic"
+            width="698"
+            height="349"
+          />
+        </div>
         <Photo />
         <div class="pointer wardrobeImgBox">
           <img
@@ -12,12 +21,11 @@
             alt="wardrobePic"
             width="373"
             height="493"
-            @click="isblink = true"
-            :class="{ blink: isblink }"
           />
         </div>
-        <!-- 書櫃:寫個版 -->
         <Wardrobe />
+        <!-- 書櫃:寫個版 -->
+
         <div class="pointer bookcaseImgBox">
           <img
             class="pointer bookcaseImg img-resp"
@@ -25,10 +33,10 @@
             alt="bookcasePic"
             width="365"
             height="582"
+            @click="goBlog"
           />
         </div>
         <!-- 日記:寫日記 -->
-        <Bookcase v-if="showBlog" />
         <div class="pointer diaryImgBox">
           <img
             class="pointer diaryImg img-resp"
@@ -51,7 +59,6 @@
 <script>
 import Photo from "@/components/Photo.vue";
 import Wardrobe from "@/components/Wardrobe.vue";
-import Bookcase from "@/components/Bookcase.vue";
 import Diary from "@/components/Diary.vue";
 import Computer from "@/components/Computer.vue";
 export default {
@@ -64,13 +71,15 @@ export default {
   components: {
     Photo,
     Wardrobe,
-    Bookcase,
     Diary,
     Computer
   },
   methods: {
     showBookcase() {
       showBlog = true;
+    },
+    goBlog() {
+      this.$router.push("/bookcase");
     }
   }
 };
@@ -132,8 +141,19 @@ export default {
   left: 60.5%;
   top: 38%;
 }
-
-@keyframes fade {
+/* 照片 */
+.photoImgBox {
+  position: absolute;
+  max-width: 20%;
+  width: 20%;
+  height: 16%;
+  left: 21.7%;
+  top: -8px;
+}
+.photoImg {
+  width: 100%;
+}
+/* @keyframes fade {
   from {
     opacity: 1;
   }
@@ -162,5 +182,5 @@ export default {
   height: 60px;
   animation: fade 600ms infinite;
   -webkit-animation: fade 600ms infinite;
-}
+} */
 </style>

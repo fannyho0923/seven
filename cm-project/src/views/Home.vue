@@ -7,10 +7,10 @@
           <header class="home__title"><h1>SEVEN</h1></header>
           <div class="all__btn">
             <p class="pointer btn1">使用規則</p>
-            <p v-if="!isMember" class="pointer btn2" @click.self="atClick">
+            <p v-if="!isMember" class="pointer btn2" @click.self="atRegiste">
               創建帳號
             </p>
-            <p class="pointer btn3" @click.self="enter">進入公寓</p>
+            <p class="pointer btn3" @click.self="atLogIn">進入公寓</p>
           </div>
         </section>
         <!-- 左邊圖示 -->
@@ -28,147 +28,172 @@
     <!-- 註冊的彈跳視窗 -->
     <div v-if="!this.isRegistered" class="popup">
       <PopupWindow
-        :member="isMember"
-        @sent="supply"
-        @inputDone="inputFine"
-        @closePop="closePopup"
+        :member="false"
+        @sentRegiste="supplyRegiste"
+        @closePop="closePopupRegiste"
       />
+      <!-- @inputDone="inputRegiste" -->
     </div>
     <!-- 登入的彈跳視窗 -->
     <div v-if="this.unLogin" class="popup">
       <PopupWindow
-        :member="isMember"
-        @sent="supply"
-        @inputDone="inputOK"
+        :member="true"
+        @sentLogIn="supplyLogIn"
         @closePop="closePopupLogin"
       />
+      <!-- @inputDone="inputLogIn" -->
     </div>
   </main>
 </template>
 
 <script>
 import PopupWindow from "../components/PopupWindow.vue";
-// import { userSignUp, userLogIn } from "@/js/all.js";
+import { userSignUp, userLogIn, enterRoom } from "@/js/all.js";
 
 export default {
   data() {
     return {
+      //判斷是否註冊
       isRegistered: true,
-      unLogin: false,
-      isMember: true,
-      pass: false,
+      //註冊時要輸入名稱
       nickName: "",
-      userName: 0,
-      password: 0
+      //判斷是否登入
+      unLogin: false,
+      //註冊與登入時都要輸入帳密
+      userName: "",
+      password: "",
+      //判斷是否已有會員
+      isMember: false,
+      //判斷帳密輸入是否正確
+      pass: false,
+      ans: false,
+      ans2: false
     };
   },
-  created() {
-    // this.axios.get("http://35.201.237.18/Group/2").then(res => {
-    //   console.log(res);
-    // });
-  },
+  // created() {
+  // http://35.201.237.18/Group/2
+  // http://35.201.237.18/SignUp
+  // this.axios.post("http://35.201.237.18/SignUp", {}).then(res => {
+  //   console.log(res);
+  // });
+  // },
 
   components: { PopupWindow },
-  // created() {
-  //   userLogIn({
-  //     id: sdfs,
-  //     pw: "123456789"
-  //   })
-  //     .then(res => {
-  //       console.log(res);
-  //     })
-  //     .catch(err => {
-  //       console.log(err); //response攔截器會先執行，除非你漏接了，才會進到catch
-  //     });
-  // },
   methods: {
     //點擊註冊
-    atClick() {
+    atRegiste() {
       this.isRegistered = false;
     },
+    //點擊登入
+    atLogIn() {
+      this.unLogin = true;
+    },
     //關閉註冊彈跳視窗
-    closePopup() {
+    closePopupRegiste() {
       this.isRegistered = true;
     },
     //關閉登入彈跳視窗
     closePopupLogin() {
       this.unLogin = false;
     },
-    //送出註冊資料
-    inputFine(str) {
-      alert("歡迎" + " " + str + " " + "入住");
-      this.isRegistered = true;
-      this.isMember = true;
-      this.unLogin = false;
-    },
-    //送出登入資料
-    inputOK() {
-      // alert("歡迎回家");
-      this.unLogin = false;
-      // this.login();
-      // this.$router.push("/publicArea");
-    },
+
     //檢查是否已登入過
-    enter() {
-      if ($cookies.get("token") === "ImLogin") {
-        this.$router.push("/publicArea");
-        return;
-      }
-      if (!this.unLogin && this.isMember && this.isRegistered && this.pass) {
-        this.$router.push("/publicArea");
-        return;
-      }
-      if (!this.isMember) {
-        alert("sorry~您尚未有帳號，請點選創建帳號");
-        this.isRegistered = false;
-      }
-      if (!this.unLogin) {
-        alert("麻煩您先登入");
-        this.unLogin = true;
-      }
-    },
-    supply(str, str2) {
-      this.userName = str;
-      this.password = str2;
-      console.log(this.userName + "," + this.password);
-      this.login();
-    },
-    // SignUp() {
-    //   userSignUp({
-    //     id: this.userName,
-    //     pw: this.password,
-    //     userName: this.nickName
-    //   })
-    //     .then(res => {
-    //       console.log(res);
-    //     })
-    //     .catch(err => {
-    //       console.log(err); //response攔截器會先執行，除非你漏接了，才會進到catch
-    //     });
+    // enter() {
+    //   if ($cookies.get("token") === "ImLogin") {
+    //     this.$router.push("/publicArea");
+    //     return;
+    //   }
+    //   if (!this.unLogin && this.isMember && this.isRegistered && this.pass) {
+    //     this.$router.push("/publicArea");
+    //     return;
+    //   }
+    //   if (!this.isMember) {
+    //     alert("sorry~您尚未有帳號，請點選創建帳號");
+    //     this.isRegistered = false;
+    //   }
+    //   if (!this.unLogin) {
+    //     alert("麻煩您先登入");
+    //     this.unLogin = true;
+    //   }
     // },
-    login() {
-      //-- write login authencation logic here! --
-      // userLogIn({
-      //   id: this.userName,
-      //   pw: this.password
-      // })
-      //   .then(res => {
-      //     console.log(res);
-      //   })
-      //   .catch(err => {
-      //     console.log(err); //response攔截器會先執行，除非你漏接了，才會進到catch
-      //   });
-      if (this.userName == "abcdef" && this.password == "123456") {
-        this.$cookies.set("token", "ImLogin", 60 * 60 * 24 * 14);
-        this.pass = true;
-      }
-      if (this.pass) {
-        // enter
-        this.$router.push("/publicArea");
-      } else {
-        alert("login failed");
-      }
+    // foo() {
+    //   const data = JSON.stringify({
+    //     userId: "test222",
+    //     userPw: "fanny222",
+    //     userName: "fanny222"
+    //   });
+    //   userSignUp(data).then(res => {
+    //     console.log(res.data);
+    //   });
+    // },
+    //註冊檢查
+    supplyRegiste(nickName, userName, password) {
+      const RegisteData = JSON.stringify({
+        userId: userName,
+        userPw: password,
+        userName: nickName
+      });
+      console.log(RegisteData);
+      userSignUp(RegisteData).then(res => {
+        console.log(res.data);
+        if (res.data.result) {
+          this.closePopupRegiste();
+          this.isMember = true;
+          this.unLogin = false;
+          alert("歡迎" + " " + nickName + " " + "入住");
+        } else {
+          alert("暱稱重複！");
+          return;
+        }
+      });
+    },
+    //登入檢查
+    supplyLogIn(userName, password) {
+      const LoginData = JSON.stringify({
+        userId: userName,
+        userPw: password
+      });
+      userLogIn(LoginData)
+        .then(res2 => {
+          console.log(res2.data.result);
+          if (res2.data.result) {
+            this.$cookies.set("token", "ImLogin", 60 * 60 * 24 * 14);
+            this.pass = true;
+            // enter
+            alert("歡迎回家");
+            this.closePopupLogin();
+            this.$router.push("/publicArea");
+          } else {
+            console.log(this.ans2);
+            alert("login failed fuck");
+            return;
+          }
+        })
+        .catch(error => console.log(error));
     }
+    // login() {
+    //-- write login authencation logic here! --
+    // userLogIn({
+    //   id: this.userName,
+    //   pw: this.password
+    // })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     console.log(err); //response攔截器會先執行，除非你漏接了，才會進到catch
+    //   });
+    // if (this.userName == "abcdef" && this.password == "123456") {
+    //   this.$cookies.set("token", "ImLogin", 60 * 60 * 24 * 14);
+    //   this.pass = true;
+    // }
+    // if (this.pass) {
+    // enter
+    //   this.$router.push("/publicArea");
+    // } else {
+    //   alert("login failed");
+    // }
+    // }
   }
 };
 </script>

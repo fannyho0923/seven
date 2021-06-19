@@ -105,6 +105,6 @@ export default {
   display: flex;
 }
 img {
-  background-color: rgb(248, 175, 18);
+  /* background-color: rgb(248, 175, 18); */
 }
 </style>

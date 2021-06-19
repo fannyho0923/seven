@@ -1,4 +1,4 @@
-import axios from "vue-axios";
+import axios from "axios";
 
 // baseURL是你API的主要Domain，之後發請求時只要填相對路徑就可以了
 const instance = axios.create({

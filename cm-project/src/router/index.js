@@ -7,8 +7,10 @@ import PublicArea from "@/views/PublicArea.vue";
 import Refrigerator from "@/views/Refrigerator.vue";
 import Memo from "@/views/Memo.vue";
 import Room from "@/views/Room.vue";
+import Bookcase from "@/views/Bookcase.vue";
 import Vue from "vue";
 import Router from "vue-router";
+import TempBlog from "@/views/TempBlog.vue";
 Vue.use(Router);
 const original = Router.prototype.push;
 Router.prototype.push = function push(location) {
@@ -64,6 +66,16 @@ export default new Router({
       path: "/room",
       name: "Room",
       component: Room
+    },
+    {
+      path: "/tempBlog",
+      name: "TempBlog",
+      component: TempBlog
+    },
+    {
+      path: "/bookcase",
+      name: "Bookcase",
+      component: Bookcase
     },
     {
       path: "*",

@@ -1,0 +1,153 @@
+<template>
+  <main class=" blog__bg">
+    <!-- <div class="bgBox">
+      <img
+        class="bgImg img-resp"
+        src="../../static/imgs/room/blogBg.jpeg"
+        alt="bgPic"
+        width="1000"
+        height="718"
+      />
+    </div> -->
+    <!-- 標題 -->
+    <header class="blog__head text-center">
+      <h1 class="set-inlineBlock">Blog</h1>
+    </header>
+    <!-- 放文章主要區域 -->
+    <section class="blog__body mx-auto">
+      <div class="blogBox">
+        <div class="articleBox mx-auto">
+          <Article class="pointer" v-for="(item, index) in 5" :key="index" />
+        </div>
+        <!-- 左邊按鈕 -->
+        <!-- <div class="pointer leftBox set-inlineBlock"></div> -->
+        <!-- 右邊按鈕 -->
+        <!-- <div class="pointer rightBox set-inlineBlock"></div> -->
+        <!-- 關閉視窗按鈕 -->
+        <div v-if="!isWrite" class="pointer leave__btn" @click="leave">Ｘ</div>
+        <!-- 新增文章按鈕 -->
+        <div v-if="!isWrite" class="pointer add__btn" @click="isWrite = true">
+          ＋
+        </div>
+      </div>
+    </section>
+    <div v-if="isWrite">
+      <ArticleWrite @close="closeWriteBox" />
+    </div>
+  </main>
+</template>
+
+<script>
+import Article from "@/components/Article.vue";
+import ArticleWrite from "@/components/ArticleWrite.vue";
+export default {
+  data() {
+    return {
+      isWrite: false
+    };
+  },
+  components: {
+    Article,
+    ArticleWrite
+  },
+  methods: {
+    closeWriteBox() {
+      this.isWrite = false;
+    },
+    leave() {
+      this.$router.push("/room");
+    }
+  }
+};
+</script>
+
+<style scoped>
+/* 背景照片 */
+.bgImg {
+  width: 100%;
+  max-height: 100vh;
+}
+/* 標頭 */
+.blog__head {
+  margin-top: 3rem;
+}
+/* 文章主要畫面 */
+.blog__body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  height: 40rem;
+  /* background-color: aqua; */
+}
+.blogBox {
+  display: flex;
+  max-width: 100%;
+  width: 100%;
+  height: 90%;
+  border-radius: 15px;
+  background-color: bisque;
+}
+/* 左右按鍵 */
+/* .leftBox {
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-2.5rem);
+  border: 3rem solid;
+  border-color: transparent #fbb034 transparent transparent;
+}
+.rightBox {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-2.5rem);
+  width: 0;
+  height: 0;
+  border: 3rem solid;
+  border-color: transparent transparent transparent #fbb034;
+} */
+
+/* 離開按鈕 */
+.leave__btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 3px black;
+  max-width: 5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 4rem;
+  left: 103%;
+  top: 5%;
+  background-color: rgb(43, 189, 226);
+}
+/* 撰寫文章 */
+.add__btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 3px black;
+  max-width: 5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 4rem;
+  left: 103%;
+  top: 20%;
+  background-color: rgb(247, 189, 244);
+}
+/* 放文章區域 */
+.articleBox {
+  display: flex;
+  justify-content: space-around;
+  /* background-color: rgb(226, 43, 186); */
+  position: relative;
+  width: 95%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+}
+</style>

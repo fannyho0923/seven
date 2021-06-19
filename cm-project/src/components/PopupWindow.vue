@@ -1,9 +1,11 @@
 <template>
-  <form class="login__form" @submit.prevent="inputDone">
+  <!-- @submit.prevent="inputDone" -->
+  <form class="login__form">
     <div class="inputBox">
       <label class="pop__tit">請輸入資訊</label>
       <br />
-      <label v-if="!member">nickName</label>
+      <!-- 不是會員才顯示 -->
+      <label v-if="!member">暱稱</label>
       <input
         v-if="!member"
         type="text"
@@ -15,7 +17,9 @@
       />
       <br v-if="!member" />
       <br v-if="!member" />
-      <label>User Name</label>
+      <!-- 無論是否為會員都要輸入帳密 -->
+      <label>帳號</label>
+      <!-- 是會員就直接輸入帳號 -->
       <input
         v-if="member"
         type="text"
@@ -24,6 +28,7 @@
         maxlength="20"
         required
       />
+      <!-- 不是會員會有創建帳號提示 -->
       <input
         v-else
         type="text"
@@ -35,7 +40,8 @@
       />
       <br />
       <br />
-      <label>Password</label>
+      <label>密碼</label>
+      <!-- 是會員就直接輸入密碼 -->
       <input
         v-if="member"
         type="password"
@@ -44,6 +50,7 @@
         maxlength="20"
         required
       />
+      <!-- 不是會員會有創建密碼提示 -->
       <input
         v-else
         type="password"
@@ -55,9 +62,16 @@
       />
       <br />
       <br />
-      <button v-if="member" type="submit" @click="atClick">Log in</button>
-      <button v-else type="submit" @click="atClick">finish</button>
+      <!-- 是會員按鈕會顯示:登入 -->
+      <button v-if="member" type="submit" @click.prevent="atClickLogIn">
+        Log in
+      </button>
+      <!-- 不是會員按鈕會顯示:完成 -->
+      <button v-else type="submit" @click.prevent="atClickRegiste">
+        finish
+      </button>
     </div>
+    <!-- 關閉視窗 -->
     <div class="pointer close__btn " @click="closePop">
       <label class="pointer  close__label" @click="closePop">X</label>
     </div>
@@ -75,16 +89,22 @@ export default {
   },
   props: ["member"],
   methods: {
-    atClick() {
-      if (!this.member) {
-        return;
-      }
-      // console.log(this.userName + "," + this.password);
-      this.$emit("sent", this.userName, this.password);
+    //登入
+    atClickLogIn() {
+      this.$emit("sentLogIn", this.userName, this.password);
     },
-    inputDone() {
-      this.$emit("inputDone", this.nickName);
+    //註冊
+    atClickRegiste() {
+      // if (!this.member) {
+      //   return;
+      // }
+      this.$emit("sentRegiste", this.nickName, this.userName, this.password);
     },
+    //繳交表單
+    // inputDone() {
+    //   this.$emit("inputDone", this.nickName);
+    // },
+    //關掉視窗
     closePop() {
       this.$emit("closePop");
     }
