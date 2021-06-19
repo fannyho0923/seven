@@ -36,6 +36,31 @@
           <!-- <date-picker v-model="time2" type="datetime"></date-picker> -->
           <!-- <date-picker v-model="time3" range></date-picker> -->
         </div>
+        <!-- 照片匡 -->
+        <div class="imgInputBox">
+          <label v-if="!preview" class="pointer label__btnBox"
+            ><input
+              type="file"
+              accept="image/*"
+              @change="previewImage"
+              class=" input__btn form-control-file"
+              id="my-file"
+            />點擊新增圖片</label
+          >
+          <!-- 秀照片區塊 -->
+          <div class="imgShowBox" v-if="preview">
+            <img
+              class="inputImg img-resp"
+              :src="preview"
+              alt="UserPic"
+              width="100"
+              height="100"
+            />
+          </div>
+          <button v-if="preview" class="pointer" @click="reset">
+            清除照片
+          </button>
+        </div>
         <div>
           <section class="calandarBob"></section>
         </div>
@@ -86,6 +111,10 @@ export default {
         new Date().getFullYear(),
       time2: null,
       time3: null,
+      image: null,
+      preview: null,
+      preview_list: [],
+      image_list: [],
       lang: {
         formatLocale: {
           firstDayOfWeek: 1
@@ -102,6 +131,25 @@ export default {
     leave() {
       this.$router.push("/room");
     },
+    previewImage(event) {
+      var input = event.target;
+      if (input.files) {
+        var reader = new FileReader();
+        reader.onload = e => {
+          this.preview = e.target.result;
+        };
+        this.image = input.files[0];
+        reader.readAsDataURL(input.files[0]);
+      } else {
+        return;
+      }
+    },
+    reset() {
+      this.image = null;
+      this.preview = null;
+      this.image_list = [];
+      this.preview_list = [];
+    },
     post() {
       console.log(this.content);
     }
@@ -116,7 +164,7 @@ export default {
 /* 書本背景 */
 .main {
   position: relative;
-  width: 78%;
+  width: 70%;
   /* background-color: pink; */
 }
 /* 背景照片容器 */
@@ -217,5 +265,41 @@ export default {
 .lab__left {
   display: flex;
   justify-content: center;
+}
+/* 放選取照片按鈕以及照片區塊 */
+.imgInputBox {
+  position: absolute;
+  width: 100%;
+  top: 60%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* 秀照片區塊 */
+.imgShowBox {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+/* 使用者輸入的照片 */
+.inputImg {
+  width: 50%;
+}
+/* 代替新增照面input */
+.label__btnBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: pink; */
+  width: 100%;
+  height: 100%;
+  color: rgb(77, 73, 73);
+}
+/* 新增照片的input(要透明) */
+.input__btn {
+  display: none;
 }
 </style>
