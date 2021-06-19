@@ -39,7 +39,7 @@
       </div>
       <button
         type="submit"
-        class=" mx-auto pointer set-inlineBlock post__btn"
+        class=" mx-auto  set-inlineBlock post__btn"
         @click.prevent="post"
       >
         發布

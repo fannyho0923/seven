@@ -8,6 +8,7 @@ import Refrigerator from "@/views/Refrigerator.vue";
 import Memo from "@/views/Memo.vue";
 import Room from "@/views/Room.vue";
 import Bookcase from "@/views/Bookcase.vue";
+import Diary from "@/views/Diary.vue";
 import Vue from "vue";
 import Router from "vue-router";
 import TempBlog from "@/views/TempBlog.vue";
@@ -76,6 +77,11 @@ export default new Router({
       path: "/bookcase",
       name: "Bookcase",
       component: Bookcase
+    },
+    {
+      path: "/diary",
+      name: "Diary",
+      component: Diary
     },
     {
       path: "*",

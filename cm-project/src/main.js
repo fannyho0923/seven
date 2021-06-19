@@ -10,10 +10,12 @@ import PortalVue from "portal-vue";
 import { BootstrapVue } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import DatePicker from "vue2-datepicker";
 // import { $cookies } from "vue/types/umd";
 
 // import { routes } from "./router"; //路由規則
 // Vue.use(PortalVue);
+Vue.use(DatePicker);
 Vue.use(VueAxios, axios);
 Vue.use(VueCookies);
 Vue.config.productionTip = false;

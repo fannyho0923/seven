@@ -44,9 +44,9 @@
             alt="diaryPic"
             width="628"
             height="496"
+            @click="goDiary"
           />
         </div>
-        <Diary />
         <!-- 電腦:回郵件 -->
         <Computer />
         <div class="pointer computerBox"></div>
@@ -59,7 +59,6 @@
 <script>
 import Photo from "@/components/Photo.vue";
 import Wardrobe from "@/components/Wardrobe.vue";
-import Diary from "@/components/Diary.vue";
 import Computer from "@/components/Computer.vue";
 export default {
   data() {
@@ -71,7 +70,6 @@ export default {
   components: {
     Photo,
     Wardrobe,
-    Diary,
     Computer
   },
   methods: {
@@ -80,6 +78,9 @@ export default {
     },
     goBlog() {
       this.$router.push("/bookcase");
+    },
+    goDiary() {
+      this.$router.push("/diary");
     }
   }
 };
