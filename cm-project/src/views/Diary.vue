@@ -29,8 +29,8 @@
             format="MMM-DD-YYYY"
             append-to-body
             open
-            :popup-style="{
-              position: 'absolute'
+            :popup-class="{
+              'calendar-red': true
             }"
           ></date-picker>
           <!-- <date-picker v-model="time2" type="datetime"></date-picker> -->
@@ -122,11 +122,18 @@ export default {
         monthBeforeYear: false,
         popup: "calendar"
       }
+      // notWriteDaily: ["2021-06-02","2021-06-20"]
     };
   },
   created() {
     this.content = "app";
   },
+  // watch: {
+  //   time1() {
+  //     console.log(typeof this.time1);
+  //     console.log(this.time1);
+  //   }
+  // },
   methods: {
     leave() {
       this.$router.push("/room");
@@ -153,11 +160,41 @@ export default {
     post() {
       console.log(this.content);
     }
+    // pickerOptions() {
+    //   disabledDate: time => {
+    //     if (time.getTime() > Date.now()) {
+    //       return true;
+    //     }
+    //   };
+    // },
+    // // 未填寫日報的日期，報紅
+    // cellClassName: time => {
+    //   if (this.notWriteDaily.includes(this.getLocalTime(time.getTime()))) {
+    //     return "red";
+    //   }
+    // },
+    // getLocalTime(nS) {
+    //   let date = new Date(nS);
+    //   let year = date.getFullYear();
+    //   let month = date.getMonth() + 1;
+    //   let day = date.getDate();
+    //   month = month < 10 ? "0" + month : month;
+    //   day = day < 10 ? "0" + day : day;
+    //   date = month + "-" + day + "-" + year;
+    //   console.log(date); //2021-06-12
+    //   return date;
+    // }
   }
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+// .red span {
+//   background: red;
+//   opacity: 0.5;
+//   color: green;
+//   border-radius: 50%;
+// }
 /* 標題 */
 .title {
 }
@@ -253,6 +290,9 @@ export default {
   position: absolute;
   width: 100%;
   opacity: 0.6;
+}
+.calendar-red {
+  background-color: red;
 }
 /* 右邊標題 */
 .lab__right {

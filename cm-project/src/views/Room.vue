@@ -48,9 +48,7 @@
           />
         </div>
         <!-- 電腦:回郵件 -->
-        <Computer />
-        <div class="pointer computerBox"></div>
-        <Computer />
+        <div class="pointer computerBox" @click="goComputer"></div>
       </section>
     </div>
   </main>
@@ -59,7 +57,6 @@
 <script>
 import Photo from "@/components/Photo.vue";
 import Wardrobe from "@/components/Wardrobe.vue";
-import Computer from "@/components/Computer.vue";
 export default {
   data() {
     return {
@@ -69,8 +66,7 @@ export default {
   },
   components: {
     Photo,
-    Wardrobe,
-    Computer
+    Wardrobe
   },
   methods: {
     showBookcase() {
@@ -81,6 +77,9 @@ export default {
     },
     goDiary() {
       this.$router.push("/diary");
+    },
+    goComputer() {
+      this.$router.push("/chat");
     }
   }
 };

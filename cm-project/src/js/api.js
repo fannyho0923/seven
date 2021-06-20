@@ -35,7 +35,7 @@ instance.interceptors.response.use(
           // go to 404 page
           break;
         case 500:
-          console.log("程式發生問題");
+          console.log("伺服器發生問題");
           // go to 500 page
           break;
         default:

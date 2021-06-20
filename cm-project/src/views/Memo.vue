@@ -208,9 +208,9 @@ export default {
   margin-top: 1.2rem;
   transform: translateX(2.5%);
   word-wrap: break-word;
-  text-overflow: ellipsis;
   overflow-x: hidden;
   overflow-y: auto;
+  /* text-overflow: ellipsis; */
 }
 /*隐藏滚轮*/
 /* .commentBox::-webkit-scrollbar {

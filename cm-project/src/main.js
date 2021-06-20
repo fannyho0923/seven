@@ -11,10 +11,13 @@ import { BootstrapVue } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import DatePicker from "vue2-datepicker";
+// import { VueDatePicker } from "@mathieustan/vue-datepicker";
+// import "@mathieustan/vue-datepicker/dist/vue-datepicker.min.css";
 // import { $cookies } from "vue/types/umd";
 
 // import { routes } from "./router"; //路由規則
 // Vue.use(PortalVue);
+// Vue.use(VueDatePicker);
 Vue.use(DatePicker);
 Vue.use(VueAxios, axios);
 Vue.use(VueCookies);
