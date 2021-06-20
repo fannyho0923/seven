@@ -64,6 +64,8 @@
           </aside>
         </section>
       </div>
+      <!-- 關閉視窗按鈕 -->
+      <div v-if="!isWrite" class="pointer leave__btn" @click="leave">Ｘ</div>
     </div>
   </main>
 </template>
@@ -73,14 +75,14 @@ import Member from "@/components/Member.vue";
 export default {
   data() {
     return {
-      str: "",
+      str: "", // 我打的話
       strArr: [],
       otherArr: [
         { id: "2", str: "hihi" },
         { id: "2", str: "yoyo" },
         { id: "2", str: "ioio" }
       ],
-      add: 14,
+      add: 14, //好友位移
       members: [
         {
           src: "../../static/imgs/avatar.png",
@@ -115,12 +117,17 @@ export default {
     }
   },
   methods: {
+    //   送出我打的話
     send() {
       if (!this.str) {
         return;
       }
       this.strArr.push({ id: "1", str: this.str });
       this.str = "";
+    },
+    // 離開本頁
+    leave() {
+      this.$router.push("/room");
     }
   },
   components: {
@@ -132,19 +139,19 @@ export default {
 <style scoped>
 .main {
   position: relative;
-  width: 70%;
-  background-color: grey;
+  width: 60%;
+  /* background-color: grey; */
 }
 .row {
   position: relative;
   width: 90%;
-  background-color: khaki;
+  /* background-color: khaki; */
 }
 /* 背景照片容器 */
 .imgBox {
   position: relative;
   max-width: 100%;
-  background-color: pink;
+  /* background-color: pink; */
   transform: translateX(4%);
 }
 /* 背景照片 */
@@ -175,7 +182,7 @@ export default {
   justify-content: center;
   width: 40%;
   height: 100%;
-  background-color: rosybrown;
+  background-color: rgb(231, 176, 176);
 }
 /* 右邊好友螢幕 */
 .right__screen {
@@ -228,20 +235,23 @@ export default {
   background-color: transparent;
   border: transparent;
 }
+/* 整片聊天內容 */
 .chat__content {
+  background-image: url("../../static/imgs/room/flowerBg.png");
   position: absolute;
   left: 40%;
   top: 10%;
   width: 60%;
   height: 80%;
-  background-color: violet;
+  /* background-color: violet; */
   overflow: hidden;
   overflow-x: hidden;
   overflow-y: auto;
   flex-wrap: wrap;
   word-wrap: break-word;
+  padding-top: 0.5rem;
 }
-/* 送出的話 */
+/* 送出的對話容器 */
 .sentence {
   /* white-space: pre-wrap;
   word-break: break-all; */
@@ -254,7 +264,7 @@ export default {
   display: flex;
   flex-direction: row-reverse;
 }
-
+/* 收到的對話容器 */
 .sentence2 {
   width: 100%;
   font-size: 2vw;
@@ -265,7 +275,7 @@ export default {
   display: flex;
   flex-direction: row;
 }
-
+/* 我方輸入的文字內容 */
 .text {
   position: relative;
   max-width: 50%;
@@ -277,6 +287,7 @@ export default {
   padding-right: 0.5rem;
   margin-right: 1.1vw;
 }
+/* 我方聊天框三角形 */
 .text::after {
   content: "";
   border-color: rgb(39, 117, 163) transparent transparent transparent;
@@ -290,6 +301,7 @@ export default {
   left: 99%;
   top: calc(50% — 6px);
 }
+/* 對方留言內容 */
 .text2 {
   position: relative;
   max-width: 50%;
@@ -301,6 +313,7 @@ export default {
   padding-right: 0.5rem;
   margin-left: 1.1vw;
 }
+/* 對方聊天框三角形 */
 .text2::before {
   /* content: "";
   border-color: transparent transparent rgb(153, 187, 207) transparent;
@@ -322,5 +335,20 @@ export default {
   position: absolute;
   left: -1vw;
   top: 0;
+}
+/* 離開按鈕 */
+.leave__btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 3px black;
+  max-width: 5rem;
+  width: 3.5vw;
+  max-height: 4vw;
+  font-size: 3vw;
+  left: 103%;
+  top: 5%;
+  background-color: rgb(43, 189, 226);
 }
 </style>

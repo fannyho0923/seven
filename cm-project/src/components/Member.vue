@@ -4,7 +4,7 @@
       <!-- 頭像 -->
       <aside class="head">
         <img
-          class="img img-resp"
+          class="img img-resp pointer"
           :src="memberArr.src"
           alt="memberPic"
           width="100"
@@ -13,7 +13,7 @@
       </aside>
       <!-- 名字 -->
       <aside class="name">
-        <label>{{ memberArr.name }}</label>
+        <label class="pointer">{{ memberArr.name }}</label>
       </aside>
     </div>
   </main>
@@ -32,12 +32,12 @@ export default {
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  background-color: slateblue;
+  /* background-color: slateblue; */
 }
 /* 頭像框 */
 .head {
-  width: 4vw;
-  height: 4vw;
+  width: 3.6vw;
+  height: 3.6vw;
   border: solid 1px red;
   border-radius: 50%;
 }
@@ -52,7 +52,7 @@ export default {
   width: 55%;
   max-height: 3vw;
   height: 2.5vw;
-  border: solid 1px;
+  /* border: solid 1px; */
   display: flex;
   justify-content: center;
   align-items: center;
