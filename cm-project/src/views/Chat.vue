@@ -35,12 +35,20 @@
             <!-- 對話顯示 -->
             <div class="chat__content">
               <div
-                class="sentence"
+                :class="{
+                  sentence: strArr[index].id == 1,
+                  sentence2: strArr[index].id == 2
+                }"
                 v-for="(item, index) in strArr"
                 :key="index"
               >
-                <p class="text">
-                  {{ strArr[index] }}
+                <p
+                  :class="{
+                    text: strArr[index].id == 1,
+                    text2: strArr[index].id == 2
+                  }"
+                >
+                  {{ strArr[index].str }}
                 </p>
               </div>
             </div>
@@ -67,6 +75,11 @@ export default {
     return {
       str: "",
       strArr: [],
+      otherArr: [
+        { id: "2", str: "hihi" },
+        { id: "2", str: "yoyo" },
+        { id: "2", str: "ioio" }
+      ],
       add: 14,
       members: [
         {
@@ -96,12 +109,17 @@ export default {
       ]
     };
   },
+  created() {
+    for (let index = 0; index < this.otherArr.length; index++) {
+      this.strArr.push(this.otherArr[index]);
+    }
+  },
   methods: {
     send() {
       if (!this.str) {
         return;
       }
-      this.strArr.push(this.str);
+      this.strArr.push({ id: "1", str: this.str });
       this.str = "";
     }
   },
@@ -236,6 +254,18 @@ export default {
   display: flex;
   flex-direction: row-reverse;
 }
+
+.sentence2 {
+  width: 100%;
+  font-size: 2vw;
+  left: 40%;
+  top: 10%;
+  /* background-color: rgb(163, 39, 163); */
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
 .text {
   position: relative;
   max-width: 50%;
@@ -245,19 +275,52 @@ export default {
   border-radius: 10px 0 10px 10px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  margin-right: 1.2vw;
+  margin-right: 1.1vw;
 }
 .text::after {
   content: "";
   border-color: rgb(39, 117, 163) transparent transparent transparent;
   border-style: solid;
   /* 設定邊框大小可拼湊出任意形狀的三角形 */
-  border-width: 1.2vw 1.2vw 0px 0px;
+  border-width: 1.1vw 1.1vw 0px 0px;
   /* 設定 width、height 可更好理解原理 */
   width: 0px;
   height: 0px;
   position: absolute;
   left: 99%;
   top: calc(50% — 6px);
+}
+.text2 {
+  position: relative;
+  max-width: 50%;
+  width: fit-content;
+  background-color: rgb(153, 187, 207);
+  margin-bottom: 0;
+  border-radius: 0 10px 10px 10px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-left: 1.1vw;
+}
+.text2::before {
+  /* content: "";
+  border-color: transparent transparent rgb(153, 187, 207) transparent;
+  border-style: solid; */
+  /* 設定邊框大小可拼湊出任意形狀的三角形 */
+  /* border-width: 0 0 1.1vw 1.1vw; */
+  /* 設定 width、height 可更好理解原理 */
+  /* width: 0px;
+  height: 0px;
+  position: absolute;
+  left: -1.2vw;
+  top: calc(50% — 6px); */
+  /* == */
+  content: "";
+  border-left: 0px solid transparent;
+  border-top: 0px solid transparent;
+  border-bottom: 1.1vw solid transparent;
+  border-right: 1.1vw solid rgb(153, 187, 207);
+  position: absolute;
+  left: -1vw;
+  top: 0;
 }
 </style>
