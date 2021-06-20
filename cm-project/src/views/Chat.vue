@@ -33,7 +33,7 @@
           </header>
           <aside class="right__screen">
             <!-- 對話顯示 -->
-            <div class="chat__content">
+            <div id="data-list-content" class="chat__content">
               <div
                 :class="{
                   sentence: strArr[index].id == 1,
@@ -65,7 +65,7 @@
         </section>
       </div>
       <!-- 關閉視窗按鈕 -->
-      <div v-if="!isWrite" class="pointer leave__btn" @click="leave">Ｘ</div>
+      <div class="pointer leave__btn" @click="leave">Ｘ</div>
     </div>
   </main>
 </template>
@@ -76,7 +76,12 @@ export default {
   data() {
     return {
       str: "", // 我打的話
-      strArr: [],
+      strArr: [
+        { id: "1", str: "yyy" },
+        { id: "1", str: "ooo" },
+        { id: "1", str: "rrr" },
+        { id: "1", str: "aaa" }
+      ],
       otherArr: [
         { id: "2", str: "hihi" },
         { id: "2", str: "yoyo" },
@@ -115,6 +120,12 @@ export default {
     for (let index = 0; index < this.otherArr.length; index++) {
       this.strArr.push(this.otherArr[index]);
     }
+  },
+  updated() {
+    this.$nextTick(function() {
+      var div = document.getElementById("data-list-content");
+      div.scrollTop = div.scrollHeight;
+    });
   },
   methods: {
     //   送出我打的話
@@ -298,7 +309,7 @@ export default {
   width: 0px;
   height: 0px;
   position: absolute;
-  left: 99%;
+  left: 98%;
   top: calc(50% — 6px);
 }
 /* 對方留言內容 */

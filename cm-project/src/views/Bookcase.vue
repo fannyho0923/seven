@@ -17,7 +17,14 @@
     <section class="blog__body mx-auto">
       <div class="blogBox">
         <div class="articleBox mx-auto">
-          <Article class="pointer" v-for="(item, index) in 5" :key="index" />
+          <Article
+            class="pointer"
+            v-for="(item, index) in 5"
+            :key="index"
+            @click="look"
+          />
+          <!-- 預覽或留言 -->
+          <ArticleComment v-if="isLook" />
         </div>
         <!-- 左邊按鈕 -->
         <!-- <div class="pointer leftBox set-inlineBlock"></div> -->
@@ -40,22 +47,31 @@
 <script>
 import Article from "@/components/Article.vue";
 import ArticleWrite from "@/components/ArticleWrite.vue";
+import ArticleComment from "@/components/ArticleComment.vue";
 export default {
   data() {
     return {
-      isWrite: false
+      isWrite: false,
+      isLook: false
     };
   },
   components: {
     Article,
-    ArticleWrite
+    ArticleWrite,
+    ArticleComment
   },
   methods: {
+    // 離開編輯狀態
     closeWriteBox() {
       this.isWrite = false;
     },
+    // 離開本頁
     leave() {
       this.$router.push("/room");
+    },
+    // 點擊預覽留言
+    look() {
+      this.isLook = true;
     }
   }
 };
