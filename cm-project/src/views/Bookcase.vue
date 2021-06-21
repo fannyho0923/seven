@@ -18,28 +18,44 @@
       <div class="blogBox">
         <div class="articleBox mx-auto">
           <Article
-            class="pointer"
-            v-for="(item, index) in 5"
+            v-for="(item, index) in articleArr"
             :key="index"
-            @click="look"
+            @see="look(index)"
           />
-          <!-- 預覽或留言 -->
-          <ArticleComment v-if="isLook" />
         </div>
         <!-- 左邊按鈕 -->
         <!-- <div class="pointer leftBox set-inlineBlock"></div> -->
         <!-- 右邊按鈕 -->
         <!-- <div class="pointer rightBox set-inlineBlock"></div> -->
         <!-- 關閉視窗按鈕 -->
-        <div v-if="!isWrite" class="pointer leave__btn" @click="leave">Ｘ</div>
+        <div
+          v-if="!isWrite && !isLook"
+          class="pointer leave__btn"
+          @click="leave"
+        >
+          Ｘ
+        </div>
         <!-- 新增文章按鈕 -->
-        <div v-if="!isWrite" class="pointer add__btn" @click="isWrite = true">
+        <div
+          v-if="!isWrite && !isLook"
+          class="pointer add__btn"
+          @click="isWrite = true"
+        >
           ＋
         </div>
       </div>
     </section>
+    <!-- 編輯文章彈窗 -->
     <div v-if="isWrite">
       <ArticleWrite @close="closeWriteBox" />
+    </div>
+    <!-- 預覽或留言彈窗 -->
+    <div v-if="isLook">
+      <ArticleComment
+        v-if="isLook"
+        :arr="articleArr[this.id]"
+        @closeSeeBox="closeLookBox"
+      />
     </div>
   </main>
 </template>
@@ -52,7 +68,39 @@ export default {
   data() {
     return {
       isWrite: false,
-      isLook: false
+      isLook: false,
+      articleArr: [
+        {
+          src: "../../static/test.jpg",
+          str: "my name is tony",
+          img: "../../static/test.jpg",
+          name: "tony"
+        },
+        {
+          src: "../../static/test.jpg",
+          str: "my name is cody",
+          img: "",
+          name: "cody"
+        },
+        {
+          src: "../../static/test.jpg",
+          str: "my name is cake",
+          img: "../../static/test.jpg",
+          name: "cake"
+        },
+        {
+          src: "../../static/test.jpg",
+          str: "my name is fanny",
+          img: "",
+          name: "fanny"
+        },
+        {
+          src: "../../static/test.jpg",
+          str: "my name is ann",
+          img: "../../static/test.jpg",
+          name: "ann"
+        }
+      ]
     };
   },
   components: {
@@ -65,13 +113,18 @@ export default {
     closeWriteBox() {
       this.isWrite = false;
     },
+    // 離開預覽狀態
+    closeLookBox() {
+      this.isLook = false;
+    },
     // 離開本頁
     leave() {
       this.$router.push("/room");
     },
     // 點擊預覽留言
-    look() {
+    look(id) {
       this.isLook = true;
+      this.id = id;
     }
   }
 };

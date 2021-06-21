@@ -1,5 +1,5 @@
 <template>
-  <div class="articleBox ">
+  <div class="articleBox  pointer" @click="see">
     <!-- 從後端拿取日期 -->
     <div class="day text-center">Jan-12-2021</div>
     <!-- 分隔線 -->
@@ -14,7 +14,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    see() {
+      this.$emit("see");
+    }
+  }
+};
 </script>
 
 <style scoped>

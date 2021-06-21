@@ -35,6 +35,7 @@
             清除照片
           </button>
         </div>
+        <!-- 關閉視窗按鈕 -->
         <div class="pointer close__btn" @click="close">Ｘ</div>
       </div>
       <button
