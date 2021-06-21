@@ -91,6 +91,15 @@
       </aside>
       <!-- 關閉視窗按鈕 -->
       <div class="pointer leave__btn" @click="leave">Ｘ</div>
+      <div class="penBox">
+        <img
+          class="penImg img-resp"
+          src="../../static/imgs/room/FeatherPen.png"
+          alt="featherPenPic"
+          width="342"
+          height="336"
+        />
+      </div>
     </div>
   </main>
 </template>
@@ -341,5 +350,15 @@ export default {
 /* 新增照片的input(要透明) */
 .input__btn {
   display: none;
+}
+// 羽毛筆照片容器
+.penBox {
+  width: 25vw;
+  position: absolute;
+  left: 90%;
+  top: 10%;
+}
+.penImg {
+  width: 100%;
 }
 </style>
