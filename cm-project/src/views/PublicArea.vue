@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {} from "@/js/all.js";
+import { getMembers } from "@/js/all.js";
 import Door from "../components/Door.vue";
 import IconList from "../components/IconList.vue";
 import Refrigerator from "../views/Refrigerator.vue";
@@ -30,7 +30,12 @@ export default {
     Door,
     Refrigerator
   },
-  created() {},
+  created() {
+    console.log("pub:" + this.$store.getters.userSeriel);
+    getMembers(this.$store.getters.userSeriel)
+      .then(res1 => console.log(res1.data))
+      .catch(error => console.log(error));
+  },
   data() {
     return {
       data: {},

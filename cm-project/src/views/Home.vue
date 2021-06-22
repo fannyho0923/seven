@@ -163,6 +163,8 @@ export default {
           if (res2.data.result) {
             // 將帳號寫入全域(Vuex)
             this.$store.commit("Login", res2.data.userSeriel);
+            // 寫入餅乾
+            this.$cookies.set("token", res2.data.userSeriel, 60 * 60 * 24 * 14);
             // 驗證社群狀態
             userStatus(this.$store.getters.userSeriel)
               .then(res3 => {
@@ -170,15 +172,26 @@ export default {
                 // 未加入社群(-1)
                 if (res3.data.status == -1) {
                   // 打api：新社群
-                  userAddNewGroup(this.$store.getters.userSeriel).then(res4 =>
-                    console.log(res4.data)
-                  );
+                  userAddNewGroup(this.$store.getters.userSeriel).then(res4 => {
+                    console.log(res4.data);
+                    if (res4.data) {
+                      console.log("打api：新社群");
+                      this.$router.push("/publicArea");
+                      return;
+                    }
+                  });
                 }
                 // 已過期(2)
                 if (res3.data.status == 2) {
                   // 打api：搬到新的社群
-                  userTransferGroup(this.$store.getters.userSeriel).then(res5 =>
-                    console.log(res5.data)
+                  userTransferGroup(this.$store.getters.userSeriel).then(
+                    res5 => {
+                      console.log(res5.data);
+                      if (res5.data) {
+                        this.$router.push("/publicArea");
+                        return;
+                      }
+                    }
                   );
                 }
                 //正常(1)
@@ -186,11 +199,11 @@ export default {
                   // 直接進入
                   // enter
                   this.$router.push("/publicArea");
+                  return;
                 }
               })
               .catch(error => console.log(error));
-            // 寫入餅乾
-            this.$cookies.set("token", res2.data.userSeriel, 60 * 60 * 24 * 14);
+
             // console.log(this.$store.getters.userSeriel);
             this.pass = true;
             // 關掉登入彈窗

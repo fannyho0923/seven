@@ -10,13 +10,13 @@ module.exports = {
     assetsSubDirectory: "static",
     assetsPublicPath: "/",
     proxyTable: {
-      // "/api": {
-      //   target: "http://35.201.237.18", //node express api的url位置
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     "^/api": ""
-      //   }
-      // }
+      "/api": {
+        target: "http://35.201.237.18", //node express api的url位置
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": ""
+        }
+      }
     },
 
     // Various Dev Server settings

@@ -34,8 +34,10 @@ new Vue({
 });
 router.beforeEach((to, from, next) => {
   const isLogin = $cookies.get("token") == store.getters.userSeriel;
+  console.log($cookies.get("token"));
+  console.log(store.getters.userSeriel);
   if (isLogin) {
-    // console.log("userSeriel:" + store.getters.userSeriel);
+    console.log("userSeriel:" + store.getters.userSeriel);
     next();
   } else {
     if (to.path !== "/home") next("/home");

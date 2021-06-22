@@ -38,7 +38,6 @@ export const userAddNewGroup = userSeriel => {
 export const userTransferGroup = userSeriel => {
   return req("get", "/Group/Transfer/" + userSeriel);
 };
-
 //修改密碼/暱稱x
 // export const userLogin = userData => {
 //   return req("put", "/User", userData);
@@ -54,20 +53,19 @@ export const userTransferGroup = userSeriel => {
 //   return req("delete", "/user/delete", userNo);
 // };
 
+//=====================================================
+
 // Group 相關的 api
-//查詢社群x
-export const queryGroup = groupData => {
-  return req("get", "/Group", groupData);
+
+//取得社群成員資料
+export const getMembers = userSeriel => {
+  return req("get", "/Group/Members/" + userSeriel);
 };
-//新社群v
-export const joinGroup = userSeriel => {
-  return req("post", "/Group/new/" + userSeriel);
-};
-//進入社群空間v
-export const enterGroup = userSeriel => {
-  return req("get", "/Group/" + userSeriel);
-};
-//退出社群x
+
+//=====================================================
+
+// Room 相關的 api
+
 //進入社群中的玩家空間v
 export const enterRoom = (doorIndex, userSeriel) => {
   return req("get", "/Group/" + doorIndex + "/" + userSeriel);
