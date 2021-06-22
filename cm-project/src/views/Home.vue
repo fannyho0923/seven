@@ -48,7 +48,13 @@
 
 <script>
 import PopupWindow from "../components/PopupWindow.vue";
-import { userSignUp, userLogIn, enterRoom } from "@/js/all.js";
+import {
+  userSignUp,
+  userLogIn,
+  userStatus,
+  userAddNewGroup,
+  userTransferGroup
+} from "@/js/all.js";
 
 export default {
   data() {
@@ -155,14 +161,40 @@ export default {
         .then(res2 => {
           // console.log(res2.data);
           if (res2.data.result) {
+            // 將帳號寫入全域(Vuex)
             this.$store.commit("Login", res2.data.userSeriel);
+            // 驗證社群狀態
+            userStatus(this.$store.getters.userSeriel)
+              .then(res3 => {
+                console.log(res3.data);
+                // 未加入社群(-1)
+                if (res3.data.status == -1) {
+                  // 打api：新社群
+                  userAddNewGroup(this.$store.getters.userSeriel).then(res4 =>
+                    console.log(res4.data)
+                  );
+                }
+                // 已過期(2)
+                if (res3.data.status == 2) {
+                  // 打api：搬到新的社群
+                  userTransferGroup(this.$store.getters.userSeriel).then(res5 =>
+                    console.log(res5.data)
+                  );
+                }
+                //正常(1)
+                if (res3.data.status == 1) {
+                  // 直接進入
+                  // enter
+                  this.$router.push("/publicArea");
+                }
+              })
+              .catch(error => console.log(error));
+            // 寫入餅乾
             this.$cookies.set("token", res2.data.userSeriel, 60 * 60 * 24 * 14);
-            // console.log(this.$store);
+            // console.log(this.$store.getters.userSeriel);
             this.pass = true;
             // 關掉登入彈窗
             this.closePopupLogin();
-            // enter
-            this.$router.push("/publicArea");
           } else {
             alert("login failed");
             return;

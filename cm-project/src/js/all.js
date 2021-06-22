@@ -24,6 +24,21 @@ export const userSignUp = signUpData => {
 export const userLogIn = loginData => {
   return req("post", "/SignIn", loginData);
 };
+//使用者社群狀態V-v (-1-未加入 2-已到期 1-正常)
+export const userStatus = userSeriel => {
+  return req("get", "/Group/Status/" + userSeriel);
+};
+// (-1-未加入 ２-已到期 1-正常)
+//新社群(-1)V-v
+export const userAddNewGroup = userSeriel => {
+  return req("get", "/Group/New/" + userSeriel);
+};
+//搬家(2)
+//搬到新的社群
+export const userTransferGroup = userSeriel => {
+  return req("get", "/Group/Transfer/" + userSeriel);
+};
+
 //修改密碼/暱稱x
 // export const userLogin = userData => {
 //   return req("put", "/User", userData);

@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import {} from "@/js/all.js";
 import Door from "../components/Door.vue";
 import IconList from "../components/IconList.vue";
 import Refrigerator from "../views/Refrigerator.vue";
@@ -29,6 +30,7 @@ export default {
     Door,
     Refrigerator
   },
+  created() {},
   data() {
     return {
       data: {},
