@@ -10,9 +10,9 @@
         v-if="!member"
         type="text"
         v-model="nickName"
-        placeholder="限 5-15 字"
-        minlength="5"
-        maxlength="15"
+        placeholder="限 1-20 字"
+        minlength="1"
+        maxlength="20"
         required
       />
       <br v-if="!member" />
@@ -24,7 +24,7 @@
         v-if="member"
         type="text"
         v-model="userName"
-        minlength="6"
+        minlength="4"
         maxlength="20"
         required
       />
@@ -33,8 +33,8 @@
         v-else
         type="text"
         v-model="userName"
-        placeholder="限 6-20 字"
-        minlength="6"
+        placeholder="限 4-20 字"
+        minlength="4"
         maxlength="20"
         required
       />
@@ -95,16 +95,9 @@ export default {
     },
     //註冊
     atClickRegiste() {
-      // if (!this.member) {
-      //   return;
-      // }
       this.$emit("sentRegiste", this.nickName, this.userName, this.password);
     },
-    //繳交表單
-    // inputDone() {
-    //   this.$emit("inputDone", this.nickName);
-    // },
-    //關掉視窗
+    //關閉彈跳視窗
     closePop() {
       this.$emit("closePop");
     }

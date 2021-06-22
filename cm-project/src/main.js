@@ -3,6 +3,7 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import store from "./js/store";
 import router from "./router";
 import App from "./App";
 import VueCookies from "vue-cookies";
@@ -26,15 +27,15 @@ Vue.prototype.$PortalVue = PortalVue;
 Vue.use(BootstrapVue);
 /* eslint-disable no-new */
 new Vue({
+  store,
   el: "#app",
   router,
   render: h => h(App)
 });
 router.beforeEach((to, from, next) => {
-  const isLogin = $cookies.get("token") == "ImLogin";
-  console.log(isLogin);
+  const isLogin = $cookies.get("token") == store.getters.userSeriel;
   if (isLogin) {
-    console.log(isLogin + "!!!");
+    console.log("userSeriel:" + store.getters.userSeriel);
     next();
   } else {
     if (to.path !== "/home") next("/home");

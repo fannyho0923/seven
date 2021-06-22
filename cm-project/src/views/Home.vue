@@ -65,9 +65,7 @@ export default {
       //判斷是否已有會員
       isMember: false,
       //判斷帳密輸入是否正確
-      pass: false,
-      ans: false,
-      ans2: false
+      pass: false
     };
   },
   // created() {
@@ -135,19 +133,19 @@ export default {
       });
       console.log(RegisteData);
       userSignUp(RegisteData).then(res => {
-        console.log(res.data);
+        // console.log(res);
         if (res.data.result) {
           this.closePopupRegiste();
           this.isMember = true;
           this.unLogin = false;
           alert("歡迎" + " " + nickName + " " + "入住");
         } else {
-          alert("暱稱重複！");
+          alert(res.data.resultMessenge);
           return;
         }
       });
     },
-    //登入檢查
+    //登入檢查->會丟給我 userSeriel (使用者流水號)
     supplyLogIn(userName, password) {
       const LoginData = JSON.stringify({
         userId: userName,
@@ -155,17 +153,18 @@ export default {
       });
       userLogIn(LoginData)
         .then(res2 => {
-          console.log(res2.data.result);
+          // console.log(res2.data);
           if (res2.data.result) {
-            this.$cookies.set("token", "ImLogin", 60 * 60 * 24 * 14);
+            this.$store.commit("Login", res2.data.userSeriel);
+            this.$cookies.set("token", res2.data.userSeriel, 60 * 60 * 24 * 14);
+            // console.log(this.$store);
             this.pass = true;
-            // enter
-            alert("歡迎回家");
+            // 關掉登入彈窗
             this.closePopupLogin();
+            // enter
             this.$router.push("/publicArea");
           } else {
-            console.log(this.ans2);
-            alert("login failed fuck");
+            alert("login failed");
             return;
           }
         })

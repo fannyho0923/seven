@@ -16,11 +16,11 @@ import req from "./api";
 
 // User 相關的 api
 
-//註冊帳號v
+//註冊帳號Ｖ-v
 export const userSignUp = signUpData => {
   return req("post", "/SignUp", signUpData);
 };
-//登入帳號v
+//登入帳號Ｖ-v
 export const userLogIn = loginData => {
   return req("post", "/SignIn", loginData);
 };
