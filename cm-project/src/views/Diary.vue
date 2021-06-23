@@ -50,7 +50,7 @@
               height="100"
             />
           </div>
-          <button v-if="imgUrl" class="pointer" @click="reset">
+          <button v-if="showImg" class="pointer" @click="reset">
             清除照片
           </button>
         </div>
@@ -112,7 +112,7 @@ export default {
   data() {
     return {
       content: "",
-      showImg: true,
+      showImg: null,
       time: new Date(),
       zh: zh,
       highlightedArray: [],
@@ -151,10 +151,25 @@ export default {
       getDiaryContent(this.$store.getters.userSeriel, {
         diaryDay: this.time.toString().slice(4, 15)
       }).then(res2 => {
-        // console.log(res2.data.diaryTxt);
-        console.log(res2.data);
         this.content = res2.data.diaryTxt;
         this.imgUrl = res2.data.diaryImgPath;
+        if (res2.data.diaryImgPath === null) {
+          this.showImg = false;
+        } else {
+          this.showImg = true;
+        }
+      });
+    },
+    showImg() {
+      getDiaryContent(this.$store.getters.userSeriel, {
+        diaryDay: this.time.toString().slice(4, 15)
+      }).then(res2 => {
+        // console.log(res2.data);
+        if (res2.data.diaryImgPath === null) {
+          this.showImg = false;
+        } else {
+          this.showImg = true;
+        }
       });
     }
   },
@@ -203,7 +218,6 @@ export default {
     // 上傳圖片
     previewImage(event) {
       // console.log(this.$refs.files.files[0]);
-      this.showImg = true;
       // 宣告一個變數來儲存我們找到的圖片
       const uploadedFile = this.$refs.files.files[0];
       // 把圖片轉換成 FromData，先宣告一個變數是我們的 new FormData()
@@ -220,24 +234,11 @@ export default {
           userSeriel: this.$store.getters.userSeriel,
           diaryDay: this.time.toString().slice(4, 15),
           diaryImgPath: this.imgUrl
-        }).then(res5 => console.log(res5.data));
+        }).then(res5 => {
+          console.log(res5.data);
+          this.showImg = true;
+        });
       });
-
-      // var input = event.target;
-      // if (input.files) {
-      //   var reader = new FileReader();
-      //   reader.onload = e => {
-      //     this.preview = e.target.result;
-      //   };
-      //   this.image = input.files[0];
-      //   reader.readAsDataURL(input.files[0]);
-      // const formData = new FormData();
-      // formData.append;
-      // 打api更新圖片
-      // setDiaryImg().then();
-      // } else {
-      //   return;
-      // }
     },
     // 刪除照片
     reset() {
