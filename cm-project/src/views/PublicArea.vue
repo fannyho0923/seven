@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { getMembers } from "@/js/all.js";
+import { getMembers, getUserInfo } from "@/js/all.js";
 import Door from "../components/Door.vue";
 import IconList from "../components/IconList.vue";
 import Refrigerator from "../views/Refrigerator.vue";
@@ -31,14 +31,24 @@ export default {
     Refrigerator
   },
   created() {
-    console.log("pub:" + this.$store.getters.userSeriel);
-    getMembers(this.$store.getters.userSeriel)
+    //取得使用者資訊
+    getUserInfo(this.$store.getters.userSeriel)
       .then(res1 => console.log(res1.data))
+      .catch(error => console.log(error));
+    //取得社群成員資訊
+    getMembers(this.$store.getters.userSeriel)
+      .then(res2 => {
+        console.log(res2.data);
+        for (let index = 0; index < array.memberInfos; index++) {
+          // 依序將成員寫入房門陣列
+          this.members.push(memberInfos[index]);
+        }
+      })
       .catch(error => console.log(error));
   },
   data() {
     return {
-      data: {},
+      data: { members: [] },
       // 門的名子照片與頭像
       doors: [
         {

@@ -19,45 +19,38 @@
         <!-- 分隔線 -->
         <hr />
         <!-- 月曆 -->
-        <!-- <date-picker :lang="lang"></date-picker> -->
         <div class="calendarBox">
-          <date-picker
-            class="calend"
-            :lang="lang"
-            v-model="time1"
-            valueType="format"
-            format="MMM-DD-YYYY"
-            append-to-body
-            open
-            :popup-class="{
-              'calendar-red': true
-            }"
-          ></date-picker>
-          <!-- <date-picker v-model="time2" type="datetime"></date-picker> -->
-          <!-- <date-picker v-model="time3" range></date-picker> -->
+          <datepicker
+            :inline="true"
+            format="MMM dd yyyy"
+            v-model="time"
+            placeholder="-請選擇-"
+            :highlighted="highlighted"
+          />
         </div>
-        <!-- 照片匡 -->
+        <!-- 照片框 -->
         <div class="imgInputBox">
-          <label v-if="!preview" class="pointer label__btnBox"
+          <label v-if="!showImg" class="pointer label__btnBox"
             ><input
               type="file"
               accept="image/*"
               @change="previewImage"
               class=" input__btn form-control-file"
               id="my-file"
+              ref="files"
             />點擊新增圖片</label
           >
           <!-- 秀照片區塊 -->
-          <div class="imgShowBox" v-if="preview">
+          <div class="imgShowBox" v-if="imgUrl && showImg">
             <img
               class="inputImg img-resp"
-              :src="preview"
+              :src="imgUrl"
               alt="UserPic"
               width="100"
               height="100"
             />
           </div>
-          <button v-if="preview" class="pointer" @click="reset">
+          <button v-if="imgUrl" class="pointer" @click="reset">
             清除照片
           </button>
         </div>
@@ -72,7 +65,7 @@
       <!-- 右頁 -->
       <aside class="rightBox">
         <!-- 日期 -->
-        <label class="lab__right"> &ensp;{{ time1 }} &ensp;</label>
+        <label class="lab__right"> &ensp;{{ getTimeStr }} &ensp;</label>
         <!-- 分隔線 -->
         <hr />
         <!-- 文章 -->
@@ -82,7 +75,7 @@
             <button
               type="submit"
               class=" set-inlineBlock postBtn"
-              @click.prevent="post"
+              @click.prevent="post()"
             >
               儲存
             </button>
@@ -105,105 +98,180 @@
 </template>
 
 <script>
+import {
+  getDiaryHighlight,
+  getDiaryContent,
+  setDiaryTxt,
+  setImg,
+  setDiaryImg
+} from "@/js/all.js";
 import "vue2-datepicker/index.css";
-// import "vue2-datepicker/locale/zh-Hant-TW";
+import Datepicker from "vuejs-datepicker";
+import { zh } from "vuejs-datepicker/dist/locale";
 export default {
   data() {
     return {
       content: "",
-      time1:
-        new Date().getMonth() +
-        1 +
-        "-" +
-        new Date().getDate() +
-        "-" +
-        new Date().getFullYear(),
-      time2: null,
-      time3: null,
+      showImg: true,
+      time: new Date(),
+      zh: zh,
+      highlightedArray: [],
+      imgUrl: null,
       image: null,
       preview: null,
       preview_list: [],
       image_list: [],
-      lang: {
-        formatLocale: {
-          firstDayOfWeek: 1
-        },
-        monthBeforeYear: false,
-        popup: "calendar"
-      }
-      // notWriteDaily: ["2021-06-02","2021-06-20"]
+      highlighted: { customPredictor: this.customPredictor }
     };
   },
-  created() {
-    this.content = "app";
+  components: {
+    Datepicker
   },
-  // watch: {
-  //   time1() {
-  //     console.log(typeof this.time1);
-  //     console.log(this.time1);
-  //   }
-  // },
+  created() {
+    getDiaryHighlight(this.$store.getters.userSeriel).then(res1 => {
+      // console.log(res1.data.writenDays);
+      this.highlightedArray = res1.data.writenDays;
+      // console.log(this.highlightedArray);
+    });
+
+    getDiaryContent(this.$store.getters.userSeriel, {
+      diaryDay: this.time.toString().slice(4, 15)
+    }).then(res2 => {
+      // console.log(res2.data.diaryTxt);
+      this.content = res2.data.diaryTxt;
+    });
+  },
+  watch: {
+    time() {
+      getDiaryHighlight(this.$store.getters.userSeriel).then(res1 => {
+        // console.log(res1.data.writenDays);
+        this.highlightedArray = res1.data.writenDays;
+        // console.log(this.highlightedArray);
+      });
+      getDiaryContent(this.$store.getters.userSeriel, {
+        diaryDay: this.time.toString().slice(4, 15)
+      }).then(res2 => {
+        // console.log(res2.data.diaryTxt);
+        console.log(res2.data);
+        this.content = res2.data.diaryTxt;
+        this.imgUrl = res2.data.diaryImgPath;
+      });
+    }
+  },
+  computed: {
+    // 取得日期
+    getMonthEnum() {
+      return this.$store.getters.getMonthEnum;
+    },
+    getMonthArray() {
+      // 將Enum中的key轉成陣列
+      return Object.keys(this.getMonthEnum).map(key => key);
+    },
+    getYear() {
+      return this.time.getFullYear();
+    },
+    getMonth() {
+      return this.time.getMonth() + 1;
+    },
+    getDate() {
+      return this.time.getDate();
+    },
+    getTimeStr() {
+      return `${this.getMonthArray[this.getMonth - 1]}-${this.getDate}-${
+        this.getYear
+      }`;
+    }
+  },
   methods: {
+    // 點選日期查看日記
+    look() {
+      console.log(this.imgUrl);
+      // console.log(this.time.toString().slice(4, 15));
+    },
+    // 標記有內容的日期
+    customPredictor(date) {
+      if (this.highlightedArray.length) {
+        if (this.highlightedArray.includes(date.toString().slice(4, 15))) {
+          return true;
+        }
+      }
+    },
+    // 回到房間
     leave() {
       this.$router.push("/room");
     },
+    // 上傳圖片
     previewImage(event) {
-      var input = event.target;
-      if (input.files) {
-        var reader = new FileReader();
-        reader.onload = e => {
-          this.preview = e.target.result;
-        };
-        this.image = input.files[0];
-        reader.readAsDataURL(input.files[0]);
-      } else {
-        return;
-      }
+      // console.log(this.$refs.files.files[0]);
+      this.showImg = true;
+      // 宣告一個變數來儲存我們找到的圖片
+      const uploadedFile = this.$refs.files.files[0];
+      // 把圖片轉換成 FromData，先宣告一個變數是我們的 new FormData()
+      const formData = new FormData();
+      // 利用 append 的方式將我們的圖片塞入
+      formData.append("file", uploadedFile);
+      // 打api：上傳圖片取得imgPath
+      setImg(formData).then(res4 => {
+        console.log(res4.data.imgPath);
+        // 將圖片路徑記下來
+        this.imgUrl = res4.data.imgPath;
+        // 打api:新增/修改日記圖片
+        setDiaryImg({
+          userSeriel: this.$store.getters.userSeriel,
+          diaryDay: this.time.toString().slice(4, 15),
+          diaryImgPath: this.imgUrl
+        }).then(res5 => console.log(res5.data));
+      });
+
+      // var input = event.target;
+      // if (input.files) {
+      //   var reader = new FileReader();
+      //   reader.onload = e => {
+      //     this.preview = e.target.result;
+      //   };
+      //   this.image = input.files[0];
+      //   reader.readAsDataURL(input.files[0]);
+      // const formData = new FormData();
+      // formData.append;
+      // 打api更新圖片
+      // setDiaryImg().then();
+      // } else {
+      //   return;
+      // }
     },
+    // 刪除照片
     reset() {
-      this.image = null;
-      this.preview = null;
-      this.image_list = [];
-      this.preview_list = [];
+      // this.image = null;
+      // this.preview = null;
+      // this.image_list = [];
+      // this.preview_list = [];
+      this.showImg = false;
+      // 打api:新增/修改日記圖片
+      setDiaryImg({
+        userSeriel: this.$store.getters.userSeriel,
+        diaryDay: this.time.toString().slice(4, 15),
+        diaryImgPath: ""
+      }).then(res5 => console.log(res5.data));
     },
+    // 儲存日記文字
     post() {
-      console.log(this.content);
+      // console.log(this.content);
+      setDiaryTxt({
+        userSeriel: this.$store.getters.userSeriel,
+        diaryDay: this.time.toString().slice(4, 15),
+        diaryTxt: this.content
+      }).then(res3 => {
+        // console.log(res3);
+        if (res3.data.result) {
+          alert("日記已更新成功！");
+        }
+      });
     }
-    // pickerOptions() {
-    //   disabledDate: time => {
-    //     if (time.getTime() > Date.now()) {
-    //       return true;
-    //     }
-    //   };
-    // },
-    // // 未填寫日報的日期，報紅
-    // cellClassName: time => {
-    //   if (this.notWriteDaily.includes(this.getLocalTime(time.getTime()))) {
-    //     return "red";
-    //   }
-    // },
-    // getLocalTime(nS) {
-    //   let date = new Date(nS);
-    //   let year = date.getFullYear();
-    //   let month = date.getMonth() + 1;
-    //   let day = date.getDate();
-    //   month = month < 10 ? "0" + month : month;
-    //   day = day < 10 ? "0" + day : day;
-    //   date = month + "-" + day + "-" + year;
-    //   console.log(date); //2021-06-12
-    //   return date;
-    // }
   }
 };
 </script>
 
 <style scoped lang="scss">
-// .red span {
-//   background: red;
-//   opacity: 0.5;
-//   color: green;
-//   border-radius: 50%;
-// }
 /* 標題 */
 .title {
 }
@@ -358,6 +426,7 @@ export default {
   left: 90%;
   top: 10%;
 }
+// 羽毛筆照片
 .penImg {
   width: 100%;
 }
