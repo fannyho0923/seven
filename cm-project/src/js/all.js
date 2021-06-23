@@ -37,17 +37,29 @@ export const getPrivateArticle = (userSeriel, data) => {
 //新增看板發文
 // boardType: 1- 公共留言
 export const addPublicArticle = data => {
-  return req("post", Board, data);
+  return req("post", "/Board/", data);
 };
 // boardType: 2- 公共影音
 export const addVedio = data => {
-  return req("post", Board, data);
+  return req("post", "/Board/", data);
 };
 // boardType: 3-私人看板
 export const addPrivateArticle = data => {
-  return req("post", Board, data);
+  return req("post", "/Board/", data);
 };
 //刪除發文
+// boardType: 1- 公共留言
+export const addPublicArticle = data => {
+  return req("patch", "/Board/Delete/", data);
+};
+// boardType: 2- 公共影音
+export const addVedio = data => {
+  return req("patch", "/Board/Delete/", data);
+};
+// boardType: 3-私人看板
+export const addPrivateArticle = postSeriel => {
+  return req("patch", `/Board/Delete/${postSeriel}`);
+};
 
 // User 相關的 api
 
