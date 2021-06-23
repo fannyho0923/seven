@@ -153,24 +153,14 @@ export default {
       }).then(res2 => {
         this.content = res2.data.diaryTxt;
         this.imgUrl = res2.data.diaryImgPath;
-        if (res2.data.diaryImgPath === null) {
-          this.showImg = false;
-        } else {
-          this.showImg = true;
-        }
       });
     },
-    showImg() {
-      getDiaryContent(this.$store.getters.userSeriel, {
-        diaryDay: this.time.toString().slice(4, 15)
-      }).then(res2 => {
-        // console.log(res2.data);
-        if (res2.data.diaryImgPath === null) {
-          this.showImg = false;
-        } else {
-          this.showImg = true;
-        }
-      });
+    imgUrl() {
+      if (this.imgUrl) {
+        this.showImg = true;
+      } else {
+        this.showImg = false;
+      }
     }
   },
   computed: {
@@ -236,17 +226,13 @@ export default {
           diaryImgPath: this.imgUrl
         }).then(res5 => {
           console.log(res5.data);
-          this.showImg = true;
+          // this.showImg = true;
         });
       });
     },
     // 刪除照片
     reset() {
-      // this.image = null;
-      // this.preview = null;
-      // this.image_list = [];
-      // this.preview_list = [];
-      this.showImg = false;
+      this.imgUrl = null;
       // 打api:新增/修改日記圖片
       setDiaryImg({
         userSeriel: this.$store.getters.userSeriel,
