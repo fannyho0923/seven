@@ -349,6 +349,7 @@ export default {
   position: relative;
   display: flex;
   justify-content: center;
+  opacity: 0.7;
   /* background-color: tomato; */
 }
 .calendar {

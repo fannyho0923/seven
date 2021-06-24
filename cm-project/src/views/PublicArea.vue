@@ -8,16 +8,16 @@
       <div class=" mx-auto">
         <div class="base__body">
           <!-- 房門 -->
-          <div class="doorBox">
-            <Door
-              v-for="(item, index) in doors"
-              :key="index"
-              :doors="item"
-              :homeOwner="members[index] ? members[index] : {}"
-            />
-          </div>
+          <Door
+            v-for="(item, index) in doors"
+            :key="index"
+            :doors="item"
+            :homeOwner="members[index] ? members[index] : {}"
+          />
           <!-- 留言冰箱 -->
           <Refrigerator />
+          <!-- 電視 -->
+          <Television />
         </div>
       </div>
     </div>
@@ -28,6 +28,7 @@
 import { getMembers, getUserInfo } from "@/js/all.js";
 import Door from "../components/Door.vue";
 import IconList from "../components/IconList.vue";
+import Television from "../components/Television.vue";
 import Refrigerator from "../views/Refrigerator.vue";
 export default {
   data() {
@@ -83,14 +84,8 @@ export default {
   components: {
     IconList,
     Door,
-    Refrigerator
-  },
-  watch: {
-    // members() {
-    //   getMembers(this.$store.getters.userSeriel).then(res2 => {
-    //     this.members = res2.data.members;
-    //   });
-    // }
+    Refrigerator,
+    Television
   },
   created() {
     //取得使用者資訊

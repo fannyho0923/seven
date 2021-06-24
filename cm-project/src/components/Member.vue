@@ -4,7 +4,7 @@
       <!-- 頭像 -->
       <aside class="head">
         <img
-          class="img img-resp pointer"
+          class="avatarImg  pointer"
           :src="memberArr.src"
           alt="memberPic"
           width="100"
@@ -32,7 +32,8 @@ export default {
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  /* background-color: slateblue; */
+  background-color: slateblue;
+  overflow: hidden;
 }
 /* 頭像框 */
 .head {
@@ -42,17 +43,17 @@ export default {
   border-radius: 50%;
 }
 /* 照片 */
-/* 螢幕縮小照片會往下移 */
-.img {
+.avatarImg {
   max-width: 100%;
   width: 100%;
+  object-fit: contain;
+  object-position: top;
 }
 /* 名字 */
 .name {
   width: 55%;
   max-height: 3vw;
   height: 2.5vw;
-  /* border: solid 1px; */
   display: flex;
   justify-content: center;
   align-items: center;

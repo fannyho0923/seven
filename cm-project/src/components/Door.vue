@@ -11,7 +11,7 @@
     <!-- 房門頭像 -->
     <div class="pointer circle" :style="displayId">
       <img
-        class="pointer img__avatar img-resp"
+        class="pointer img__avatar"
         :src="doors.img"
         alt="avatar"
         width="100"
@@ -19,15 +19,16 @@
         @click.self="enterRoom"
       />
     </div>
-    <div>
+    <!-- 名牌 -->
+    <div class="nameTagBox">
       <img
-        class="pointer img-resp"
+        class="pointer nameTagImg"
         src="../../static/imgs/publicRoom/nameTag.png"
         alt="nameTag"
         width="100"
         height="72"
       />
-      <label>{{ homeOwner.memberName }}</label>
+      <label class="nameLab">{{ homeOwner.memberName }}</label>
     </div>
   </div>
 </template>
@@ -43,9 +44,10 @@ export default {
     }
   },
   computed: {
+    // 頭像高度
     displayId() {
       if (this.doors.id <= 2) {
-        return "top: 26.5%";
+        return "top: 26.5%; left:20%;";
       }
       if (this.doors.id >= 6) {
         return "top:26%";
@@ -88,6 +90,45 @@ export default {
   left: 22%;
   top: 25%;
   box-shadow: 0 0 7px gray;
+  /* overflow: hidden; */
+}
+/* 頭像照片 */
+.img__avatar {
+  position: relative;
+  z-index: 5;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: top;
+}
+/* 名片容器 */
+.nameTagBox {
+  position: absolute;
+  left: 1%;
+  top: 38%;
+  width: 70%;
+  object-fit: contain;
+  object-position: top;
+  overflow: hidden;
+  z-index: 2;
+}
+/* 名片照片 */
+.nameTagImg {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  vertical-align: bottom;
+}
+/* 名片字 */
+.nameLab {
+  z-index: 3;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  left: 19.5%;
+  top: 46%;
+  font-size: 1.2vw;
+  overflow: hidden;
 }
 /* 門的位置 */
 .door1 {

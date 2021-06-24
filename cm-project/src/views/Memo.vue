@@ -96,16 +96,16 @@ export default {
     };
   },
   watch: {
-    commentArr() {
-      getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
-        this.commentArr = res1.data.postInfos;
-      });
-    }
+    // commentArr() {
+    //   getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
+    //     this.commentArr = res1.data.postInfos;
+    //   });
+    // }
   },
   created() {
     getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
-      // console.log(res1.data.postInfos);
       this.commentArr = res1.data.postInfos;
+      console.log(res1.data.postInfos);
     });
   },
   components: { MemoSelector, MemoWrite, Comment },
@@ -134,23 +134,25 @@ export default {
     },
     //將使用者輸入的內容儲存到陣列
     copyContent(str, id) {
-      const addMemoData = JSON.stringify({
+      const addMemoData = {
         userSeriel: this.$store.getters.userSeriel,
         memberDoorIndex: -1,
         boardType: 1,
         posterType: id,
         postText: str
-      });
+      };
       // 打api:新增文章
-      addPublicArticle(addMemoData).then(res2 => console.log(res2));
+      addPublicArticle(addMemoData).then(res2 => {
+        if (res2.data.result) {
+          this.commentArr.push(addMemoData);
+        }
+      });
       console.log(id);
       this.closeWritePopup();
     },
     //刪除便條功能
     delete_Memo(postSeriel) {
-      // console.log(postSeriel);
       deletePublicArticle(postSeriel).then(res3 => console.log(res3));
-      // this.commentArr.splice(index, 1);
     }
   }
 };
