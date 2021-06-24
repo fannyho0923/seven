@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  // 將便條樣式傳入
   props: ["memoArr"],
   methods: {
     close() {

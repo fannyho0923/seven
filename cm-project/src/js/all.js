@@ -21,42 +21,43 @@ export const setImg = file => {
 };
 
 //查看看板
-// boardType: 1- 公共留言
+// boardType: 1- 公共留言 V-v
 export const getPublicArticle = (userSeriel, data) => {
   return req("get", `/Board/${userSeriel}/1`, data);
 };
-// boardType: 2- 公共影音
+// boardType: 2- 公共影音 V
 export const getVedio = (userSeriel, data) => {
   return req("get", `/Board/${userSeriel}/2`, data);
 };
-// boardType: 3-私人看板
+// boardType: 3-私人看板 V
 export const getPrivateArticle = (userSeriel, data) => {
   return req("get", `/Board/${userSeriel}/3`, data);
 };
 
 //新增看板發文
-// boardType: 1- 公共留言
+// boardType: 1- 公共留言 V-v
 export const addPublicArticle = data => {
-  return req("post", "/Board/", data);
+  return req("post", "/Board", data);
 };
-// boardType: 2- 公共影音
+// boardType: 2- 公共影音 V
 export const addVedio = data => {
   return req("post", "/Board/", data);
 };
-// boardType: 3-私人看板
+// boardType: 3-私人看板 V
 export const addPrivateArticle = data => {
   return req("post", "/Board/", data);
 };
+
 //刪除發文
-// boardType: 1- 公共留言
-export const deletePublicArticle = data => {
-  return req("patch", "/Board/Delete/", data);
+// boardType: 1- 公共留言 V-v
+export const deletePublicArticle = postSeriel => {
+  return req("patch", `/Board/Delete/${postSeriel}`);
 };
-// boardType: 2- 公共影音
+// boardType: 2- 公共影音 V
 export const deleteVedio = data => {
-  return req("patch", "/Board/Delete/", data);
+  return req("patch", `/Board/Delete/${postSeriel}`);
 };
-// boardType: 3-私人看板
+// boardType: 3-私人看板 V
 export const deletePrivateArticle = postSeriel => {
   return req("patch", `/Board/Delete/${postSeriel}`);
 };
@@ -104,11 +105,11 @@ export const userTransferGroup = userSeriel => {
 
 // Group 相關的 api
 
-//取得社群成員資料V-v
+//取得社群成員資料 V-v
 export const getMembers = userSeriel => {
   return req("get", "/Group/Members/" + userSeriel);
 };
-//取得玩家資料
+//取得玩家資料 V-v
 export const getUserInfo = userSeriel => {
   return req("get", "/Group/Role/" + userSeriel);
 };
@@ -134,7 +135,7 @@ export const getDiaryContent = (userSeriel, id) => {
 export const setDiaryTxt = txt => {
   return req("post", "/Diary/txt/", txt);
 };
-// 新增修改日記圖片 V
+// 新增修改日記圖片 V-v
 export const setDiaryImg = img => {
   return req("post", "/Diary/img/", img);
 };

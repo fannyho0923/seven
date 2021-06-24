@@ -143,11 +143,11 @@ export default {
   },
   watch: {
     time() {
+      // 監聽要highlight的日子
       getDiaryHighlight(this.$store.getters.userSeriel).then(res1 => {
-        // console.log(res1.data.writenDays);
         this.highlightedArray = res1.data.writenDays;
-        // console.log(this.highlightedArray);
       });
+      // 點選日期來查看內容
       getDiaryContent(this.$store.getters.userSeriel, {
         diaryDay: this.time.toString().slice(4, 15)
       }).then(res2 => {
@@ -155,6 +155,7 @@ export default {
         this.imgUrl = res2.data.diaryImgPath;
       });
     },
+    // 檢查照片有沒有網址
     imgUrl() {
       if (this.imgUrl) {
         this.showImg = true;

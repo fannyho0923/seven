@@ -215,29 +215,6 @@ export default {
         })
         .catch(error => console.log(error));
     }
-    // login() {
-    //-- write login authencation logic here! --
-    // userLogIn({
-    //   id: this.userName,
-    //   pw: this.password
-    // })
-    //   .then(res => {
-    //     console.log(res);
-    //   })
-    //   .catch(err => {
-    //     console.log(err); //response攔截器會先執行，除非你漏接了，才會進到catch
-    //   });
-    // if (this.userName == "abcdef" && this.password == "123456") {
-    //   this.$cookies.set("token", "ImLogin", 60 * 60 * 24 * 14);
-    //   this.pass = true;
-    // }
-    // if (this.pass) {
-    // enter
-    //   this.$router.push("/publicArea");
-    // } else {
-    //   alert("login failed");
-    // }
-    // }
   }
 };
 </script>

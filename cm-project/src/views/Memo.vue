@@ -9,18 +9,22 @@
           width="800"
           height="600"
         />
+        <!-- 便條顯示區塊 -->
         <div class="commentBox mx-auto">
+          <!-- 便條 -->
           <Comment
             v-for="(item, index) in commentArr"
             :key="index"
-            :memoStr="commentArr[index].str"
-            :memoSrc="memos[commentArr[index].id - 1].src"
-            :memoDeg="memos[commentArr[index].id - 1].deg"
+            :memoStr="commentArr[index].postText"
+            :memoSrc="memos[commentArr[index].posterType - 1].src"
+            :memoDeg="memos[commentArr[index].posterType - 1].deg"
             :memoIndex="index"
-            @deleteMemo="delete_Memo"
+            @deleteMemo="delete_Memo(commentArr[index].postSeriel)"
           />
         </div>
+        <!-- 離開本頁和新增留言按鈕 -->
         <aside v-if="!isShow && !isChosed" class="set-inlineBlock btn">
+          <!-- 離開本頁按鈕 -->
           <div class="set-inlineBlock close__btn" @click="goBack">
             <label class="pointer close__lab" @click="goBack">X</label>
           </div>
@@ -29,9 +33,9 @@
           </div>
         </aside>
       </div>
-      <section class="base__body"></section>
-
+      <!-- <section class="base__body"></section> -->
       <div v-if="isShow" class="set-bg">
+        <!-- 選擇便條樣式彈窗 -->
         <div class="popup">
           <MemoSelector
             class="popup__selectBox"
@@ -41,7 +45,9 @@
           />
         </div>
       </div>
+      <!-- 已選擇完便條會自動跳出 -->
       <div v-if="isChosed" class="set-bg">
+        <!-- 撰寫便條彈窗 -->
         <div class="popup">
           <MemoWrite
             class="popup__writeBox"
@@ -56,6 +62,11 @@
 </template>
 
 <script>
+import {
+  getPublicArticle,
+  addPublicArticle,
+  deletePublicArticle
+} from "@/js/all.js";
 import MemoSelector from "../components/MemoSelector.vue";
 import MemoWrite from "../components/MemoWrite.vue";
 import Comment from "../components/Comment.vue";
@@ -84,6 +95,19 @@ export default {
       ]
     };
   },
+  watch: {
+    commentArr() {
+      getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
+        this.commentArr = res1.data.postInfos;
+      });
+    }
+  },
+  created() {
+    getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
+      // console.log(res1.data.postInfos);
+      this.commentArr = res1.data.postInfos;
+    });
+  },
   components: { MemoSelector, MemoWrite, Comment },
   methods: {
     //回到交誼廳
@@ -110,12 +134,23 @@ export default {
     },
     //將使用者輸入的內容儲存到陣列
     copyContent(str, id) {
-      this.commentArr.push({ str, id });
+      const addMemoData = JSON.stringify({
+        userSeriel: this.$store.getters.userSeriel,
+        memberDoorIndex: -1,
+        boardType: 1,
+        posterType: id,
+        postText: str
+      });
+      // 打api:新增文章
+      addPublicArticle(addMemoData).then(res2 => console.log(res2));
+      console.log(id);
       this.closeWritePopup();
     },
     //刪除便條功能
-    delete_Memo(index) {
-      this.commentArr.splice(index, 1);
+    delete_Memo(postSeriel) {
+      // console.log(postSeriel);
+      deletePublicArticle(postSeriel).then(res3 => console.log(res3));
+      // this.commentArr.splice(index, 1);
     }
   }
 };
