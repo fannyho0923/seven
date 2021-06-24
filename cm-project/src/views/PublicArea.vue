@@ -97,9 +97,9 @@ export default {
   position: relative;
   max-width: 100vw;
   width: 100vw;
-  height: 47vw;
+  height: 50vw;
   background-image: url("../../static/imgs/bg.jpeg");
-  background-position: center bottom;
+  background-position: bottom;
   background-repeat: none;
   /* background-attachment: fixed; */
   background-size: contain;
@@ -107,6 +107,8 @@ export default {
 }
 /* 解決右邊留白 */
 .row .base__head {
+  position: absolute;
   margin-right: 0;
+  z-index: 2;
 }
 </style>

@@ -62,31 +62,31 @@ export default {
   box-shadow: 0 0 7px gray;
 }
 .door1 {
-  left: 0;
-  top: 48%;
+  left: 0.5%;
+  top: 50%;
 }
 .door2 {
-  left: 10%;
-  top: 38%;
+  left: 11%;
+  top: 39%;
 }
 .door3 {
   left: 24%;
-  top: 39%;
+  top: 42%;
 }
 .door4 {
   left: 38%;
-  top: 39%;
+  top: 42%;
 }
 .door5 {
   left: 52%;
-  top: 39%;
+  top: 42%;
 }
 .door6 {
-  left: 80%;
-  top: 39%;
+  left: 79.5%;
+  top: 40%;
 }
 .door7 {
   left: 90%;
-  top: 49%;
+  top: 52%;
 }
 </style>

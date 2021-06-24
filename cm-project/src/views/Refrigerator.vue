@@ -31,7 +31,7 @@ export default {
   width: 10%;
   height: auto;
   left: 66%;
-  top: 32%;
+  top: 35%;
   background-color: transparent;
 }
 </style>
