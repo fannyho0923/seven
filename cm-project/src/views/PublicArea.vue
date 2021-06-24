@@ -8,8 +8,13 @@
       <div class=" mx-auto">
         <div class="base__body">
           <!-- 房門 -->
-          <div class="doorBox" v-if="doors">
-            <Door v-for="(item, index) in doors" :key="index" :doors="item" />
+          <div class="doorBox">
+            <Door
+              v-for="(item, index) in doors"
+              :key="index"
+              :doors="item"
+              :homeOwner="members[index] ? members[index] : {}"
+            />
           </div>
           <!-- 留言冰箱 -->
           <Refrigerator />
@@ -25,10 +30,67 @@ import Door from "../components/Door.vue";
 import IconList from "../components/IconList.vue";
 import Refrigerator from "../views/Refrigerator.vue";
 export default {
+  data() {
+    return {
+      members: {},
+      // 門的名子照片與頭像
+      doors: [
+        {
+          id: 1,
+          name: "door1",
+          src: "../../static/imgs/doorSkewL.png",
+          img: "../../static/imgs/avatar.png"
+        },
+        {
+          id: 2,
+          name: "door2",
+          src: "../../static/imgs/doorSkewL.png",
+          img: "../../static/imgs/avatar.png"
+        },
+        {
+          id: 3,
+          name: "door3",
+          src: "../../static/imgs/door.png",
+          img: "../../static/imgs/avatar.png"
+        },
+        {
+          id: 4,
+          name: "door4",
+          src: "../../static/imgs/door.png",
+          img: "../../static/imgs/avatar.png"
+        },
+        {
+          id: 5,
+          name: "door5",
+          src: "../../static/imgs/door.png",
+          img: "../../static/imgs/avatar.png"
+        },
+        {
+          id: 6,
+          name: "door6",
+          src: "../../static/imgs/doorSkewR.png",
+          img: "../../static/imgs/avatar.png"
+        },
+        {
+          id: 7,
+          name: "door7",
+          src: "../../static/imgs/doorSkewR.png",
+          img: "../../static/imgs/avatar.png"
+        }
+      ]
+    };
+  },
   components: {
     IconList,
     Door,
     Refrigerator
+  },
+  watch: {
+    // members() {
+    //   getMembers(this.$store.getters.userSeriel).then(res2 => {
+    //     this.members = res2.data.members;
+    //   });
+    // }
   },
   created() {
     //取得使用者資訊
@@ -39,55 +101,9 @@ export default {
     getMembers(this.$store.getters.userSeriel)
       .then(res2 => {
         console.log(res2.data);
-        for (let index = 0; index < array.memberInfos; index++) {
-          // 依序將成員寫入房門陣列
-          this.members.push(memberInfos[index]);
-        }
+        this.members = res2.data.members;
       })
       .catch(error => console.log(error));
-  },
-  data() {
-    return {
-      data: { members: [] },
-      // 門的名子照片與頭像
-      doors: [
-        {
-          name: "door1",
-          src: "../../static/imgs/doorSkewL.png",
-          img: "../../static/imgs/avatar.png"
-        },
-        {
-          name: "door2",
-          src: "../../static/imgs/doorSkewL.png",
-          img: "../../static/imgs/avatar.png"
-        },
-        {
-          name: "door3",
-          src: "../../static/imgs/door.png",
-          img: "../../static/imgs/avatar.png"
-        },
-        {
-          name: "door4",
-          src: "../../static/imgs/door.png",
-          img: "../../static/imgs/avatar.png"
-        },
-        {
-          name: "door5",
-          src: "../../static/imgs/door.png",
-          img: "../../static/imgs/avatar.png"
-        },
-        {
-          name: "door6",
-          src: "../../static/imgs/doorSkewR.png",
-          img: "../../static/imgs/avatar.png"
-        },
-        {
-          name: "door7",
-          src: "../../static/imgs/doorSkewR.png",
-          img: "../../static/imgs/avatar.png"
-        }
-      ]
-    };
   }
 };
 </script>

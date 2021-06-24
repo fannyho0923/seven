@@ -9,7 +9,7 @@
       height="328"
     />
     <!-- 房門頭像 -->
-    <div class="pointer circle">
+    <div class="pointer circle" :style="displayId">
       <img
         class="pointer img__avatar img-resp"
         :src="doors.img"
@@ -19,6 +19,16 @@
         @click.self="enterRoom"
       />
     </div>
+    <div>
+      <img
+        class="pointer img-resp"
+        src="../../static/imgs/publicRoom/nameTag.png"
+        alt="nameTag"
+        width="100"
+        height="72"
+      />
+      <label>{{ homeOwner.memberName }}</label>
+    </div>
   </div>
 </template>
 
@@ -27,11 +37,27 @@ export default {
   props: {
     doors: {
       type: Object
+    },
+    homeOwner: {
+      type: Object
+    }
+  },
+  computed: {
+    displayId() {
+      if (this.doors.id <= 2) {
+        return "top: 26.5%";
+      }
+      if (this.doors.id >= 6) {
+        return "top:26%";
+      } else {
+        return "top:20%";
+      }
     }
   },
   methods: {
     //進入房間
     enterRoom() {
+      this.$store.commit("Enter", this.homeOwner.memberDoorIndex);
       this.$router.push("/room");
     }
   }
@@ -44,10 +70,12 @@ export default {
   width: 10%;
   height: auto;
 }
+/* 門照片 */
 .img {
   max-width: 100%;
   width: 100%;
 }
+/* 頭像的相框 */
 .circle {
   position: absolute;
   max-width: 50px;
@@ -61,6 +89,7 @@ export default {
   top: 25%;
   box-shadow: 0 0 7px gray;
 }
+/* 門的位置 */
 .door1 {
   left: 0.5%;
   top: 50%;

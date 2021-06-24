@@ -17,27 +17,27 @@ import req from "./api";
 // 常呼叫的api
 //上傳圖片(所有要上傳圖片的都要先打這支在將回傳的網址拿來做顯示)
 export const setImg = file => {
-  return req("post", "/Image", file);
+  return req("post", "/Image/", file);
 };
 
 //查看看板
 // boardType: 1- 公共留言 V-v
 export const getPublicArticle = (userSeriel, data) => {
-  return req("get", `/Board/${userSeriel}/1`, data);
+  return req("get", `/Board/${userSeriel}/1/`, data);
 };
 // boardType: 2- 公共影音 V
 export const getVedio = (userSeriel, data) => {
-  return req("get", `/Board/${userSeriel}/2`, data);
+  return req("get", `/Board/${userSeriel}/2/`, data);
 };
 // boardType: 3-私人看板 V
 export const getPrivateArticle = (userSeriel, data) => {
-  return req("get", `/Board/${userSeriel}/3`, data);
+  return req("get", `/Board/${userSeriel}/3/`, data);
 };
 
 //新增看板發文
 // boardType: 1- 公共留言 V-v
 export const addPublicArticle = data => {
-  return req("post", "/Board", data);
+  return req("post", "/Board/", data);
 };
 // boardType: 2- 公共影音 V
 export const addVedio = data => {
@@ -51,26 +51,26 @@ export const addPrivateArticle = data => {
 //刪除發文
 // boardType: 1- 公共留言 V-v
 export const deletePublicArticle = postSeriel => {
-  return req("patch", `/Board/Delete/${postSeriel}`);
+  return req("patch", `/Board/Delete/${postSeriel}/`);
 };
 // boardType: 2- 公共影音 V
 export const deleteVedio = data => {
-  return req("patch", `/Board/Delete/${postSeriel}`);
+  return req("patch", `/Board/Delete/${postSeriel}/`);
 };
 // boardType: 3-私人看板 V
 export const deletePrivateArticle = postSeriel => {
-  return req("patch", `/Board/Delete/${postSeriel}`);
+  return req("patch", `/Board/Delete/${postSeriel}/`);
 };
 
 // User 相關的 api
 
 //註冊帳號Ｖ-v
 export const userSignUp = signUpData => {
-  return req("post", "/SignUp", signUpData);
+  return req("post", "/SignUp/", signUpData);
 };
 //登入帳號Ｖ-v
 export const userLogIn = loginData => {
-  return req("post", "/SignIn", loginData);
+  return req("post", "/SignIn/", loginData);
 };
 //使用者社群狀態V-v (-1-未加入 2-已到期 1-正常)
 export const userStatus = userSeriel => {
@@ -117,9 +117,9 @@ export const getUserInfo = userSeriel => {
 
 // Room 相關的 api
 
-//進入社群中的玩家空間V
-export const enterRoom = (doorIndex, userSeriel) => {
-  return req("get", "/Group/" + doorIndex + "/" + userSeriel);
+//進入社群中的玩家空間 V
+export const getRoomInfo = (doorIndex, userSeriel) => {
+  return req("get", `/Group/${doorIndex}/${userSeriel}/`);
 };
 
 // 日記相關的 api
@@ -143,11 +143,11 @@ export const setDiaryImg = img => {
 // 文章相關的 api
 //新增看板發文v
 export const postArticle = data => {
-  return req("post", "/Board", data);
+  return req("post", "/Board/", data);
 };
 //查看看板v
 export const watchArticle = data => {
-  return req("get", "/Board", data);
+  return req("get", "/Board/", data);
 };
 
 // 搜尋相關的 api

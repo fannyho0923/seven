@@ -24,7 +24,8 @@ const store = new Vuex.Store({
       Oct: 10,
       Nov: 11,
       Dec: 12
-    }
+    },
+    doorIndex: 0
   },
   //mutate 本身單字的意思是就是「變異」，人如其名就是拿來變動 state 用的。
   //mutations 要做更改，不可以變動在 State 還沒定義的 data
@@ -36,13 +37,15 @@ const store = new Vuex.Store({
     // }
     Login(state, userSeriel) {
       state.userSeriel = userSeriel;
+    },
+    Enter(state, doorIndex) {
+      state.doorIndex = doorIndex;
     }
   },
   getters: {
-    userSeriel: state => {
-      return state.userSeriel;
-    },
-    getMonthEnum: state => state.monthEnum
+    userSeriel: state => state.userSeriel,
+    getMonthEnum: state => state.monthEnum,
+    doorIndex: state => state.doorIndex
   }
 });
 export default store;

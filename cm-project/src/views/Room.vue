@@ -55,18 +55,31 @@
 </template>
 
 <script>
+import { getRoomInfo } from "@/js/all.js";
 import Photo from "@/components/Photo.vue";
 import Wardrobe from "@/components/Wardrobe.vue";
 export default {
   data() {
     return {
       showBlog: false,
-      isblink: false
+      isblink: false,
+      isOwner: false
     };
   },
   components: {
     Photo,
     Wardrobe
+  },
+  created() {
+    // 取得房間資訊
+    getRoomInfo(
+      this.$store.getters.doorIndex,
+      this.$store.getters.userSeriel
+    ).then(res1 => {
+      this.isOwner = res1.data.isOwner;
+      console.log(res1.data.isOwner);
+    });
+    // console.log(this.$store.getters.doorIndex);
   },
   methods: {
     showBookcase() {
@@ -76,10 +89,18 @@ export default {
       this.$router.push("/bookcase");
     },
     goDiary() {
-      this.$router.push("/diary");
+      if (this.isOwner) {
+        this.$router.push("/diary");
+      } else {
+        return;
+      }
     },
     goComputer() {
-      this.$router.push("/chat");
+      if (this.isOwner) {
+        this.$router.push("/chat");
+      } else {
+        return;
+      }
     }
   }
 };
@@ -110,6 +131,9 @@ export default {
   width: 100%;
   box-shadow: -1px 0 5px black;
 }
+.wardrobeImg:hover {
+  opacity: 0.5;
+}
 /* 書櫃 */
 .bookcaseImgBox {
   position: absolute;
@@ -120,6 +144,9 @@ export default {
 }
 .bookcaseImg {
   width: 100%;
+}
+.bookcaseImg:hover {
+  opacity: 0.5;
 }
 /* 日記本 */
 .diaryImgBox {
@@ -132,6 +159,9 @@ export default {
 .diaryImg {
   width: 100%;
 }
+.diaryImg:hover {
+  opacity: 0.5;
+}
 /* 電腦 */
 .computerBox {
   position: absolute;
@@ -141,7 +171,7 @@ export default {
   left: 60.5%;
   top: 38%;
 }
-/* 照片 */
+/* 照片容器 */
 .photoImgBox {
   position: absolute;
   max-width: 20%;
@@ -150,8 +180,12 @@ export default {
   left: 21.7%;
   top: -8px;
 }
+/* 照片 */
 .photoImg {
   width: 100%;
+}
+.photoImg:hover {
+  opacity: 0.5;
 }
 /* @keyframes fade {
   from {
