@@ -132,27 +132,35 @@ export default {
     // },
     //註冊檢查
     supplyRegiste(nickName, userName, password) {
-      const RegisteData = JSON.stringify({
-        userId: userName,
-        userPw: password,
-        userName: nickName
-      });
-      console.log(RegisteData);
-      userSignUp(RegisteData).then(res => {
-        // console.log(res);
-        if (res.data.result) {
-          this.closePopupRegiste();
-          this.isMember = true;
-          this.unLogin = false;
-          alert("歡迎" + " " + nickName + " " + "入住");
-        } else {
-          alert(res.data.resultMessenge);
-          return;
-        }
-      });
+      if (nickName && userName && password) {
+        const RegisteData = JSON.stringify({
+          userId: userName,
+          userPw: password,
+          userName: nickName
+        });
+        console.log(RegisteData);
+        userSignUp(RegisteData).then(res => {
+          // console.log(res);
+          if (res.data.result) {
+            this.closePopupRegiste();
+            this.isMember = true;
+            this.unLogin = false;
+            alert("歡迎" + " " + nickName + " " + "入住");
+          } else {
+            alert(res.data.resultMessenge);
+            return;
+          }
+        });
+      } else {
+        alert("輸入錯誤");
+      }
     },
     //登入檢查->會丟給我 userSeriel (使用者流水號)
     supplyLogIn(userName, password) {
+      if (!userName || !password) {
+        alert("輸入錯誤");
+        return;
+      }
       const LoginData = JSON.stringify({
         userId: userName,
         userPw: password

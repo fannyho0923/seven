@@ -59,8 +59,13 @@ export default {
   methods: {
     //進入房間
     enterRoom() {
-      this.$store.commit("Enter", this.homeOwner.memberDoorIndex);
-      this.$router.push("/room");
+      if (!this.homeOwner.memberName) {
+        alert("此為空房！");
+        return;
+      } else {
+        this.$store.commit("Enter", this.homeOwner.memberDoorIndex);
+        this.$router.push("/room");
+      }
     }
   }
 };
@@ -102,6 +107,8 @@ export default {
 }
 /* 名片容器 */
 .nameTagBox {
+  display: flex;
+  justify-content: center;
   position: absolute;
   left: 1%;
   top: 38%;
@@ -125,7 +132,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   position: absolute;
-  left: 19.5%;
+  /* left: 19.5%; */
   top: 46%;
   font-size: 1.2vw;
   overflow: hidden;
