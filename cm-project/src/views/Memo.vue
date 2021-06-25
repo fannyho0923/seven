@@ -129,8 +129,8 @@ export default {
     copyContent(str, id) {
       const addMemoData = {
         userSeriel: this.$store.getters.userSeriel,
-        memberDoorIndex: -1,
         boardType: 1,
+        memberDoorIndex: -1,
         posterType: id,
         postText: str
       };

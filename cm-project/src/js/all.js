@@ -25,9 +25,9 @@ export const setImg = file => {
 export const getPublicArticle = userSeriel => {
   return req("get", `/Board/${userSeriel}/1/`, -1);
 };
-// boardType: 2- 公共影音 V
-export const getVedio = (userSeriel, data) => {
-  return req("get", `/Board/${userSeriel}/2/`, data);
+// boardType: 2- 公共影音 V-v
+export const getVedio = userSeriel => {
+  return req("get", `/Board/${userSeriel}/2/`, -1);
 };
 // boardType: 3-私人看板 V
 export const getPrivateArticle = (userSeriel, data) => {
@@ -39,7 +39,7 @@ export const getPrivateArticle = (userSeriel, data) => {
 export const addPublicArticle = data => {
   return req("post", "/Board/", data);
 };
-// boardType: 2- 公共影音 V
+// boardType: 2- 公共影音 V-v
 export const addVedio = data => {
   return req("post", "/Board/", data);
 };
@@ -54,7 +54,7 @@ export const deletePublicArticle = postSeriel => {
   return req("patch", `/Board/Delete/${postSeriel}/`);
 };
 // boardType: 2- 公共影音 V
-export const deleteVedio = data => {
+export const deleteVedio = postSeriel => {
   return req("patch", `/Board/Delete/${postSeriel}/`);
 };
 // boardType: 3-私人看板 V
