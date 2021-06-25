@@ -84,6 +84,7 @@ export default {
   },
 
   methods: {
+    // 切換影片
     changeYT(ytSrc) {
       this.ytSrc = ytSrc;
     },
@@ -103,16 +104,16 @@ export default {
         var NewArray2 = ytString.split("&");
         ytString = NewArray2[0];
         // console.log(NewArray2[0]);
-        const nameData = {
-          key: "AIzaSyDSwnIBbiwK2s3MdBS5je4yCsTeQPkIiP8",
-          part: "snippet",
-          id: ytString
-        };
+
         // // 打api取影片名字
         this.$http
-          .get(
-            `https://youtube.googleapis.com/youtube/v3/videos?key=AIzaSyDSwnIBbiwK2s3MdBS5je4yCsTeQPkIiP8&part=snippet&id=${ytString}`
-          )
+          .get("https://youtube.googleapis.com/youtube/v3/videos", {
+            params: {
+              key: "AIzaSyDSwnIBbiwK2s3MdBS5je4yCsTeQPkIiP8",
+              part: "snippet",
+              id: ytString
+            }
+          })
           .then(res4 => {
             console.log(res4.data.items[0].snippet.title);
             if (res4.status === 200) {

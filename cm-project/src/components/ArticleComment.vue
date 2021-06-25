@@ -3,10 +3,10 @@
     <div class="row">
       <div class="base__body mx-auto">
         <!-- 左邊照片 -->
-        <aside v-show="arr.img" class="left__area">
+        <aside v-show="arr.postImg" class="left__area">
           <img
             class="img img-resp"
-            :src="arr.img"
+            :src="arr.postImg"
             alt="testPic"
             width="200"
             height="200"
@@ -27,26 +27,25 @@
                   width="200"
                   height="200"
                 />
+                <!-- 垃圾桶 -->
+                <div class="trash__btn" @click="deleteArticle">
+                  <img
+                    class="pointer"
+                    src="../../static/imgs/memoImg/mini_trash.png"
+                    alt="mini_trash"
+                    width="20"
+                    height="20"
+                  />
+                </div>
               </aside>
               <!-- 發文者名字與發文時間 -->
               <aside class="master__info">
-                <p class="poster__name">{{ arr.name }}</p>
-                <p class="post__date">{{ date }}</p>
+                <p class="poster__name">{{ arr.posterNickName }}</p>
+                <p class="post__date">{{ arr.postTime }}</p>
               </aside>
             </div>
             <p class="article">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reiciendis culpa alias voluptas illum, quam debitis harum adipisci
-              repellendus magni vero distinctio esse beatae, deleniti libero
-              explicabo blanditiis temporibus optio nobis? Lorem ipsum, dolor
-              sit amet consectetur adipisicing elit. Facere ex dolore quod quo
-              corporis molestiae iste, exercitationem sunt vel veritatis
-              expedita voluptates doloribus rerum non, unde voluptatibus
-              consectetur odio voluptate. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Suscipit consectetur sit, tempore doloremque,
-              temporibus mollitia dignissimos et dolorum cupiditate omnis
-              pariatur quaerat fugit dolores reprehenderit nisi at culpa,
-              numquam reiciendis.
+              {{ arr.postText }}
             </p>
           </div>
           <!-- 留言區 -->
@@ -93,7 +92,11 @@
 
 <script>
 export default {
-  props: ["arr"],
+  props: {
+    arr: {
+      type: Object
+    }
+  },
   data() {
     return {
       str: "",
@@ -124,6 +127,10 @@ export default {
       }
       this.arrTest.push({ src: "../../static/test.jpg", str: this.str });
       this.str = "";
+    },
+    // 刪除文章
+    deleteArticle() {
+      this.$emit("deleteArticle");
     }
   }
 };
@@ -316,5 +323,16 @@ p {
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
+}
+/* 垃圾桶按鈕 */
+.trash__btn {
+  visibility: visible;
+  position: absolute;
+  left: 92%;
+  top: 5%;
+  background-color: cyan;
+}
+.trash__btn:hover {
+  opacity: 0.5;
 }
 </style>

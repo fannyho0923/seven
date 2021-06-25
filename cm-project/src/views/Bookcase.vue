@@ -20,6 +20,7 @@
           <Article
             v-for="(item, index) in articleArr"
             :key="index"
+            :arr="articleArr[index]"
             @see="look(index)"
           />
         </div>
@@ -37,6 +38,7 @@
         </div>
         <!-- 新增文章按鈕 -->
         <div
+          v-show="isOwner"
           v-if="!isWrite && !isLook"
           class="pointer add__btn"
           @click="isWrite = true"
@@ -53,23 +55,33 @@
     <div v-if="isLook">
       <ArticleComment
         v-if="isLook"
-        :arr="articleArr[this.id]"
+        :arr="articleArr[id]"
         @closeSeeBox="closeLookBox"
+        @deleteArticle="deletEessay(articleArr[id].postSeriel)"
       />
     </div>
   </main>
 </template>
 
 <script>
+import {
+  getRoomInfo,
+  getPrivateArticle,
+  deletePrivateArticle
+} from "@/js/all.js";
 import Article from "@/components/Article.vue";
 import ArticleWrite from "@/components/ArticleWrite.vue";
 import ArticleComment from "@/components/ArticleComment.vue";
 export default {
   data() {
     return {
+      id: -1,
+      roomId: 0,
       isWrite: false,
       isLook: false,
-      articleArr: [
+      isOwner: false,
+      articleArr: [],
+      arr: [
         {
           src: "../../static/test.jpg",
           str: "my name is tony",
@@ -108,6 +120,25 @@ export default {
     ArticleWrite,
     ArticleComment
   },
+  created() {
+    this.roomId = this.$route.query.id;
+    if (this.roomId < 1 || this.roomId > 7) {
+      this.$router.push({ path: "/publicArea" });
+    }
+    // 取得房間資訊
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
+      console.log(res1.data.isOwner);
+      this.isOwner = res1.data.isOwner;
+    });
+    const data = {
+      memberDoorIndex: this.roomId
+    };
+    //取得文章
+    getPrivateArticle(this.$store.getters.userSeriel, data).then(res2 => {
+      console.log(res2);
+      this.articleArr = res2.data.postInfos;
+    });
+  },
   methods: {
     // 離開編輯狀態
     closeWriteBox() {
@@ -125,6 +156,13 @@ export default {
     look(id) {
       this.isLook = true;
       this.id = id;
+    },
+    // 刪除文章
+    deletEessay(postSeriel) {
+      deletePrivateArticle(postSeriel).then(res3 => {
+        console.log(res3.data);
+        this.closeLookBox();
+      });
     }
   }
 };

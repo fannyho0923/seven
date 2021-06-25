@@ -63,8 +63,9 @@ export default {
         alert("此為空房！");
         return;
       } else {
+        const id = this.homeOwner.memberDoorIndex;
         this.$store.commit("Enter", this.homeOwner.memberDoorIndex);
-        this.$router.push("/room");
+        this.$router.push({ name: "Room", params: { id } });
       }
     }
   }

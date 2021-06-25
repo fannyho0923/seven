@@ -71,6 +71,7 @@ export default {
     Wardrobe
   },
   created() {
+    // this.$store.commit("Enter", this.$route.query.id);
     // 取得房間資訊
     getRoomInfo(
       this.$store.getters.doorIndex,
@@ -81,12 +82,21 @@ export default {
     });
     // console.log(this.$store.getters.doorIndex);
   },
+  watch: {
+    "$store.state.doorIndex": function() {
+      console.log(this.$store.getters.doorIndex);
+    }
+  },
   methods: {
     showBookcase() {
       showBlog = true;
     },
     goBlog() {
-      this.$router.push("/bookcase");
+      const index = this.$store.getters.doorIndex;
+      this.$router.push({
+        path: "/bookcase",
+        query: { id: index }
+      });
     },
     goDiary() {
       if (this.isOwner) {

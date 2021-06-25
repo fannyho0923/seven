@@ -10,7 +10,7 @@
             placeholder="寫點什麼..."
           ></textarea>
         </div>
-        <!-- 照片匡 -->
+        <!-- 照片框 -->
         <div class="imgBox">
           <label v-if="!preview" class="pointer label__btnBox"
             ><input
@@ -19,13 +19,14 @@
               @change="previewImage"
               class=" input__btn form-control-file"
               id="my-file"
+              ref="files"
             />點擊新增圖片</label
           >
           <!-- 秀照片區塊 -->
-          <div class="imgShowBox" v-if="preview">
+          <div class="imgShowBox" v-if="imgUrl">
             <img
-              class="img img-resp"
-              :src="preview"
+              class="img"
+              :src="imgUrl"
               alt="UserPic"
               width="100"
               height="100"
@@ -50,6 +51,7 @@
 </template>
 
 <script>
+import { addPrivateArticle, setImg } from "@/js/all.js";
 export default {
   data() {
     return {
@@ -57,25 +59,13 @@ export default {
       image: null,
       preview: null,
       preview_list: [],
-      image_list: []
+      image_list: [],
+      imgUrl: ""
     };
   },
   methods: {
     close() {
       this.$emit("close");
-    },
-    previewImage(event) {
-      var input = event.target;
-      if (input.files) {
-        var reader = new FileReader();
-        reader.onload = e => {
-          this.preview = e.target.result;
-        };
-        this.image = input.files[0];
-        reader.readAsDataURL(input.files[0]);
-      } else {
-        return;
-      }
     },
     reset() {
       this.image = null;
@@ -83,7 +73,44 @@ export default {
       this.image_list = [];
       this.preview_list = [];
     },
-    post() {}
+    // 上傳圖片
+    previewImage() {
+      // console.log(this.$refs.files.files[0]);
+      // 宣告一個變數來儲存我們找到的圖片
+      const uploadedFile = this.$refs.files.files[0];
+      // 把圖片轉換成 FromData，先宣告一個變數是我們的 new FormData()
+      const formData = new FormData();
+      // 利用 append 的方式將我們的圖片塞入
+      formData.append("file", uploadedFile);
+      // 打api：上傳圖片取得imgPath
+      setImg(formData).then(res4 => {
+        if (!res4.data.result) {
+          return;
+        }
+        console.log(res4.data.imgPath);
+        // 將圖片路徑記下來
+        this.imgUrl = res4.data.imgPath;
+      });
+    },
+    post() {
+      if (!this.content) {
+        return;
+      }
+      // 打api上傳文章
+      const articleArr = {
+        userSeriel: this.$store.getters.userSeriel,
+        boardType: 3,
+        memberDoorIndex: this.$store.getters.doorIndex,
+        postImgPath: this.imgUrl,
+        postText: this.content
+      };
+
+      // 發文
+      addPrivateArticle(articleArr).then(res1 => console.log(res1.data));
+      this.content = "";
+      this.preview = "";
+      this.close();
+    }
   }
 };
 </script>
@@ -95,30 +122,32 @@ export default {
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100vh;
-  background-color: rgba(95, 158, 160, 0.404);
+  height: 50vw;
+  background-color: rgba(5, 5, 5, 0.404);
 }
 /* 編輯文章匡 */
 .article__body {
   position: relative;
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin-top: 10rem;
   width: 60%;
   height: 36rem;
-  background-color: rgba(128, 255, 0, 0.548);
+  /* background-color: rgba(128, 255, 0, 0.548); */
 }
 /* 文章匡 */
 .textBox {
   position: relative;
   width: 50%;
-  height: 100%;
+  height: 40%;
   background-color: cornflowerblue;
 }
 /* 圖片匡 */
 .imgBox {
   width: 50%;
-  height: 100%;
+  height: 60%;
   background-color: rgb(212, 237, 100);
 }
 /* 文字輸入匡 */
@@ -126,7 +155,7 @@ export default {
   max-width: 100%;
   width: 100%;
   height: 100%;
-  font-size: 18px;
+  font-size: 1.5vw;
   resize: none;
 }
 /* 離開按鈕 */
@@ -140,18 +169,24 @@ export default {
   width: 3.5rem;
   height: 3.5rem;
   font-size: 4rem;
-  left: 103%;
+  left: 80%;
   top: 0;
   background-color: pink;
 }
 /* 秀照片區塊 */
 .imgShowBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  margin-bottom: 1rem;
+  height: 85%;
+  margin-bottom: 0.5rem;
 }
 /* 照片 */
 .img {
   width: 100%;
+  height: auto;
+  max-height: 100%;
 }
 /* 放選取照片按鈕以及照片區塊 */
 .imgBox {
@@ -182,7 +217,7 @@ export default {
 }
 .post__btn {
   margin-top: 1rem;
-  width: 60%;
+  width: 30%;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
 }

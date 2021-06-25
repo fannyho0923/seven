@@ -30,8 +30,8 @@ export const getVedio = userSeriel => {
   return req("get", `/Board/${userSeriel}/2/`, -1);
 };
 // boardType: 3-私人看板 V
-export const getPrivateArticle = (userSeriel, data) => {
-  return req("get", `/Board/${userSeriel}/3/`, data);
+export const getPrivateArticle = (userSeriel, doorIndex) => {
+  return req("get", `/Board/${userSeriel}/3/`, doorIndex);
 };
 
 //新增看板發文
@@ -53,7 +53,7 @@ export const addPrivateArticle = data => {
 export const deletePublicArticle = postSeriel => {
   return req("patch", `/Board/Delete/${postSeriel}/`);
 };
-// boardType: 2- 公共影音 V
+// boardType: 2- 公共影音 V-v
 export const deleteVedio = postSeriel => {
   return req("patch", `/Board/Delete/${postSeriel}/`);
 };
