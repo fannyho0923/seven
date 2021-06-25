@@ -11,7 +11,7 @@
               class="ytBox"
               width="560"
               height="480"
-              src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG&autoplay=0&rel=0"
+              :src="ytSrc"
               title="YouTube video player"
               rel="0"
               loop="1"
@@ -49,18 +49,25 @@
 </template>
 
 <script>
+import {
+  getPublicArticle,
+  addPublicArticle,
+  deletePublicArticle
+} from "@/js/all.js";
 import PlayCard from "@/components/PlayCard";
 import {} from "@/js/all.js";
 export default {
   data() {
     return {
       str: "",
-      playListArr: []
+      playListArr: [],
+      ytSrc: "https://www.youtube.com/embed/FLGCGc7sAUw"
     };
   },
   components: {
     PlayCard
   },
+  create() {},
   updated() {
     this.$nextTick(function() {
       var div = document.getElementById("data-content");

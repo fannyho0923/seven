@@ -19,7 +19,7 @@
             :memoSrc="memos[commentArr[index].posterType - 1].src"
             :memoDeg="memos[commentArr[index].posterType - 1].deg"
             :memoIndex="index"
-            @deleteMemo="delete_Memo(commentArr[index].postSeriel)"
+            @deleteMemo="delete_Memo(commentArr[index].postSeriel, index)"
           />
         </div>
         <!-- 離開本頁和新增留言按鈕 -->
@@ -95,17 +95,10 @@ export default {
       ]
     };
   },
-  watch: {
-    // commentArr() {
-    //   getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
-    //     this.commentArr = res1.data.postInfos;
-    //   });
-    // }
-  },
   created() {
+    // 打api查看看板
     getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
       this.commentArr = res1.data.postInfos;
-      console.log(res1.data.postInfos);
     });
   },
   components: { MemoSelector, MemoWrite, Comment },
@@ -144,15 +137,23 @@ export default {
       // 打api:新增文章
       addPublicArticle(addMemoData).then(res2 => {
         if (res2.data.result) {
-          this.commentArr.push(addMemoData);
+          // 打api查看看板
+          getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
+            this.commentArr = res1.data.postInfos;
+          });
         }
       });
-      console.log(id);
       this.closeWritePopup();
     },
     //刪除便條功能
-    delete_Memo(postSeriel) {
-      deletePublicArticle(postSeriel).then(res3 => console.log(res3));
+    delete_Memo(postSeriel, index) {
+      console.log(postSeriel);
+      deletePublicArticle(postSeriel).then(res3 => {
+        console.log(res3);
+        if (res3.data.result) {
+          this.commentArr.splice(index, 1);
+        }
+      });
     }
   }
 };

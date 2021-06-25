@@ -22,8 +22,8 @@ export const setImg = file => {
 
 //查看看板
 // boardType: 1- 公共留言 V-v
-export const getPublicArticle = (userSeriel, data) => {
-  return req("get", `/Board/${userSeriel}/1/`, data);
+export const getPublicArticle = userSeriel => {
+  return req("get", `/Board/${userSeriel}/1/`, -1);
 };
 // boardType: 2- 公共影音 V
 export const getVedio = (userSeriel, data) => {
