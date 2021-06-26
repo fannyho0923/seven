@@ -179,6 +179,8 @@ export default {
                 console.log(res3.data);
                 // 未加入社群(-1)
                 if (res3.data.status == -1) {
+                  // 全域(Vuex)設定此為第一次加入
+                  this.$store.commit("ConfirmIsNew", true);
                   // 打api：新社群
                   userAddNewGroup(this.$store.getters.userSeriel).then(res4 => {
                     console.log(res4.data);

@@ -88,6 +88,10 @@ export default {
     Television
   },
   created() {
+    if (this.$store.getters.getNewInfo) {
+      alert("請參閱手冊");
+      this.$store.commit("ConfirmIsNew", false);
+    }
     //取得使用者資訊
     getUserInfo(this.$store.getters.userSeriel)
       .then(res1 => console.log(res1.data))
