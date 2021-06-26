@@ -1,7 +1,8 @@
 <template>
   <div class="articleBox  pointer" @click="see">
     <!-- 從後端拿取日期 -->
-    <div class="day text-center">{{ arr.postTime }}</div>
+    <div v-if="arr.postTime" class="day text-center">{{ arr.postTime }}</div>
+    <div v-else class="day text-center">{{ date }}</div>
     <!-- 分隔線 -->
     <hr class="hr" />
     <!-- 照片塊 -->
@@ -26,7 +27,8 @@ export default {
   },
   data() {
     return {
-      isPhoto: false
+      isPhoto: false,
+      date: new Date().toString().slice(4, 15)
     };
   },
   methods: {

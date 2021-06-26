@@ -141,15 +141,18 @@ export const setDiaryImg = img => {
 };
 
 // 文章相關的 api
-//新增看板發文v
-export const postArticle = data => {
-  return req("post", "/Board/", data);
+//查看留言
+export const getComment = (postSeriel, userSeriel) => {
+  return req("get", `/Comment/${postSeriel}/${userSeriel}`);
 };
-//查看看板v
-export const watchArticle = data => {
-  return req("get", "/Board/", data);
+//新增留言
+export const addComment = data => {
+  return req("post", "/Comment/", data);
 };
-
+//刪除留言
+export const deleteComment = commentSeriel => {
+  return req("patch", `/Comment/Delete/${commentSeriel}`);
+};
 // 搜尋相關的 api
 export const apiSearch = data =>
   searchRequest.get(`/Search?searchdata=${data}`);

@@ -52,7 +52,7 @@
           <main class="commentBox" id="data-content">
             <div
               class="comment__body"
-              v-for="(item, index) in arrTest"
+              v-for="(item, index) in commentArr"
               :key="index"
             >
               <!-- 頭像 -->
@@ -67,9 +67,27 @@
               </aside>
               <!-- 留言內容 -->
               <aside class="sentenceBox">
-                <p class="sentence">
-                  {{ arrTest[index].str }}
-                </p>
+                <div class="sentence">
+                  <p class="commenter">
+                    {{ commentArr[index].commentUserNickName }}
+                  </p>
+                  <p class="commentTxt">{{ commentArr[index].commentTxt }}</p>
+                  <!-- 垃圾桶 -->
+                  <div
+                    class="comment__trash"
+                    @click="
+                      deleteTheComment(commentArr[index].commentSeriel, index)
+                    "
+                  >
+                    <img
+                      class="pointer"
+                      src="../../static/imgs/memoImg/mini_trash.png"
+                      alt="mini_trash"
+                      width="20"
+                      height="20"
+                    />
+                  </div>
+                </div>
               </aside>
             </div>
           </main>
@@ -91,6 +109,19 @@
 </template>
 
 <script>
+//查看留言
+// export const getComment = (postSeriel, userSeriel) => {
+//   return req("get", `/Comment/${postSeriel}/${userSeriel}`);
+// };
+//新增留言
+// export const addComment = data => {
+//   return req("post", "/Comment/", data);
+// };
+//刪除留言
+// export const deleteComment = commentSeriel => {
+//   return req("patch", `/Comment/Delete/${commentSeriel}`);
+// };
+import { getComment, addComment, deleteComment } from "@/js/all";
 export default {
   props: {
     arr: {
@@ -100,20 +131,32 @@ export default {
   data() {
     return {
       str: "",
-      date: new Date(),
-      arrTest: [
-        { src: "../../static/test.jpg", str: "my name is fanny" },
-        { src: "../../static/test.jpg", str: "my name is tony" },
-        { src: "../../static/test.jpg", str: "my name is cody" },
-        { src: "../../static/test.jpg", str: "my name is cake" }
-      ]
+      commentArr: {},
+      isUpdate: false
+      // arrTest: [
+      //   { src: "../../static/test.jpg", str: "my name is fanny" },
+      //   { src: "../../static/test.jpg", str: "my name is tony" },
+      //   { src: "../../static/test.jpg", str: "my name is cody" },
+      //   { src: "../../static/test.jpg", str: "my name is cake" }
+      // ]
     };
   },
   updated() {
-    this.$nextTick(function() {
-      var div = document.getElementById("data-content");
-      div.scrollTop = div.scrollHeight;
-    });
+    if (this.isUpdate) {
+      this.$nextTick(function() {
+        var div = document.getElementById("data-content");
+        div.scrollTop = div.scrollHeight;
+      });
+    }
+  },
+  created() {
+    // 查看留言
+    getComment(this.arr.postSeriel, this.$store.getters.userSeriel).then(
+      res1 => {
+        // console.log(res1);
+        this.commentArr = res1.data.commentInfos;
+      }
+    );
   },
   methods: {
     // 關閉彈窗
@@ -125,12 +168,35 @@ export default {
       if (!this.str) {
         return;
       }
-      this.arrTest.push({ src: "../../static/test.jpg", str: this.str });
+      const commentData = {
+        postSeriel: this.arr.postSeriel,
+        userSeriel: this.$store.getters.userSeriel,
+        commentTxt: this.str
+      };
+      // console.log(commentData);
+      addComment(commentData).then(res2 => {
+        if (res2.data.result) {
+          // 查看留言
+          getComment(this.arr.postSeriel, this.$store.getters.userSeriel).then(
+            res1 => {
+              // console.log(res1);
+              this.commentArr = res1.data.commentInfos;
+            }
+          );
+        }
+      });
       this.str = "";
+      this.isUpdate = true;
     },
     // 刪除文章
     deleteArticle() {
       this.$emit("deleteArticle");
+    },
+    // 刪除留言
+    deleteTheComment(commentSeriel, index) {
+      deleteComment(commentSeriel).then(res3 => console.log(res3.data));
+      this.commentArr.splice(index, 1);
+      this.isUpdate = false;
     }
   }
 };
@@ -271,6 +337,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center; */
+  position: relative;
   width: fit-content;
   font-size: 1.3vw;
   background-color: darksalmon;
@@ -334,5 +401,26 @@ p {
 }
 .trash__btn:hover {
   opacity: 0.5;
+}
+/* 刪除留言 */
+.comment__trash {
+  visibility: visible;
+  position: absolute;
+  left: 91%;
+  top: -32%;
+}
+.comment__trash:hover {
+  opacity: 0.5;
+}
+/* 留言者名字 */
+.commenter {
+  margin: 0;
+  padding: 0;
+  font-size: 0.7vw;
+  /* background-color: blanchedalmond; */
+}
+.commentTxt {
+  margin-top: 0;
+  padding-top: 0;
 }
 </style>

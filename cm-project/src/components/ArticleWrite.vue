@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { addPrivateArticle, setImg } from "@/js/all.js";
+import { addPrivateArticle, setImg, getPrivateArticle } from "@/js/all.js";
 export default {
   data() {
     return {
@@ -87,7 +87,7 @@ export default {
         if (!res4.data.result) {
           return;
         }
-        console.log(res4.data.imgPath);
+
         // 將圖片路徑記下來
         this.imgUrl = res4.data.imgPath;
       });
@@ -97,19 +97,22 @@ export default {
         return;
       }
       // 打api上傳文章
-      const articleArr = {
+      const articleData = {
         userSeriel: this.$store.getters.userSeriel,
         boardType: 3,
         memberDoorIndex: this.$store.getters.doorIndex,
-        postImgPath: this.imgUrl,
+        postImg: this.imgUrl,
         postText: this.content
       };
-
       // 發文
-      addPrivateArticle(articleArr).then(res1 => console.log(res1.data));
-      this.content = "";
-      this.preview = "";
-      this.close();
+      addPrivateArticle(articleData).then(res1 => {
+        if (res1.data.result) {
+          this.content = "";
+          this.preview = "";
+          console.log(this.imgUrl);
+          this.$emit("post", articleData);
+        }
+      });
     }
   }
 };

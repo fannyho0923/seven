@@ -49,7 +49,7 @@
     </section>
     <!-- 編輯文章彈窗 -->
     <div v-if="isWrite">
-      <ArticleWrite @close="closeWriteBox" />
+      <ArticleWrite @close="closeWriteBox" @post="alreadyPost" />
     </div>
     <!-- 預覽或留言彈窗 -->
     <div v-if="isLook">
@@ -127,7 +127,7 @@ export default {
     }
     // 取得房間資訊
     getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
-      console.log(res1.data.isOwner);
+      // console.log(res1.data.isOwner);
       this.isOwner = res1.data.isOwner;
     });
     const data = {
@@ -135,7 +135,7 @@ export default {
     };
     //取得文章
     getPrivateArticle(this.$store.getters.userSeriel, data).then(res2 => {
-      console.log(res2);
+      // console.log(res2);
       this.articleArr = res2.data.postInfos;
     });
   },
@@ -157,11 +157,20 @@ export default {
       this.isLook = true;
       this.id = id;
     },
+    // 文章新增
+    alreadyPost(data) {
+      // console.log(data);
+      this.articleArr.push(data);
+      this.closeWriteBox();
+    },
     // 刪除文章
     deletEessay(postSeriel) {
       deletePrivateArticle(postSeriel).then(res3 => {
-        console.log(res3.data);
+        // console.log(res3.data);
         this.closeLookBox();
+        // console.log(this.articleArr.length);
+        this.articleArr.splice(this.id, 1);
+        // console.log(this.articleArr.length);
       });
     }
   }
