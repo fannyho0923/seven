@@ -9,10 +9,12 @@
       height="328"
     />
     <!-- 房門頭像 -->
-    <div class="pointer circle" :style="displayId">
+    <div v-if="homeOwner.memberRole" class="pointer circle" :style="displayId">
       <img
         class="pointer img__avatar"
-        :src="doors.img"
+        :src="
+          'http://35.201.237.18/img/avatar_' + homeOwner.memberRole + '.png'
+        "
         alt="avatar"
         width="100"
         height="100"
@@ -20,7 +22,7 @@
       />
     </div>
     <!-- 名牌 -->
-    <div class="nameTagBox">
+    <div v-if="homeOwner.memberRole" class="nameTagBox">
       <img
         class="pointer nameTagImg"
         src="../../static/imgs/publicRoom/nameTag.png"
