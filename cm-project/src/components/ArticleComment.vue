@@ -66,14 +66,19 @@
                 />
               </aside>
               <!-- 留言內容 -->
-              <aside class="sentenceBox">
-                <div class="sentence">
+              <asid class="sentenceBox">
+                <div
+                  class="sentence"
+                  @mouseenter="showCommentTrash = true"
+                  @mouseleave="showCommentTrash = false"
+                >
                   <p class="commenter">
                     {{ commentArr[index].commentUserNickName }}
                   </p>
                   <p class="commentTxt">{{ commentArr[index].commentTxt }}</p>
                   <!-- 垃圾桶 -->
                   <div
+                    v-if="showCommentTrash"
                     class="comment__trash"
                     @click="
                       deleteTheComment(commentArr[index].commentSeriel, index)
@@ -88,7 +93,7 @@
                     />
                   </div>
                 </div>
-              </aside>
+              </asid>
             </div>
           </main>
           <!-- 輸入框 -->
@@ -132,7 +137,8 @@ export default {
     return {
       str: "",
       commentArr: {},
-      isUpdate: false
+      isUpdate: false,
+      showCommentTrash: false
       // arrTest: [
       //   { src: "../../static/test.jpg", str: "my name is fanny" },
       //   { src: "../../static/test.jpg", str: "my name is tony" },

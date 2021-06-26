@@ -29,7 +29,7 @@ export const getPublicArticle = userSeriel => {
 export const getVedio = userSeriel => {
   return req("get", `/Board/${userSeriel}/2/`, -1);
 };
-// boardType: 3-私人看板 V
+// boardType: 3-私人看板 V-v
 export const getPrivateArticle = (userSeriel, doorIndex) => {
   return req("get", `/Board/${userSeriel}/3/`, doorIndex);
 };
@@ -43,7 +43,7 @@ export const addPublicArticle = data => {
 export const addVedio = data => {
   return req("post", "/Board/", data);
 };
-// boardType: 3-私人看板 V
+// boardType: 3-私人看板 V-v
 export const addPrivateArticle = data => {
   return req("post", "/Board/", data);
 };
@@ -57,7 +57,7 @@ export const deletePublicArticle = postSeriel => {
 export const deleteVedio = postSeriel => {
   return req("patch", `/Board/Delete/${postSeriel}/`);
 };
-// boardType: 3-私人看板 V
+// boardType: 3-私人看板 V-v
 export const deletePrivateArticle = postSeriel => {
   return req("patch", `/Board/Delete/${postSeriel}/`);
 };
@@ -117,7 +117,7 @@ export const getUserInfo = userSeriel => {
 
 // Room 相關的 api
 
-//進入社群中的玩家空間 V
+//進入社群中的玩家空間 V-v
 export const getRoomInfo = (doorIndex, userSeriel) => {
   return req("get", `/Group/${doorIndex}/${userSeriel}/`);
 };
@@ -141,17 +141,31 @@ export const setDiaryImg = img => {
 };
 
 // 文章相關的 api
-//查看留言
+//查看留言 V-v
 export const getComment = (postSeriel, userSeriel) => {
   return req("get", `/Comment/${postSeriel}/${userSeriel}`);
 };
-//新增留言
+//新增留言 V-v
 export const addComment = data => {
   return req("post", "/Comment/", data);
 };
-//刪除留言
+//刪除留言 V-v
 export const deleteComment = commentSeriel => {
   return req("patch", `/Comment/Delete/${commentSeriel}`);
+};
+
+// 聊天室相關的api
+// 取得聊天室清單
+export const getChatList = userSeriel => {
+  return req("get", `/Chat/Members/${userSeriel}`);
+};
+// 傳送訊息
+export const sentChat = data => {
+  return req("post", "/Chat/", data);
+};
+// 對話訊息
+export const getChat = (userSeriel, parterUserSeriel) => {
+  return req("get", `/Chat/${userSeriel}/${parterUserSeriel}`);
 };
 // 搜尋相關的 api
 export const apiSearch = data =>

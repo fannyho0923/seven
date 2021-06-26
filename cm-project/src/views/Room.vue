@@ -21,11 +21,12 @@
             alt="wardrobePic"
             width="373"
             height="493"
+            @click="opevWardrobe"
           />
         </div>
-        <Wardrobe />
+        <!-- 衣櫃彈窗 -->
+        <Wardrobe class="wardrobe" v-if="showWardrobe" @leave="closeWardrobe" />
         <!-- 書櫃:寫個版 -->
-
         <div class="pointer bookcaseImgBox">
           <img
             class="pointer bookcaseImg img-resp"
@@ -61,7 +62,7 @@ import Wardrobe from "@/components/Wardrobe.vue";
 export default {
   data() {
     return {
-      showBlog: false,
+      showWardrobe: false,
       isblink: false,
       isOwner: false
     };
@@ -88,8 +89,13 @@ export default {
     }
   },
   methods: {
-    showBookcase() {
-      showBlog = true;
+    // 打開衣櫃
+    opevWardrobe() {
+      this.showWardrobe = true;
+    },
+    // 關閉衣櫃
+    closeWardrobe() {
+      this.showWardrobe = false;
     },
     goBlog() {
       const index = this.$store.getters.doorIndex;
@@ -117,6 +123,10 @@ export default {
 </script>
 
 <style scoped>
+.room__body {
+  margin-left: 0;
+  padding-left: 0;
+}
 .row {
   position: relative;
   max-width: 100vw;
@@ -196,6 +206,11 @@ export default {
 }
 .photoImg:hover {
   opacity: 0.5;
+}
+.wardrobe {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
 }
 /* @keyframes fade {
   from {
