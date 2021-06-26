@@ -21,34 +21,38 @@
           <aside class="left__screen">
             <Member
               v-for="(item, index) in members"
-              :key="index"
               class="pointer member"
+              :key="index"
               :style="{ top: add * (index + 1) + '%' }"
               :memberArr="item"
+              :num="index + 1"
+              @chooseChat="
+                chat(members[index].memberSeriel, members[index].memberName)
+              "
             />
           </aside>
           <!-- 右邊聊天內容 -->
           <header class="text-center">
-            <label class="right__tit">Chat content</label>
+            <label class="right__tit">{{ memberName }}</label>
           </header>
           <aside class="right__screen">
             <!-- 對話顯示 -->
             <div id="data-list-content" class="chat__content">
               <div
                 :class="{
-                  sentence: strArr[index].id == 1,
-                  sentence2: strArr[index].id == 2
+                  sentence: chatArr[index].fromPartner == false,
+                  sentence2: chatArr[index].fromPartner == true
                 }"
-                v-for="(item, index) in strArr"
+                v-for="(item, index) in chatArr"
                 :key="index"
               >
                 <p
                   :class="{
-                    text: strArr[index].id == 1,
-                    text2: strArr[index].id == 2
+                    text: chatArr[index].fromPartner == false,
+                    text2: chatArr[index].fromPartner == true
                   }"
                 >
-                  {{ strArr[index].str }}
+                  {{ chatArr[index].messengeTxt }}
                 </p>
               </div>
             </div>
@@ -72,10 +76,31 @@
 
 <script>
 import Member from "@/components/Member.vue";
+import { getChatList, sentChat, getChat } from "@/js/all";
+// 聊天室相關的api
+// 取得聊天室清單
+// export const getChatList = userSeriel => {
+//   return req("get", `/Chat/Members/${userSeriel}`);
+// };
+// 傳送訊息
+// export const sentChat = data => {
+//   return req("post", "/Chat/", data);
+// };
+// 對話訊息
+// export const getChat = (userSeriel, parterUserSeriel) => {
+//   return req("get", `/Chat/${userSeriel}/${parterUserSeriel}`);
+// };
+
 export default {
   data() {
     return {
+      timer: null,
+      partnerUserSeriel: -1,
+      members: [],
+      fromPartner: false,
       str: "", // 我打的話
+      chatArr: [],
+      memberName: "Chat Content",
       strArr: [
         { id: "1", str: "yyy" },
         { id: "1", str: "ooo" },
@@ -87,39 +112,44 @@ export default {
         { id: "2", str: "yoyo" },
         { id: "2", str: "ioio" }
       ],
-      add: 14, //好友位移
-      members: [
-        {
-          src: "../../static/imgs/avatar.png",
-          name: "fanny"
-        },
-        {
-          src: "../../static/imgs/avatar.png",
-          name: "cody"
-        },
-        {
-          src: "../../static/imgs/avatar.png",
-          name: "tony"
-        },
-        {
-          src: "../../static/imgs/avatar.png",
-          name: "ben"
-        },
-        {
-          src: "../../static/imgs/avatar.png",
-          name: "mila"
-        },
-        {
-          src: "../../static/imgs/avatar.png",
-          name: "paul"
-        }
-      ]
+      add: 14 //好友位移
+      // members: [
+      //   {
+      //     src: "../../static/imgs/avatar.png",
+      //     name: "fanny"
+      //   },
+      //   {
+      //     src: "../../static/imgs/avatar.png",
+      //     name: "cody"
+      //   },
+      //   {
+      //     src: "../../static/imgs/avatar.png",
+      //     name: "tony"
+      //   },
+      //   {
+      //     src: "../../static/imgs/avatar.png",
+      //     name: "ben"
+      //   },
+      //   {
+      //     src: "../../static/imgs/avatar.png",
+      //     name: "mila"
+      //   },
+      //   {
+      //     src: "../../static/imgs/avatar.png",
+      //     name: "paul"
+      //   }
+      // ]
     };
   },
   created() {
-    for (let index = 0; index < this.otherArr.length; index++) {
-      this.strArr.push(this.otherArr[index]);
-    }
+    getChatList(this.$store.getters.userSeriel).then(res1 => {
+      console.log(res1.data);
+      this.members = res1.data.members;
+    });
+
+    // for (let index = 0; index < this.otherArr.length; index++) {
+    //   this.strArr.push(this.otherArr[index]);
+    // }
   },
   updated() {
     this.$nextTick(function() {
@@ -128,17 +158,65 @@ export default {
     });
   },
   methods: {
-    //   送出我打的話
-    send() {
-      if (!this.str) {
+    // 開始去定時抓取聊天記錄
+    start() {
+      if (this.timer) {
         return;
       }
-      this.strArr.push({ id: "1", str: this.str });
+      this.timer = setInterval(() => this.getChatRecord(), 1500);
+    },
+    // 結束定時抓取聊天記錄
+    end() {
+      if (this.timer) {
+        clearInterval(this.timer);
+        this.timer = null;
+      }
+    },
+    //   送出我打的話
+    send() {
+      if (!this.str && this.partnerUserSeriel != -1) {
+        return;
+      }
+      const sendData = {
+        userSeriel: this.$store.getters.userSeriel,
+        partnerUserSeriel: this.partnerUserSeriel,
+        messengeTxt: this.str
+      };
+      sentChat(sendData).then(res2 => console.log(res2.data));
+      this.chatArr.push({
+        memberSeriel: this.partnerUserSeriel,
+        memberName: this.memberName,
+        messengeTxt: this.str,
+        fromPartner: false
+      });
       this.str = "";
     },
     // 離開本頁
     leave() {
+      this.end();
       this.$router.push("/room");
+    },
+    //選擇聊天
+    chat(partnerUserSeriel, memberName) {
+      this.partnerUserSeriel = partnerUserSeriel;
+      getChat(this.$store.getters.userSeriel, this.partnerUserSeriel).then(
+        res3 => {
+          console.log(res3.data.messenges);
+          this.chatArr = res3.data.messenges;
+          this.memberName = memberName;
+          console.log(this.memberName);
+          this.start();
+        }
+      );
+    },
+    getChatRecord() {
+      getChat(this.$store.getters.userSeriel, this.partnerUserSeriel).then(
+        res3 => {
+          // console.log(res3.data.messenges);
+          this.chatArr = res3.data.messenges;
+          console.log(this.memberName);
+        }
+      );
     }
   },
   components: {
@@ -171,12 +249,6 @@ export default {
 }
 /* 電腦螢幕背景 */
 .screen {
-  /* position: absolute;
-  width: 85.5%;
-  height: 62%;
-  background-color: powderblue;
-  left: 4.7%;
-  top: 4.9%; */
   position: relative;
   width: 87.6%;
   height: 62%;

@@ -49,7 +49,16 @@
           />
         </div>
         <!-- 電腦:回郵件 -->
-        <div class="pointer computerBox" @click="goComputer"></div>
+        <div class="pointer computerDeskBox">
+          <img
+            class="pointer computerDeskImg img-resp"
+            src="../../static/imgs/room/computerDesk.png"
+            alt="computerDeskPic"
+            width="254"
+            height="260"
+            @click="goComputer"
+          />
+        </div>
       </section>
     </div>
   </main>
@@ -132,7 +141,7 @@ export default {
   max-width: 100vw;
   width: 100vw;
   height: 50vw;
-  background-image: url("../../static/imgs/room/roomBg.png");
+  background-image: url("../../static/imgs/room/bgColor/bg_blue.jpg");
   background-repeat: none;
   background-size: cover;
   background-position: center;
@@ -183,13 +192,18 @@ export default {
   opacity: 0.5;
 }
 /* 電腦 */
-.computerBox {
+.computerDeskBox {
   position: absolute;
-  max-width: 10%;
-  width: 10%;
-  height: 16%;
-  left: 60.5%;
-  top: 38%;
+  max-width: 20%;
+  width: 20%;
+  left: 58.5%;
+  top: 36%;
+}
+.computerDeskImg {
+  width: 100%;
+}
+.computerDeskImg:hover {
+  opacity: 0.5;
 }
 /* 照片容器 */
 .photoImgBox {
