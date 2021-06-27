@@ -1,6 +1,6 @@
 <template>
   <main class="main mx-auto">
-    <header><h1 class="text-center">Chat</h1></header>
+    <!-- <header><h1 class="text-center">Chat</h1></header> -->
     <div class="row mx-auto">
       <!-- 背景照片容器 -->
       <div class="imgBox">
@@ -72,7 +72,16 @@
         <i class="apple fab fa-apple"></i>
       </div>
       <!-- 關閉視窗按鈕 -->
-      <div class="pointer leave__btn" @click="leave">Ｘ</div>
+      <div class="pointer leave__btn" @click="leave">
+        <img
+          class="closeIcon"
+          src="../../static/imgs/closeIcon.png"
+          alt="closeIcon"
+          width="252"
+          height="252"
+          @click="leave"
+        />
+      </div>
     </div>
   </main>
 </template>
@@ -144,6 +153,11 @@ export default {
       //   }
       // ]
     };
+  },
+  beforeCreate() {
+    document
+      .querySelector("body")
+      .setAttribute("style", "background-color:rgba(243, 231, 213, 0.838)");
   },
   created() {
     this.roomId = this.$route.query.id;
@@ -243,6 +257,7 @@ export default {
   /* background-color: grey; */
 }
 .row {
+  margin-top: 4.5rem;
   position: relative;
   width: 90%;
   /* background-color: khaki; */
@@ -295,6 +310,7 @@ export default {
   border-radius: 3px 0 0 0;
   color: rgb(96, 190, 244);
   background-color: rgb(248, 104, 104);
+  /* background-color: rgba(243, 231, 213, 0.838); */
 }
 /* 右邊標題 */
 .right__tit {
@@ -445,14 +461,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 3px black;
-  max-width: 5rem;
-  width: 3.5vw;
-  max-height: 4vw;
-  font-size: 3vw;
+  width: 5vw;
+  height: 5vw;
+  min-width: 50px;
+  min-height: 50px;
   left: 103%;
-  top: 5%;
-  background-color: rgb(43, 189, 226);
+  top: -6%;
+  /* background-color: rgb(43, 189, 226); */
+}
+/* 離開按鈕照片 */
+.closeIcon {
+  width: 100%;
+  height: auto;
+}
+.closeIcon:hover {
+  opacity: 0.5;
 }
 /* 蘋果標示 */
 .apple {
