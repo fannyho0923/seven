@@ -47,12 +47,14 @@ export default {
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  border: solid 1px black;
+  /* border: solid 1px black; */
+  box-shadow: 0 0 5px #ff8396;
   width: 30%;
   min-width: 300px;
   margin-bottom: 20rem;
   padding: 0.5rem;
   margin-top: 3rem;
+  background-color: #f4acb7;
 }
 .hr {
   width: 100%;
@@ -61,7 +63,8 @@ export default {
 .imgBox {
   width: 300px;
   height: 300px;
-  border: solid 1px rgb(16, 61, 29);
+  box-shadow: 0 0 5px #ff93a7;
+  background-color: #ffcad4;
 }
 .articleImg {
   width: 100%;

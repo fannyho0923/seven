@@ -10,9 +10,9 @@
       />
     </div> -->
     <!-- 標題 -->
-    <header class="blog__head text-center">
+    <!-- <header class="blog__head text-center">
       <h1 class="set-inlineBlock">Blog</h1>
-    </header>
+    </header> -->
     <!-- 放文章主要區域 -->
     <section class="blog__body mx-auto">
       <div class="blogBox">
@@ -196,6 +196,7 @@ export default {
   align-items: center;
   width: 70%;
   height: 40rem;
+  margin-top: 6rem;
   /* background-color: aqua; */
 }
 .blogBox {
@@ -204,7 +205,8 @@ export default {
   width: 100%;
   height: 90%;
   border-radius: 15px;
-  background-color: bisque;
+  /* background-color: bisque; */
+  background-color: #9d8189;
 }
 /* 左右按鍵 */
 /* .leftBox {
@@ -267,5 +269,23 @@ export default {
   overflow-y: auto;
   flex-wrap: wrap;
   word-wrap: break-word;
+}
+/*隐藏滚轮*/
+/* .commentBox::-webkit-scrollbar {
+  display: none;
+} */
+/* 捲軸底色 */
+.articleBox::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #ffc0cb;
+}
+/* 捲軸寬度 */
+.articleBox::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+/* 捲軸本體顏色 */
+.articleBox::-webkit-scrollbar-thumb {
+  background-color: #bb6573;
 }
 </style>

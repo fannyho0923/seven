@@ -108,6 +108,9 @@ export default {
   object-fit: contain;
   object-position: top;
 }
+.img__avatar:hover {
+  opacity: 0.7;
+}
 /* 名片容器 */
 .nameTagBox {
   display: flex;

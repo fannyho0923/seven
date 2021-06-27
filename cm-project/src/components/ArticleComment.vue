@@ -240,7 +240,7 @@ p {
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 10rem;
+  margin-top: 7.5rem;
   width: 70%;
   height: 36.5rem;
   background-color: rgb(252, 240, 172);
@@ -256,7 +256,7 @@ p {
   align-items: center;
   width: 47%;
   height: 100%;
-  background-color: blueviolet;
+  background-color: #d7e3fcba;
 }
 /* 照片 */
 .img {
@@ -267,13 +267,13 @@ p {
 .right__area {
   width: 47%;
   height: 100%;
-  background-color: rgb(226, 43, 165);
+  /* background-color: rgb(226, 43, 165); */
 }
 /* 文字區 */
 .articleBox {
   width: 100%;
   height: 50%;
-  background-color: burlywood;
+  background-color: #edf2fb;
   overflow-x: hidden;
   overflow-y: auto;
   flex-wrap: wrap;
@@ -281,11 +281,11 @@ p {
 }
 /* 留言區 */
 .commentBox {
-  background-image: url("../../static/imgs/room/flowerBg.png");
-  background-size: cover;
+  /* background-image: url("../../static/imgs/room/flowerBg.png"); */
+  /* background-size: cover; */
   width: 100%;
   height: 42%;
-  background-color: rgb(166, 252, 255);
+  background-color: #abc4ff;
   overflow-x: hidden;
   overflow-y: auto;
   flex-wrap: wrap;
@@ -376,7 +376,7 @@ p {
 .posterInfoBox {
   display: flex;
   align-items: center;
-  background-color: brown;
+  background-color: #b8b8ff;
 }
 /* 發文者頭像框 */
 .posterAvatarBox {
@@ -404,7 +404,7 @@ p {
   position: absolute;
   left: 92%;
   top: 5%;
-  background-color: cyan;
+  /* background-color: cyan; */
 }
 .trash__btn:hover {
   opacity: 0.5;

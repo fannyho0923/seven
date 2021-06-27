@@ -61,6 +61,7 @@ import {} from "@/js/all.js";
 export default {
   data() {
     return {
+      alreadySend: false,
       str: "",
       playlistArr: [],
       ytSrc: "https://www.youtube.com/embed/EK1UKUtnoWU"
@@ -77,10 +78,13 @@ export default {
     });
   },
   updated() {
-    this.$nextTick(function() {
-      var div = document.getElementById("data-content");
-      div.scrollTop = div.scrollHeight;
-    });
+    if (alreadySend) {
+      this.$nextTick(function() {
+        var div = document.getElementById("data-content");
+        div.scrollTop = div.scrollHeight;
+      });
+      this.alreadySend = false;
+    }
   },
 
   methods: {
@@ -140,6 +144,7 @@ export default {
             }
           });
       }
+      this.alreadySend = true;
     },
 
     // 刪除影片
@@ -170,7 +175,7 @@ export default {
   width: 85vw;
   margin-top: 12rem;
   height: 30rem;
-  background-color: cyan;
+  /* background-color: cyan; */
 }
 .tv__body {
   display: flex;
@@ -178,7 +183,7 @@ export default {
   position: relative;
   width: 100%;
   max-height: 30rem;
-  background-color: darkgoldenrod;
+  /* background-color: darkgoldenrod; */
 }
 .leftBox {
   position: relative;
@@ -194,7 +199,7 @@ export default {
 .rightBox {
   padding: 0.5rem;
   position: relative;
-  background-color: rgb(0, 32, 139);
+  /* background-color: rgb(0, 32, 139); */
   width: 38%;
 }
 /* 影片列表容器 */
@@ -215,7 +220,7 @@ export default {
   justify-content: space-around;
   width: 100%;
   height: 10%;
-  background-color: darkkhaki;
+  /* background-color: darkkhaki; */
 }
 /* 上傳處 */
 .input {

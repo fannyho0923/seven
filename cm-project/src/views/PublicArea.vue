@@ -2,8 +2,8 @@
   <main>
     <div class="row">
       <!-- 上排導覽 -->
-      <header class="base__head mx-auto">
-        <!-- <IconList /> -->
+      <header class="base__head">
+        <IconList />
       </header>
       <div class=" mx-auto">
         <div class="base__body">
@@ -43,6 +43,15 @@
               alt="餐桌"
               width="319"
               height="267"
+            />
+          </div>
+          <div class="clock">
+            <img
+              class="clockImg"
+              src="../../static/imgs/publicRoom/clock.png"
+              alt="時鐘"
+              width="158"
+              height="193"
             />
           </div>
         </div>
@@ -153,6 +162,7 @@ export default {
   margin-right: 0;
   z-index: 2;
 }
+/* 餐桌 */
 .tableBox {
   position: absolute;
   left: 43%;
@@ -163,16 +173,19 @@ export default {
   max-width: 100%;
   height: auto;
 }
+/* 壁畫 */
 .hangingPainting {
   position: absolute;
   left: 24.5%;
-  top: 10%;
-  width: 40%;
+  top: 3%;
+  width: 50%;
 }
 .hangingPaintingImg {
   max-width: 100%;
+  width: 100%;
   height: auto;
 }
+/* 掛衣架 */
 .handDrawn {
   position: absolute;
   z-index: 3;
@@ -180,9 +193,21 @@ export default {
   top: 43%;
   width: 8%;
   height: 35%;
-  /* background-color: lightgreen; */
 }
 .handDrawnImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+/* 時鐘 */
+.clock {
+  position: absolute;
+  left: 86%;
+  top: 18%;
+  width: 8%;
+  height: 35%;
+}
+.clockImg {
   max-width: 100%;
   height: auto;
   max-height: 100%;

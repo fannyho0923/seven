@@ -154,11 +154,7 @@ export default {
       // ]
     };
   },
-  beforeCreate() {},
   created() {
-    document
-      .querySelector("body")
-      .setAttribute("style", "background-color:#fae1dd");
     this.roomId = this.$route.query.id;
     getChatList(this.$store.getters.userSeriel).then(res1 => {
       console.log(res1.data);

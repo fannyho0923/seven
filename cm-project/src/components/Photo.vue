@@ -18,7 +18,16 @@
           </div>
         </section>
         <!-- 關閉視窗按鈕 -->
-        <div class=" pointer leave__btn" @click.self="leave">Ｘ</div>
+        <div class="pointer leave__btn" @click="leave">
+          <img
+            class="closeIcon"
+            src="../../static/imgs/closeIcon.png"
+            alt="closeIcon"
+            width="252"
+            height="252"
+            @click="leave"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -58,7 +67,7 @@ export default {
   margin-top: 3rem;
   width: 80%;
   height: 45rem;
-  background-color: blue;
+  /* background-color: blue; */
 }
 /* 放三張照片的容器 */
 .photo__body {
@@ -66,7 +75,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: coral;
+  /* background-color: coral; */
 }
 /* 關閉彈窗 */
 .leave__btn {
@@ -74,7 +83,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 3px black;
   width: 3.5vw;
   height: 3.5vw;
   font-size: 3.5vw;
@@ -87,8 +95,7 @@ export default {
   min-width: 200px;
   min-height: 260px;
   width: 25vw;
-
-  background-color: cornflowerblue;
+  /* background-color: cornflowerblue; */
 }
 .leftBox__body {
   min-width: 200px;
@@ -98,7 +105,9 @@ export default {
   left: 0;
   width: 100%;
   height: 30vw;
-  background-color: brown;
+  box-shadow: 0 0 10px #748888;
+  background-color: #e0fbfc;
+  border-radius: 5px;
 }
 /* 中間照片 */
 .midBox {
@@ -106,7 +115,7 @@ export default {
   min-height: 260px;
   width: 25vw;
 
-  background-color: cornsilk;
+  /* background-color: cornsilk; */
 }
 .midBox__body {
   min-width: 200px;
@@ -115,7 +124,9 @@ export default {
   bottom: -30%;
   width: 100%;
   height: 30vw;
-  background-color: rgb(67, 165, 42);
+  box-shadow: 0 0 10px rgb(126, 145, 147);
+  background-color: #9db4c0;
+  border-radius: 5px;
 }
 /* 右邊照片 */
 .rightBox {
@@ -123,7 +134,7 @@ export default {
   min-height: 260px;
   width: 25vw;
 
-  background-color: darkkhaki;
+  /* background-color: darkkhaki; */
 }
 .rightBox__body {
   min-width: 200px;
@@ -133,6 +144,16 @@ export default {
   right: 0;
   width: 100%;
   height: 30vw;
-  background-color: rgb(144, 42, 165);
+  box-shadow: 0 0 10px #a7c1c4;
+  background-color: #c2dfe3;
+  border-radius: 5px;
+}
+/* 離開按鈕照片 */
+.closeIcon {
+  width: 100%;
+  height: auto;
+}
+.closeIcon:hover {
+  opacity: 0.5;
 }
 </style>

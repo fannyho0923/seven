@@ -1,6 +1,9 @@
 <template>
   <main class="main">
     <div class="row">
+      <header class="base__head">
+        <IconList />
+      </header>
       <section class="room__body">
         <!-- 相片牆:放相片 -->
         <!-- 衣櫥:換房間樣式 -->
@@ -109,6 +112,7 @@
 import { getRoomInfo } from "@/js/all.js";
 import Photo from "@/components/Photo.vue";
 import Wardrobe from "@/components/Wardrobe.vue";
+import IconList from "../components/IconList.vue";
 export default {
   data() {
     return {
@@ -125,7 +129,8 @@ export default {
   },
   components: {
     Photo,
-    Wardrobe
+    Wardrobe,
+    IconList
   },
   created() {
     this.roomId = this.$route.query.id;
@@ -201,6 +206,12 @@ export default {
 </script>
 
 <style scoped>
+/* 導覽列 */
+.base__head {
+  position: absolute;
+  margin-right: 0;
+  z-index: 2;
+}
 .room__body {
   margin-left: 0;
   padding-left: 0;
@@ -227,7 +238,6 @@ export default {
 }
 .wardrobeImg {
   width: 100%;
-  box-shadow: -1px 0 5px black;
 }
 .wardrobeImg:hover {
   opacity: 0.5;

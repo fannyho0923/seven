@@ -11,20 +11,27 @@
         ref="files"
       />點擊新增圖片</label
     >
-    <button v-if="imgUrl" class="pointer" @click="reset">
+    <button v-if="isOwner && imgUrl" class="pointer " @click="reset">
       清除照片
     </button>
   </div>
 </template>
 
 <script>
-import { setImg, setPhoto, deletePhoto } from "@/js/all";
+import { setImg, setPhoto, deletePhoto, getRoomInfo } from "@/js/all";
 export default {
   data() {
     return {
       img: null,
-      imgUrl: this.photo
+      imgUrl: this.photo,
+      isOwner: false
     };
+  },
+  created() {
+    this.roomId = this.$route.query.id;
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res4 => {
+      this.isOwner = res4.data.isOwner;
+    });
   },
   props: ["photo", "photoIndex"], // 上傳圖片
   methods: {

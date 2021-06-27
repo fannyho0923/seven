@@ -25,7 +25,7 @@
         <div
           v-show="isHover"
           class="trash__btn"
-          @click="deleteVedio"
+          @click.stop="deleteVedio"
           @mouseenter="isHover = true"
           @mouseleave="isHover = false"
         >
@@ -89,7 +89,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: coral;
+  /* background-color: coral; */
   width: 60%;
   /* overflow: hidden; */
   /* max-height: 10rem; */
@@ -107,7 +107,7 @@ export default {
   justify-content: center;
   bottom: 0;
   font-size: 1vw;
-  background-color: cornflowerblue;
+  /* background-color: cornflowerblue; */
   overflow: hidden;
 }
 /* 影片資訊 */
@@ -115,7 +115,7 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  background-color: darkgray;
+  /* background-color: darkgray; */
   text-align: center;
   overflow: hidden;
   font-size: 0.8vw;

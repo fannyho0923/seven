@@ -69,6 +69,9 @@ export default {
   /* background-color: slateblue; */
   overflow: hidden;
 }
+.memberBox:hover {
+  opacity: 0.5;
+}
 /* 頭像框 */
 .head {
   width: 3.6vw;
