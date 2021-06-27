@@ -1,6 +1,6 @@
 <template>
   <main class="main mx-auto">
-    <header class="title"><h1 class="text-center">Diary</h1></header>
+    <!-- <header class="title"><h1 class="text-center">Diary</h1></header> -->
     <div class="row mx-auto">
       <!-- 背景照片 -->
       <div class="imgBox">
@@ -37,9 +37,8 @@
               @change="previewImage"
               class=" input__btn form-control-file"
               id="my-file"
-              ref="files"
-            />點擊新增圖片</label
-          >
+              ref="files"/>點擊新增圖片<i class="far fa-image"></i
+          ></label>
           <!-- 秀照片區塊 -->
           <div class="imgShowBox" v-if="imgUrl && showImg">
             <img
@@ -70,7 +69,11 @@
         <hr />
         <!-- 文章 -->
         <div class="article__body">
-          <textarea class="textArea" v-model="content"></textarea>
+          <textarea
+            class="textArea"
+            v-model="content"
+            placeholder="Write something here..."
+          ></textarea>
           <div class="btnBox">
             <button
               type="submit"
@@ -83,7 +86,16 @@
         </div>
       </aside>
       <!-- 關閉視窗按鈕 -->
-      <div class="pointer leave__btn" @click="leave">Ｘ</div>
+      <div class="pointer leave__btn" @click="leave">
+        <img
+          class="closeIcon"
+          src="../../static/imgs/closeIcon.png"
+          alt="closeIcon"
+          width="252"
+          height="252"
+          @click="leave"
+        />
+      </div>
       <div class="penBox">
         <img
           class="penImg img-resp"
@@ -262,7 +274,6 @@ export default {
   }
 };
 </script>
-
 <style scoped lang="scss">
 /* 標題 */
 .title {
@@ -284,6 +295,7 @@ export default {
 .row {
   position: relative;
   width: 95%;
+  margin-top: 2.5rem;
   /* background-color: rgb(231, 52, 82); */
 }
 /* 離開按鈕 */
@@ -292,13 +304,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 3px black;
-  /* max-width: 5rem; */
-  width: 3.5vw;
-  height: 3.5vw;
-  font-size: 3.5vw;
-  left: 100%;
-  top: 3%;
+  width: 5vw;
+  height: 5vw;
+  min-width: 50px;
+  min-height: 50px;
+  left: 103%;
+  top: 0;
   /* background-color: rgb(43, 189, 226); */
 }
 /* 日記左邊 */
@@ -332,7 +343,7 @@ export default {
   max-width: 100%;
   width: 100%;
   height: 100%;
-  font-size: 18px;
+  font-size: 1.8vw;
   resize: none;
   background-color: transparent;
   border-style: none;
@@ -345,8 +356,14 @@ export default {
 /* 儲存按鈕 */
 .postBtn {
   width: 3.5vw;
-  /* min-width: 3vw; */
   font-size: 1vw;
+  background-color: #895637a7;
+  color: #5e3023;
+  border-color: #5e3023;
+  border-radius: 10%;
+}
+.postBtn:hover {
+  background-color: #dab49d;
 }
 /* 月曆容器 */
 .calendarBox {
@@ -380,8 +397,8 @@ export default {
 .imgInputBox {
   position: absolute;
   width: 100%;
-  top: 60%;
-  height: 40%;
+  top: 65%;
+  height: 35%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -392,7 +409,9 @@ export default {
   display: flex;
   justify-content: center;
   width: 100%;
+  max-height: 100%;
   margin-bottom: 1rem;
+  // background-color: darkturquoise;
 }
 /* 使用者輸入的照片 */
 .inputImg {
@@ -422,5 +441,13 @@ export default {
 // 羽毛筆照片
 .penImg {
   width: 100%;
+}
+/* 離開按鈕照片 */
+.closeIcon {
+  width: 100%;
+  height: auto;
+}
+.closeIcon:hover {
+  opacity: 0.5;
 }
 </style>

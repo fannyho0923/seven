@@ -3,7 +3,7 @@
     <div class="tvBox">
       <img
         class="tvImg pointer"
-        src="../../static/imgs/publicRoom/television.png"
+        src="../../static/imgs/publicRoom/tv.png"
         alt="TVPic"
         width="309"
         height="288"
@@ -45,8 +45,9 @@ export default {
   position: absolute;
   width: 15vw;
   height: auto;
-  left: 13%;
-  top: 65%;
+  left: 1%;
+  top: 13%;
+  transform: rotate(-2deg);
 }
 /* 電視照片 */
 .tvImg {

@@ -45,53 +45,51 @@ export default {
 .articleBox {
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
   border: solid 1px black;
-  min-width: 200px;
-  width: 25%;
-  height: 60%;
-  top: 50%;
-  transform: translateY(-55%);
-  margin-left: 1rem;
-  margin-right: 1rem;
+  width: 30%;
+  min-width: 300px;
   margin-bottom: 20rem;
+  padding: 0.5rem;
+  margin-top: 3rem;
+}
+.hr {
+  width: 100%;
 }
 /* 單篇照片容器 */
 .imgBox {
-  max-width: 100%;
-  height: 50%;
+  width: 300px;
+  height: 300px;
   border: solid 1px rgb(16, 61, 29);
-  margin-bottom: 1rem;
-  margin: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .articleImg {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
   vertical-align: bottom;
   /* background-color: cornflowerblue; */
 }
 /* 文字區塊 */
 .textBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  height: 25%;
-  border: solid 1px rgb(5, 21, 248);
-  margin: 0.5rem;
-  padding: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0 0.5rem;
+  width: 100%;
+  /* background-color: indianred; */
 }
 /* 文字 */
 .text {
-  margin: 0;
+  padding: 0.5rem;
+  height: 5.2em;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  /* border: solid 1px rgb(5, 21, 248); */
+  /* background-color: greenyellow; */
 }
 /* 分隔線 */
 .hr {

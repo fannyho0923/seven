@@ -3,7 +3,7 @@
     <div class="row">
       <!-- 上排導覽 -->
       <header class="base__head mx-auto">
-        <IconList />
+        <!-- <IconList /> -->
       </header>
       <div class=" mx-auto">
         <div class="base__body">
@@ -18,6 +18,33 @@
           <Refrigerator />
           <!-- 電視 -->
           <Television />
+          <div class="handDrawn">
+            <img
+              class="handDrawnImg"
+              src="../../static/imgs/publicRoom/handDrawn.png"
+              alt="掛衣架"
+              width="127"
+              height="345"
+            />
+          </div>
+          <div class="hangingPainting">
+            <img
+              class="hangingPaintingImg"
+              src="../../static/imgs/publicRoom/hangingPainting.png"
+              alt="壁畫"
+              width="638"
+              height="188"
+            />
+          </div>
+          <div class="tableBox">
+            <img
+              class="tableImg"
+              src="../../static/imgs/publicRoom/table.png"
+              alt="餐桌"
+              width="319"
+              height="267"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -113,7 +140,7 @@ export default {
   max-width: 100vw;
   width: 100vw;
   height: 50vw;
-  background-image: url("../../static/imgs/bg.jpeg");
+  background-image: url("../../static/imgs/bg.jpg");
   background-position: bottom;
   background-repeat: none;
   /* background-attachment: fixed; */
@@ -125,5 +152,39 @@ export default {
   position: absolute;
   margin-right: 0;
   z-index: 2;
+}
+.tableBox {
+  position: absolute;
+  left: 43%;
+  top: 68%;
+  width: 20%;
+}
+.tableImg {
+  max-width: 100%;
+  height: auto;
+}
+.hangingPainting {
+  position: absolute;
+  left: 24.5%;
+  top: 10%;
+  width: 40%;
+}
+.hangingPaintingImg {
+  max-width: 100%;
+  height: auto;
+}
+.handDrawn {
+  position: absolute;
+  z-index: 3;
+  left: 18%;
+  top: 43%;
+  width: 8%;
+  height: 35%;
+  /* background-color: lightgreen; */
+}
+.handDrawnImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
 }
 </style>

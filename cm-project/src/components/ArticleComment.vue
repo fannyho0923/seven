@@ -252,6 +252,7 @@ p {
 /* 左邊照片區 */
 .left__area {
   display: flex;
+  justify-content: center;
   align-items: center;
   width: 47%;
   height: 100%;
@@ -259,7 +260,7 @@ p {
 }
 /* 照片 */
 .img {
-  width: 100%;
+  max-width: 100%;
   max-height: 100%;
 }
 /* 右邊文章和留言區 */
