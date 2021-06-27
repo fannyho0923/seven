@@ -1,3 +1,4 @@
+import Vue from "vue";
 import req from "./api";
 
 //使用方式
@@ -155,17 +156,27 @@ export const deleteComment = commentSeriel => {
 };
 
 // 聊天室相關的api
-// 取得聊天室清單
+// 取得聊天室清單 V-v
 export const getChatList = userSeriel => {
   return req("get", `/Chat/Members/${userSeriel}`);
 };
-// 傳送訊息
+// 傳送訊息 V-v
 export const sentChat = data => {
   return req("post", "/Chat/", data);
 };
-// 對話訊息
+// 對話訊息 V-v
 export const getChat = (userSeriel, parterUserSeriel) => {
   return req("get", `/Chat/${userSeriel}/${parterUserSeriel}`);
+};
+
+// 房間牆上相簿相關的api
+// 修改牆上照片
+export const setPhoto = data => {
+  return req("patch", "/Private/Photo/", data);
+};
+//刪除牆上照片
+export const deletePhoto = (photoIndex, userSeriel) => {
+  return req("delete", `/Private/Photo/${photoIndex}/${userSeriel}`);
 };
 // 搜尋相關的 api
 export const apiSearch = data =>

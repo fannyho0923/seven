@@ -66,7 +66,7 @@
                 />
               </aside>
               <!-- 留言內容 -->
-              <asid class="sentenceBox">
+              <aside class="sentenceBox">
                 <div
                   class="sentence"
                   @mouseenter="showCommentTrash = true"
@@ -93,7 +93,7 @@
                     />
                   </div>
                 </div>
-              </asid>
+              </aside>
             </div>
           </main>
           <!-- 輸入框 -->

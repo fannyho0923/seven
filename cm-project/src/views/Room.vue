@@ -6,14 +6,45 @@
         <!-- 衣櫥:換房間樣式 -->
         <div class="pointer photoImgBox">
           <img
-            class="pointer photoImg img-resp"
+            class="pointer photoImg__base img-resp"
             src="../../static/imgs/room/photo.png"
             alt="photoPic"
             width="698"
             height="349"
+            @click="openPhoto"
           />
+          <div v-if="photo1" class="photoOne" @click="openPhoto">
+            <img
+              class="photoImgOne"
+              :src="photo1"
+              alt="牆照１"
+              @click="openPhoto"
+            />
+          </div>
+          <div v-if="photo2" class="photoTwo" @click="openPhoto">
+            <img
+              class="photoImgTwo"
+              :src="photo2"
+              alt="牆照２"
+              @click="openPhoto"
+            />
+          </div>
+          <div v-if="photo3" class="photoThree" @click="openPhoto">
+            <img
+              class="photoImgThree"
+              :src="photo3"
+              alt="牆照３"
+              @click="openPhoto"
+            />
+          </div>
         </div>
-        <Photo />
+        <Photo
+          v-if="showPhoto"
+          @leave="closePhoto"
+          :photoOne="photo1"
+          :photoTwo="photo2"
+          :photoThree="photo3"
+        />
         <div class="pointer wardrobeImgBox">
           <img
             class="pointer wardrobeImg img-resp"
@@ -21,7 +52,7 @@
             alt="wardrobePic"
             width="373"
             height="493"
-            @click="opevWardrobe"
+            @click="openWardrobe"
           />
         </div>
         <!-- 衣櫃彈窗 -->
@@ -49,15 +80,25 @@
           />
         </div>
         <!-- 電腦:回郵件 -->
-        <div class="pointer computerDeskBox">
+        <div class=" computerDeskBox">
           <img
-            class="pointer computerDeskImg img-resp"
+            class=" computerDeskImg img-resp"
             src="../../static/imgs/room/computerDesk.png"
             alt="computerDeskPic"
             width="254"
             height="260"
-            @click="goComputer"
           />
+          <i
+            v-if="isOwner && isEnvelope"
+            class="pointer envelope far fa-envelope"
+            @click="goComputer"
+          ></i>
+          <i
+            v-if="isOwner && !isEnvelope"
+            class="pointer envelope far fa-envelope-open"
+            @click="goComputer"
+          >
+          </i>
         </div>
       </section>
     </div>
@@ -71,9 +112,15 @@ import Wardrobe from "@/components/Wardrobe.vue";
 export default {
   data() {
     return {
+      isEnvelope: false,
+      showPhoto: false,
       showWardrobe: false,
       isblink: false,
-      isOwner: false
+      isOwner: false,
+      photo1: "",
+      photo2: "",
+      photo3: "",
+      roomId: 0
     };
   },
   components: {
@@ -81,14 +128,16 @@ export default {
     Wardrobe
   },
   created() {
-    // this.$store.commit("Enter", this.$route.query.id);
+    this.roomId = this.$route.query.id;
     // 取得房間資訊
-    getRoomInfo(
-      this.$store.getters.doorIndex,
-      this.$store.getters.userSeriel
-    ).then(res1 => {
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
       this.isOwner = res1.data.isOwner;
+      console.log(res1.data);
       console.log(res1.data.isOwner);
+      this.photo1 = res1.data.photo1;
+      this.photo2 = res1.data.photo2;
+      this.photo3 = res1.data.photo3;
+      this.isEnvelope = res1.data.hasNewMail;
     });
     // console.log(this.$store.getters.doorIndex);
   },
@@ -99,12 +148,28 @@ export default {
   },
   methods: {
     // 打開衣櫃
-    opevWardrobe() {
+    openWardrobe() {
       this.showWardrobe = true;
     },
     // 關閉衣櫃
     closeWardrobe() {
       this.showWardrobe = false;
+    },
+    // 打開相簿
+    openPhoto() {
+      this.showPhoto = true;
+    },
+    // 關閉相簿
+    closePhoto() {
+      getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
+        this.isOwner = res1.data.isOwner;
+        console.log(res1.data);
+        console.log(res1.data.isOwner);
+        this.photo1 = res1.data.photo1;
+        this.photo2 = res1.data.photo2;
+        this.photo3 = res1.data.photo3;
+      });
+      this.showPhoto = false;
     },
     goBlog() {
       const index = this.$store.getters.doorIndex;
@@ -115,14 +180,18 @@ export default {
     },
     goDiary() {
       if (this.isOwner) {
-        this.$router.push("/diary");
+        const id = this.roomId;
+        this.$store.commit("Enter", id);
+        this.$router.push({ name: "Diary", query: { id } });
       } else {
         return;
       }
     },
     goComputer() {
       if (this.isOwner) {
-        this.$router.push("/chat");
+        const id = this.roomId;
+        this.$store.commit("Enter", id);
+        this.$router.push({ name: "Chat", query: { id } });
       } else {
         return;
       }
@@ -202,7 +271,18 @@ export default {
 .computerDeskImg {
   width: 100%;
 }
-.computerDeskImg:hover {
+/* .computerDeskImg:hover {
+  opacity: 0.5;
+} */
+.envelope {
+  position: absolute;
+  position: absolute;
+  display: block;
+  font-size: 4vw;
+  left: 39%;
+  top: 7%;
+}
+.envelope:hover {
   opacity: 0.5;
 }
 /* 照片容器 */
@@ -215,16 +295,58 @@ export default {
   top: -8px;
 }
 /* 照片 */
-.photoImg {
+.photoImg__base {
   width: 100%;
 }
-.photoImg:hover {
+.photoImg__base:hover {
   opacity: 0.5;
 }
 .wardrobe {
   position: absolute;
   z-index: 2;
   margin: 0;
+}
+/* 牆上照片 */
+.photoOne {
+  position: absolute;
+  left: 15.1%;
+  top: 47%;
+  width: 20.2%;
+  height: 50%;
+  background-color: gray;
+}
+.photoImgOne {
+  width: 100%;
+  height: 100%;
+}
+.photoTwo {
+  position: absolute;
+  transform: rotate(4deg);
+  left: 42.8%;
+  top: 42%;
+  width: 20%;
+  height: 50%;
+  background-color: gray;
+}
+.photoImgTwo {
+  width: 100%;
+  height: 100%;
+
+  transform: rotate(4deg);
+}
+.photoThree {
+  position: absolute;
+  transform: rotate(-15deg);
+  left: 69.5%;
+  top: 33%;
+  width: 20.2%;
+  height: 50%;
+  background-color: gray;
+}
+.photoImgThree {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-15deg);
 }
 /* @keyframes fade {
   from {

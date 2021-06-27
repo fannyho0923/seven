@@ -63,10 +63,13 @@
                 type="text"
                 v-model="str"
                 @keyup.enter="send"
+                placeholder="請輸入訊息"
               />
+              <i class="pointer plane far fa-paper-plane" @click="send"></i>
             </label>
           </aside>
         </section>
+        <i class="apple fab fa-apple"></i>
       </div>
       <!-- 關閉視窗按鈕 -->
       <div class="pointer leave__btn" @click="leave">Ｘ</div>
@@ -112,6 +115,7 @@ export default {
         { id: "2", str: "yoyo" },
         { id: "2", str: "ioio" }
       ],
+      roomId: 0,
       add: 14 //好友位移
       // members: [
       //   {
@@ -142,6 +146,7 @@ export default {
     };
   },
   created() {
+    this.roomId = this.$route.query.id;
     getChatList(this.$store.getters.userSeriel).then(res1 => {
       console.log(res1.data);
       this.members = res1.data.members;
@@ -174,7 +179,7 @@ export default {
     },
     //   送出我打的話
     send() {
-      if (!this.str && this.partnerUserSeriel != -1) {
+      if (!this.str || this.partnerUserSeriel == -1) {
         return;
       }
       const sendData = {
@@ -194,7 +199,9 @@ export default {
     // 離開本頁
     leave() {
       this.end();
-      this.$router.push("/room");
+      const id = this.roomId;
+      this.$store.commit("Enter", id);
+      this.$router.push({ name: "Room", query: { id } });
     },
     //選擇聊天
     chat(partnerUserSeriel, memberName) {
@@ -226,6 +233,10 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+* {
+  font-family: "Varela Round", sans-serif;
+}
 .main {
   position: relative;
   width: 60%;
@@ -282,7 +293,8 @@ export default {
   left: 0;
   top: 0;
   border-radius: 3px 0 0 0;
-  background-color: rgb(205, 244, 96);
+  color: rgb(96, 190, 244);
+  background-color: rgb(248, 104, 104);
 }
 /* 右邊標題 */
 .right__tit {
@@ -293,7 +305,8 @@ export default {
   left: 40%;
   top: 0;
   border-radius: 0 3px 0 0;
-  background-color: sandybrown;
+  color: rgb(248, 104, 104);
+  background-color: rgb(96, 190, 244);
 }
 /* 公寓成員 */
 .member {
@@ -304,6 +317,9 @@ export default {
 /* 右邊輸入框標籤 */
 .lab__input {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   left: 40%;
   top: 90%;
   width: 60%;
@@ -317,6 +333,10 @@ export default {
   font-size: 2vw;
   background-color: transparent;
   border: transparent;
+}
+/* 傳送鍵 */
+.plane {
+  font-size: 2vw;
 }
 /* 整片聊天內容 */
 .chat__content {
@@ -433,5 +453,12 @@ export default {
   left: 103%;
   top: 5%;
   background-color: rgb(43, 189, 226);
+}
+/* 蘋果標示 */
+.apple {
+  position: absolute;
+  left: 45%;
+  top: 71%;
+  font-size: 4vw;
 }
 </style>

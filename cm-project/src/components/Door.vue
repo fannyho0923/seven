@@ -67,7 +67,7 @@ export default {
       } else {
         const id = this.homeOwner.memberDoorIndex;
         this.$store.commit("Enter", this.homeOwner.memberDoorIndex);
-        this.$router.push({ name: "Room", params: { id } });
+        this.$router.push({ name: "Room", query: { id } });
       }
     }
   }

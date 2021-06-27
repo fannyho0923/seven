@@ -150,7 +150,9 @@ export default {
     },
     // 離開本頁
     leave() {
-      this.$router.push("/room");
+      const id = this.roomId;
+      this.$store.commit("Enter", id);
+      this.$router.push({ name: "Room", query: { id } });
     },
     // 點擊預覽留言
     look(id) {

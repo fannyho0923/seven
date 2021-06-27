@@ -121,6 +121,7 @@ export default {
       preview: null,
       preview_list: [],
       image_list: [],
+      roomId: 0,
       highlighted: { customPredictor: this.customPredictor }
     };
   },
@@ -128,6 +129,7 @@ export default {
     Datepicker
   },
   created() {
+    this.roomId = this.$route.query.id;
     getDiaryHighlight(this.$store.getters.userSeriel).then(res1 => {
       // console.log(res1.data.writenDays);
       this.highlightedArray = res1.data.writenDays;
@@ -204,7 +206,9 @@ export default {
     },
     // 回到房間
     leave() {
-      this.$router.push("/room");
+      const id = this.roomId;
+      this.$store.commit("Enter", id);
+      this.$router.push({ name: "Room", query: { id } });
     },
     // 上傳圖片
     previewImage(event) {

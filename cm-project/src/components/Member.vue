@@ -73,7 +73,7 @@ export default {
 .head {
   width: 3.6vw;
   height: 3.6vw;
-  border: solid 1px red;
+  /* border: solid 1px red; */
   border-radius: 50%;
   overflow: hidden;
 }
@@ -93,5 +93,6 @@ export default {
   justify-content: center;
   align-items: center;
   font-size: 1.5vw;
+  color: rgb(248, 78, 21);
 }
 </style>

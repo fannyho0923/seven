@@ -67,6 +67,7 @@ export default {
     close() {
       this.$emit("close");
     },
+    // 清除照片
     reset() {
       this.image = null;
       this.preview = null;
