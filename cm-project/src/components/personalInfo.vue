@@ -1,0 +1,397 @@
+<template>
+  <div class="infoBg">
+    <div class="container mx-auto">
+      <section class="info__body mx-auto">
+        <!-- 左邊頭貼和名字 -->
+        <aside class="leftBox">
+          <!-- 頭貼 -->
+          <div class="avatarBox mx-auto">
+            <img
+              v-if="roleId"
+              class="img"
+              :src="'http://35.201.237.18/img/avatar_' + roleId + '.png'"
+              alt=""
+            />
+          </div>
+          <!-- 名字 -->
+          <div class="nameTag">
+            <p v-if="!isEditName" class="name mx-auto">{{ userName }}</p>
+            <input
+              v-if="isEditName"
+              class="nameEdit mx-auto"
+              type="text"
+              v-model="str"
+              :placeholder="userName"
+            />
+            <i
+              v-if="!isEditName"
+              class="pointer edit fas fa-edit"
+              @click="editName"
+            ></i>
+            <div v-if="isEditName" class="editBox">
+              <i class="pointer check fas fa-check" @click="checkName"></i>
+              <i class="pointer unCheck fas fa-times" @click="unCheckName"></i>
+            </div>
+          </div>
+        </aside>
+        <!-- 右邊自我介紹,修改密碼,登出 -->
+        <aside class="rightBox">
+          <div class="info">
+            <label class="info__title">自我介紹</label>
+            <!-- 自我介紹表 -->
+            <textarea
+              class="textArea"
+              v-model="content"
+              placeholder="關於我..."
+              @keypress="writeDoc()"
+            ></textarea>
+            <!-- 自我介紹編輯確認按鈕 -->
+            <div v-if="isEditDoc" class="circleCheckBox">
+              <div class="pointer circleCheck">
+                送出<i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+            <!-- 修改密碼以及登出容器 -->
+            <div class="toolBox">
+              <!-- 修改密碼輸入欄 -->
+              <div class="passBox">
+                修改密碼
+                <input
+                  class="passEdit mx-auto"
+                  type="text"
+                  v-model="password"
+                  placeholder="新密碼"
+                  @click="editPassword"
+                />
+                <!-- 修改密碼按鈕 -->
+                <div v-if="isEditPassword" class="editPassBox">
+                  <!-- 修改密碼確認按鈕 -->
+                  <i class="pointer check fas fa-check"></i>
+                  <!-- 修改密碼取消按鈕 -->
+                  <i
+                    class="pointer unCheck fas fa-times"
+                    @click="unCheckPassword"
+                  ></i>
+                </div>
+              </div>
+              <!-- 登出按鈕 -->
+              <div class="pointer logoutBox" @click="logout">
+                登出<i class="fas fa-running"></i>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <!-- 關閉視窗按鈕 -->
+        <div class="pointer leave__btn" @click="leave">
+          <img
+            class="closeIcon"
+            src="../../static/imgs/closeIcon.png"
+            alt="closeIcon"
+            width="252"
+            height="252"
+            @click="leave"
+          />
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+<script>
+// //個人資訊相關的api
+// // 修改暱稱
+// export const setNickName = data => {
+//   return req("patch", "/User/NickName/", data);
+// };
+
+// // 修改密碼
+// export const setPw = data => {
+//   return req("patch", "/User/Pw/", data);
+// };
+
+// // 修改自我介紹
+// export const setAbout = data => {
+//   return req("patch", "/User/About/", data);
+// };
+import { getUserInfo, setNickName, setPw, setAbout } from "@/js/all";
+export default {
+  data() {
+    return {
+      roleId: 0,
+      doorIndex: 0,
+      userName: "",
+      isEditName: false,
+      isEditPassword: false,
+      isEditDoc: false,
+      str: "",
+      content: "",
+      password: ""
+    };
+  },
+  created() {
+    // 取得玩家資料;
+    getUserInfo(this.$store.getters.userSeriel).then(res1 => {
+      console.log(res1.data);
+      this.roleId = res1.data.roleId;
+      this.doorIndex = res1.data.doorIndex;
+      this.userName = res1.data.userName;
+    });
+  },
+  methods: {
+    leave() {
+      this.$emit("leave");
+    },
+    // 更改名字
+    editName() {
+      this.isEditName = true;
+    },
+    // 確定更新名字
+    checkName() {
+      if (!this.str) {
+        return;
+      } else {
+        const nickNameData = {
+          userSeriel: this.$store.getters.userSeriel,
+          userName: this.str
+        };
+        // setNickName(nickNameData).then(res2 => {
+        //   console.log(res2.data);
+        //   this.str = "";
+        // });
+      }
+    },
+    // 取消編輯名字
+    unCheckName() {
+      this.isEditName = false;
+    },
+    // 點擊修改密碼欄位
+    editPassword() {
+      this.isEditPassword = true;
+    },
+    // 取消編輯密碼
+    unCheckPassword() {
+      this.isEditPassword = false;
+    },
+    // 編輯自我介紹
+    writeDoc() {
+      this.isEditDoc = true;
+    },
+    // 登出
+    logout() {
+      // 寫入餅乾
+      this.$router.push("/home");
+      this.$cookies.remove("token");
+      console.log("yes");
+    }
+  }
+};
+</script>
+
+<style scoped>
+/* 遮罩 */
+.infoBg {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 50vw;
+  background-color: rgba(0, 0, 0, 0.466);
+}
+/* 地基 */
+.container {
+  padding: 0;
+  max-width: 100%;
+  width: 60%;
+  margin-top: 15rem;
+  /* height: 20rem; */
+  /* background-color: whitesmoke; */
+}
+.info__body {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  max-width: 1000px;
+  background-color: teal;
+  min-width: 300px;
+  /* height: 20rem; */
+  border-radius: 15px;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+/* 左邊頭貼跟姓名 */
+.leftBox {
+  text-align: center;
+  width: 47%;
+  min-width: 150px;
+  /* background-color: thistle; */
+}
+/* 右邊頭貼跟姓名 */
+.rightBox {
+  width: 47%;
+  min-width: 177px;
+  background-color: tomato;
+  border-radius: 15px;
+
+  /* height: 14.8vw; */
+}
+/* 頭貼框 */
+.avatarBox {
+  min-width: 150px;
+  min-height: 150px;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: contain;
+  /* background-color: violet; */
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 15px;
+}
+/* 照片 */
+.img {
+  width: 100%;
+  vertical-align: bottom;
+}
+.nameTag {
+  display: flex;
+  min-width: 150px;
+  width: 100%;
+  height: 3.5em;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: yellow;
+  border-radius: 15px;
+}
+.name {
+  /* width: 10vw; */
+  /* background-color: blueviolet; */
+  margin: 0;
+  font-size: 2em;
+}
+.nameEdit {
+  width: 90%;
+  margin: 0;
+  font-size: 2em;
+}
+.passEdit {
+  width: 60%;
+  margin: 0;
+  font-size: 1em;
+  background-color: rgba(169, 169, 169, 0.315);
+  border-color: transparent;
+}
+/* 修改名字的確認取消按鍵 */
+.editBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  width: 18px;
+  font-size: 1vw;
+  /* left: 44%;
+  top: 82%; */
+  /* background-color: rgb(125, 83, 224); */
+}
+/* 修改密碼的確認取消按鍵 */
+.editPassBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  width: 18px;
+  font-size: 1vw;
+}
+.edit {
+  position: absolute;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; */
+  /* background-color: coral; */
+  font-size: 1vw;
+  left: 45%;
+  /* top: 85%; */
+}
+.edit:hover {
+  opacity: 0.5;
+}
+.check:hover {
+  opacity: 0.5;
+}
+.unCheck:hover {
+  opacity: 0.5;
+}
+/* 離開按鈕 */
+.leave__btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3vw;
+  height: 3vw;
+  min-width: 50px;
+  min-height: 50px;
+  left: 95.5%;
+  top: -11%;
+  /* background-color: rgb(43, 189, 226); */
+}
+/* 離開按鈕照片 */
+.closeIcon {
+  width: 100%;
+  height: auto;
+}
+.closeIcon:hover {
+  opacity: 0.5;
+}
+/* 自我介紹標題 */
+.info__title {
+  margin: 0.5rem;
+  font-size: 1.5rem;
+}
+/* 文字輸入匡 */
+.textArea {
+  max-width: 92%;
+  width: 92%;
+  height: 5em;
+  font-size: 1.2vw;
+  resize: none;
+  background-color: transparent;
+  border-style: none;
+  margin: 0.5rem;
+}
+.toolBox {
+  margin: 0.5rem;
+}
+.circleCheckBox {
+  display: flex;
+  flex-direction: row-reverse;
+}
+/* 編輯自我介紹確認案件 */
+.circleCheck {
+  display: inline-block;
+  margin-right: 0.5rem;
+  border: solid 0.5px;
+  border-radius: 5px;
+  padding: 0.2em;
+  font-size: 0.7em;
+}
+.circleCheck:hover {
+  opacity: 0.5;
+}
+/* 修改密碼容器 */
+.passBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logoutBox {
+  display: inline-block;
+  border: solid 0.6px;
+  border-radius: 15px;
+  padding: 0.2rem;
+  font-size: 0.8em;
+}
+.logoutBox:hover {
+  opacity: 0.5;
+}
+</style>

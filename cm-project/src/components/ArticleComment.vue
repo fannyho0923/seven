@@ -1,9 +1,10 @@
 <template>
-  <div
-    @mouseenter="showCommentTrash = true"
-    @mouseleave="showCommentTrash = false"
-  >
-    <div class="comment__body">
+  <div>
+    <div
+      class="comment__body"
+      @mouseenter="showCommentTrash = true"
+      @mouseleave="showCommentTrash = false"
+    >
       <!-- 頭像 -->
       <aside class="avatarBox">
         <img
@@ -31,7 +32,7 @@
           <p class="commentTxt">{{ data.commentTxt }}</p>
           <!-- 垃圾桶 -->
           <div
-            v-if="showCommentTrash"
+            v-if="showCommentTrash && isOwner"
             class="comment__trash"
             @mouseenter="showCommentTrash = true"
             @mouseleave="showCommentTrash = false"
@@ -52,16 +53,30 @@
 </template>
 
 <script>
+import { getRoomInfo } from "@/js/all";
+
 export default {
   data() {
     return {
-      showCommentTrash: false
+      showCommentTrash: false,
+      isOwner: false,
+      roomId: 0
     };
   },
   props: {
     data: {
       type: Object
     }
+  },
+  created() {
+    this.roomId = this.$route.query.id;
+    if (this.roomId < 1 || this.roomId > 7) {
+      this.$router.push({ path: "/publicArea" });
+    }
+    // 取得房間資訊
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
+      this.isOwner = res1.data.isOwner;
+    });
   },
   methods: {
     //   刪除留言

@@ -160,7 +160,7 @@ export default {
 .row .base__head {
   position: absolute;
   margin-right: 0;
-  z-index: 2;
+  z-index: 6;
 }
 /* 餐桌 */
 .tableBox {

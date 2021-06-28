@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { addPrivateArticle, setImg, getPrivateArticle } from "@/js/all.js";
+import { addPrivateArticle, setImg } from "@/js/all.js";
 export default {
   data() {
     return {
@@ -108,10 +108,11 @@ export default {
       // 發文
       addPrivateArticle(articleData).then(res1 => {
         if (res1.data.result) {
+          console.log(this.imgUrl);
+          const NewData = res1.data.postInfo;
+          this.$emit("post", NewData);
           this.content = "";
           this.preview = "";
-          console.log(this.imgUrl);
-          this.$emit("post", articleData);
         }
       });
     }

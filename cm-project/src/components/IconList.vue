@@ -1,12 +1,19 @@
 <template>
-  <ul class="ul">
-    <li class="li "><i class="bed pointer fas fa-bed" @click="goRoom"></i></li>
-    <li class="li"><i class="home pointer fas fa-home" @click="goPub"></i></li>
-    <li class="li">
-      <i class="bulb pointer far fa-lightbulb" @click="popInfo"></i>
-    </li>
-    <li class="li"><i class="user pointer far fa-user" @click="logout"></i></li>
-    <!-- <div class="base__left">
+  <nav class="nav">
+    <ul class="ul">
+      <li class="li ">
+        <i class="bed pointer fas fa-bed" @click="goRoom"></i>
+      </li>
+      <li class="li">
+        <i class="home pointer fas fa-home" @click="goPub"></i>
+      </li>
+      <li class="li">
+        <i class="bulb pointer far fa-lightbulb" @click="popInfo"></i>
+      </li>
+      <li class="li">
+        <i class="user pointer far fa-user" @click="popUserInfo"></i>
+      </li>
+      <!-- <div class="base__left">
       <li class="icon__box" v-for="(item, index) in navs" :key="index">
         <img
           v-if="index < 5"
@@ -26,7 +33,13 @@
         />
       </li>
     </div> -->
-  </ul>
+    </ul>
+    <PersonalInfo
+      v-if="showUserInfo"
+      class="personalInfo"
+      @leave="closeUserInfo"
+    />
+  </nav>
 </template>
 
 <script>
@@ -37,9 +50,12 @@ import Info from "./icons/Info.vue";
 import Music from "./icons/Music.vue";
 import Lang from "./icons/Lang.vue";
 import { getMembers, getUserInfo } from "@/js/all.js";
+import PersonalInfo from "@/components/PersonalInfo.vue";
 export default {
   data() {
     return {
+      showInfo: false,
+      showUserInfo: false,
       navs: [
         {
           name: "game",
@@ -88,7 +104,7 @@ export default {
       ]
     };
   },
-  components: { Chat, ScreenShot, Contact, Info, Music, Lang },
+  components: { PersonalInfo },
   methods: {
     st(index) {
       return "../static/imgs/pic" + index + ".png";
@@ -101,8 +117,10 @@ export default {
           console.log(res1.data);
           if (res1.data.result) {
             const id = res1.data.doorIndex;
+            console.log(id);
             this.$store.commit("Enter", id);
             this.$router.push({ name: "Room", query: { id } });
+            this.$emit("goRoom");
           }
         })
         .catch(error => console.log(error));
@@ -112,9 +130,19 @@ export default {
       this.$router.push("/publicArea");
     },
     // 跳出資訊
-    popInfo() {},
+    popInfo() {
+      this.showInfo = true;
+    },
+    closeInfo() {
+      this.showInfo = false;
+    },
     // 登出
-    logout() {}
+    popUserInfo() {
+      this.showUserInfo = true;
+    },
+    closeUserInfo() {
+      this.showUserInfo = false;
+    }
   }
 };
 </script>
@@ -136,6 +164,13 @@ export default {
 img {
   /* background-color: rgb(248, 175, 18); */
 }
+.nav {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
 .ul {
   display: flex;
   justify-content: space-around;
@@ -144,7 +179,7 @@ img {
   width: 20vw;
   margin: 0;
   padding: 0;
-  position: absolute;
+  /* position: relative; */
   right: 0;
 }
 .li {

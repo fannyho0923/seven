@@ -178,6 +178,28 @@ export const setPhoto = data => {
 export const deletePhoto = (photoIndex, userSeriel) => {
   return req("delete", `/Private/Photo/${photoIndex}/${userSeriel}`);
 };
+
+//個人資訊相關的api
+// 修改暱稱
+export const setNickName = data => {
+  return req("patch", "/User/NickName/", data);
+};
+
+// 修改密碼
+export const setPw = data => {
+  return req("patch", "/User/Pw/", data);
+};
+
+// 修改自我介紹
+export const setAbout = data => {
+  return req("patch", "/User/About/", data);
+};
+
+// 登出
+// export const setAbout = data => {
+//   return req("patch", "/User/About/", data);
+// };
+
 // 搜尋相關的 api
 export const apiSearch = data =>
   searchRequest.get(`/Search?searchdata=${data}`);

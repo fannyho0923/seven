@@ -28,7 +28,7 @@
                   height="200"
                 />
                 <!-- 垃圾桶 -->
-                <div class="trash__btn" @click="deleteArticle">
+                <div v-if="isOwner" class="trash__btn" @click="deleteArticle">
                   <img
                     class="pointer"
                     src="../../static/imgs/memoImg/mini_trash.png"
@@ -77,8 +77,8 @@
 </template>
 
 <script>
-import { getComment, addComment, deleteComment } from "@/js/all";
-import ArticleComment from "@/components/ArticleComment";
+import { getComment, addComment, deleteComment, getRoomInfo } from "@/js/all";
+import ArticleComment from "@/components/ArticleComment.vue";
 export default {
   props: {
     arr: {
@@ -89,8 +89,9 @@ export default {
     return {
       str: "",
       commentArr: {},
-      isUpdate: false
-
+      isUpdate: false,
+      isOwner: false,
+      roomId: 0
       // arrTest: [
       //   { src: "../../static/test.jpg", str: "my name is fanny" },
       //   { src: "../../static/test.jpg", str: "my name is tony" },
@@ -103,12 +104,12 @@ export default {
     ArticleComment
   },
   updated() {
-    if (this.isUpdate) {
-      this.$nextTick(function() {
-        var div = document.getElementById("data-content");
-        div.scrollTop = div.scrollHeight;
-      });
-    }
+    // if (this.isUpdate) {
+    //   this.$nextTick(function() {
+    //     var div = document.getElementById("data-content");
+    //     div.scrollTop = div.scrollHeight;
+    //   });
+    // }
   },
   created() {
     // 查看留言
@@ -118,6 +119,15 @@ export default {
         this.commentArr = res1.data.commentInfos;
       }
     );
+    this.roomId = this.$route.query.id;
+    if (this.roomId < 1 || this.roomId > 7) {
+      this.$router.push({ path: "/publicArea" });
+    }
+    // 取得房間資訊
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
+      // console.log(res1.data.isOwner);
+      this.isOwner = res1.data.isOwner;
+    });
   },
   methods: {
     // 關閉彈窗

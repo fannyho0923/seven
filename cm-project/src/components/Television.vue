@@ -41,7 +41,7 @@ export default {
 <style scoped>
 /* 電視照片框 */
 .tvBox {
-  z-index: 6;
+  z-index: 5;
   position: absolute;
   width: 15vw;
   height: auto;

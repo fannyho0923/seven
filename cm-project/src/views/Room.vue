@@ -2,7 +2,7 @@
   <main class="main">
     <div class="row">
       <header class="base__head">
-        <IconList />
+        <IconList @goRoom="changeRoom" />
       </header>
       <section class="room__body">
         <!-- 相片牆:放相片 -->
@@ -176,6 +176,7 @@ export default {
       });
       this.showPhoto = false;
     },
+    // 進入部落格
     goBlog() {
       const index = this.$store.getters.doorIndex;
       this.$router.push({
@@ -183,6 +184,7 @@ export default {
         query: { id: index }
       });
     },
+    // 進入日記
     goDiary() {
       if (this.isOwner) {
         const id = this.roomId;
@@ -192,6 +194,7 @@ export default {
         return;
       }
     },
+    // 進入聊天
     goComputer() {
       if (this.isOwner) {
         const id = this.roomId;
@@ -200,6 +203,21 @@ export default {
       } else {
         return;
       }
+    },
+    // 換房間
+    changeRoom() {
+      this.roomId = this.$route.query.id;
+      // 取得房間資訊
+      getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
+        this.isOwner = res1.data.isOwner;
+        console.log(res1.data);
+        console.log("pppp");
+        console.log(res1.data.isOwner);
+        this.photo1 = res1.data.photo1;
+        this.photo2 = res1.data.photo2;
+        this.photo3 = res1.data.photo3;
+        this.isEnvelope = res1.data.hasNewMail;
+      });
     }
   }
 };
