@@ -22,6 +22,7 @@
               type="text"
               v-model="str"
               :placeholder="userName"
+              @keyup.enter="checkName"
             />
             <i
               v-if="!isEditName"
@@ -41,13 +42,13 @@
             <!-- 自我介紹表 -->
             <textarea
               class="textArea"
-              v-model="content"
+              v-model="introduction"
               placeholder="關於我..."
-              @keypress="writeDoc()"
+              @click="writeDoc"
             ></textarea>
             <!-- 自我介紹編輯確認按鈕 -->
             <div v-if="isEditDoc" class="circleCheckBox">
-              <div class="pointer circleCheck">
+              <div class="pointer circleCheck" @click="writeDone">
                 送出<i class="fas fa-check-circle"></i>
               </div>
             </div>
@@ -66,7 +67,10 @@
                 <!-- 修改密碼按鈕 -->
                 <div v-if="isEditPassword" class="editPassBox">
                   <!-- 修改密碼確認按鈕 -->
-                  <i class="pointer check fas fa-check"></i>
+                  <i
+                    class="pointer check fas fa-check"
+                    @click="checkNewPassword"
+                  ></i>
                   <!-- 修改密碼取消按鈕 -->
                   <i
                     class="pointer unCheck fas fa-times"
@@ -119,11 +123,11 @@ export default {
       roleId: 0,
       doorIndex: 0,
       userName: "",
+      introduction: "",
       isEditName: false,
       isEditPassword: false,
       isEditDoc: false,
       str: "",
-      content: "",
       password: ""
     };
   },
@@ -134,6 +138,7 @@ export default {
       this.roleId = res1.data.roleId;
       this.doorIndex = res1.data.doorIndex;
       this.userName = res1.data.userName;
+      this.introduction = res1.data.introduction;
     });
   },
   methods: {
@@ -153,10 +158,11 @@ export default {
           userSeriel: this.$store.getters.userSeriel,
           userName: this.str
         };
-        // setNickName(nickNameData).then(res2 => {
-        //   console.log(res2.data);
-        //   this.str = "";
-        // });
+        setNickName(nickNameData).then(res2 => {
+          console.log(res2.data);
+          this.userName = this.str;
+          this.isEditName = false;
+        });
       }
     },
     // 取消編輯名字
@@ -175,12 +181,33 @@ export default {
     writeDoc() {
       this.isEditDoc = true;
     },
+    // 送出自我介紹
+    writeDone() {
+      const aboutData = {
+        userSeriel: this.$store.getters.userSeriel,
+        introduction: this.introduction
+      };
+      setAbout(aboutData).then(res4 => {
+        console.log(res4);
+      });
+    },
     // 登出
     logout() {
       // 寫入餅乾
       this.$router.push("/home");
       this.$cookies.remove("token");
       console.log("yes");
+    },
+    // 送出新密碼
+    checkNewPassword() {
+      const passwordData = {
+        userSeriel: this.$store.getters.userSeriel,
+        userPw: this.password
+      };
+      setPw(passwordData).then(res3 => {
+        console.log(res3);
+        this.password = "";
+      });
     }
   }
 };

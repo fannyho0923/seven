@@ -9,13 +9,14 @@
           <!-- 選單 -->
           <nav class="list__base">
             <ul class="list__body">
-              <li class="item pointer">日記</li>
-              <li class="item pointer">書櫃</li>
-              <li class="item pointer">書桌</li>
-              <li class="item pointer">衣櫃</li>
-              <li class="item pointer">床組</li>
-              <li class="item pointer">裝飾</li>
-              <li class="item pointer">牆壁</li>
+              <li
+                class="item pointer"
+                v-for="item in furnitureList"
+                :key="item"
+                @click="selectFunction(item)"
+              >
+                {{ item }}
+              </li>
             </ul>
           </nav>
         </aside>
@@ -23,31 +24,9 @@
         <aside class="rightBox">
           <!-- 右邊標題 -->
           <header class="rightTit">物品風格名稱</header>
-          <!-- 圖片預覽以及左右按鈕區塊 -->
-          <div class="typeBox mx-auto">
-            <div class="left__btn">
-              <img
-                class="leftBtn__img pointer"
-                src="../../static/imgs/room/leftBtn.png"
-                alt="左邊按鈕"
-                width="224"
-                height="346"
-              />
-            </div>
-            <div class="imgBox mx-auto">
-              <img class="img" src="" alt="" />
-            </div>
-            <div class="right__btn">
-              <img
-                class="rightBtn__img pointer"
-                src="../../static/imgs/room/rightBtn.png"
-                alt="右邊按鈕"
-                width="224"
-                height="346"
-              />
-            </div>
+          <div>
+            <Furniture :item="wallArr[count]" />
           </div>
-          <div class="choose__btn pointer mx-auto" @click="use">套用</div>
         </aside>
         <!-- 關閉視窗按鈕 -->
         <div class=" pointer leave__btn" @click.self="leave">Ｘ</div>
@@ -57,14 +36,72 @@
 </template>
 
 <script>
+const furnitureEnum = {
+  diary: "日記",
+  bookcase: "書櫃",
+  desk: "書桌",
+  clothcase: "衣櫃",
+  bed: "床組",
+  decoretion: "裝飾",
+  wall: "牆壁"
+};
+
+import Furniture from "@/components/Furniture.vue";
 export default {
+  data() {
+    return {
+      count: 0,
+      furnitureList: Object.values(furnitureEnum),
+      wallArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/bgColor/bg_blue.jpg"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/bgColor/bg_pink.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/bgColor/bg_gray.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/bgColor/bg_green.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/bgColor/bg_purple.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/bgColor/bg_orange.png"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/bgColor/bg_brown.png"
+        }
+      ]
+    };
+  },
+  components: { Furniture },
   methods: {
+    selectFunction(switchItem) {
+      console.log(switchItem);
+      switch (switchItem) {
+        case furnitureEnum.wall:
+          console.log("I am wall");
+          this.clickWall();
+          break;
+        // no default
+      }
+    },
     //關閉視窗按鈕
     leave() {
       this.$emit("leave");
     },
-    // 套用按鈕
-    use() {}
+
+    clickWall() {}
   }
 };
 </script>
@@ -164,61 +201,5 @@ export default {
 }
 .item:hover {
   opacity: 0.7;
-}
-/* 放預覽和左右按鈕的容器 */
-.typeBox {
-  display: flex;
-  margin-top: 2rem;
-  width: 80%;
-  background-color: darkgray;
-}
-/* 左邊按鈕容器 */
-.left__btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 4vw;
-}
-/* 左邊按鈕照片 */
-.leftBtn__img {
-  width: 100%;
-  height: auto;
-}
-.leftBtn__img:hover {
-  opacity: 0.7;
-}
-/* 右邊按鈕 */
-.right__btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 4vw;
-}
-/* 右邊按鈕照片 */
-.rightBtn__img {
-  width: 100%;
-  height: auto;
-}
-.rightBtn__img:hover {
-  opacity: 0.7;
-}
-/* 放照片容器 */
-.imgBox {
-  width: 23vw;
-  height: 23vw;
-  background-color: darkorange;
-}
-/* 套用按鈕 */
-.choose__btn {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  width: 10%;
-  min-width: 30px;
-  font-size: 1.5rem;
-  border: solid 1px black;
-  border-radius: 10%;
-  background-color: darksalmon;
 }
 </style>
