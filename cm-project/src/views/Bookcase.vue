@@ -53,7 +53,7 @@
     </div>
     <!-- 預覽或留言彈窗 -->
     <div v-if="isLook">
-      <ArticleComment
+      <ArticleContent
         v-if="isLook"
         :arr="articleArr[id]"
         @closeSeeBox="closeLookBox"
@@ -71,7 +71,7 @@ import {
 } from "@/js/all.js";
 import Article from "@/components/Article.vue";
 import ArticleWrite from "@/components/ArticleWrite.vue";
-import ArticleComment from "@/components/ArticleComment.vue";
+import ArticleContent from "@/components/ArticleContent.vue";
 export default {
   data() {
     return {
@@ -118,7 +118,7 @@ export default {
   components: {
     Article,
     ArticleWrite,
-    ArticleComment
+    ArticleContent
   },
   created() {
     this.roomId = this.$route.query.id;
