@@ -3,7 +3,7 @@
     <div class="furnitureBg">
       <!-- 圖片預覽以及左右按鈕區塊 -->
       <div class="typeBox mx-auto">
-        <div class="left__btn">
+        <div class="left__btn" @click="isPre = true">
           <img
             class="leftBtn__img pointer"
             src="../../static/imgs/room/leftBtn.png"
@@ -12,8 +12,12 @@
             height="346"
           />
         </div>
-        <div class="imgBox mx-auto"></div>
-        <div class="right__btn">
+        <div class="imgBox mx-auto">
+          <!-- <div v-for="(item, index) in furnitures" :key="index"> -->
+          <img class="furnitureImg" :src="furnitures[count].src" alt="" />
+          <!-- </div> -->
+        </div>
+        <div class="right__btn" @click="isNext = true">
           <img
             class="rightBtn__img pointer"
             src="../../static/imgs/room/rightBtn.png"
@@ -31,12 +35,44 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      count: 0,
+      isNext: false,
+      isPre: false
+    };
+  },
+  watch: {
+    isNext() {
+      if (this.isNext) {
+        this.isNext = false;
+        console.log("next");
+        if (this.count === this.furnitures.length - 1) {
+          this.count = 0;
+          return;
+        }
+        this.count++;
+      }
+    },
+    isPre() {
+      if (this.isPre) {
+        this.isPre = false;
+        console.log("pre");
+        if (this.count === 0) {
+          this.count = this.furnitures.length - 1;
+          return;
+        }
+        this.count--;
+      }
+    }
   },
   props: {
-    // item: {
-    //   type: Array
-    // }
+    furnitures: {
+      type: Object
+    }
+  },
+  created() {
+    console.log("========");
+    console.log(typeof this.furnitures);
   },
   methods: {
     // 套用按鈕
@@ -111,11 +147,15 @@ export default {
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+  min-width: 50px;
   width: 10%;
   min-width: 30px;
-  font-size: 1.5rem;
+  font-size: 1.5vw;
   border: solid 1px black;
   border-radius: 10%;
   background-color: darksalmon;
+}
+.furnitureImg {
+  width: 100%;
 }
 </style>

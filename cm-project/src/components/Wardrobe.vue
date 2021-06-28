@@ -9,6 +9,7 @@
           <!-- 選單 -->
           <nav class="list__base">
             <ul class="list__body">
+              <!-- 選取家具項目 -->
               <li
                 class="item pointer"
                 v-for="item in furnitureList"
@@ -24,8 +25,8 @@
         <aside class="rightBox">
           <!-- 右邊標題 -->
           <header class="rightTit">物品風格名稱</header>
-          <div>
-            <Furniture :item="wallArr[count]" />
+          <div v-if="arr">
+            <Furniture :furnitures="arr" />
           </div>
         </aside>
         <!-- 關閉視窗按鈕 -->
@@ -50,7 +51,7 @@ import Furniture from "@/components/Furniture.vue";
 export default {
   data() {
     return {
-      count: 0,
+      arr: null,
       furnitureList: Object.values(furnitureEnum),
       wallArr: [
         {
@@ -87,10 +88,34 @@ export default {
   components: { Furniture },
   methods: {
     selectFunction(switchItem) {
-      console.log(switchItem);
+      // console.log(switchItem);
       switch (switchItem) {
+        case furnitureEnum.diary:
+          console.log("I am diary");
+          this.clickDiary();
+          break;
+        case furnitureEnum.bookcase:
+          console.log("I am bookcase");
+          this.clickBookcase();
+          break;
+        case furnitureEnum.desk:
+          console.log("I am desk");
+          this.clickDesk();
+          break;
+        case furnitureEnum.clothcase:
+          console.log("I am clothcase");
+          this.clickClothcase();
+          break;
+        case furnitureEnum.bed:
+          console.log("I am bed");
+          this.clickBed();
+          break;
+        case furnitureEnum.decoretion:
+          console.log("I am decoretion");
+          this.clickDecoretion();
+          break;
         case furnitureEnum.wall:
-          console.log("I am wall");
+          // console.log("I am wall");
           this.clickWall();
           break;
         // no default
@@ -100,8 +125,17 @@ export default {
     leave() {
       this.$emit("leave");
     },
-
-    clickWall() {}
+    clickDiary() {},
+    clickBookcase() {},
+    clickDesk() {},
+    clickClothcase() {},
+    clickBed() {},
+    clickDecoretion() {},
+    clickWall() {
+      this.arr = this.wallArr;
+      console.log(typeof this.wallArr);
+      console.log(typeof this.arr);
+    }
   }
 };
 </script>
