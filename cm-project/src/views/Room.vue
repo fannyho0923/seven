@@ -48,10 +48,11 @@
           :photoTwo="photo2"
           :photoThree="photo3"
         />
-        <div class="pointer wardrobeImgBox">
+        <!-- 衣櫃：換背景 -->
+        <div v-if="closetSrc" class="pointer wardrobeImgBox">
           <img
             class="pointer wardrobeImg img-resp"
-            src="../../static/imgs/room/wardrobe.png"
+            :src="closetArr[closetSrc - 1].src"
             alt="wardrobePic"
             width="373"
             height="493"
@@ -60,11 +61,25 @@
         </div>
         <!-- 衣櫃彈窗 -->
         <Wardrobe class="wardrobe" v-if="showWardrobe" @leave="closeWardrobe" />
+        <div v-if="bedSrc" class="bedImgBox">
+          <img
+            class="bedimg img-resp"
+            :src="bedArr[bedSrc - 1].src"
+            alt="床照片"
+            width="413"
+            height="273"
+          />
+        </div>
+        <!-- <div class="closet"><img src="" alt="" /></div>
+        <div class="wall"><img src="" alt="" /></div>
+        <div class="wall"><img src="" alt="" /></div>
+        <div class="wall"><img src="" alt="" /></div>
+        <div class="wall"><img src="" alt="" /></div> -->
         <!-- 書櫃:寫個版 -->
-        <div class="pointer bookcaseImgBox">
+        <div v-if="bookcaseSrc" class="pointer bookcaseImgBox">
           <img
             class="pointer bookcaseImg img-resp"
-            src="../../static/imgs/room/bookcase.png"
+            :src="bookcaseArr[bookcaseSrc - 1].src"
             alt="bookcasePic"
             width="365"
             height="582"
@@ -72,10 +87,10 @@
           />
         </div>
         <!-- 日記:寫日記 -->
-        <div class="pointer diaryImgBox">
+        <div v-if="diarySrc" class="pointer diaryImgBox">
           <img
             class="pointer diaryImg img-resp"
-            src="../../static/imgs/room/diary.png"
+            :src="diaryArr[diarySrc - 1].src"
             alt="diaryPic"
             width="628"
             height="496"
@@ -85,8 +100,9 @@
         <!-- 電腦:回郵件 -->
         <div class=" computerDeskBox">
           <img
+            v-if="deskSrc"
             class=" computerDeskImg img-resp"
-            src="../../static/imgs/room/computerDesk.png"
+            :src="deskArr[deskSrc - 1].src"
             alt="computerDeskPic"
             width="254"
             height="260"
@@ -124,7 +140,200 @@ export default {
       photo1: "",
       photo2: "",
       photo3: "",
-      roomId: 0
+      roomId: 0,
+      bedSrc: "",
+      diarySrc: "",
+      bookcaseSrc: "",
+      deskSrc: "",
+      closetSrc: "",
+      wallArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/bgColor/bg_blue.jpg"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/bgColor/bg_pink.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/bgColor/bg_gray.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/bgColor/bg_green.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/bgColor/bg_purple.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/bgColor/bg_orange.png"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/bgColor/bg_brown.png"
+        }
+      ],
+      bedArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/bedColor/bed_brown.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/bedColor/bed_pink.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/bedColor/bed_purpleNor.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/bedColor/bed_red.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/bedColor/bed_purple.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/bedColor/bed_orange.png"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/bedColor/bed_blue.png"
+        }
+      ],
+      diaryArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/diaryColor/diary_1.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/diaryColor/diary_2.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/diaryColor/diary_3.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/diaryColor/diary_4.png"
+        }
+      ],
+      bookcaseArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_1.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_2.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_3.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_4.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_5.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_6.png"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_7.png"
+        },
+        {
+          itemIndex: 8,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_8.png"
+        },
+        {
+          itemIndex: 9,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_9.png"
+        },
+        {
+          itemIndex: 10,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_10.png"
+        },
+        {
+          itemIndex: 11,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_11.png"
+        },
+        {
+          itemIndex: 12,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_12.png"
+        }
+      ],
+      deskArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/deskColor/desk_1.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/deskColor/desk_2.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/deskColor/desk_3.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/deskColor/desk_4.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/deskColor/desk_5.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/deskColor/desk_6.png"
+        }
+      ],
+      closetArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/closetColor/closet_1.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/closetColor/closet_2.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/closetColor/closet_3.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/closetColor/closet_4.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/closetColor/closet_5.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/closetColor/closet_6.jpeg"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/closetColor/closet_7.png"
+        },
+        {
+          itemIndex: 8,
+          src: "../../static/imgs/room/closetColor/closet_8.png"
+        }
+      ]
     };
   },
   components: {
@@ -143,6 +352,12 @@ export default {
       this.photo2 = res1.data.photo2;
       this.photo3 = res1.data.photo3;
       this.isEnvelope = res1.data.hasNewMail;
+      this.bedSrc = res1.data.bed;
+      this.diarySrc = res1.data.diary;
+      this.bookcaseSrc = res1.data.bookShelf;
+      this.deskSrc = res1.data.desk;
+      this.closetSrc = res1.data.closet;
+      // console.log(this.deskArr[this.deskSrc].src);
     });
     // console.log(this.$store.getters.doorIndex);
   },
@@ -173,6 +388,7 @@ export default {
         this.photo1 = res1.data.photo1;
         this.photo2 = res1.data.photo2;
         this.photo3 = res1.data.photo3;
+        this.bedSrc = res1.data.bed;
       });
       this.showPhoto = false;
     },
@@ -376,6 +592,24 @@ export default {
   height: 100%;
   transform: rotate(-15deg);
 }
+/* 床 */
+.bedImgBox {
+  position: absolute;
+  left: 10%;
+  top: 68%;
+  /* max-width: 20%; */
+  width: 22%;
+  height: 27%;
+  object-fit: contain;
+  /* background-color: burlywood; */
+}
+.bedImg {
+  max-width: 100%;
+  /* vertical-align: bottom; */
+  max-height: 100%;
+  background-color: cadetblue;
+}
+
 /* @keyframes fade {
   from {
     opacity: 1;

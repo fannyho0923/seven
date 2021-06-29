@@ -24,9 +24,9 @@
         <!-- 右邊選擇風格區塊 -->
         <aside class="rightBox">
           <!-- 右邊標題 -->
-          <header class="rightTit">物品風格名稱</header>
+          <header class="rightTit">{{ switchItem }}</header>
           <div v-if="arr">
-            <Furniture :furnitures="arr" />
+            <Furniture :furnitures="arr" :furnitureItem="switchItem" />
           </div>
         </aside>
         <!-- 關閉視窗按鈕 -->
@@ -51,6 +51,7 @@ import Furniture from "@/components/Furniture.vue";
 export default {
   data() {
     return {
+      switchItem: "物品名稱",
       arr: null,
       furnitureList: Object.values(furnitureEnum),
       wallArr: [
@@ -82,36 +83,195 @@ export default {
           itemIndex: 7,
           src: "../../static/imgs/room/bgColor/bg_brown.png"
         }
+      ],
+      closetArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/closetColor/closet_1.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/closetColor/closet_2.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/closetColor/closet_3.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/closetColor/closet_4.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/closetColor/closet_5.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/closetColor/closet_6.jpeg"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/closetColor/closet_7.png"
+        },
+        {
+          itemIndex: 8,
+          src: "../../static/imgs/room/closetColor/closet_8.png"
+        }
+      ],
+      diaryArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/diaryColor/diary_1.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/diaryColor/diary_2.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/diaryColor/diary_3.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/diaryColor/diary_4.png"
+        }
+      ],
+      bedArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/bedColor/bed_brown.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/bedColor/bed_pink.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/bedColor/bed_purpleNor.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/bedColor/bed_red.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/bedColor/bed_purple.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/bedColor/bed_orange.png"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/bedColor/bed_blue.png"
+        }
+      ],
+      deskArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/deskColor/desk_1.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/deskColor/desk_2.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/deskColor/desk_3.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/deskColor/desk_4.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/deskColor/desk_5.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/deskColor/desk_6.png"
+        }
+      ],
+      bookcaseArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_1.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_2.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_3.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_4.png"
+        },
+        {
+          itemIndex: 5,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_5.png"
+        },
+        {
+          itemIndex: 6,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_6.png"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_7.png"
+        },
+        {
+          itemIndex: 8,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_8.png"
+        },
+        {
+          itemIndex: 9,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_9.png"
+        },
+        {
+          itemIndex: 10,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_10.png"
+        },
+        {
+          itemIndex: 11,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_11.png"
+        },
+        {
+          itemIndex: 12,
+          src: "../../static/imgs/room/bookcaseColor/bookcase_12.png"
+        }
       ]
     };
   },
   components: { Furniture },
   methods: {
     selectFunction(switchItem) {
+      this.switchItem = switchItem;
       // console.log(switchItem);
       switch (switchItem) {
         case furnitureEnum.diary:
-          console.log("I am diary");
+          // console.log("I am diary");
           this.clickDiary();
           break;
         case furnitureEnum.bookcase:
-          console.log("I am bookcase");
+          // console.log("I am bookcase");
           this.clickBookcase();
           break;
         case furnitureEnum.desk:
-          console.log("I am desk");
+          // console.log("I am desk");
           this.clickDesk();
           break;
         case furnitureEnum.clothcase:
-          console.log("I am clothcase");
+          // console.log("I am clothcase");
           this.clickClothcase();
           break;
         case furnitureEnum.bed:
-          console.log("I am bed");
+          // console.log("I am bed");
           this.clickBed();
           break;
         case furnitureEnum.decoretion:
-          console.log("I am decoretion");
+          // console.log("I am decoretion");
           this.clickDecoretion();
           break;
         case furnitureEnum.wall:
@@ -125,16 +285,30 @@ export default {
     leave() {
       this.$emit("leave");
     },
-    clickDiary() {},
-    clickBookcase() {},
-    clickDesk() {},
-    clickClothcase() {},
-    clickBed() {},
+    // 點擊日記項目
+    clickDiary() {
+      this.arr = this.diaryArr;
+    },
+    // 點擊書櫃項目
+    clickBookcase() {
+      this.arr = this.bookcaseArr;
+    },
+    // 點擊書桌項目
+    clickDesk() {
+      this.arr = this.deskArr;
+    },
+    // 點擊衣櫃項目
+    clickClothcase() {
+      this.arr = this.closetArr;
+    },
+    // 點擊裝飾項目
     clickDecoretion() {},
     clickWall() {
       this.arr = this.wallArr;
-      console.log(typeof this.wallArr);
-      console.log(typeof this.arr);
+    },
+    // 點擊床組項目
+    clickBed() {
+      this.arr = this.bedArr;
     }
   }
 };
@@ -182,7 +356,7 @@ export default {
 .rightBox {
   width: 55%;
   height: 100%;
-  background-color: chartreuse;
+  background-color: #d69f7e;
 }
 /* 左邊標題 */
 .leftTit {

@@ -33,6 +33,24 @@
 </template>
 
 <script>
+const furnitureEnum = {
+  diary: "日記",
+  bookcase: "書櫃",
+  desk: "書桌",
+  clothcase: "衣櫃",
+  bed: "床組",
+  decoretion: "裝飾",
+  wall: "牆壁"
+};
+import {
+  setWall,
+  setCloset,
+  setBed,
+  setBookcase,
+  setDesk,
+  setDiary,
+  setDecorate
+} from "@/js/all";
 export default {
   data() {
     return {
@@ -45,7 +63,7 @@ export default {
     isNext() {
       if (this.isNext) {
         this.isNext = false;
-        console.log("next");
+        // console.log("next");
         if (this.count === this.furnitures.length - 1) {
           this.count = 0;
           return;
@@ -56,7 +74,7 @@ export default {
     isPre() {
       if (this.isPre) {
         this.isPre = false;
-        console.log("pre");
+        // console.log("pre");
         if (this.count === 0) {
           this.count = this.furnitures.length - 1;
           return;
@@ -67,16 +85,104 @@ export default {
   },
   props: {
     furnitures: {
-      type: Object
+      type: Array
+    },
+    furnitureItem: {
+      type: String
     }
   },
   created() {
-    console.log("========");
-    console.log(typeof this.furnitures);
+    // console.log("========");
+    // console.log(this.furnitures);
   },
   methods: {
     // 套用按鈕
-    use() {}
+    use() {
+      switch (this.furnitureItem) {
+        case furnitureEnum.diary:
+          console.log("I am diary");
+          this.useDiary();
+          break;
+        case furnitureEnum.bookcase:
+          this.useBookcase();
+          break;
+        case furnitureEnum.desk:
+          this.useDesk();
+          break;
+        case furnitureEnum.clothcase:
+          this.useCloset();
+          break;
+        case furnitureEnum.bed:
+          this.useBed();
+          break;
+        case furnitureEnum.decoretion:
+          break;
+        case furnitureEnum.wall:
+          this.useWall();
+          break;
+        // no default
+      }
+    },
+    // 打更換牆壁api
+    useWall() {
+      const wallData = {
+        userSeriel: this.$store.getters.userSeriel,
+        itemIndex: this.count + 1
+      };
+      setWall(wallData).then(res => {
+        console.log(res.data);
+      });
+    },
+    // 打更換床api
+    useBed() {
+      const bedData = {
+        userSeriel: this.$store.getters.userSeriel,
+        itemIndex: this.count + 1
+      };
+      setBed(bedData).then(res => {
+        console.log(res.data);
+      });
+    },
+    // 打更換日記api
+    useDiary() {
+      const diaryData = {
+        userSeriel: this.$store.getters.userSeriel,
+        itemIndex: this.count + 1
+      };
+      setDiary(diaryData).then(res => {
+        console.log(res.data);
+      });
+    },
+    // 打更換書櫃api
+    useBookcase() {
+      const bookcaseData = {
+        userSeriel: this.$store.getters.userSeriel,
+        itemIndex: this.count + 1
+      };
+      setBookcase(bookcaseData).then(res => {
+        console.log(res.data);
+      });
+    },
+    // 打更換書桌api
+    useDesk() {
+      const deskData = {
+        userSeriel: this.$store.getters.userSeriel,
+        itemIndex: this.count + 1
+      };
+      setDesk(deskData).then(res => {
+        console.log(res.data);
+      });
+    },
+    // 打更換衣櫃api
+    useCloset() {
+      const closetData = {
+        userSeriel: this.$store.getters.userSeriel,
+        itemIndex: this.count + 1
+      };
+      setCloset(closetData).then(res => {
+        console.log(res.data);
+      });
+    }
   }
 };
 </script>
@@ -137,9 +243,12 @@ export default {
 }
 /* 放照片容器 */
 .imgBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 23vw;
   height: 23vw;
-  background-color: darkorange;
+  background-color: #efd3d7;
 }
 /* 套用按鈕 */
 .choose__btn {
@@ -154,6 +263,9 @@ export default {
   border: solid 1px black;
   border-radius: 10%;
   background-color: darksalmon;
+}
+.choose__btn:hover {
+  opacity: 0.5;
 }
 .furnitureImg {
   width: 100%;

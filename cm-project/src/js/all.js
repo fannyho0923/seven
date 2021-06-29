@@ -87,6 +87,22 @@ export const userAddNewGroup = userSeriel => {
 export const userTransferGroup = userSeriel => {
   return req("get", "/Group/Transfer/" + userSeriel);
 };
+
+//個人資訊相關的api
+// 修改暱稱
+export const setNickName = data => {
+  return req("patch", "/User/NickName/", data);
+};
+
+// 修改密碼
+export const setPw = data => {
+  return req("patch", "/User/Pw/", data);
+};
+
+// 修改自我介紹
+export const setAbout = data => {
+  return req("patch", "/User/About/", data);
+};
 //修改密碼/暱稱x
 // export const userLogin = userData => {
 //   return req("put", "/User", userData);
@@ -179,27 +195,41 @@ export const deletePhoto = (photoIndex, userSeriel) => {
   return req("delete", `/Private/Photo/${photoIndex}/${userSeriel}`);
 };
 
-//個人資訊相關的api
-// 修改暱稱
-export const setNickName = data => {
-  return req("patch", "/User/NickName/", data);
+// 衣櫃相關的api
+// 修改牆壁顏色
+export const setWall = data => {
+  return req("patch", "/Private/Color/", data);
 };
 
-// 修改密碼
-export const setPw = data => {
-  return req("patch", "/User/Pw/", data);
+// 修改衣櫃
+export const setCloset = data => {
+  return req("patch", "/Private/Closet/", data);
 };
 
-// 修改自我介紹
-export const setAbout = data => {
-  return req("patch", "/User/About/", data);
+// 修改床
+export const setBed = data => {
+  return req("patch", "/Private/Bed/", data);
 };
 
-// 登出
-// export const setAbout = data => {
-//   return req("patch", "/User/About/", data);
-// };
+// 修改書櫃
+export const setBookcase = data => {
+  return req("patch", "/Private/BookShelf/", data);
+};
 
+// 修改書桌
+export const setDesk = data => {
+  return req("patch", "/Private/Desk/", data);
+};
+
+// 修改日記
+export const setDiary = data => {
+  return req("patch", "/Private/Diary/", data);
+};
+
+// 修改裝飾
+export const setDecorate = data => {
+  return req("patch", "/Private/Deco/", data);
+};
 // 搜尋相關的 api
 export const apiSearch = data =>
   searchRequest.get(`/Search?searchdata=${data}`);
