@@ -1,10 +1,14 @@
 <template>
   <main class="main">
-    <div class="row">
+    <div v-if="colorType" class="row" :style="setLayout">
       <header class="base__head">
         <IconList @goRoom="changeRoom" />
       </header>
       <section class="room__body">
+        <!-- 房間裝飾 -->
+        <div class="decoImgBox ">
+          <img class="decoImg " :src="decoArr[decoSrc - 1].src" alt="裝飾" />
+        </div>
         <!-- 相片牆:放相片 -->
         <!-- 衣櫥:換房間樣式 -->
         <div class="pointer photoImgBox">
@@ -63,15 +67,15 @@
         <Wardrobe class="wardrobe" v-if="showWardrobe" @leave="closeWardrobe" />
         <div v-if="bedSrc" class="bedImgBox">
           <img
-            class="bedimg img-resp"
+            class="bedImg img-resp"
             :src="bedArr[bedSrc - 1].src"
             alt="床照片"
             width="413"
             height="273"
           />
         </div>
-        <!-- <div class="closet"><img src="" alt="" /></div>
-        <div class="wall"><img src="" alt="" /></div>
+
+        <!-- <div class="wall"><img src="" alt="" /></div>
         <div class="wall"><img src="" alt="" /></div>
         <div class="wall"><img src="" alt="" /></div>
         <div class="wall"><img src="" alt="" /></div> -->
@@ -141,11 +145,13 @@ export default {
       photo2: "",
       photo3: "",
       roomId: 0,
-      bedSrc: "",
-      diarySrc: "",
-      bookcaseSrc: "",
-      deskSrc: "",
-      closetSrc: "",
+      bedSrc: 1,
+      diarySrc: 1,
+      bookcaseSrc: 1,
+      deskSrc: 1,
+      closetSrc: 1,
+      colorType: 1,
+      decoSrc: 1,
       wallArr: [
         {
           itemIndex: 1,
@@ -222,6 +228,18 @@ export default {
         {
           itemIndex: 4,
           src: "../../static/imgs/room/diaryColor/diary_4.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/diaryColor/diary_5.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/diaryColor/diary_6.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/diaryColor/diary_7.png"
         }
       ],
       bookcaseArr: [
@@ -298,6 +316,18 @@ export default {
         {
           itemIndex: 6,
           src: "../../static/imgs/room/deskColor/desk_6.png"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/deskColor/desk_7.png"
+        },
+        {
+          itemIndex: 8,
+          src: "../../static/imgs/room/deskColor/desk_8.png"
+        },
+        {
+          itemIndex: 9,
+          src: "../../static/imgs/room/deskColor/desk_9.png"
         }
       ],
       closetArr: [
@@ -333,6 +363,36 @@ export default {
           itemIndex: 8,
           src: "../../static/imgs/room/closetColor/closet_8.png"
         }
+      ],
+      decoArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_1.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_2.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_3.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_4.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_5.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_6.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_7.png"
+        }
       ]
     };
   },
@@ -340,6 +400,15 @@ export default {
     Photo,
     Wardrobe,
     IconList
+  },
+  computed: {
+    // 背景
+    setLayout() {
+      const image = this.wallArr[this.colorType - 1].src;
+      return {
+        backgroundImage: `url(${image})`
+      };
+    }
   },
   created() {
     this.roomId = this.$route.query.id;
@@ -357,6 +426,8 @@ export default {
       this.bookcaseSrc = res1.data.bookShelf;
       this.deskSrc = res1.data.desk;
       this.closetSrc = res1.data.closet;
+      this.colorType = res1.data.colorType;
+      this.decoSrc = res1.data.deco;
       // console.log(this.deskArr[this.deskSrc].src);
     });
     // console.log(this.$store.getters.doorIndex);
@@ -455,7 +526,7 @@ export default {
   max-width: 100vw;
   width: 100vw;
   height: 50vw;
-  background-image: url("../../static/imgs/room/bgColor/bg_blue.jpg");
+  /* background-image: url("../../static/imgs/room/bgColor/bg_blue.jpg"); */
   background-repeat: none;
   background-size: cover;
   background-position: center;
@@ -604,12 +675,22 @@ export default {
   /* background-color: burlywood; */
 }
 .bedImg {
-  max-width: 100%;
+  width: 100%;
   /* vertical-align: bottom; */
-  max-height: 100%;
-  background-color: cadetblue;
+  /* max-height: 100%;
+  background-color: cadetblue; */
 }
-
+/* 裝飾 */
+.decoImgBox {
+  position: absolute;
+  left: 2%;
+  top: 3%;
+  /* background-color: coral; */
+}
+.decoImg {
+  width: 100%;
+  /* background-color: rgba(128, 255, 0, 0.384); */
+}
 /* @keyframes fade {
   from {
     opacity: 1;

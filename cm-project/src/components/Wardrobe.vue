@@ -25,7 +25,7 @@
         <aside class="rightBox">
           <!-- 右邊標題 -->
           <header class="rightTit">{{ switchItem }}</header>
-          <div v-if="arr">
+          <div v-if="arr.length">
             <Furniture :furnitures="arr" :furnitureItem="switchItem" />
           </div>
         </aside>
@@ -46,13 +46,12 @@ const furnitureEnum = {
   decoretion: "裝飾",
   wall: "牆壁"
 };
-
 import Furniture from "@/components/Furniture.vue";
 export default {
   data() {
     return {
       switchItem: "物品名稱",
-      arr: null,
+      arr: [],
       furnitureList: Object.values(furnitureEnum),
       wallArr: [
         {
@@ -134,6 +133,18 @@ export default {
         {
           itemIndex: 4,
           src: "../../static/imgs/room/diaryColor/diary_4.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/diaryColor/diary_5.png"
+        },
+        {
+          itemIndex: 3,
+          src: "../../static/imgs/room/diaryColor/diary_6.png"
+        },
+        {
+          itemIndex: 4,
+          src: "../../static/imgs/room/diaryColor/diary_7.png"
         }
       ],
       bedArr: [
@@ -190,6 +201,18 @@ export default {
         {
           itemIndex: 6,
           src: "../../static/imgs/room/deskColor/desk_6.png"
+        },
+        {
+          itemIndex: 7,
+          src: "../../static/imgs/room/deskColor/desk_7.png"
+        },
+        {
+          itemIndex: 8,
+          src: "../../static/imgs/room/deskColor/desk_8.png"
+        },
+        {
+          itemIndex: 9,
+          src: "../../static/imgs/room/deskColor/desk_9.png"
         }
       ],
       bookcaseArr: [
@@ -240,6 +263,36 @@ export default {
         {
           itemIndex: 12,
           src: "../../static/imgs/room/bookcaseColor/bookcase_12.png"
+        }
+      ],
+      decoArr: [
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_1.png"
+        },
+        {
+          itemIndex: 2,
+          src: "../../static/imgs/room/decoColor/deco_2.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_3.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_4.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_5.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_6.png"
+        },
+        {
+          itemIndex: 1,
+          src: "../../static/imgs/room/decoColor/deco_7.png"
         }
       ]
     };
@@ -302,7 +355,9 @@ export default {
       this.arr = this.closetArr;
     },
     // 點擊裝飾項目
-    clickDecoretion() {},
+    clickDecoretion() {
+      this.arr = this.decoArr;
+    },
     clickWall() {
       this.arr = this.wallArr;
     },

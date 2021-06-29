@@ -117,7 +117,6 @@ import {
   setImg,
   setDiaryImg
 } from "@/js/all.js";
-import "vue2-datepicker/index.css";
 import Datepicker from "vuejs-datepicker";
 import { zh } from "vuejs-datepicker/dist/locale";
 export default {

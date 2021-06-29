@@ -14,7 +14,7 @@
         </div>
         <div class="imgBox mx-auto">
           <!-- <div v-for="(item, index) in furnitures" :key="index"> -->
-          <img class="furnitureImg" :src="furnitures[count].src" alt="" />
+          <img class="furnitureImg " :src="furnitures[count].src" alt="" />
           <!-- </div> -->
         </div>
         <div class="right__btn" @click="isNext = true">
@@ -116,6 +116,7 @@ export default {
           this.useBed();
           break;
         case furnitureEnum.decoretion:
+          this.useDeco();
           break;
         case furnitureEnum.wall:
           this.useWall();
@@ -182,6 +183,16 @@ export default {
       setCloset(closetData).then(res => {
         console.log(res.data);
       });
+    },
+    // 打更換裝飾api
+    useDeco() {
+      const decoData = {
+        userSeriel: this.$store.getters.userSeriel,
+        itemIndex: this.count + 1
+      };
+      setDecorate(decoData).then(res => {
+        console.log(res.data);
+      });
     }
   }
 };
@@ -207,8 +218,10 @@ export default {
   background-color: darkgray;
 }
 /* 照片 */
-.img {
-  width: 100%;
+.furnitureImg {
+  width: 23vw;
+  height: 23vw;
+  object-fit: contain;
   /* opacity: 0; */
 }
 /* 左邊按鈕容器 */
