@@ -108,24 +108,9 @@
   </div>
 </template>
 <script>
-// //個人資訊相關的api
-// // 修改暱稱
-// export const setNickName = data => {
-//   return req("patch", "/User/NickName/", data);
-// };
-
-// // 修改密碼
-// export const setPw = data => {
-//   return req("patch", "/User/Pw/", data);
-// };
-
-// // 修改自我介紹
-// export const setAbout = data => {
-//   return req("patch", "/User/About/", data);
-// };
 import { getUserInfo, setNickName, setPw, setAbout } from "@/js/all";
 export default {
-  props: { user: { type: String }, isOwner: { type: Boolean } },
+  props: { user: { type: Number }, isOwner: { type: Boolean } },
   data() {
     return {
       roleId: 0,
@@ -141,13 +126,15 @@ export default {
   },
   created() {
     // 取得玩家資料;
-    getUserInfo(this.user).then(res1 => {
-      console.log(res1.data);
-      this.roleId = res1.data.roleId;
-      this.doorIndex = res1.data.doorIndex;
-      this.userName = res1.data.userName;
-      this.introduction = res1.data.introduction;
-    });
+    getUserInfo(this.user)
+      .then(res1 => {
+        console.log(res1.data);
+        this.roleId = res1.data.roleId;
+        this.doorIndex = res1.data.doorIndex;
+        this.userName = res1.data.userName;
+        this.introduction = res1.data.introduction;
+      })
+      .catch(error => console.log(error));
   },
   methods: {
     leave() {
@@ -166,11 +153,13 @@ export default {
           userSeriel: this.$store.getters.userSeriel,
           userName: this.str
         };
-        setNickName(nickNameData).then(res2 => {
-          console.log(res2.data);
-          this.userName = this.str;
-          this.isEditName = false;
-        });
+        setNickName(nickNameData)
+          .then(res2 => {
+            console.log(res2.data);
+            this.userName = this.str;
+            this.isEditName = false;
+          })
+          .catch(error => console.log(error));
       }
     },
     // 取消編輯名字
@@ -195,9 +184,11 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         introduction: this.introduction
       };
-      setAbout(aboutData).then(res4 => {
-        console.log(res4);
-      });
+      setAbout(aboutData)
+        .then(res4 => {
+          console.log(res4);
+        })
+        .catch(error => console.log(error));
     },
     // 登出
     logout() {
@@ -212,10 +203,12 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         userPw: this.password
       };
-      setPw(passwordData).then(res3 => {
-        console.log(res3);
-        this.password = "";
-      });
+      setPw(passwordData)
+        .then(res3 => {
+          console.log(res3);
+          this.password = "";
+        })
+        .catch(error => console.log(error));
     }
   }
 };

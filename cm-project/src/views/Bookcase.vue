@@ -126,18 +126,22 @@ export default {
       this.$router.push({ path: "/publicArea" });
     }
     // 取得房間資訊
-    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
-      // console.log(res1.data.isOwner);
-      this.isOwner = res1.data.isOwner;
-    });
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel)
+      .then(res1 => {
+        // console.log(res1.data.isOwner);
+        this.isOwner = res1.data.isOwner;
+      })
+      .catch(error => console.log(error));
     const data = {
       memberDoorIndex: this.roomId
     };
     //取得文章
-    getPrivateArticle(this.$store.getters.userSeriel, data).then(res2 => {
-      // console.log(res2);
-      this.articleArr = res2.data.postInfos;
-    });
+    getPrivateArticle(this.$store.getters.userSeriel, data)
+      .then(res2 => {
+        // console.log(res2);
+        this.articleArr = res2.data.postInfos;
+      })
+      .catch(error => console.log(error));
   },
   methods: {
     // 離開編輯狀態
@@ -167,13 +171,15 @@ export default {
     },
     // 刪除文章
     deletEessay(postSeriel) {
-      deletePrivateArticle(postSeriel).then(res3 => {
-        // console.log(res3.data);
-        this.closeLookBox();
-        // console.log(this.articleArr.length);
-        this.articleArr.splice(this.id, 1);
-        // console.log(this.articleArr.length);
-      });
+      deletePrivateArticle(postSeriel)
+        .then(res3 => {
+          // console.log(res3.data);
+          this.closeLookBox();
+          // console.log(this.articleArr.length);
+          this.articleArr.splice(this.id, 1);
+          // console.log(this.articleArr.length);
+        })
+        .catch(error => console.log(error));
     }
   }
 };

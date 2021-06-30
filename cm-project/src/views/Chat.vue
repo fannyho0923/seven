@@ -156,10 +156,12 @@ export default {
   },
   created() {
     this.roomId = this.$route.query.id;
-    getChatList(this.$store.getters.userSeriel).then(res1 => {
-      console.log(res1.data);
-      this.members = res1.data.members;
-    });
+    getChatList(this.$store.getters.userSeriel)
+      .then(res1 => {
+        console.log(res1.data);
+        this.members = res1.data.members;
+      })
+      .catch(error => console.log(error));
 
     // for (let index = 0; index < this.otherArr.length; index++) {
     //   this.strArr.push(this.otherArr[index]);
@@ -196,7 +198,9 @@ export default {
         partnerUserSeriel: this.partnerUserSeriel,
         messengeTxt: this.str
       };
-      sentChat(sendData).then(res2 => console.log(res2.data));
+      sentChat(sendData)
+        .then(res2 => console.log(res2.data))
+        .catch(error => console.log(error));
       this.chatArr.push({
         memberSeriel: this.partnerUserSeriel,
         memberName: this.memberName,
@@ -413,7 +417,8 @@ export default {
   height: 0px;
   position: absolute;
   left: 98%;
-  top: calc(50% — 6px);
+  top: 0;
+  /*top: calc(50% — 6px);*/
 }
 /* 對方留言內容 */
 .text2 {

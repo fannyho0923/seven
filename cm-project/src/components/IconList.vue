@@ -51,7 +51,7 @@ import Contact from "./icons/Contact.vue";
 import Info from "./icons/Info.vue";
 import Music from "./icons/Music.vue";
 import Lang from "./icons/Lang.vue";
-import { getMembers, getUserInfo } from "@/js/all.js";
+import { getUserInfo } from "@/js/all.js";
 import PersonalInfo from "@/components/PersonalInfo.vue";
 export default {
   data() {

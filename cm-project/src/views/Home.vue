@@ -1,3 +1,4 @@
+nps
 <template>
   <main class="container mx-auto">
     <div class="row">
@@ -139,18 +140,20 @@ export default {
           userName: nickName
         });
         console.log(RegisteData);
-        userSignUp(RegisteData).then(res => {
-          // console.log(res);
-          if (res.data.result) {
-            this.closePopupRegiste();
-            this.isMember = true;
-            this.unLogin = false;
-            alert("歡迎" + " " + nickName + " " + "入住");
-          } else {
-            alert(res.data.resultMessenge);
-            return;
-          }
-        });
+        userSignUp(RegisteData)
+          .then(res => {
+            // console.log(res);
+            if (res.data.result) {
+              this.closePopupRegiste();
+              this.isMember = true;
+              this.unLogin = false;
+              alert("歡迎" + " " + nickName + " " + "入住");
+            } else {
+              alert(res.data.resultMessenge);
+              return;
+            }
+          })
+          .catch(error => console.log(error));
       } else {
         alert("輸入錯誤");
       }
@@ -182,27 +185,29 @@ export default {
                   // 全域(Vuex)設定此為第一次加入
                   this.$store.commit("ConfirmIsNew", true);
                   // 打api：新社群
-                  userAddNewGroup(this.$store.getters.userSeriel).then(res4 => {
-                    console.log(res4.data);
-                    if (res4.data) {
-                      console.log("打api：新社群");
-                      this.$router.push("/publicArea");
-                      return;
-                    }
-                  });
+                  userAddNewGroup(this.$store.getters.userSeriel)
+                    .then(res4 => {
+                      console.log(res4.data);
+                      if (res4.data) {
+                        console.log("打api：新社群");
+                        this.$router.push("/publicArea");
+                        return;
+                      }
+                    })
+                    .catch(error => console.log(error));
                 }
                 // 已過期(2)
                 if (res3.data.status == 2) {
                   // 打api：搬到新的社群
-                  userTransferGroup(this.$store.getters.userSeriel).then(
-                    res5 => {
+                  userTransferGroup(this.$store.getters.userSeriel)
+                    .then(res5 => {
                       console.log(res5.data);
                       if (res5.data) {
                         this.$router.push("/publicArea");
                         return;
                       }
-                    }
-                  );
+                    })
+                    .catch(error => console.log(error));
                 }
                 //正常(1)
                 if (res3.data.status == 1) {

@@ -131,9 +131,11 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         itemIndex: this.count + 1
       };
-      setWall(wallData).then(res => {
-        console.log(res.data);
-      });
+      setWall(wallData)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(error => console.log(error));
     },
     // 打更換床api
     useBed() {
@@ -141,9 +143,11 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         itemIndex: this.count + 1
       };
-      setBed(bedData).then(res => {
-        console.log(res.data);
-      });
+      setBed(bedData)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(error => console.log(error));
     },
     // 打更換日記api
     useDiary() {
@@ -151,9 +155,11 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         itemIndex: this.count + 1
       };
-      setDiary(diaryData).then(res => {
-        console.log(res.data);
-      });
+      setDiary(diaryData)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(error => console.log(error));
     },
     // 打更換書櫃api
     useBookcase() {
@@ -161,9 +167,11 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         itemIndex: this.count + 1
       };
-      setBookcase(bookcaseData).then(res => {
-        console.log(res.data);
-      });
+      setBookcase(bookcaseData)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(error => console.log(error));
     },
     // 打更換書桌api
     useDesk() {
@@ -171,9 +179,11 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         itemIndex: this.count + 1
       };
-      setDesk(deskData).then(res => {
-        console.log(res.data);
-      });
+      setDesk(deskData)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(error => console.log(error));
     },
     // 打更換衣櫃api
     useCloset() {
@@ -181,9 +191,11 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         itemIndex: this.count + 1
       };
-      setCloset(closetData).then(res => {
-        console.log(res.data);
-      });
+      setCloset(closetData)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(error => console.log(error));
     },
     // 打更換裝飾api
     useDeco() {
@@ -191,9 +203,11 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         itemIndex: this.count + 1
       };
-      setDecorate(decoData).then(res => {
-        console.log(res.data);
-      });
+      setDecorate(decoData)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(error => console.log(error));
     }
   }
 };

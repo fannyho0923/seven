@@ -97,9 +97,11 @@ export default {
   },
   created() {
     // 打api查看看板
-    getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
-      this.commentArr = res1.data.postInfos;
-    });
+    getPublicArticle(this.$store.getters.userSeriel)
+      .then(res1 => {
+        this.commentArr = res1.data.postInfos;
+      })
+      .catch(error => console.log(error));
   },
   components: { MemoSelector, MemoWrite, Comment },
   methods: {
@@ -135,25 +137,31 @@ export default {
         postText: str
       };
       // 打api:新增文章
-      addPublicArticle(addMemoData).then(res2 => {
-        if (res2.data.result) {
-          // 打api查看看板
-          getPublicArticle(this.$store.getters.userSeriel).then(res1 => {
-            this.commentArr = res1.data.postInfos;
-          });
-        }
-      });
+      addPublicArticle(addMemoData)
+        .then(res2 => {
+          if (res2.data.result) {
+            // 打api查看看板
+            getPublicArticle(this.$store.getters.userSeriel)
+              .then(res1 => {
+                this.commentArr = res1.data.postInfos;
+              })
+              .catch(error => console.log(error));
+          }
+        })
+        .catch(error => console.log(error));
       this.closeWritePopup();
     },
     //刪除便條功能
     delete_Memo(postSeriel, index) {
       console.log(postSeriel);
-      deletePublicArticle(postSeriel).then(res3 => {
-        console.log(res3);
-        if (res3.data.result) {
-          this.commentArr.splice(index, 1);
-        }
-      });
+      deletePublicArticle(postSeriel)
+        .then(res3 => {
+          console.log(res3);
+          if (res3.data.result) {
+            this.commentArr.splice(index, 1);
+          }
+        })
+        .catch(error => console.log(error));
     }
   }
 };

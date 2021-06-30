@@ -72,10 +72,12 @@ export default {
   },
   created() {
     // 打api查看看板
-    getVedio(this.$store.getters.userSeriel).then(res1 => {
-      console.log(res1.data);
-      this.playlistArr = res1.data.postInfos;
-    });
+    getVedio(this.$store.getters.userSeriel)
+      .then(res1 => {
+        console.log(res1.data);
+        this.playlistArr = res1.data.postInfos;
+      })
+      .catch(error => console.log(error));
   },
   updated() {
     if (this.alreadySend) {
@@ -130,32 +132,39 @@ export default {
                 postTitle: res4.data.items[0].snippet.title
               };
               // 打api上傳影片
-              addVedio(addVedioData).then(res2 => {
-                console.log(res2.data.result);
-                if (res2.data.result) {
-                  // 打api更新查看看板
-                  getVedio(this.$store.getters.userSeriel).then(res1 => {
-                    console.log(res1.data);
-                    this.playlistArr = res1.data.postInfos;
-                    this.title = res1.data.postTitle;
-                  });
-                }
-              });
+              addVedio(addVedioData)
+                .then(res2 => {
+                  console.log(res2.data.result);
+                  if (res2.data.result) {
+                    // 打api更新查看看板
+                    getVedio(this.$store.getters.userSeriel)
+                      .then(res1 => {
+                        console.log(res1.data);
+                        this.playlistArr = res1.data.postInfos;
+                        this.title = res1.data.postTitle;
+                      })
+                      .catch(error => console.log(error));
+                  }
+                })
+                .catch(error => console.log(error));
               this.str = "";
             }
-          });
+          })
+          .catch(error => console.log(error));
       }
       this.alreadySend = true;
     },
 
     // 刪除影片
     deleteYT(postSeriel, index) {
-      deleteVedio(postSeriel).then(res3 => {
-        console.log(res3.data);
-        if (res3.data.result) {
-          this.playlistArr.splice(index, 1);
-        }
-      });
+      deleteVedio(postSeriel)
+        .then(res3 => {
+          console.log(res3.data);
+          if (res3.data.result) {
+            this.playlistArr.splice(index, 1);
+          }
+        })
+        .catch(error => console.log(error));
     }
   }
 };

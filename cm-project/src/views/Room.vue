@@ -414,23 +414,25 @@ export default {
   created() {
     this.roomId = this.$route.query.id;
     // 取得房間資訊
-    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
-      this.isOwner = res1.data.isOwner;
-      console.log(res1.data);
-      console.log(res1.data.isOwner);
-      this.photo1 = res1.data.photo1;
-      this.photo2 = res1.data.photo2;
-      this.photo3 = res1.data.photo3;
-      this.isEnvelope = res1.data.hasNewMail;
-      this.bedSrc = res1.data.bed;
-      this.diarySrc = res1.data.diary;
-      this.bookcaseSrc = res1.data.bookShelf;
-      this.deskSrc = res1.data.desk;
-      this.closetSrc = res1.data.closet;
-      this.colorType = res1.data.colorType;
-      this.decoSrc = res1.data.deco;
-      // console.log(this.deskArr[this.deskSrc].src);
-    });
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel)
+      .then(res1 => {
+        this.isOwner = res1.data.isOwner;
+        console.log(res1.data);
+        console.log(res1.data.isOwner);
+        this.photo1 = res1.data.photo1;
+        this.photo2 = res1.data.photo2;
+        this.photo3 = res1.data.photo3;
+        this.isEnvelope = res1.data.hasNewMail;
+        this.bedSrc = res1.data.bed;
+        this.diarySrc = res1.data.diary;
+        this.bookcaseSrc = res1.data.bookShelf;
+        this.deskSrc = res1.data.desk;
+        this.closetSrc = res1.data.closet;
+        this.colorType = res1.data.colorType;
+        this.decoSrc = res1.data.deco;
+        // console.log(this.deskArr[this.deskSrc].src);
+      })
+      .catch(error => console.log(error));
     // console.log(this.$store.getters.doorIndex);
   },
   watch: {
@@ -457,15 +459,17 @@ export default {
     },
     // 關閉相簿
     closePhoto() {
-      getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
-        this.isOwner = res1.data.isOwner;
-        console.log(res1.data);
-        console.log(res1.data.isOwner);
-        this.photo1 = res1.data.photo1;
-        this.photo2 = res1.data.photo2;
-        this.photo3 = res1.data.photo3;
-        this.bedSrc = res1.data.bed;
-      });
+      getRoomInfo(this.roomId, this.$store.getters.userSeriel)
+        .then(res1 => {
+          this.isOwner = res1.data.isOwner;
+          console.log(res1.data);
+          console.log(res1.data.isOwner);
+          this.photo1 = res1.data.photo1;
+          this.photo2 = res1.data.photo2;
+          this.photo3 = res1.data.photo3;
+          this.bedSrc = res1.data.bed;
+        })
+        .catch(error => console.log(error));
       this.showPhoto = false;
     },
     // 進入部落格
@@ -500,42 +504,46 @@ export default {
     changeRoom() {
       this.roomId = this.$route.query.id;
       // 取得房間資訊
-      getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
-        this.isOwner = res1.data.isOwner;
-        console.log(res1.data);
-        console.log("pppp");
-        console.log(res1.data.isOwner);
-        this.photo1 = res1.data.photo1;
-        this.photo2 = res1.data.photo2;
-        this.photo3 = res1.data.photo3;
-        this.isEnvelope = res1.data.hasNewMail;
-        this.bedSrc = res1.data.bed;
-        this.diarySrc = res1.data.diary;
-        this.bookcaseSrc = res1.data.bookShelf;
-        this.deskSrc = res1.data.desk;
-        this.closetSrc = res1.data.closet;
-        this.colorType = res1.data.colorType;
-        this.decoSrc = res1.data.deco;
-      });
+      getRoomInfo(this.roomId, this.$store.getters.userSeriel)
+        .then(res1 => {
+          this.isOwner = res1.data.isOwner;
+          console.log(res1.data);
+          console.log("pppp");
+          console.log(res1.data.isOwner);
+          this.photo1 = res1.data.photo1;
+          this.photo2 = res1.data.photo2;
+          this.photo3 = res1.data.photo3;
+          this.isEnvelope = res1.data.hasNewMail;
+          this.bedSrc = res1.data.bed;
+          this.diarySrc = res1.data.diary;
+          this.bookcaseSrc = res1.data.bookShelf;
+          this.deskSrc = res1.data.desk;
+          this.closetSrc = res1.data.closet;
+          this.colorType = res1.data.colorType;
+          this.decoSrc = res1.data.deco;
+        })
+        .catch(error => console.log(error));
     },
     updateData() {
       this.roomId = this.$route.query.id;
       // 取得房間資訊
-      getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
-        this.isOwner = res1.data.isOwner;
-        console.log(res1.data.isOwner);
-        this.photo1 = res1.data.photo1;
-        this.photo2 = res1.data.photo2;
-        this.photo3 = res1.data.photo3;
-        this.isEnvelope = res1.data.hasNewMail;
-        this.bedSrc = res1.data.bed;
-        this.diarySrc = res1.data.diary;
-        this.bookcaseSrc = res1.data.bookShelf;
-        this.deskSrc = res1.data.desk;
-        this.closetSrc = res1.data.closet;
-        this.colorType = res1.data.colorType;
-        this.decoSrc = res1.data.deco;
-      });
+      getRoomInfo(this.roomId, this.$store.getters.userSeriel)
+        .then(res1 => {
+          this.isOwner = res1.data.isOwner;
+          console.log(res1.data.isOwner);
+          this.photo1 = res1.data.photo1;
+          this.photo2 = res1.data.photo2;
+          this.photo3 = res1.data.photo3;
+          this.isEnvelope = res1.data.hasNewMail;
+          this.bedSrc = res1.data.bed;
+          this.diarySrc = res1.data.diary;
+          this.bookcaseSrc = res1.data.bookShelf;
+          this.deskSrc = res1.data.desk;
+          this.closetSrc = res1.data.closet;
+          this.colorType = res1.data.colorType;
+          this.decoSrc = res1.data.deco;
+        })
+        .catch(error => console.log(error));
     }
   }
 };

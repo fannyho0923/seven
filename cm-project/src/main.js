@@ -7,10 +7,7 @@ import store from "./js/store";
 import router from "./router";
 import App from "./App";
 import VueCookies from "vue-cookies";
-import PortalVue from "portal-vue";
-import { BootstrapVue } from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+// import PortalVue from "portal-vue";
 // import { VueDatePicker } from "@mathieustan/vue-datepicker";
 // import "@mathieustan/vue-datepicker/dist/vue-datepicker.min.css";
 // import { $cookies } from "vue/types/umd";
@@ -21,8 +18,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.use(VueAxios, axios);
 Vue.use(VueCookies);
 Vue.config.productionTip = false;
-Vue.prototype.$PortalVue = PortalVue;
-Vue.use(BootstrapVue);
+// Vue.prototype.$PortalVue = PortalVue;
 /* eslint-disable no-new */
 new Vue({
   store,

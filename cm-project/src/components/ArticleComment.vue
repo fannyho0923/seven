@@ -74,9 +74,11 @@ export default {
       this.$router.push({ path: "/publicArea" });
     }
     // 取得房間資訊
-    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
-      this.isOwner = res1.data.isOwner;
-    });
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel)
+      .then(res1 => {
+        this.isOwner = res1.data.isOwner;
+      })
+      .catch(error => console.log(error));
   },
   methods: {
     //   刪除留言

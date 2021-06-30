@@ -141,32 +141,40 @@ export default {
   },
   created() {
     this.roomId = this.$route.query.id;
-    getDiaryHighlight(this.$store.getters.userSeriel).then(res1 => {
-      // console.log(res1.data.writenDays);
-      this.highlightedArray = res1.data.writenDays;
-      // console.log(this.highlightedArray);
-    });
+    getDiaryHighlight(this.$store.getters.userSeriel)
+      .then(res1 => {
+        // console.log(res1.data.writenDays);
+        this.highlightedArray = res1.data.writenDays;
+        // console.log(this.highlightedArray);
+      })
+      .catch(error => console.log(error));
 
     getDiaryContent(this.$store.getters.userSeriel, {
       diaryDay: this.time.toString().slice(4, 15)
-    }).then(res2 => {
-      // console.log(res2.data.diaryTxt);
-      this.content = res2.data.diaryTxt;
-    });
+    })
+      .then(res2 => {
+        // console.log(res2.data.diaryTxt);
+        this.content = res2.data.diaryTxt;
+      })
+      .catch(error => console.log(error));
   },
   watch: {
     time() {
       // 監聽要highlight的日子
-      getDiaryHighlight(this.$store.getters.userSeriel).then(res1 => {
-        this.highlightedArray = res1.data.writenDays;
-      });
+      getDiaryHighlight(this.$store.getters.userSeriel)
+        .then(res1 => {
+          this.highlightedArray = res1.data.writenDays;
+        })
+        .catch(error => console.log(error));
       // 點選日期來查看內容
       getDiaryContent(this.$store.getters.userSeriel, {
         diaryDay: this.time.toString().slice(4, 15)
-      }).then(res2 => {
-        this.content = res2.data.diaryTxt;
-        this.imgUrl = res2.data.diaryImgPath;
-      });
+      })
+        .then(res2 => {
+          this.content = res2.data.diaryTxt;
+          this.imgUrl = res2.data.diaryImgPath;
+        })
+        .catch(error => console.log(error));
     },
     // 檢查照片有沒有網址
     imgUrl() {
@@ -231,20 +239,24 @@ export default {
       // 利用 append 的方式將我們的圖片塞入
       formData.append("file", uploadedFile);
       // 打api：上傳圖片取得imgPath
-      setImg(formData).then(res4 => {
-        console.log(res4.data.imgPath);
-        // 將圖片路徑記下來
-        this.imgUrl = res4.data.imgPath;
-        // 打api:新增/修改日記圖片
-        setDiaryImg({
-          userSeriel: this.$store.getters.userSeriel,
-          diaryDay: this.time.toString().slice(4, 15),
-          diaryImgPath: this.imgUrl
-        }).then(res5 => {
-          console.log(res5.data);
-          // this.showImg = true;
-        });
-      });
+      setImg(formData)
+        .then(res4 => {
+          console.log(res4.data.imgPath);
+          // 將圖片路徑記下來
+          this.imgUrl = res4.data.imgPath;
+          // 打api:新增/修改日記圖片
+          setDiaryImg({
+            userSeriel: this.$store.getters.userSeriel,
+            diaryDay: this.time.toString().slice(4, 15),
+            diaryImgPath: this.imgUrl
+          })
+            .then(res5 => {
+              console.log(res5.data);
+              // this.showImg = true;
+            })
+            .catch(error => console.log(error));
+        })
+        .catch(error => console.log(error));
     },
     // 刪除照片
     reset() {
@@ -254,7 +266,9 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         diaryDay: this.time.toString().slice(4, 15),
         diaryImgPath: ""
-      }).then(res5 => console.log(res5.data));
+      })
+        .then(res5 => console.log(res5.data))
+        .catch(error => console.log(error));
     },
     // 儲存日記文字
     post() {
@@ -263,12 +277,14 @@ export default {
         userSeriel: this.$store.getters.userSeriel,
         diaryDay: this.time.toString().slice(4, 15),
         diaryTxt: this.content
-      }).then(res3 => {
-        // console.log(res3);
-        if (res3.data.result) {
-          alert("日記已更新成功！");
-        }
-      });
+      })
+        .then(res3 => {
+          // console.log(res3);
+          if (res3.data.result) {
+            alert("日記已更新成功！");
+          }
+        })
+        .catch(error => console.log(error));
     }
   }
 };

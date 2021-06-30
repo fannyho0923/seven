@@ -29,9 +29,11 @@ export default {
   },
   created() {
     this.roomId = this.$route.query.id;
-    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res4 => {
-      this.isOwner = res4.data.isOwner;
-    });
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel)
+      .then(res4 => {
+        this.isOwner = res4.data.isOwner;
+      })
+      .catch(error => console.log(error));
   },
   props: ["photo", "photoIndex"], // 上傳圖片
   methods: {
@@ -44,28 +46,30 @@ export default {
       // 利用 append 的方式將我們的圖片塞入
       formData.append("file", uploadedFile);
       // 打api：上傳圖片取得imgPath
-      setImg(formData).then(res1 => {
-        if (!res1.data.result) {
-          return;
-        }
-        // 將圖片路徑記下來
-        this.imgUrl = res1.data.imgPath;
-        console.log(this.imgUrl);
-        // 打aip上傳
-        const photoData = {
-          userSeriel: this.$store.getters.userSeriel,
-          photoIndex: this.photoIndex,
-          postImgPath: this.imgUrl
-        };
-        setPhoto(photoData).then(res2 => console.log(res2));
-      });
+      setImg(formData)
+        .then(res1 => {
+          if (!res1.data.result) {
+            return;
+          }
+          // 將圖片路徑記下來
+          this.imgUrl = res1.data.imgPath;
+          console.log(this.imgUrl);
+          // 打aip上傳
+          const photoData = {
+            userSeriel: this.$store.getters.userSeriel,
+            photoIndex: this.photoIndex,
+            postImgPath: this.imgUrl
+          };
+          setPhoto(photoData).then(res2 => console.log(res2));
+        })
+        .catch(error => console.log(error));
     },
     // 清除照片
     reset() {
       this.imgUrl = null;
-      deletePhoto(this.photoIndex, this.$store.getters.userSeriel).then(res3 =>
-        console.log(res3.data)
-      );
+      deletePhoto(this.photoIndex, this.$store.getters.userSeriel)
+        .then(res3 => console.log(res3.data))
+        .catch(error => console.log(error));
     }
   }
 };

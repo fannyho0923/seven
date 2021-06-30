@@ -84,14 +84,16 @@ export default {
       // 利用 append 的方式將我們的圖片塞入
       formData.append("file", uploadedFile);
       // 打api：上傳圖片取得imgPath
-      setImg(formData).then(res4 => {
-        if (!res4.data.result) {
-          return;
-        }
+      setImg(formData)
+        .then(res4 => {
+          if (!res4.data.result) {
+            return;
+          }
 
-        // 將圖片路徑記下來
-        this.imgUrl = res4.data.imgPath;
-      });
+          // 將圖片路徑記下來
+          this.imgUrl = res4.data.imgPath;
+        })
+        .catch(error => console.log(error));
     },
     post() {
       if (!this.content) {
@@ -106,15 +108,17 @@ export default {
         postText: this.content
       };
       // 發文
-      addPrivateArticle(articleData).then(res1 => {
-        if (res1.data.result) {
-          console.log(this.imgUrl);
-          const NewData = res1.data.postInfo;
-          this.$emit("post", NewData);
-          this.content = "";
-          this.preview = "";
-        }
-      });
+      addPrivateArticle(articleData)
+        .then(res1 => {
+          if (res1.data.result) {
+            console.log(this.imgUrl);
+            const NewData = res1.data.postInfo;
+            this.$emit("post", NewData);
+            this.content = "";
+            this.preview = "";
+          }
+        })
+        .catch(error => console.log(error));
     }
   }
 };

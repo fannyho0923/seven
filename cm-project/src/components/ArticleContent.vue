@@ -113,21 +113,23 @@ export default {
   },
   created() {
     // 查看留言
-    getComment(this.arr.postSeriel, this.$store.getters.userSeriel).then(
-      res1 => {
+    getComment(this.arr.postSeriel, this.$store.getters.userSeriel)
+      .then(res1 => {
         // console.log(res1);
         this.commentArr = res1.data.commentInfos;
-      }
-    );
+      })
+      .catch(error => console.log(error));
     this.roomId = this.$route.query.id;
     if (this.roomId < 1 || this.roomId > 7) {
       this.$router.push({ path: "/publicArea" });
     }
     // 取得房間資訊
-    getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
-      // console.log(res1.data.isOwner);
-      this.isOwner = res1.data.isOwner;
-    });
+    getRoomInfo(this.roomId, this.$store.getters.userSeriel)
+      .then(res1 => {
+        // console.log(res1.data.isOwner);
+        this.isOwner = res1.data.isOwner;
+      })
+      .catch(error => console.log(error));
   },
   methods: {
     // 關閉彈窗
@@ -145,17 +147,19 @@ export default {
         commentTxt: this.str
       };
       // console.log(commentData);
-      addComment(commentData).then(res2 => {
-        if (res2.data.result) {
-          // 查看留言
-          getComment(this.arr.postSeriel, this.$store.getters.userSeriel).then(
-            res1 => {
-              // console.log(res1);
-              this.commentArr = res1.data.commentInfos;
-            }
-          );
-        }
-      });
+      addComment(commentData)
+        .then(res2 => {
+          if (res2.data.result) {
+            // 查看留言
+            getComment(this.arr.postSeriel, this.$store.getters.userSeriel)
+              .then(res1 => {
+                // console.log(res1);
+                this.commentArr = res1.data.commentInfos;
+              })
+              .catch(error => console.log(error));
+          }
+        })
+        .catch(error => console.log(error));
       this.str = "";
       this.isUpdate = true;
     },
@@ -165,7 +169,9 @@ export default {
     },
     // 刪除留言
     deleteAComment(commentSeriel, index) {
-      deleteComment(commentSeriel).then(res3 => console.log(res3.data));
+      deleteComment(commentSeriel)
+        .then(res3 => console.log(res3.data))
+        .catch(error => console.log(error));
       this.commentArr.splice(index, 1);
       this.isUpdate = false;
     }
