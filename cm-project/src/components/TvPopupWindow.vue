@@ -78,7 +78,7 @@ export default {
     });
   },
   updated() {
-    if (alreadySend) {
+    if (this.alreadySend) {
       this.$nextTick(function() {
         var div = document.getElementById("data-content");
         div.scrollTop = div.scrollHeight;
@@ -101,15 +101,16 @@ export default {
       if (!this.str) {
         return;
       } else {
+        console.log(this.str);
         var NewArray = new Array();
         var NewArray = this.str.split("v=");
         var ytString = NewArray[1];
         var NewArray2 = new Array();
         var NewArray2 = ytString.split("&");
         ytString = NewArray2[0];
-        // console.log(NewArray2[0]);
+        console.log(NewArray2[0]);
 
-        // // 打api取影片名字
+        // 打api取影片名字
         this.$http
           .get("https://youtube.googleapis.com/youtube/v3/videos", {
             params: {
