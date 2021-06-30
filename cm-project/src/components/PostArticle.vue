@@ -1,6 +1,6 @@
 <template>
   <div id="editor">
-    <main class=" container mx-auto">
+    <main class="  mx-auto">
       <header class="header text-center">Blog</header>
       <div class="base__body text-center">
         <div class="base__tit">
@@ -110,9 +110,7 @@ export default {
 body {
   background-color: antiquewhite;
 }
-.container {
-  background-color: white;
-}
+
 .label {
 }
 .base__body {

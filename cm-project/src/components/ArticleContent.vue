@@ -236,6 +236,7 @@ p {
 }
 /* 右邊文章和留言區 */
 .right__area {
+  position: relative;
   width: 47%;
   height: 100%;
   /* background-color: rgb(226, 43, 165); */
@@ -275,18 +276,18 @@ p {
 
 /* 右邊輸入框標籤 */
 .lab__input {
-  /* position: absolute; */
+  position: absolute;
   /* left: 40%;
   top: 90%; */
   width: 100%;
-  height: 8%;
+  height: 6.5%;
   background-color: steelblue;
 }
 /* 輸入input標籤 */
 .input {
   max-height: 100%;
   width: 90%;
-  height: 100%;
+  height: 83%;
   font-size: 2vw;
   /* background-color: transparent; */
   /* border: transparent; */
@@ -321,8 +322,8 @@ p {
 .trash__btn {
   visibility: visible;
   position: absolute;
-  left: 92%;
-  top: 5%;
+  left: 101%;
+  top: -3%;
   /* background-color: cyan; */
 }
 .trash__btn:hover {

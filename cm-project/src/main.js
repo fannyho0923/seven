@@ -10,9 +10,6 @@ import VueCookies from "vue-cookies";
 // import PortalVue from "portal-vue";
 // import { VueDatePicker } from "@mathieustan/vue-datepicker";
 // import "@mathieustan/vue-datepicker/dist/vue-datepicker.min.css";
-// import { $cookies } from "vue/types/umd";
-
-// import { routes } from "./router"; //路由規則
 // Vue.use(PortalVue);
 // Vue.use(VueDatePicker);
 Vue.use(VueAxios, axios);

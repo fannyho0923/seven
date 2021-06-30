@@ -169,7 +169,7 @@ img {
 }
 .nav {
   position: relative;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: flex-end;
   margin-top: 0.5rem;
@@ -177,13 +177,9 @@ img {
 .ul {
   display: flex;
   justify-content: space-around;
-  /* background-color: lightslategray; */
   list-style: none;
   width: 20vw;
   margin: 0;
-  padding: 0;
-  /* position: relative; */
-  right: 0;
 }
 .li {
   font-size: 2vw;

@@ -1,5 +1,5 @@
 <template>
-  <main class="container mx-auto ">
+  <main class=" mx-auto ">
     <div class="row  mx-auto">
       <div class="imgBox">
         <img

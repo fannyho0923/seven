@@ -1,5 +1,5 @@
 <template>
-  <main class="main mx-auto">
+  <div class="main mx-auto">
     <!-- <header><h1 class="text-center">Chat</h1></header> -->
     <div class="row mx-auto">
       <!-- 背景照片容器 -->
@@ -83,7 +83,7 @@
         />
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -274,12 +274,13 @@ export default {
 }
 /* 電腦螢幕背景 */
 .screen {
-  position: relative;
+  position: absolute;
   width: 87.6%;
   height: 62%;
   background-color: powderblue;
+  background-position: center;
   left: 3.6%;
-  top: -95.2%;
+  top: 4.8%;
   border-radius: 3px;
   display: flex;
 }
