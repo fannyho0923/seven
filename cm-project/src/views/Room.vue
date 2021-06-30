@@ -661,7 +661,7 @@ export default {
 .photoImgThree {
   width: 100%;
   height: 100%;
-  transform: rotate(-15deg);
+  transform: rotate(1deg);
 }
 /* 床 */
 .bedImgBox {
@@ -676,9 +676,6 @@ export default {
 }
 .bedImg {
   width: 100%;
-  /* vertical-align: bottom; */
-  /* max-height: 100%;
-  background-color: cadetblue; */
 }
 /* 裝飾 */
 .decoImgBox {
