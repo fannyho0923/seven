@@ -441,7 +441,11 @@ export default {
   methods: {
     // 打開衣櫃
     openWardrobe() {
-      this.showWardrobe = true;
+      if (this.isOwner) {
+        this.showWardrobe = true;
+      } else {
+        return;
+      }
     },
     // 關閉衣櫃
     closeWardrobe() {
@@ -505,6 +509,13 @@ export default {
         this.photo2 = res1.data.photo2;
         this.photo3 = res1.data.photo3;
         this.isEnvelope = res1.data.hasNewMail;
+        this.bedSrc = res1.data.bed;
+        this.diarySrc = res1.data.diary;
+        this.bookcaseSrc = res1.data.bookShelf;
+        this.deskSrc = res1.data.desk;
+        this.closetSrc = res1.data.closet;
+        this.colorType = res1.data.colorType;
+        this.decoSrc = res1.data.deco;
       });
     },
     updateData() {
