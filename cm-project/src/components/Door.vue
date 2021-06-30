@@ -129,19 +129,25 @@ export default {
   position: relative;
   z-index: 2;
   width: 100%;
+  height: 20%;
   vertical-align: bottom;
+  object-fit: contain;
+  /* background-color: cornflowerblue; */
 }
 /* 名片字 */
 .nameLab {
+  text-align: center;
   z-index: 3;
-  max-width: 70%;
+  /* max-width: 70%; */
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   position: absolute;
-  /* left: 19.5%; */
+  /* left: 33%; */
   top: 46%;
   font-size: 1.2vw;
   overflow: hidden;
+  /* background-color: cyan; */
 }
 /* 門的位置 */
 .door1 {
