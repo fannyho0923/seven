@@ -47,7 +47,12 @@
               placeholder="關於我..."
               @click="writeDoc"
             ></textarea>
-            <p v-else class="textArea">{{ introduction }}</p>
+            <textarea
+              v-else
+              class="textArea"
+              v-model="introduction"
+              readOnly
+            ></textarea>
             <!-- 自我介紹編輯確認按鈕 -->
             <div v-if="isEditDoc && isOwner" class="circleCheckBox">
               <div class="pointer circleCheck" @click="writeDone">
