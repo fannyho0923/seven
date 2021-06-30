@@ -123,6 +123,7 @@ export default {
           break;
         // no default
       }
+      this.$emit("choose");
     },
     // 打更換牆壁api
     useWall() {

@@ -26,7 +26,11 @@
           <!-- 右邊標題 -->
           <header class="rightTit">{{ switchItem }}</header>
           <div v-if="arr.length">
-            <Furniture :furnitures="arr" :furnitureItem="switchItem" />
+            <Furniture
+              :furnitures="arr"
+              :furnitureItem="switchItem"
+              @choose="choosed"
+            />
           </div>
         </aside>
         <!-- 關閉視窗按鈕 -->
@@ -106,7 +110,7 @@ export default {
         },
         {
           itemIndex: 6,
-          src: "../../static/imgs/room/closetColor/closet_6.jpeg"
+          src: "../../static/imgs/room/closetColor/closet_6.png"
         },
         {
           itemIndex: 7,
@@ -209,10 +213,6 @@ export default {
         {
           itemIndex: 8,
           src: "../../static/imgs/room/deskColor/desk_8.png"
-        },
-        {
-          itemIndex: 9,
-          src: "../../static/imgs/room/deskColor/desk_9.png"
         }
       ],
       bookcaseArr: [
@@ -333,6 +333,10 @@ export default {
           break;
         // no default
       }
+    },
+    // 已選擇使用
+    choosed() {
+      this.$emit("choose");
     },
     //關閉視窗按鈕
     leave() {

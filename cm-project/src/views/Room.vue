@@ -64,7 +64,12 @@
           />
         </div>
         <!-- 衣櫃彈窗 -->
-        <Wardrobe class="wardrobe" v-if="showWardrobe" @leave="closeWardrobe" />
+        <Wardrobe
+          class="wardrobe"
+          v-if="showWardrobe"
+          @leave="closeWardrobe"
+          @choose="updateData"
+        />
         <div v-if="bedSrc" class="bedImgBox">
           <img
             class="bedImg img-resp"
@@ -324,10 +329,6 @@ export default {
         {
           itemIndex: 8,
           src: "../../static/imgs/room/deskColor/desk_8.png"
-        },
-        {
-          itemIndex: 9,
-          src: "../../static/imgs/room/deskColor/desk_9.png"
         }
       ],
       closetArr: [
@@ -353,7 +354,7 @@ export default {
         },
         {
           itemIndex: 6,
-          src: "../../static/imgs/room/closetColor/closet_6.jpeg"
+          src: "../../static/imgs/room/closetColor/closet_6.png"
         },
         {
           itemIndex: 7,
@@ -505,6 +506,25 @@ export default {
         this.photo3 = res1.data.photo3;
         this.isEnvelope = res1.data.hasNewMail;
       });
+    },
+    updateData() {
+      this.roomId = this.$route.query.id;
+      // 取得房間資訊
+      getRoomInfo(this.roomId, this.$store.getters.userSeriel).then(res1 => {
+        this.isOwner = res1.data.isOwner;
+        console.log(res1.data.isOwner);
+        this.photo1 = res1.data.photo1;
+        this.photo2 = res1.data.photo2;
+        this.photo3 = res1.data.photo3;
+        this.isEnvelope = res1.data.hasNewMail;
+        this.bedSrc = res1.data.bed;
+        this.diarySrc = res1.data.diary;
+        this.bookcaseSrc = res1.data.bookShelf;
+        this.deskSrc = res1.data.desk;
+        this.closetSrc = res1.data.closet;
+        this.colorType = res1.data.colorType;
+        this.decoSrc = res1.data.deco;
+      });
     }
   }
 };
@@ -538,11 +558,20 @@ export default {
   position: absolute;
   max-width: 18%;
   width: 18%;
+  height: 47.5%;
   left: 24%;
   top: 28%;
+  display: flex;
+  /* background-color: blue; */
 }
 .wardrobeImg {
-  width: 100%;
+  vertical-align: bottom;
+  /* display: inline-block; */
+  /* flex-direction: column-reverse; */
+  /* width: 100%; */
+  /* height: 100%; */
+  /* object-fit: contain; */
+  /* background-color: rgb(111, 111, 235); */
 }
 .wardrobeImg:hover {
   opacity: 0.5;
@@ -551,12 +580,16 @@ export default {
 .bookcaseImgBox {
   position: absolute;
   max-width: 10%;
-  width: 10%;
+  width: 11%;
+  height: 31.5%;
   left: 45.5%;
   top: 44%;
+  display: flex;
+  /* background-color: cornflowerblue; */
 }
 .bookcaseImg {
-  width: 100%;
+  /* width: 100%; */
+  vertical-align: bottom;
 }
 .bookcaseImg:hover {
   opacity: 0.5;
@@ -566,8 +599,10 @@ export default {
   position: absolute;
   max-width: 10%;
   width: 10%;
-  left: 44%;
-  top: 81%;
+  height: 17%;
+  left: 50%;
+  top: 79%;
+  display: flex;
 }
 .diaryImg {
   width: 100%;
@@ -580,8 +615,11 @@ export default {
   position: absolute;
   max-width: 20%;
   width: 20%;
+  height: 41%;
   left: 58.5%;
-  top: 36%;
+  top: 42%;
+  display: flex;
+  /* background-color: rgb(31, 91, 202); */
 }
 .computerDeskImg {
   width: 100%;
@@ -652,10 +690,11 @@ export default {
 .photoThree {
   position: absolute;
   transform: rotate(-15deg);
+  transform: rotate(-15deg);
   left: 69.5%;
   top: 33%;
   width: 20.2%;
-  height: 50%;
+  height: 50.5%;
   background-color: gray;
 }
 .photoImgThree {
@@ -666,12 +705,11 @@ export default {
 /* 床 */
 .bedImgBox {
   position: absolute;
-  left: 10%;
-  top: 68%;
-  /* max-width: 20%; */
+  left: 12%;
+  top: 70%;
   width: 22%;
   height: 27%;
-  object-fit: contain;
+  display: flex;
   /* background-color: burlywood; */
 }
 .bedImg {
