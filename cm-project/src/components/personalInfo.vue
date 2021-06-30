@@ -17,7 +17,7 @@
           <div class="nameTag">
             <p v-if="!isEditName" class="name mx-auto">{{ userName }}</p>
             <input
-              v-if="isEditName"
+              v-if="isEditName && isOwner"
               class="nameEdit mx-auto"
               type="text"
               v-model="str"
@@ -25,11 +25,11 @@
               @keyup.enter="checkName"
             />
             <i
-              v-if="!isEditName"
+              v-if="!isEditName && isOwner"
               class="pointer edit fas fa-edit"
               @click="editName"
             ></i>
-            <div v-if="isEditName" class="editBox">
+            <div v-if="isEditName && isOwner" class="editBox">
               <i class="pointer check fas fa-check" @click="checkName"></i>
               <i class="pointer unCheck fas fa-times" @click="unCheckName"></i>
             </div>
@@ -41,19 +41,21 @@
             <label class="info__title">自我介紹</label>
             <!-- 自我介紹表 -->
             <textarea
+              v-if="isOwner"
               class="textArea"
               v-model="introduction"
               placeholder="關於我..."
               @click="writeDoc"
             ></textarea>
+            <p v-else class="textArea">{{ introduction }}</p>
             <!-- 自我介紹編輯確認按鈕 -->
-            <div v-if="isEditDoc" class="circleCheckBox">
+            <div v-if="isEditDoc && isOwner" class="circleCheckBox">
               <div class="pointer circleCheck" @click="writeDone">
                 送出<i class="fas fa-check-circle"></i>
               </div>
             </div>
             <!-- 修改密碼以及登出容器 -->
-            <div class="toolBox">
+            <div v-if="isOwner" class="toolBox">
               <!-- 修改密碼輸入欄 -->
               <div class="passBox">
                 修改密碼
@@ -79,7 +81,7 @@
                 </div>
               </div>
               <!-- 登出按鈕 -->
-              <div class="pointer logoutBox" @click="logout">
+              <div v-if="isOwner" class="pointer logoutBox" @click="logout">
                 登出<i class="fas fa-running"></i>
               </div>
             </div>
@@ -118,6 +120,7 @@
 // };
 import { getUserInfo, setNickName, setPw, setAbout } from "@/js/all";
 export default {
+  props: { user: { type: String }, isOwner: { type: Boolean } },
   data() {
     return {
       roleId: 0,
@@ -133,7 +136,7 @@ export default {
   },
   created() {
     // 取得玩家資料;
-    getUserInfo(this.$store.getters.userSeriel).then(res1 => {
+    getUserInfo(this.user).then(res1 => {
       console.log(res1.data);
       this.roleId = res1.data.roleId;
       this.doorIndex = res1.data.doorIndex;

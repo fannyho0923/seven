@@ -13,6 +13,7 @@
             :key="index"
             :doors="item"
             :homeOwner="members[index] ? members[index] : {}"
+            @lookInfo="watchInfo"
           />
           <!-- 留言冰箱 -->
           <Refrigerator />
@@ -54,6 +55,9 @@
               height="193"
             />
           </div>
+          <div v-if="showInfo" class="personalInfoBox">
+            <PersonalInfo @leave="closeInfo" :user="userID" :isOwner="false" />
+          </div>
         </div>
       </div>
     </div>
@@ -66,9 +70,12 @@ import Door from "../components/Door.vue";
 import IconList from "../components/IconList.vue";
 import Television from "../components/Television.vue";
 import Refrigerator from "../views/Refrigerator.vue";
+import PersonalInfo from "@/components/PersonalInfo.vue";
 export default {
   data() {
     return {
+      userID: "",
+      showInfo: false,
       members: {},
       // 門的名子照片與頭像
       doors: [
@@ -121,7 +128,8 @@ export default {
     IconList,
     Door,
     Refrigerator,
-    Television
+    Television,
+    PersonalInfo
   },
   created() {
     if (this.$store.getters.getNewInfo) {
@@ -139,6 +147,17 @@ export default {
         this.members = res2.data.members;
       })
       .catch(error => console.log(error));
+  },
+  methods: {
+    // 查看玩家資訊
+    watchInfo(data) {
+      this.userID = data.toString();
+      this.showInfo = true;
+    },
+    // 關閉玩家資訊
+    closeInfo() {
+      this.showInfo = false;
+    }
   }
 };
 </script>
@@ -211,5 +230,9 @@ export default {
   max-width: 100%;
   height: auto;
   max-height: 100%;
+}
+.personalInfoBox {
+  position: absolute;
+  z-index: 7;
 }
 </style>

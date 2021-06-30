@@ -22,15 +22,22 @@
       />
     </div>
     <!-- 名牌 -->
-    <div v-if="homeOwner.memberRole" class="nameTagBox">
+    <div
+      v-if="homeOwner.memberRole"
+      class="pointer nameTagBox"
+      @click.self="lookInfo"
+    >
       <img
         class="pointer nameTagImg"
         src="../../static/imgs/publicRoom/nameTag.png"
         alt="nameTag"
         width="100"
         height="72"
+        @click.self="lookInfo"
       />
-      <label class="nameLab">{{ homeOwner.memberName }}</label>
+      <label class="pointer nameLab" @click.self="lookInfo">{{
+        homeOwner.memberName
+      }}</label>
     </div>
   </div>
 </template>
@@ -69,6 +76,10 @@ export default {
         this.$store.commit("Enter", this.homeOwner.memberDoorIndex);
         this.$router.push({ name: "Room", query: { id } });
       }
+    },
+    // 查看他人資訊
+    lookInfo() {
+      this.$emit("lookInfo", this.homeOwner.memberSeriel);
     }
   }
 };
@@ -105,6 +116,7 @@ export default {
   position: relative;
   z-index: 5;
   max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   object-position: top;
 }

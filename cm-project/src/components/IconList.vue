@@ -38,6 +38,8 @@
       v-if="showUserInfo"
       class="personalInfo"
       @leave="closeUserInfo"
+      :user="userID"
+      :isOwner="true"
     />
   </nav>
 </template>
@@ -54,6 +56,7 @@ import PersonalInfo from "@/components/PersonalInfo.vue";
 export default {
   data() {
     return {
+      userID: this.$store.getters.userSeriel,
       showInfo: false,
       showUserInfo: false,
       navs: [
