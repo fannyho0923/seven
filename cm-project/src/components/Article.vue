@@ -47,11 +47,10 @@ export default {
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  /* border: solid 1px black; */
   box-shadow: 0 0 5px #ff8396;
   width: 30%;
   min-width: 300px;
-  margin-bottom: 20rem;
+  margin-bottom: 2rem;
   padding: 0.5rem;
   margin-top: 3rem;
   background-color: #f4acb7;

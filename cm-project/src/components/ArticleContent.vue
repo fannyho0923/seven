@@ -11,6 +11,16 @@
             width="200"
             height="200"
           />
+          <!-- 垃圾桶 -->
+          <div v-if="isOwner" class="trash__btn" @click="deleteArticle">
+            <img
+              class="pointer trashImg"
+              src="../../static/imgs/memoImg/mini_trash.png"
+              alt="mini_trash"
+              width="20"
+              height="20"
+            />
+          </div>
         </aside>
         <!-- 右邊文章以及留言 -->
         <aside class="right__area">
@@ -31,16 +41,6 @@
                   width="200"
                   height="200"
                 />
-                <!-- 垃圾桶 -->
-                <div v-if="isOwner" class="trash__btn" @click="deleteArticle">
-                  <img
-                    class="pointer"
-                    src="../../static/imgs/memoImg/mini_trash.png"
-                    alt="mini_trash"
-                    width="20"
-                    height="20"
-                  />
-                </div>
               </aside>
               <!-- 發文者名字與發文時間 -->
               <aside class="master__info">
@@ -71,10 +71,20 @@
               v-model="str"
               @keyup.enter="send"
             />
+            <i class="plane pointer far fa-paper-plane" @click="send"></i>
           </label>
         </aside>
         <!-- 關閉視窗按鈕 -->
-        <div class="pointer leave__btn" @click="leave">Ｘ</div>
+        <div class="pointer leave__btn" @click="leave">
+          <img
+            class="closeIcon"
+            src="../../static/imgs/closeIcon.png"
+            alt="closeIcon"
+            width="252"
+            height="252"
+            @click="leave"
+          />
+        </div>
       </div>
     </div>
   </main>
@@ -190,21 +200,31 @@ p {
   width: 100vw;
   /* background-color: rgba(95, 158, 160, 0.488); */
 }
+
 /* 離開按鈕 */
 .leave__btn {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 3px black;
-  max-width: 5rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 4rem;
+  width: 5vw;
+  height: 5vw;
+  min-width: 50px;
+  min-height: 50px;
   left: 103%;
   top: 0;
-  background-color: rgb(43, 189, 226);
+  /* background-color: rgb(43, 189, 226); */
 }
+
+/* 離開按鈕照片 */
+.closeIcon {
+  width: 100%;
+  height: auto;
+}
+.closeIcon:hover {
+  opacity: 0.5;
+}
+
 /* 預覽留言框 */
 .base__body {
   position: relative;
@@ -230,8 +250,8 @@ p {
 }
 /* 照片 */
 .img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 90%;
+  min-width: 70%;
 }
 /* 右邊文章和留言區 */
 .right__area {
@@ -275,6 +295,7 @@ p {
 
 /* 右邊輸入框標籤 */
 .lab__input {
+  display: flex;
   position: absolute;
   /* left: 40%;
   top: 90%; */
@@ -288,6 +309,7 @@ p {
   width: 90%;
   height: 83%;
   font-size: 2vw;
+  margin-right: 0.4rem;
   /* background-color: transparent; */
   /* border: transparent; */
 }
@@ -322,11 +344,23 @@ p {
 .trash__btn {
   visibility: visible;
   position: absolute;
-  left: 101%;
-  top: -3%;
+  left: 5%;
+  top: 3%;
+  transform: rotate(-25deg);
   /* background-color: cyan; */
 }
 .trash__btn:hover {
+  opacity: 0.5;
+}
+.trashImg {
+  width: 50px;
+  height: 50px;
+}
+/* 飛機按鍵 */
+.plane {
+  font-size: 2rem;
+}
+.plane:hover {
   opacity: 0.5;
 }
 </style>

@@ -11,8 +11,8 @@
           ></textarea>
         </div>
         <!-- 照片框 -->
-        <div class="imgBox">
-          <label v-if="!preview" class="pointer label__btnBox"
+        <div class="imgBox ">
+          <label v-if="!preview" class="mx-auto pointer label__btnBox"
             ><input
               type="file"
               accept="image/*"
@@ -157,7 +157,8 @@ export default {
 .imgBox {
   width: 50%;
   height: 60%;
-  background-color: rgb(212, 237, 100);
+  transform: translate(0.5%, 0.5%);
+  background-color: pink;
 }
 /* 文字輸入匡 */
 .textArea {
@@ -216,6 +217,7 @@ export default {
   background-color: pink;
   width: 100%;
   height: 100%;
+  vertical-align: bottom;
   color: rgb(77, 73, 73);
 }
 /* 整個編輯器以及發布按鈕 */
