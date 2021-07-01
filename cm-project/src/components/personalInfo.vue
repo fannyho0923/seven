@@ -243,7 +243,6 @@ export default {
 /* 遮罩 */
 .infoBg {
   position: absolute;
-  left: 0;
   width: 100vw;
   height: 50vw;
   background-color: rgba(0, 0, 0, 0.466);

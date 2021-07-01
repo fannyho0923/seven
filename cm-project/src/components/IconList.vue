@@ -151,33 +151,17 @@ export default {
 </script>
 
 <style scoped>
-/* .icon__box {
-  list-style: none;
-}
-.ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-}
-.base__left,
-.base__right {
-  display: flex;
-} */
-
 .nav {
   position: relative;
   width: 100vw;
   display: flex;
   justify-content: flex-end;
-  margin-top: 1rem;
 }
 .ul {
   display: flex;
   justify-content: space-around;
   list-style: none;
   width: 20vw;
-  margin: 0;
 }
 .li {
   font-size: 2vw;

@@ -4,6 +4,7 @@
     <div class="typeBox mx-auto">
       <div class="left__btn" @click="isPre = true">
         <img
+          v-if="furnitures.length"
           class="leftBtn__img pointer"
           src="../../static/imgs/room/leftBtn.png"
           alt="左邊按鈕"
@@ -21,6 +22,7 @@
       </div>
       <div class="right__btn" @click="isNext = true">
         <img
+          v-if="furnitures.length"
           class="rightBtn__img pointer"
           src="../../static/imgs/room/rightBtn.png"
           alt="右邊按鈕"
