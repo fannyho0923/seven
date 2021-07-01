@@ -62,6 +62,18 @@
       />
       <br />
       <br />
+      <label v-if="!member">確認密碼</label>
+      <input
+        v-if="!member"
+        type="password"
+        v-model="password2"
+        placeholder="限 6-20 字"
+        minlength="6"
+        maxlength="20"
+        required
+      />
+      <br v-if="!member" />
+      <br v-if="!member" />
       <!-- 是會員按鈕會顯示:登入 -->
       <button v-if="member" type="submit" @click.prevent="atClickLogIn">
         Log in
@@ -84,6 +96,7 @@ export default {
     return {
       userName: "",
       password: "",
+      password2: "",
       nickName: ""
     };
   },
@@ -95,6 +108,10 @@ export default {
     },
     //註冊
     atClickRegiste() {
+      if (this.password !== this.password2) {
+        alert("密碼錯誤");
+        return;
+      }
       this.$emit("sentRegiste", this.nickName, this.userName, this.password);
     },
     //關閉彈跳視窗

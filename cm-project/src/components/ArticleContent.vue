@@ -22,7 +22,11 @@
               <aside class="posterAvatarBox">
                 <img
                   class="posterImg img-resp "
-                  :src="posterName"
+                  :src="
+                    'http://35.201.237.18/img/avatar_' +
+                      arr.posterRoleId +
+                      '.png'
+                  "
                   alt="memberPic"
                   width="200"
                   height="200"
@@ -92,7 +96,7 @@ export default {
       isUpdate: false,
       isOwner: false,
       roomId: 0,
-      posterName: this.$store.getters.userSeriel
+      roleID: ""
     };
   },
   components: {
@@ -302,6 +306,7 @@ p {
   min-height: 40px;
   margin: 0.5rem;
   background-color: rgb(241, 127, 127);
+  border-radius: 50%;
 }
 /* 發文者名字 */
 .poster__name {

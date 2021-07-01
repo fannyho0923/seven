@@ -37,57 +37,73 @@
         </aside>
         <!-- 右邊自我介紹,修改密碼,登出 -->
         <aside class="rightBox">
-          <div class="info">
-            <label class="info__title">自我介紹</label>
-            <!-- 自我介紹表 -->
-            <textarea
-              v-if="isOwner"
-              class="textArea"
-              v-model="introduction"
-              placeholder="關於我..."
-              @click="writeDoc"
-            ></textarea>
-            <textarea
-              v-else
-              class="textArea"
-              v-model="introduction"
-              readOnly
-            ></textarea>
-            <!-- 自我介紹編輯確認按鈕 -->
-            <div v-if="isEditDoc && isOwner" class="circleCheckBox">
-              <div class="pointer circleCheck" @click="writeDone">
-                送出<i class="fas fa-check-circle"></i>
+          <label class="info__title">自我介紹</label>
+          <!-- 自我介紹表 -->
+          <textarea
+            v-if="isOwner"
+            class="textArea"
+            v-model="introduction"
+            placeholder="關於我..."
+            @click="writeDoc"
+          ></textarea>
+          <textarea
+            v-else
+            class="textArea"
+            v-model="introduction"
+            readOnly
+          ></textarea>
+          <!-- 自我介紹編輯確認按鈕 -->
+          <div v-if="isEditDoc && isOwner" class="circleCheckBox">
+            <div class="pointer circleCheck" @click="writeDone">
+              送出<i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+          <!-- 修改密碼以及登出容器 -->
+          <div v-if="isOwner" class="toolBox">
+            <!-- 修改密碼輸入欄 -->
+            <div class="passBox">
+              修改密碼
+              <input
+                class="passEdit1 mx-auto"
+                type="password"
+                v-model="password1"
+                placeholder="新密碼"
+                @click="editPassword"
+              />
+            </div>
+            <!-- 確認密碼輸入欄 -->
+            <div class="passBox">
+              確認密碼
+              <input
+                class="passEdit2 mx-auto"
+                type="password"
+                v-model="password2"
+                placeholder="確認新密碼"
+                @click="editPassword"
+              />
+              <!-- 修改密碼按鈕 -->
+              <div class="editPassBox">
+                <!-- 修改密碼確認按鈕 -->
+                <i
+                  class="pointer check fas fa-check"
+                  @click="checkNewPassword"
+                ></i>
+                <!-- 修改密碼取消按鈕 -->
+                <i
+                  class="pointer unCheck fas fa-times"
+                  @click="unCheckPassword"
+                ></i>
               </div>
             </div>
-            <!-- 修改密碼以及登出容器 -->
-            <div v-if="isOwner" class="toolBox">
-              <!-- 修改密碼輸入欄 -->
-              <div class="passBox">
-                修改密碼
-                <input
-                  class="passEdit mx-auto"
-                  type="text"
-                  v-model="password"
-                  placeholder="新密碼"
-                  @click="editPassword"
-                />
-                <!-- 修改密碼按鈕 -->
-                <div v-if="isEditPassword" class="editPassBox">
-                  <!-- 修改密碼確認按鈕 -->
-                  <i
-                    class="pointer check fas fa-check"
-                    @click="checkNewPassword"
-                  ></i>
-                  <!-- 修改密碼取消按鈕 -->
-                  <i
-                    class="pointer unCheck fas fa-times"
-                    @click="unCheckPassword"
-                  ></i>
-                </div>
-              </div>
+            <!-- 按鈕們 -->
+            <div class="btns">
               <!-- 登出按鈕 -->
               <div v-if="isOwner" class="pointer logoutBox" @click="logout">
                 登出<i class="fas fa-running"></i>
+              </div>
+              <!-- 搬家按鈕 -->
+              <div v-if="isOwner" class="pointer moveBox">
+                搬家<i class="fas fa-running"></i>
               </div>
             </div>
           </div>
@@ -110,7 +126,7 @@
 <script>
 import { getUserInfo, setNickName, setPw, setAbout } from "@/js/all";
 export default {
-  props: { user: { type: Number }, isOwner: { type: Boolean } },
+  props: { user: { type: String }, isOwner: { type: Boolean } },
   data() {
     return {
       roleId: 0,
@@ -121,7 +137,8 @@ export default {
       isEditPassword: false,
       isEditDoc: false,
       str: "",
-      password: ""
+      password1: "",
+      password2: ""
     };
   },
   created() {
@@ -172,6 +189,8 @@ export default {
     },
     // 取消編輯密碼
     unCheckPassword() {
+      this.password1 = "";
+      this.password2 = "";
       this.isEditPassword = false;
     },
     // 編輯自我介紹
@@ -199,6 +218,12 @@ export default {
     },
     // 送出新密碼
     checkNewPassword() {
+      if (this.password1 !== this.password2) {
+        alert("密碼有誤");
+        this.password1 = "";
+        this.password2 = "";
+        return;
+      }
       const passwordData = {
         userSeriel: this.$store.getters.userSeriel,
         userPw: this.password
@@ -256,9 +281,10 @@ export default {
 /* 右邊頭貼跟姓名 */
 .rightBox {
   width: 47%;
-  min-width: 177px;
+  min-width: 182px;
   background-color: tomato;
   border-radius: 15px;
+  padding: 0.5rem;
 
   /* height: 14.8vw; */
 }
@@ -282,8 +308,9 @@ export default {
 }
 .nameTag {
   display: flex;
+  justify-content: center;
   min-width: 150px;
-  width: 100%;
+  max-width: 1000%;
   height: 3.5em;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -293,6 +320,8 @@ export default {
 .name {
   /* width: 10vw; */
   /* background-color: blueviolet; */
+  display: flex;
+  align-items: center;
   margin: 0;
   font-size: 2em;
 }
@@ -301,7 +330,14 @@ export default {
   margin: 0;
   font-size: 2em;
 }
-.passEdit {
+.passEdit1 {
+  width: 60%;
+  margin-left: 7px;
+  font-size: 1em;
+  background-color: rgba(169, 169, 169, 0.315);
+  border-color: transparent;
+}
+.passEdit2 {
   width: 60%;
   margin: 0;
   font-size: 1em;
@@ -408,10 +444,19 @@ export default {
 }
 /* 修改密碼容器 */
 .passBox {
+  min-width: 192px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  font-size: 1vw;
+  margin-bottom: 0.2rem;
 }
+/* 登出和搬家按鈕 */
+.btns {
+  /* background-color: coral; */
+  margin-top: 0.5rem;
+}
+/* 登出按鈕 */
 .logoutBox {
   display: inline-block;
   border: solid 0.6px;
@@ -420,6 +465,18 @@ export default {
   font-size: 0.8em;
 }
 .logoutBox:hover {
+  opacity: 0.5;
+}
+/* 搬家按鈕 */
+.moveBox {
+  margin-left: 1rem;
+  display: inline-block;
+  border: solid 0.6px;
+  border-radius: 15px;
+  padding: 0.2rem;
+  font-size: 0.8em;
+}
+.moveBox:hover {
   opacity: 0.5;
 }
 </style>

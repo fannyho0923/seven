@@ -127,7 +127,6 @@ export default {
               const addVedioData = {
                 userSeriel: this.$store.getters.userSeriel,
                 boardType: 2,
-                memberDoorIndex: -1,
                 postYT: ytString,
                 postTitle: res4.data.items[0].snippet.title
               };

@@ -24,11 +24,11 @@ export const setImg = file => {
 //查看看板
 // boardType: 1- 公共留言 V-v
 export const getPublicArticle = userSeriel => {
-  return req("get", `/Board/${userSeriel}/1/`, -1);
+  return req("get", `/Board/${userSeriel}/1/`);
 };
 // boardType: 2- 公共影音 V-v
 export const getVedio = userSeriel => {
-  return req("get", `/Board/${userSeriel}/2/`, -1);
+  return req("get", `/Board/${userSeriel}/2/`);
 };
 // boardType: 3-私人看板 V-v
 export const getPrivateArticle = (userSeriel, doorIndex) => {

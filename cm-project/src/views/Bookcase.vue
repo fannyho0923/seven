@@ -134,7 +134,7 @@ export default {
     // 文章新增
     alreadyPost(data) {
       // console.log(data);
-      this.articleArr.push(data);
+      this.articleArr.unshift(data);
       this.closeWriteBox();
     },
     // 刪除文章

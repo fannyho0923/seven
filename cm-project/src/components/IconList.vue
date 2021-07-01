@@ -170,7 +170,7 @@ export default {
   width: 100vw;
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 .ul {
   display: flex;

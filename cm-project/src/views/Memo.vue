@@ -10,7 +10,7 @@
           height="600"
         />
         <!-- 便條顯示區塊 -->
-        <div class="commentBox mx-auto">
+        <div class="commentBox mx-auto" v-if="commentArr.length">
           <!-- 便條 -->
           <Comment
             v-for="(item, index) in commentArr"
@@ -75,8 +75,7 @@ export default {
     return {
       isShow: false,
       isChosed: false,
-      memoId: 0,
-      commentImgSrc: "",
+      memoId: 1,
       commentArr: [],
       memos: [
         { id: 1, src: "../../static/imgs/memoImg/post-1.png", deg: 3 },
@@ -129,10 +128,12 @@ export default {
     },
     //將使用者輸入的內容儲存到陣列
     copyContent(str, id) {
+      if (!str || !id) {
+        return;
+      }
       const addMemoData = {
         userSeriel: this.$store.getters.userSeriel,
         boardType: 1,
-        memberDoorIndex: -1,
         posterType: id,
         postText: str
       };

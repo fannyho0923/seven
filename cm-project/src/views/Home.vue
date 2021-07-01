@@ -3,7 +3,8 @@ nps
   <main class="container mx-auto">
     <div class="row">
       <div class="home__body">
-        <section class="home__btn">
+        <!-- 右邊文字 -->
+        <section class="home__btn mx-auto">
           <!-- 使用規則,創建帳號,進入房間按鈕 -->
           <header class="home__title"><h1>SEVEN</h1></header>
           <div class="all__btn">
@@ -15,7 +16,7 @@ nps
           </div>
         </section>
         <!-- 左邊圖示 -->
-        <aside class="home__img">
+        <aside class="home__img mx-auto">
           <img
             class="img img-resp"
             src="../../static/imgs/apartmentPic.png"
@@ -244,14 +245,15 @@ export default {
   display: flex;
   left: 0;
   top: 0;
-  margin-left: 23%;
-  margin-top: 17rem;
-  width: 50%;
+  margin-left: 25%;
+  margin-top: 19rem;
+  width: 47%;
   justify-content: center;
   opacity: 0.8;
 }
+/* 彈跳視窗 */
 .login__form {
-  width: 60%;
+  width: 52%;
   z-index: 3;
   background-color: rgb(246, 248, 247);
   display: flex;
@@ -269,18 +271,23 @@ export default {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
+/* 右邊字 */
 .home__btn {
   max-width: 50%;
+  min-width: 330px;
   width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 2rem;
+  /* background-color: cyan; */
 }
+/* 左邊圖容器 */
 .home__img {
   max-width: 50%;
   width: 40%;
+  /* background-color: darkblue; */
 }
 
 .img {
