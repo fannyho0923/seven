@@ -1,33 +1,40 @@
 <template>
   <div>
-    <div class="furnitureBg">
-      <!-- 圖片預覽以及左右按鈕區塊 -->
-      <div class="typeBox mx-auto">
-        <div class="left__btn" @click="isPre = true">
-          <img
-            class="leftBtn__img pointer"
-            src="../../static/imgs/room/leftBtn.png"
-            alt="左邊按鈕"
-            width="224"
-            height="346"
-          />
-        </div>
-        <div class="imgBox mx-auto">
-          <!-- <div v-for="(item, index) in furnitures" :key="index"> -->
-          <img class="furnitureImg " :src="furnitures[count].src" alt="" />
-          <!-- </div> -->
-        </div>
-        <div class="right__btn" @click="isNext = true">
-          <img
-            class="rightBtn__img pointer"
-            src="../../static/imgs/room/rightBtn.png"
-            alt="右邊按鈕"
-            width="224"
-            height="346"
-          />
-        </div>
+    <!-- 圖片預覽以及左右按鈕區塊 -->
+    <div class="typeBox mx-auto">
+      <div class="left__btn" @click="isPre = true">
+        <img
+          class="leftBtn__img pointer"
+          src="../../static/imgs/room/leftBtn.png"
+          alt="左邊按鈕"
+          width="224"
+          height="346"
+        />
       </div>
-      <div class="choose__btn pointer mx-auto" @click="use">套用</div>
+      <div class="imgBox mx-auto">
+        <img
+          v-if="furnitures.length"
+          class="furnitureImg "
+          :src="furnitures[count].src"
+          alt=""
+        />
+      </div>
+      <div class="right__btn" @click="isNext = true">
+        <img
+          class="rightBtn__img pointer"
+          src="../../static/imgs/room/rightBtn.png"
+          alt="右邊按鈕"
+          width="224"
+          height="346"
+        />
+      </div>
+    </div>
+    <div
+      v-if="furnitures.length"
+      class="choose__btn pointer mx-auto"
+      @click="use"
+    >
+      套用
     </div>
   </div>
 </template>
@@ -214,11 +221,6 @@ export default {
 </script>
 
 <style scoped>
-.furnitureBg {
-  /* position: relative; */
-  /* min-width: 200px;
-  min-height: 200px; */
-}
 .furniture__body {
   position: absolute;
   display: flex;
@@ -229,15 +231,8 @@ export default {
 .typeBox {
   display: flex;
   margin-top: 2rem;
-  width: 80%;
-  background-color: darkgray;
-}
-/* 照片 */
-.furnitureImg {
-  width: 23vw;
-  height: 23vw;
-  object-fit: contain;
-  /* opacity: 0; */
+  width: 90%;
+  /* background-color: darkgray; */
 }
 /* 左邊按鈕容器 */
 .left__btn {
@@ -274,9 +269,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 23vw;
-  height: 23vw;
+  min-width: 22vw;
+  min-height: 22vw;
+  width: 22vw;
+  height: 22vw;
   background-color: #efd3d7;
+  border-radius: 15px;
+  margin: 0.5rem;
+  padding: 0.3rem;
+}
+/* 照片 */
+.furnitureImg {
+  width: 22vw;
+  height: 22vw;
+  object-fit: contain;
+  /* opacity: 0; */
 }
 /* 套用按鈕 */
 .choose__btn {
@@ -288,9 +295,9 @@ export default {
   width: 10%;
   min-width: 30px;
   font-size: 1.5vw;
-  border: solid 1px black;
-  border-radius: 10%;
-  background-color: darksalmon;
+  border: solid 2px rgba(0, 0, 0, 0.459);
+  border-radius: 5px;
+  background-color: #fff1e6;
 }
 .choose__btn:hover {
   opacity: 0.5;

@@ -80,39 +80,7 @@ export default {
       isWrite: false,
       isLook: false,
       isOwner: false,
-      articleArr: [],
-      arr: [
-        {
-          src: "../../static/test.jpg",
-          str: "my name is tony",
-          img: "../../static/test.jpg",
-          name: "tony"
-        },
-        {
-          src: "../../static/test.jpg",
-          str: "my name is cody",
-          img: "",
-          name: "cody"
-        },
-        {
-          src: "../../static/test.jpg",
-          str: "my name is cake",
-          img: "../../static/test.jpg",
-          name: "cake"
-        },
-        {
-          src: "../../static/test.jpg",
-          str: "my name is fanny",
-          img: "",
-          name: "fanny"
-        },
-        {
-          src: "../../static/test.jpg",
-          str: "my name is ann",
-          img: "../../static/test.jpg",
-          name: "ann"
-        }
-      ]
+      articleArr: []
     };
   },
   components: {

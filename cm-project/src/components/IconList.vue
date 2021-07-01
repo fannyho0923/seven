@@ -164,9 +164,7 @@ export default {
 .base__right {
   display: flex;
 } */
-img {
-  /* background-color: rgb(248, 175, 18); */
-}
+
 .nav {
   position: relative;
   width: 100vw;

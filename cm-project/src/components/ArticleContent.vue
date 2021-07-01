@@ -22,7 +22,7 @@
               <aside class="posterAvatarBox">
                 <img
                   class="posterImg img-resp "
-                  src="../../static/test.jpg"
+                  :src="posterName"
                   alt="memberPic"
                   width="200"
                   height="200"
@@ -91,13 +91,8 @@ export default {
       commentArr: {},
       isUpdate: false,
       isOwner: false,
-      roomId: 0
-      // arrTest: [
-      //   { src: "../../static/test.jpg", str: "my name is fanny" },
-      //   { src: "../../static/test.jpg", str: "my name is tony" },
-      //   { src: "../../static/test.jpg", str: "my name is cody" },
-      //   { src: "../../static/test.jpg", str: "my name is cake" }
-      // ]
+      roomId: 0,
+      posterName: this.$store.getters.userSeriel
     };
   },
   components: {

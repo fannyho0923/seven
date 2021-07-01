@@ -25,7 +25,7 @@
         <aside class="rightBox">
           <!-- 右邊標題 -->
           <header class="rightTit">{{ switchItem }}</header>
-          <div v-if="arr.length">
+          <div>
             <Furniture
               :furnitures="arr"
               :furnitureItem="switchItem"
@@ -34,7 +34,16 @@
           </div>
         </aside>
         <!-- 關閉視窗按鈕 -->
-        <div class=" pointer leave__btn" @click.self="leave">Ｘ</div>
+        <div class="pointer leave__btn" @click="leave">
+          <img
+            class="closeIcon"
+            src="../../static/imgs/closeIcon.png"
+            alt="closeIcon"
+            width="252"
+            height="252"
+            @click.self="leave"
+          />
+        </div>
       </section>
     </div>
   </div>
@@ -374,6 +383,12 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+* {
+  font-family: "sans-serif", sans-serif;
+  font-weight: 400;
+}
 /* 遮罩 */
 .WardrobeBg {
   position: absolute;
@@ -387,67 +402,79 @@ export default {
 .wardrobe__base {
   display: flex;
   position: relative;
-  margin-top: 7rem;
-  width: 80%;
-  background-color: blue;
+  margin-top: 10rem;
+  width: 55%;
+  /* background-color: blue; */
 }
 /* 關閉彈窗 */
 .leave__btn {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid 3px black;
-  width: 3.5vw;
-  height: 3.5vw;
-  font-size: 3.5vw;
-  left: 101%;
-  top: 0;
+  width: 4vw;
+  height: 4vw;
+  left: 103%;
   /* background-color: rgb(43, 189, 226); */
+}
+/* 離開按鈕照片 */
+.closeIcon {
+  width: 100%;
+  height: auto;
+}
+.closeIcon:hover {
+  opacity: 0.5;
 }
 /* 左邊區塊 */
 .leftBox {
-  width: 45%;
-  height: 100%;
-  background-color: burlywood;
+  width: 38%;
+  min-width: 300px;
+  /* height: 100%; */
+  background-color: #ddbea9;
+  border-radius: 10px 0 0 10px;
 }
 /* 右邊區塊 */
 .rightBox {
-  width: 55%;
-  height: 100%;
-  background-color: #d69f7e;
+  width: 62%;
+  /* height: 100%; */
+  background-color: #ddbea9;
+  border-radius: 0 10px 10px 0;
 }
 /* 左邊標題 */
 .leftTit {
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  display: flex;
-  justify-content: center;
+  width: 64%;
+  min-width: 100px;
   margin-top: 2rem;
-  font-size: 2vw;
-  background-color: cornflowerblue;
+  padding: 1.3rem;
+  font-size: 2.3vw;
+  background-image: url("../../static/imgs/room/leftCat.png");
+  background-position: center;
+  background-size: cover;
+  /* background-color: cornflowerblue; */
 }
 /* 右邊標題 */
 .rightTit {
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  display: flex;
-  justify-content: center;
+  width: 41%;
+  min-width: 100px;
   margin-top: 2rem;
-  font-size: 2vw;
-
-  background-color: rgb(237, 100, 191);
+  padding: 1.3rem;
+  font-size: 2.3vw;
+  background-image: url("../../static/imgs/room/rightCat.png");
+  background-position: center;
+  background-size: cover;
+  /* background-color: rgb(237, 100, 191); */
 }
 /* 家具清單 */
 .list__base {
   margin-top: 2rem;
-  background-color: cyan;
+  /* background-color: cyan; */
 }
 .list__body {
   padding: 0;
-  background-color: cornsilk;
+  /* background-color: cornsilk; */
   list-style: none;
   margin-left: auto;
   margin-right: auto;
@@ -460,13 +487,17 @@ export default {
 }
 /* 家具項目 */
 .item {
-  /* margin: 0.5rem; */
   background-color: darkcyan;
   width: 100%;
+  margin-top: 0.3rem;
   margin-bottom: 0.3rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
   text-align: center;
+  border-radius: 15px;
 }
 .item:hover {
+  background-color: #a8dadc;
   opacity: 0.7;
 }
 </style>
