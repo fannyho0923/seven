@@ -65,7 +65,7 @@
                 @keyup.enter="send"
                 placeholder="請輸入訊息"
               />
-              <i class="pointer plane far fa-paper-plane" @click="send"></i>
+              <i class="plane pointer far fa-paper-plane" @click="send"></i>
             </label>
           </aside>
         </section>
@@ -246,10 +246,10 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 * {
   font-family: "Varela Round", sans-serif;
-}
+} */
 .main {
   position: relative;
   width: 60%;
@@ -301,6 +301,9 @@ export default {
 }
 /* 左邊標題 */
 .left__tit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 40%;
   position: absolute;
   height: 10%;
@@ -314,6 +317,9 @@ export default {
 }
 /* 右邊標題 */
 .right__tit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 60%;
   position: absolute;
   height: 10%;
@@ -361,7 +367,7 @@ export default {
   left: 40%;
   top: 10%;
   width: 60%;
-  height: 80%;
+  height: 78%;
   /* background-color: violet; */
   overflow: hidden;
   overflow-x: hidden;
@@ -381,6 +387,7 @@ export default {
   /* background-color: rgb(163, 39, 163); */
   margin-bottom: 0.5rem;
   display: flex;
+  align-items: top;
   flex-direction: row-reverse;
 }
 /* 收到的對話容器 */
@@ -400,6 +407,7 @@ export default {
   max-width: 50%;
   width: fit-content;
   background-color: rgb(39, 117, 163);
+  margin-top: 0;
   margin-bottom: 0;
   border-radius: 10px 0 10px 10px;
   padding-left: 0.5rem;
@@ -417,7 +425,7 @@ export default {
   width: 0px;
   height: 0px;
   position: absolute;
-  left: 98%;
+  left: 96%;
   top: 0;
   /*top: calc(50% — 6px);*/
 }
@@ -427,6 +435,7 @@ export default {
   max-width: 50%;
   width: fit-content;
   background-color: rgb(153, 187, 207);
+  margin-top: 0;
   margin-bottom: 0;
   border-radius: 0 10px 10px 10px;
   padding-left: 0.5rem;
