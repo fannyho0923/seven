@@ -141,20 +141,19 @@ export default {
   },
   created() {
     this.roomId = this.$route.query.id;
+    // 有日記的日期（用來highlight
     getDiaryHighlight(this.$store.getters.userSeriel)
       .then(res1 => {
-        // console.log(res1.data.writenDays);
         this.highlightedArray = res1.data.writenDays;
-        // console.log(this.highlightedArray);
       })
       .catch(error => console.log(error));
-
+    // 查看指定日期日記
     getDiaryContent(this.$store.getters.userSeriel, {
       diaryDay: this.time.toString().slice(4, 15)
     })
       .then(res2 => {
-        // console.log(res2.data.diaryTxt);
         this.content = res2.data.diaryTxt;
+        this.imgUrl = res2.data.diaryImgPath;
       })
       .catch(error => console.log(error));
   },
