@@ -1,38 +1,22 @@
 <template>
   <nav class="nav">
     <ul class="ul">
+      <!-- 回房間 -->
       <li class="li ">
         <i class="bed pointer fas fa-bed" @click="goRoom"></i>
       </li>
+      <!-- 回大廳 -->
       <li class="li">
         <i class="home pointer fas fa-home" @click="goPub"></i>
       </li>
+      <!-- 查看使用手冊 -->
       <li class="li">
         <i class="bulb pointer far fa-lightbulb" @click="popInfo"></i>
       </li>
+      <!-- 查看使用者資訊 -->
       <li class="li">
         <i class="user pointer far fa-user" @click="popUserInfo"></i>
       </li>
-      <!-- <div class="base__left">
-      <li class="icon__box" v-for="(item, index) in navs" :key="index">
-        <img
-          v-if="index < 5"
-          class="pointer img-resp"
-          :src="navs[index].src"
-          alt="pic"
-        />
-      </li>
-    </div>
-    <div class="base__right">
-      <li class="icon__box" v-for="(item, index) in navs" :key="index">
-        <img
-          v-if="index <= 5"
-          class="pointer img-resp"
-          :src="navs[index + 5].src"
-          alt="pic"
-        />
-      </li>
-    </div> -->
     </ul>
     <PersonalInfo
       v-if="showUserInfo"
@@ -46,12 +30,6 @@
 </template>
 
 <script>
-import Chat from "./icons/Chat.vue";
-import ScreenShot from "./icons/ScreenShot.vue";
-import Contact from "./icons/Contact.vue";
-import Info from "./icons/Info.vue";
-import Music from "./icons/Music.vue";
-import Lang from "./icons/Lang.vue";
 import { getUserInfo } from "@/js/all.js";
 import PersonalInfo from "@/components/PersonalInfo.vue";
 export default {
@@ -171,32 +149,71 @@ export default {
 .li {
   font-size: 2vw;
 }
+/* 房間 */
 .bed {
   color: rgb(188, 127, 245);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .bed:hover {
   color: rgb(188, 127, 245);
   opacity: 0.5;
 }
+.bed::after {
+  margin-top: 0.3rem;
+  font-size: 1.2vw;
+  content: "房間";
+}
+/* 大廳 */
 .home {
   color: #ff4d6d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .home:hover {
-  /* color: #ff4d6d; */
   opacity: 0.5;
 }
+.home::after {
+  margin-top: 0.3rem;
+  font-size: 1.2vw;
+  content: "大廳";
+}
+/* 使用提示 */
 .bulb {
-  color: #fee440;
+  color: #ffba08;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .bulb:hover {
-  color: #fee440;
+  color: #ffba08;
   opacity: 0.5;
 }
+.bulb::after {
+  margin-top: 0.3rem;
+  font-size: 1.2vw;
+  content: "提示";
+}
+/* 使用者資訊 */
 .user {
   color: #8fbfe0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .user:hover {
   color: #8fbfe0;
   opacity: 0.5;
+}
+.user::after {
+  margin-top: 0.3rem;
+  font-size: 1.2vw;
+  content: "設定";
 }
 </style>

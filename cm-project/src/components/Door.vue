@@ -159,6 +159,7 @@ export default {
   top: 46%;
   font-size: 1.2vw;
   overflow: hidden;
+  color: #ef476f;
   /* background-color: cyan; */
 }
 /* 門的位置 */

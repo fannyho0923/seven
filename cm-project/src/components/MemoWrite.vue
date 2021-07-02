@@ -20,7 +20,11 @@
       </article>
     </div>
     <!-- 完成按鈕 -->
-    <button class="mx-auto ok__btn" @click="writeDone(memoType.id)">
+    <button
+      class="mx-auto ok__btn pointer"
+      @keyup.enter="writeDone(memoType.id)"
+      @click="writeDone(memoType.id)"
+    >
       Done
     </button>
     <!-- 關閉視窗按鈕 -->

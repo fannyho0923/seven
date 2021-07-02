@@ -23,14 +23,13 @@
           />
         </div>
         <!-- 離開本頁和新增留言按鈕 -->
-        <aside v-if="!isShow && !isChosed" class="set-inlineBlock btn">
+        <aside v-if="!isShow && !isChosed" class="btn">
           <!-- 離開本頁按鈕 -->
-          <div class="set-inlineBlock close__btn" @click="goBack">
-            <label class="pointer close__lab" @click="goBack">X</label>
-          </div>
-          <div class="set-inlineBlock    add__memo">
-            <label class="pointer add__lab" @click="popupSelection">+</label>
-          </div>
+          <i class="close__btn fas fa-window-close pointer" @click="goBack"></i>
+          <i
+            class="add__lab fas fa-file-signature pointer"
+            @click="popupSelection"
+          ></i>
         </aside>
       </div>
       <!-- <section class="base__body"></section> -->
@@ -180,8 +179,8 @@ export default {
 /* 回到交誼廳按鈕以及新稱便條按鈕的容器 */
 .btn {
   position: relative;
-  right: -1%;
-  top: 1%;
+  left: 5%;
+  min-width: 65px;
 }
 /* 冰箱照片容器 */
 .imgBox {
@@ -190,26 +189,22 @@ export default {
 }
 /* 回到交誼廳按鈕*/
 .close__btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid 3px black;
-  margin-bottom: 1.5rem;
+  position: absolute;
+  font-size: 4rem;
+  color: #bb6573;
 }
-/* 回到交誼廳按鈕裡的文字 */
-.close__lab {
-  min-width: 60px;
-  min-height: 60px;
-  font-size: 2.4rem;
+.close__btn:hover {
+  opacity: 0.5;
 }
 /* 新增便條內容的容器 */
 .add__lab {
-  min-width: 60px;
-  min-height: 60px;
-  font-size: 2.5rem;
-  color: white;
-  background-color: black;
-  border-radius: 50%;
+  position: absolute;
+  top: 19%;
+  font-size: 4rem;
+  color: #f783ac;
+}
+.add__lab:hover {
+  opacity: 0.5;
 }
 /* 彈跳視窗 */
 .popup {

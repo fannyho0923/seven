@@ -54,4 +54,7 @@ export default {
   max-width: 100%;
   height: auto;
 }
+.tvImg:hover {
+  opacity: 0.5;
+}
 </style>

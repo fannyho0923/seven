@@ -22,9 +22,13 @@ export default {
 </script>
 
 <style scoped>
+/* 冰箱照片 */
 .img {
   max-width: 100%;
   width: 100%;
+}
+.img:hover {
+  opacity: 0.5;
 }
 .refrigerator__body {
   position: absolute;
