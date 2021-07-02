@@ -3,7 +3,7 @@
     <div class="row">
       <!-- 上排導覽 -->
       <header class="base__head">
-        <IconList />
+        <IconList @move="goMove" />
       </header>
       <div class=" mx-auto">
         <div class="base__body">
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { getMembers, getUserInfo } from "@/js/all.js";
+import { getMembers, getUserInfo, userTransferGroup } from "@/js/all.js";
 import Door from "../components/Door.vue";
 import IconList from "../components/IconList.vue";
 import Television from "../components/Television.vue";
@@ -151,12 +151,38 @@ export default {
   methods: {
     // 查看玩家資訊
     watchInfo(data) {
-      this.userID = data.toString();
+      if (!data) {
+        return;
+      }
+      this.userID = data;
       this.showInfo = true;
     },
     // 關閉玩家資訊
     closeInfo() {
       this.showInfo = false;
+    },
+    // 搬家
+    goMove() {
+      // 打api：搬到新的社群
+      userTransferGroup(this.$store.getters.userSeriel)
+        .then(res => {
+          console.log(res.data);
+          if (res.data) {
+            //取得使用者資訊
+            getUserInfo(this.$store.getters.userSeriel)
+              .then(res1 => console.log(res1.data))
+              .catch(error => console.log(error));
+            //取得社群成員資訊
+            getMembers(this.$store.getters.userSeriel)
+              .then(res2 => {
+                console.log(res2.data);
+                console.log(res2.data.members);
+                this.members = res2.data.members;
+              })
+              .catch(error => console.log(error));
+          }
+        })
+        .catch(error => console.log(error));
     }
   }
 };

@@ -2,7 +2,7 @@
   <main class="main">
     <div v-if="colorType" class="row" :style="setLayout">
       <header class="base__head">
-        <IconList @goRoom="changeRoom" />
+        <IconList @goRoom="changeRoom" @move="goMove" />
       </header>
       <section class="room__body">
         <!-- 房間裝飾 -->
@@ -134,7 +134,7 @@
 </template>
 
 <script>
-import { getRoomInfo } from "@/js/all.js";
+import { getRoomInfo, userTransferGroup } from "@/js/all.js";
 import Photo from "@/components/Photo.vue";
 import Wardrobe from "@/components/Wardrobe.vue";
 import IconList from "../components/IconList.vue";
@@ -542,6 +542,17 @@ export default {
           this.closetSrc = res1.data.closet;
           this.colorType = res1.data.colorType;
           this.decoSrc = res1.data.deco;
+        })
+        .catch(error => console.log(error));
+    },
+    goMove() {
+      // 打api：搬到新的社群
+      userTransferGroup(this.$store.getters.userSeriel)
+        .then(res => {
+          console.log(res.data);
+          if (res.data) {
+            this.$router.push("/publicArea");
+          }
         })
         .catch(error => console.log(error));
     }

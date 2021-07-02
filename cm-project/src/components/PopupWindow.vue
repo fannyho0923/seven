@@ -75,11 +75,21 @@
       <br v-if="!member" />
       <br v-if="!member" />
       <!-- 是會員按鈕會顯示:登入 -->
-      <button v-if="member" type="submit" @click.prevent="atClickLogIn">
+      <button
+        v-if="member"
+        class="pointer"
+        type="submit"
+        @click.prevent="atClickLogIn"
+      >
         Log in
       </button>
       <!-- 不是會員按鈕會顯示:完成 -->
-      <button v-else type="submit" @click.prevent="atClickRegiste">
+      <button
+        v-else
+        type="submit"
+        class="pointer"
+        @click.prevent="atClickRegiste"
+      >
         finish
       </button>
     </div>

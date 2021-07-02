@@ -49,6 +49,7 @@
           <textarea
             v-else
             class="textArea"
+            style="outline:none;"
             v-model="introduction"
             readOnly
           ></textarea>
@@ -99,11 +100,11 @@
             <div class="btns">
               <!-- 登出按鈕 -->
               <div v-if="isOwner" class="pointer logoutBox" @click="logout">
-                登出<i class="fas fa-running"></i>
+                登出<i class="fas fa-running" @click="logout"></i>
               </div>
               <!-- 搬家按鈕 -->
-              <div v-if="isOwner" class="pointer moveBox">
-                搬家<i class="fas fa-running"></i>
+              <div v-if="isOwner" class="pointer moveBox" @click.self="movePop">
+                搬家<i class="fas fa-dove" @click.self="movePop"></i>
               </div>
             </div>
           </div>
@@ -119,6 +120,22 @@
             @click="leave"
           />
         </div>
+        <!-- 搬家確認框 -->
+        <div v-if="showMove" class="confirmMoveBtnBox">
+          <p class="confirmMoveSentence">
+            您確定要離開這個公寓嘛？<i class="far fa-frown-open"></i>
+          </p>
+          <div class="confirmMoveBtn">
+            <div class="yesBtn pointer" @click.self="yesMove">
+              <i class="far fa-check-circle" @click.self="yesMove"></i>
+              <p @click.self="yesMove">確認</p>
+            </div>
+            <div class="noBtn pointer" @click.self="noMove">
+              <i class="fas fa-times-circle" @click.self="noMove"></i>
+              <p @click.self="noMove">再考慮</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </div>
@@ -126,7 +143,7 @@
 <script>
 import { getUserInfo, setNickName, setPw, setAbout } from "@/js/all";
 export default {
-  props: { user: { type: String }, isOwner: { type: Boolean } },
+  props: { user: { type: [String, Number] }, isOwner: { type: Boolean } },
   data() {
     return {
       roleId: 0,
@@ -138,7 +155,9 @@ export default {
       isEditDoc: false,
       str: "",
       password1: "",
-      password2: ""
+      password2: "",
+      showMove: false,
+      members: []
     };
   },
   created() {
@@ -154,6 +173,21 @@ export default {
       .catch(error => console.log(error));
   },
   methods: {
+    // 搬家視窗
+    movePop() {
+      this.showMove = true;
+    },
+    // 確定搬家
+    yesMove() {
+      this.showMove = false;
+      this.$emit("move");
+      this.leave();
+    },
+    // 不搬家
+    noMove() {
+      this.showMove = false;
+    },
+    // 關閉視窗
     leave() {
       this.$emit("leave");
     },
@@ -477,5 +511,55 @@ export default {
 }
 .moveBox:hover {
   opacity: 0.5;
+}
+/* 確認搬家容器 */
+.confirmMoveBtnBox {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 19vw;
+  height: 14vw;
+  min-width: 150px;
+  min-height: 100px;
+  border-radius: 10px;
+  background-color: #def;
+}
+/* 確認搬家句子 */
+.confirmMoveSentence {
+  margin-top: 1rem;
+  font-size: 1.3vw;
+  color: #014f86;
+}
+/* 確定跟考慮搬家按鈕容器 */
+.confirmMoveBtn {
+  display: flex;
+  width: 80%;
+  justify-content: space-evenly;
+}
+/* 確定按鈕 */
+.yesBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5vw;
+  color: #003049;
+}
+.yesBtn:hover {
+  color: #489fb5;
+}
+/* 再考慮按鈕 */
+.noBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5vw;
+  color: #003049;
+}
+.noBtn:hover {
+  color: #669bbc;
 }
 </style>

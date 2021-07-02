@@ -40,6 +40,7 @@
       @leave="closeUserInfo"
       :user="userID"
       :isOwner="true"
+      @move="goMove"
     />
   </nav>
 </template>
@@ -143,8 +144,12 @@ export default {
     popUserInfo() {
       this.showUserInfo = true;
     },
+    // 關閉會員資訊
     closeUserInfo() {
       this.showUserInfo = false;
+    },
+    goMove() {
+      this.$emit("move");
     }
   }
 };
