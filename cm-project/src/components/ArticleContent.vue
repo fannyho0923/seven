@@ -11,16 +11,6 @@
             width="200"
             height="200"
           />
-          <!-- 垃圾桶 -->
-          <div v-if="isOwner" class="trash__btn" @click="deleteArticle">
-            <img
-              class="pointer trashImg"
-              src="../../static/imgs/memoImg/mini_trash.png"
-              alt="mini_trash"
-              width="20"
-              height="20"
-            />
-          </div>
         </aside>
         <!-- 右邊文章以及留言 -->
         <aside class="right__area">
@@ -47,10 +37,39 @@
                 <p class="poster__name">{{ arr.posterNickName }}</p>
                 <p class="post__date">{{ arr.postTime }}</p>
               </aside>
+              <i
+                v-if="isOwner"
+                class="ellipsis pointer fas fa-ellipsis-v"
+                @click.self="useTool"
+              ></i>
+              <nav v-if="isOwner && isTool" class="nav">
+                <ul class="ul">
+                  <!-- 編輯文章按鈕 -->
+                  <li class="pointer li" @click="edit">
+                    編輯文章<i class="icon far fa-edit"> </i>
+                  </li>
+                  <!-- 刪除文章按鈕 -->
+                  <li class="pointer li" @click="deleteArticle">
+                    刪除文章<i class="icon far fa-trash-alt"></i>
+                  </li>
+                </ul>
+              </nav>
             </div>
-            <p class="article">
-              {{ arr.postText }}
-            </p>
+            <textarea
+              v-if="!isEdit"
+              v-model="content"
+              class="article mx-auto"
+              readonly
+            >
+            </textarea>
+            <textarea
+              v-if="isEdit"
+              v-model="content"
+              class="editArticle mx-auto"
+            >
+            </textarea>
+            <!-- 送出編輯文字 -->
+            <div v-if="isEdit" class="postBtn pointer" @click="post">儲存</div>
           </div>
           <!-- 留言區 -->
           <main class="commentBox" id="data-content">
@@ -91,7 +110,13 @@
 </template>
 
 <script>
-import { getComment, addComment, deleteComment, getRoomInfo } from "@/js/all";
+import {
+  getComment,
+  addComment,
+  deleteComment,
+  getRoomInfo,
+  addPrivateArticle
+} from "@/js/all";
 import ArticleComment from "@/components/ArticleComment.vue";
 export default {
   props: {
@@ -106,7 +131,10 @@ export default {
       isUpdate: false,
       isOwner: false,
       roomId: 0,
-      roleID: ""
+      roleID: "",
+      content: this.arr.postText,
+      isTool: false,
+      isEdit: false
     };
   },
   components: {
@@ -141,6 +169,46 @@ export default {
       .catch(error => console.log(error));
   },
   methods: {
+    // 編輯文章
+    edit() {
+      this.isEdit = true;
+      this.isTool = false;
+    },
+    // 編輯完送出
+    post() {
+      this.isEdit = false;
+      if (!this.content) {
+        return;
+      }
+      // 打api上傳文章
+      // const articleData = {
+      //   userSeriel: this.$store.getters.userSeriel,
+      //   boardType: 3,
+      //   memberDoorIndex: this.$store.getters.doorIndex,
+      //   postImg: this.imgUrl,
+      //   postText: this.content
+      // };
+      // 發文
+      // addPrivateArticle(articleData)
+      //   .then(res1 => {
+      //     if (res1.data.result) {
+      //       console.log(this.imgUrl);
+      //       const NewData = res1.data.postInfo;
+      //       this.$emit("post", NewData);
+      //       this.content = "";
+      //       this.preview = "";
+      //     }
+      //   })
+      //   .catch(error => console.log(error));
+    },
+    // 顯示或關閉編輯和刪除按鈕
+    useTool() {
+      if (this.isTool) {
+        this.isTool = false;
+      } else {
+        this.isTool = true;
+      }
+    },
     // 關閉彈窗
     leave() {
       this.$emit("closeSeeBox");
@@ -233,7 +301,8 @@ p {
   margin-top: 7.5rem;
   width: 70%;
   height: 36.5rem;
-  background-color: rgb(252, 240, 172);
+  /* background-color: rgb(252, 240, 172); */
+  background-color: #f0efeb;
   padding: 2rem;
   border-radius: 15px;
   background-image: url("../../static/imgs/room/flowerBg.png");
@@ -283,10 +352,48 @@ p {
   word-wrap: break-word;
   padding-top: 0.5rem;
 }
-/* 文章 */
+/* 純看文章 */
 .article {
-  padding: 1rem;
-  margin: 0;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  background-color: transparent;
+  width: 95%;
+  height: 66%;
+  resize: none;
+  border-color: transparent;
+  font-size: 1.5vw;
+  line-height: 1.5rem;
+  outline: none;
+  color: #6930c3;
+}
+/* 編輯文章 */
+.editArticle {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  background-color: transparent;
+  width: 95%;
+  height: 60%;
+  resize: none;
+  border-color: transparent;
+  font-size: 1.5vw;
+  line-height: 1.5rem;
+  color: #6930c3;
+}
+/* 編輯送出文章 */
+.postBtn {
+  position: absolute;
+  padding: 0.2rem;
+  display: flex;
+  width: fit-content;
+  left: 89%;
+  top: 45%;
+  background-color: #8f8df3;
+  justify-content: center;
+  border-radius: 5px;
+  align-items: center;
+}
+.postBtn:hover {
+  opacity: 0.5;
 }
 /* 留言 */
 .comment {
@@ -340,27 +447,50 @@ p {
   flex-wrap: nowrap;
   overflow: hidden;
 }
-/* 垃圾桶按鈕 */
-.trash__btn {
-  visibility: visible;
-  position: absolute;
-  left: 5%;
-  top: 3%;
-  transform: rotate(-25deg);
-  /* background-color: cyan; */
-}
-.trash__btn:hover {
-  opacity: 0.5;
-}
-.trashImg {
-  width: 50px;
-  height: 50px;
-}
+
 /* 飛機按鍵 */
 .plane {
   font-size: 2rem;
 }
 .plane:hover {
   opacity: 0.5;
+}
+/* 編輯刪除按鈕 */
+.ellipsis {
+  width: 1.2vw;
+  height: 1.2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 95%;
+}
+.ellipsis:hover {
+  opacity: 0.5;
+}
+.nav {
+  position: absolute;
+  left: 80%;
+  top: 9%;
+  background-color: rgba(156, 151, 151, 0.849);
+  border-radius: 5px;
+}
+.ul {
+  list-style: none;
+  width: max-content;
+  padding: 0;
+  margin: 0.5rem;
+  /* text-align: left; */
+  /* display: flex; */
+  /* justify-content: left; */
+}
+.li {
+  margin-bottom: 0.5rem;
+}
+.li:hover {
+  color: rgba(255, 255, 255, 0.788);
+}
+.icon {
+  margin-left: 0.2rem;
 }
 </style>

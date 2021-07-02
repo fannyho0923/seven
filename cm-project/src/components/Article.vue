@@ -7,7 +7,13 @@
     <hr class="hr" />
     <!-- 照片塊 -->
     <div class="imgBox">
-      <img class="articleImg" :src="arr.postImg" alt="發文圖片" />
+      <img v-if="imgSrc" class="articleImg" :src="imgSrc" alt="發文圖片" />
+      <img
+        v-if="!imgSrc"
+        class="articleImg"
+        :src="'http://35.201.237.18/img/avatar_' + arr.posterRoleId + '.png'"
+        alt="發文圖片"
+      />
     </div>
     <!-- 文字區塊 -->
     <div class="textBox">
@@ -28,7 +34,8 @@ export default {
   data() {
     return {
       isPhoto: false,
-      date: new Date().toString().slice(4, 15)
+      date: new Date().toString().slice(4, 15),
+      imgSrc: this.arr.postImg
     };
   },
   methods: {
@@ -54,6 +61,7 @@ export default {
   padding: 0.5rem;
   margin-top: 3rem;
   background-color: #f4acb7;
+  color: #ff006ff0;
 }
 .hr {
   width: 100%;
@@ -83,7 +91,7 @@ export default {
 /* 文字 */
 .text {
   padding: 0.5rem;
-  height: 5.2em;
+  height: 3em;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;

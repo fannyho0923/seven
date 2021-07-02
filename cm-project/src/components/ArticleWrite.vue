@@ -12,16 +12,15 @@
         </div>
         <!-- 照片框 -->
         <div class="imgBox ">
-          <label v-if="!preview" class="mx-auto pointer label__btnBox"
+          <label v-if="!imgUrl" class="mx-auto pointer label__btnBox"
             ><input
               type="file"
               accept="image/*"
               @change="previewImage"
               class=" input__btn form-control-file"
               id="my-file"
-              ref="files"
-            />點擊新增圖片</label
-          >
+              ref="files"/>點擊新增圖片<i class="far fa-image"></i
+          ></label>
           <!-- 秀照片區塊 -->
           <div class="imgShowBox" v-if="imgUrl">
             <img
@@ -32,16 +31,26 @@
               height="100"
             />
           </div>
-          <button v-if="preview" class="pointer" @click="reset">
+          <button v-if="imgUrl" class="pointer restBtn" @click="reset">
             清除照片
           </button>
         </div>
         <!-- 關閉視窗按鈕 -->
-        <div class="pointer close__btn" @click="close">Ｘ</div>
+        <div class="pointer leave__btn" @click="leave">
+          <img
+            class="closeIcon"
+            src="../../static/imgs/closeIcon.png"
+            alt="closeIcon"
+            width="252"
+            height="252"
+            @click="leave"
+          />
+        </div>
       </div>
+      <!-- 發布按鈕 -->
       <button
         type="submit"
-        class=" mx-auto  set-inlineBlock post__btn"
+        class="pointer mx-auto  set-inlineBlock post__btn"
         @click.prevent="post"
       >
         發布
@@ -64,11 +73,13 @@ export default {
     };
   },
   methods: {
-    close() {
+    // 關閉視窗
+    leave() {
       this.$emit("close");
     },
     // 清除照片
     reset() {
+      this.imgUrl = "";
       this.image = null;
       this.preview = null;
       this.image_list = [];
@@ -99,7 +110,7 @@ export default {
       if (!this.content) {
         return;
       }
-      // 打api上傳文章
+      // 打api上傳修改的文章
       const articleData = {
         userSeriel: this.$store.getters.userSeriel,
         boardType: 3,
@@ -107,7 +118,7 @@ export default {
         postImg: this.imgUrl,
         postText: this.content
       };
-      // 發文
+      // 上傳修改的文章
       addPrivateArticle(articleData)
         .then(res1 => {
           if (res1.data.result) {
@@ -169,19 +180,25 @@ export default {
   resize: none;
 }
 /* 離開按鈕 */
-.close__btn {
+.leave__btn {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 3px black;
-  max-width: 5rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 4rem;
-  left: 80%;
+  width: 4vw;
+  height: 4vw;
+  min-width: 50px;
+  min-height: 50px;
+  left: 79%;
   top: 0;
-  background-color: pink;
+}
+/* 離開按鈕照片 */
+.closeIcon {
+  width: 100%;
+  height: auto;
+}
+.closeIcon:hover {
+  opacity: 0.5;
 }
 /* 秀照片區塊 */
 .imgShowBox {
@@ -226,10 +243,32 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
+/* 發布按鈕 */
 .post__btn {
   margin-top: 1rem;
   width: 30%;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
+  background-color: #adb5bd;
+  color: #495057;
+  border: solid 1px #495057;
+  border-radius: 5px;
+}
+.post__btn:hover {
+  background-color: #dee2e6;
+  opacity: 0.5;
+}
+
+/* 清除按鈕 */
+.restBtn {
+  background-color: #f8ad9d;
+  border-color: #f08080;
+  color: #f08080;
+  border-radius: 5px;
+  border: solid 1px #f08080;
+}
+.restBtn:hover {
+  opacity: 0.5;
+  background-color: #ffdab9;
 }
 </style>

@@ -1,18 +1,5 @@
 <template>
   <main class=" blog__bg">
-    <!-- <div class="bgBox">
-      <img
-        class="bgImg img-resp"
-        src="../../static/imgs/room/blogBg.jpeg"
-        alt="bgPic"
-        width="1000"
-        height="718"
-      />
-    </div> -->
-    <!-- 標題 -->
-    <!-- <header class="blog__head text-center">
-      <h1 class="set-inlineBlock">Blog</h1>
-    </header> -->
     <!-- 放文章主要區域 -->
     <section class="blog__body mx-auto">
       <div class="blogBox">
@@ -24,27 +11,28 @@
             @see="look(index)"
           />
         </div>
-        <!-- 左邊按鈕 -->
-        <!-- <div class="pointer leftBox set-inlineBlock"></div> -->
-        <!-- 右邊按鈕 -->
-        <!-- <div class="pointer rightBox set-inlineBlock"></div> -->
         <!-- 關閉視窗按鈕 -->
         <div
           v-if="!isWrite && !isLook"
           class="pointer leave__btn"
           @click="leave"
         >
-          Ｘ
+          <img
+            class="closeIcon"
+            src="../../static/imgs/closeIcon.png"
+            alt="closeIcon"
+            width="252"
+            height="252"
+            @click="leave"
+          />
         </div>
         <!-- 新增文章按鈕 -->
-        <div
+        <i
           v-show="isOwner"
           v-if="!isWrite && !isLook"
-          class="pointer add__btn"
+          class="pointer add__btn fas fa-edit"
           @click="isWrite = true"
-        >
-          ＋
-        </div>
+        ></i>
       </div>
     </section>
     <!-- 編輯文章彈窗 -->
@@ -141,11 +129,8 @@ export default {
     deletEessay(postSeriel) {
       deletePrivateArticle(postSeriel)
         .then(res3 => {
-          // console.log(res3.data);
           this.closeLookBox();
-          // console.log(this.articleArr.length);
           this.articleArr.splice(this.id, 1);
-          // console.log(this.articleArr.length);
         })
         .catch(error => console.log(error));
     }
@@ -182,61 +167,30 @@ export default {
   /* background-color: bisque; */
   background-color: #9d8189;
 }
-/* 左右按鍵 */
-/* .leftBox {
-  position: absolute;
-  left: -50px;
-  top: 50%;
-  transform: translateY(-2.5rem);
-  border: 3rem solid;
-  border-color: transparent #fbb034 transparent transparent;
-}
-.rightBox {
-  position: absolute;
-  right: -50px;
-  top: 50%;
-  transform: translateY(-2.5rem);
-  width: 0;
-  height: 0;
-  border: 3rem solid;
-  border-color: transparent transparent transparent #fbb034;
-} */
 
-/* 離開按鈕 */
-.leave__btn {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid 3px black;
-  max-width: 5rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 4rem;
-  left: 103%;
-  top: 5%;
-  background-color: rgb(43, 189, 226);
-}
 /* 撰寫文章 */
 .add__btn {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 3px black;
-  max-width: 5rem;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 5vw;
+  height: 5vw;
+  min-width: 50px;
+  min-height: 50px;
   font-size: 4rem;
-  left: 103%;
+  left: 104%;
   top: 20%;
-  background-color: rgb(247, 189, 244);
+  color: #ff006ff0;
+}
+.add__btn:hover {
+  opacity: 0.5;
+  color: #f74994f0;
 }
 /* 放文章區域 */
 .articleBox {
   display: flex;
   justify-content: space-around;
-  /* background-color: rgb(226, 43, 186); */
   position: relative;
   width: 95%;
   overflow-x: hidden;
@@ -261,5 +215,26 @@ export default {
 /* 捲軸本體顏色 */
 .articleBox::-webkit-scrollbar-thumb {
   background-color: #bb6573;
+}
+/* 離開按鈕 */
+.leave__btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5vw;
+  height: 5vw;
+  min-width: 50px;
+  min-height: 50px;
+  left: 103%;
+  top: 0;
+}
+/* 離開按鈕照片 */
+.closeIcon {
+  width: 100%;
+  height: auto;
+}
+.closeIcon:hover {
+  opacity: 0.5;
 }
 </style>

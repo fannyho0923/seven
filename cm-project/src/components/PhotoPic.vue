@@ -1,18 +1,17 @@
 <template>
   <div class="photoBox">
     <img v-if="imgUrl" class="img" :src="imgUrl" alt="照片" />
-    <label v-if="!imgUrl" class="pointer label__btnBox"
+    <label v-if="!imgUrl && isOwner" class="pointer label__btnBox"
       ><input
         type="file"
         accept="image/*"
         @change="previewImage"
         class=" input__btn"
         id="my-file"
-        ref="files"
-      />點擊新增圖片</label
-    >
-    <button v-if="isOwner && imgUrl" class="pointer " @click="reset">
-      清除照片
+        ref="files"/>點擊新增圖片<i class="far fa-image"></i
+    ></label>
+    <button v-if="isOwner && imgUrl" class="pointer trashBtn" @click="reset">
+      清除照片<i class="fas fa-trash-alt"></i>
     </button>
   </div>
 </template>
@@ -29,6 +28,7 @@ export default {
   },
   created() {
     this.roomId = this.$route.query.id;
+    // 取得房間資訊
     getRoomInfo(this.roomId, this.$store.getters.userSeriel)
       .then(res4 => {
         this.isOwner = res4.data.isOwner;
@@ -76,10 +76,6 @@ export default {
 </script>
 
 <style scoped>
-.photoBox:hover {
-}
-.img:hover {
-}
 /* 新增照片的input(要透明) */
 .input__btn {
   display: none;
@@ -106,5 +102,19 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+/* 清除按鈕 */
+.trashBtn {
+  position: absolute;
+  top: 102%;
+  background-color: #457b9d;
+  border-color: #1d3557;
+  color: #1d3557;
+  box-shadow: none;
+  border-radius: 10px;
+}
+.trashBtn:hover {
+  opacity: 0.5;
+  background-color: #a8dadc;
 }
 </style>
