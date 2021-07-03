@@ -95,14 +95,54 @@
               height="227"
             />
           </div>
-          <!-- 零食 -->
-          <div class="snack">
+          <!-- 積木 -->
+          <div class="block">
             <img
-              class="snackImg"
-              src="../../static/imgs/publicRoom/snack.png"
-              alt="零食"
-              width="263"
-              height="241"
+              class="blockImg"
+              src="../../static/imgs/publicRoom/block.png"
+              alt="積木"
+              width="233"
+              height="252"
+            />
+          </div>
+          <!-- 狗腳印 -->
+          <div class="footPrint">
+            <img
+              class="footPrintImg"
+              src="../../static/imgs/publicRoom/footPrint.png"
+              alt="狗腳印"
+              width="272"
+              height="107"
+            />
+          </div>
+          <!-- 貓食 -->
+          <div class="catFood">
+            <img
+              class="catFoodImg"
+              src="../../static/imgs/publicRoom/catFood.png"
+              alt="貓食"
+              width="296"
+              height="206"
+            />
+          </div>
+          <!-- 貓 -->
+          <div class="cat">
+            <img
+              class="catImg"
+              src="../../static/imgs/publicRoom/cat.png"
+              alt="貓"
+              width="260"
+              height="249"
+            />
+          </div>
+          <!-- 狗食 -->
+          <div class="dogFood">
+            <img
+              class="dogFoodImg"
+              src="../../static/imgs/publicRoom/dogFood.png"
+              alt="狗食"
+              width="302"
+              height="152"
             />
           </div>
           <div v-if="showInfo" class="personalInfoBox">
@@ -289,10 +329,10 @@ export default {
 .handDrawn {
   position: absolute;
   z-index: 3;
-  left: 18%;
-  top: 43%;
-  width: 8%;
-  height: 35%;
+  left: 19%;
+  top: 48%;
+  width: 6%;
+  height: 29%;
 }
 .handDrawnImg {
   max-width: 100%;
@@ -318,7 +358,7 @@ export default {
   left: 68%;
   top: 81%;
   width: 11%;
-  height: 35%;
+  height: 12%;
 }
 .tableGameImg {
   max-width: 100%;
@@ -338,19 +378,20 @@ export default {
   height: auto;
   max-height: 100%;
 }
-/* 零食 */
-/* .snack {
+/* 積木 */
+.block {
   position: absolute;
-  left: 69%;
-  top: 79%;
-  width: 11%;
-  height: 35%;
+  position: absolute;
+  left: 82%;
+  top: 82%;
+  width: 6%;
+  height: 13%;
 }
-.snackImg {
+.blockImg {
   max-width: 100%;
   height: auto;
   max-height: 100%;
-} */
+}
 /* 黑糖 */
 .dog {
   position: absolute;
@@ -376,5 +417,58 @@ export default {
   max-width: 100%;
   height: auto;
   max-height: 100%;
+}
+/* 貓 */
+.cat {
+  position: absolute;
+  left: 15%;
+  top: 85%;
+  width: 6%;
+  height: 11%;
+}
+.catImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+/* 狗食 */
+.dogFood {
+  position: absolute;
+  left: 31%;
+  top: 89%;
+  width: 3%;
+  height: 3%;
+}
+.dogFoodImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+/* 貓食 */
+.catFood {
+  position: absolute;
+  left: 4%;
+  top: 90%;
+  width: 7%;
+  height: 8%;
+}
+.catFoodImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+/* 狗腳印 */
+.footPrint {
+  position: absolute;
+  left: 31%;
+  top: 78%;
+  width: 8%;
+  height: 5%;
+}
+.footPrintImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  transform: rotate(-3deg);
 }
 </style>
