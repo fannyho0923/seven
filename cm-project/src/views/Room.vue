@@ -79,11 +79,6 @@
             height="273"
           />
         </div>
-
-        <!-- <div class="wall"><img src="" alt="" /></div>
-        <div class="wall"><img src="" alt="" /></div>
-        <div class="wall"><img src="" alt="" /></div>
-        <div class="wall"><img src="" alt="" /></div> -->
         <!-- 書櫃:寫個版 -->
         <div v-if="bookcaseSrc" class="pointer bookcaseImgBox">
           <img
@@ -654,9 +649,7 @@ export default {
 .computerDeskImg {
   width: 100%;
 }
-/* .computerDeskImg:hover {
-  opacity: 0.5;
-} */
+/* 信件 */
 .envelope {
   position: absolute;
   position: absolute;
@@ -667,6 +660,7 @@ export default {
 }
 .envelope:hover {
   opacity: 0.5;
+  color: white;
 }
 /* 照片容器 */
 .photoImgBox {

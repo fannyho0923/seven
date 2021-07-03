@@ -123,7 +123,7 @@
         <!-- 搬家確認框 -->
         <div v-if="showMove" class="confirmMoveBtnBox">
           <p class="confirmMoveSentence">
-            您確定要離開這個公寓嘛？<i class="far fa-frown-open"></i>
+            您確定要離開這個公寓嘛？<i class="far fa-grimace"></i>
           </p>
           <div class="confirmMoveBtn">
             <div class="yesBtn pointer" @click.self="yesMove">

@@ -44,11 +44,14 @@
                 v-model="str"
                 @keyup.enter="send"
               />
-              <div class="pointer sendBtn" @click="send">+</div>
+              <i
+                class="sendBtn pointer fas fa-caret-square-right"
+                @click="send"
+              ></i>
             </div>
           </aside>
           <!-- 關閉視窗按鈕 -->
-          <div class="pointer leave__btn" @click.self="leave">Ｘ</div>
+          <i class="leave__btn fas fa-window-close pointer" @click="leave"></i>
         </section>
       </div>
     </div>
@@ -206,7 +209,7 @@ export default {
 }
 /* 影片列表及上傳容器 */
 .rightBox {
-  padding: 0.5rem;
+  padding: 0 0.5rem 0.5rem 0.5rem;
   position: relative;
   /* background-color: rgb(0, 32, 139); */
   width: 38%;
@@ -227,7 +230,7 @@ export default {
 .inputBox {
   display: flex;
   justify-content: space-around;
-  width: 100%;
+  width: 103%;
   height: 10%;
   /* background-color: darkkhaki; */
 }
@@ -241,28 +244,27 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 45px;
-  height: 45px;
-  font-size: 2rem;
-  border: solid 1px black;
+  font-size: 3rem;
+  margin-left: 0rem;
+  color: red;
 }
 /* 上傳鈕 */
 .sendBtn:hover {
-  opacity: 0.5;
+  opacity: 0.8;
+  color: rgb(241, 86, 112);
 }
 /* 離開按鈕 */
 .leave__btn {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid 3px black;
-  /* max-width: 5rem; */
   width: 3.5vw;
   height: 3.5vw;
   font-size: 3.5vw;
-  left: 101%;
+  left: 102%;
   top: 0;
+  color: #ee6c4d;
   /* background-color: rgb(43, 189, 226); */
+}
+.leave__btn:hover {
+  color: #fed9b7;
 }
 </style>

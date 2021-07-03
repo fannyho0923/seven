@@ -73,14 +73,19 @@ export default {
 .card__base {
   margin: 0.5rem;
 }
+.card__base:hover {
+  opacity: 0.7;
+}
 /* 放縮圖文字方塊容器 */
 .card__body {
   display: flex;
+  background-color: #ddbea9;
+  padding: 0.5rem 0 0.5rem 0;
+  border-radius: 5px;
 }
 /* 左邊影片縮圖 */
 .leftBox {
   width: 40%;
-  object-fit: contain;
   overflow: hidden;
 }
 /* 右邊影片名稱和上傳者資訊 */
@@ -98,6 +103,10 @@ export default {
 .imgBox {
   width: 100%;
   vertical-align: bottom;
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* 影片名稱 */
 .title {
