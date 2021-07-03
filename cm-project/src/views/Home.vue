@@ -133,12 +133,13 @@ export default {
     //   });
     // },
     //註冊檢查
-    supplyRegiste(nickName, userName, password) {
+    supplyRegiste(nickName, userName, mail, password) {
       if (nickName && userName && password) {
         const RegisteData = JSON.stringify({
           userId: userName,
           userPw: password,
-          userName: nickName
+          userName: nickName,
+          email: mail
         });
         console.log(RegisteData);
         userSignUp(RegisteData)

@@ -73,6 +73,10 @@ export const userSignUp = signUpData => {
 export const userLogIn = loginData => {
   return req("post", "/SignIn/", loginData);
 };
+//忘記密碼Ｖ-
+export const userForget = forgetData => {
+  return req("patch", "/User/Forget/", forgetData);
+};
 //使用者社群狀態V-v (-1-未加入 2-已到期 1-正常)
 export const userStatus = userSeriel => {
   return req("get", "/Group/Status/" + userSeriel);
