@@ -471,4 +471,9 @@ export default {
   max-height: 100%;
   transform: rotate(-3deg);
 }
+/* 讓名片可以浮在最上層 */
+.personalInfoBox {
+  position: absolute;
+  z-index: 7;
+}
 </style>

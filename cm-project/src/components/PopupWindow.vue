@@ -193,7 +193,7 @@ export default {
       }
       const forgetData = {
         userId: this.userName,
-        email: this.mailString
+        email: this.mail
       };
       // 打api獲取密碼
       userForget(forgetData)

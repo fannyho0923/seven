@@ -257,17 +257,19 @@ export default {
         this.password1 = "";
         this.password2 = "";
         return;
+      } else {
+        const passwordData = {
+          userSeriel: this.$store.getters.userSeriel,
+          userPw: this.password1
+        };
+        setPw(passwordData)
+          .then(res3 => {
+            console.log(res3);
+            this.password1 = "";
+            this.password2 = "";
+          })
+          .catch(error => console.log(error));
       }
-      const passwordData = {
-        userSeriel: this.$store.getters.userSeriel,
-        userPw: this.password
-      };
-      setPw(passwordData)
-        .then(res3 => {
-          console.log(res3);
-          this.password = "";
-        })
-        .catch(error => console.log(error));
     }
   }
 };

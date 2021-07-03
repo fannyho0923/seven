@@ -46,6 +46,7 @@
         :arr="articleArr[id]"
         @closeSeeBox="closeLookBox"
         @deleteArticle="deletEessay(articleArr[id].postSeriel)"
+        @edit="editArticle"
       />
     </div>
   </main>
@@ -131,6 +132,19 @@ export default {
         .then(res3 => {
           this.closeLookBox();
           this.articleArr.splice(this.id, 1);
+        })
+        .catch(error => console.log(error));
+    },
+    // 文章編輯過後的重新更新
+    editArticle() {
+      const data = {
+        memberDoorIndex: this.roomId
+      };
+      //取得文章
+      getPrivateArticle(this.$store.getters.userSeriel, data)
+        .then(res2 => {
+          // console.log(res2);
+          this.articleArr = res2.data.postInfos;
         })
         .catch(error => console.log(error));
     }

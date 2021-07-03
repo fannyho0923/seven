@@ -115,7 +115,7 @@ import {
   addComment,
   deleteComment,
   getRoomInfo,
-  addPrivateArticle
+  editArticle
 } from "@/js/all";
 import ArticleComment from "@/components/ArticleComment.vue";
 export default {
@@ -180,26 +180,18 @@ export default {
       if (!this.content) {
         return;
       }
-      // 打api上傳文章
-      // const articleData = {
-      //   userSeriel: this.$store.getters.userSeriel,
-      //   boardType: 3,
-      //   memberDoorIndex: this.$store.getters.doorIndex,
-      //   postImg: this.imgUrl,
-      //   postText: this.content
-      // };
-      // 發文
-      // addPrivateArticle(articleData)
-      //   .then(res1 => {
-      //     if (res1.data.result) {
-      //       console.log(this.imgUrl);
-      //       const NewData = res1.data.postInfo;
-      //       this.$emit("post", NewData);
-      //       this.content = "";
-      //       this.preview = "";
-      //     }
-      //   })
-      //   .catch(error => console.log(error));
+      // 打api編輯文章
+      const articleData = {
+        postSeriel: this.arr.postSeriel,
+        postText: this.content
+      };
+      // 編輯文章
+      editArticle(articleData)
+        .then(res1 => {
+          console.log(res1);
+          this.$emit("edit");
+        })
+        .catch(error => console.log(error));
     },
     // 顯示或關閉編輯和刪除按鈕
     useTool() {

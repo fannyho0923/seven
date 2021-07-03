@@ -1,4 +1,3 @@
-nps
 <template>
   <main class="container mx-auto">
     <div class="row">
@@ -6,9 +5,17 @@ nps
         <!-- 右邊文字 -->
         <section class="home__btn mx-auto">
           <!-- 使用規則,創建帳號,進入房間按鈕 -->
-          <header class="home__title"><h1>SEVEN</h1></header>
+          <header class="home__title">
+            <img
+              class="titImg"
+              src="../../static/imgs/homeTit.png"
+              alt="首頁標題"
+              width="570"
+              height="128"
+            />
+          </header>
           <div class="all__btn">
-            <p class="pointer btn1">使用規則</p>
+            <p class="pointer btn1" @click.self="watchInfo">使用規則</p>
             <p v-if="!isMember" class="pointer btn2" @click.self="atRegiste">
               創建帳號
             </p>
@@ -45,6 +52,11 @@ nps
       />
       <!-- @inputDone="inputLogIn" -->
     </div>
+    <section v-if="showInfo" class="infoBg">
+      <div class="info__body">
+        <div class="pointer closeInfoBtn" @click.self="closeInfo">X</div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -73,17 +85,10 @@ export default {
       //判斷是否已有會員
       isMember: false,
       //判斷帳密輸入是否正確
-      pass: false
+      pass: false,
+      showInfo: false
     };
   },
-  // created() {
-  // http://35.201.237.18/Group/2
-  // http://35.201.237.18/SignUp
-  // this.axios.post("http://35.201.237.18/SignUp", {}).then(res => {
-  //   console.log(res);
-  // });
-  // },
-
   components: { PopupWindow },
   methods: {
     //點擊註冊
@@ -102,36 +107,6 @@ export default {
     closePopupLogin() {
       this.unLogin = false;
     },
-
-    //檢查是否已登入過
-    // enter() {
-    //   if ($cookies.get("token") === "ImLogin") {
-    //     this.$router.push("/publicArea");
-    //     return;
-    //   }
-    //   if (!this.unLogin && this.isMember && this.isRegistered && this.pass) {
-    //     this.$router.push("/publicArea");
-    //     return;
-    //   }
-    //   if (!this.isMember) {
-    //     alert("sorry~您尚未有帳號，請點選創建帳號");
-    //     this.isRegistered = false;
-    //   }
-    //   if (!this.unLogin) {
-    //     alert("麻煩您先登入");
-    //     this.unLogin = true;
-    //   }
-    // },
-    // foo() {
-    //   const data = JSON.stringify({
-    //     userId: "test222",
-    //     userPw: "fanny222",
-    //     userName: "fanny222"
-    //   });
-    //   userSignUp(data).then(res => {
-    //     console.log(res.data);
-    //   });
-    // },
     //註冊檢查
     supplyRegiste(nickName, userName, mail, password) {
       if (nickName && userName && password) {
@@ -231,12 +206,25 @@ export default {
           }
         })
         .catch(error => console.log(error));
+    },
+    // 查看使用說明
+    watchInfo() {
+      this.showInfo = true;
+    },
+    // 關閉使用說明
+    closeInfo() {
+      this.showInfo = false;
     }
   }
 };
 </script>
 
 <style scoped>
+.titImg {
+  width: 100%;
+  object-fit: contain;
+}
+
 .close {
   display: none;
 }
@@ -282,6 +270,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 5rem;
   /* background-color: cyan; */
 }
 /* 左邊圖容器 */
@@ -306,5 +295,42 @@ export default {
   font-size: 3rem;
   margin: 0;
   font-weight: 200;
+}
+
+.infoBg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 40rem;
+  margin-top: 7rem;
+  /* background-color: pink; */
+  /* opacity: 0.5; */
+}
+
+.info__body {
+  position: relative;
+  left: 20%;
+  width: 60%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 15px;
+  border: solid 10px;
+}
+/* 關閉使用說明視窗 */
+.closeInfoBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 96%;
+  top: -6%;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: solid 10px;
+  font-size: 4rem;
+  background-color: white;
 }
 </style>

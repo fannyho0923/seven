@@ -73,7 +73,7 @@ export const userSignUp = signUpData => {
 export const userLogIn = loginData => {
   return req("post", "/SignIn/", loginData);
 };
-//忘記密碼Ｖ-
+//忘記密碼Ｖ-v
 export const userForget = forgetData => {
   return req("patch", "/User/Forget/", forgetData);
 };
@@ -87,13 +87,13 @@ export const userAddNewGroup = userSeriel => {
   return req("get", "/Group/New/" + userSeriel);
 };
 //搬家(2)
-//搬到新的社群V-v
+//搬到新的社群 V-v
 export const userTransferGroup = userSeriel => {
   return req("get", "/Group/Transfer/" + userSeriel);
 };
 
 //個人資訊相關的api
-// 修改暱稱
+// 修改暱稱 V-v
 export const setNickName = data => {
   return req("patch", "/User/NickName/", data);
 };
@@ -103,7 +103,7 @@ export const setPw = data => {
   return req("patch", "/User/Pw/", data);
 };
 
-// 修改自我介紹
+// 修改自我介紹 V-v
 export const setAbout = data => {
   return req("patch", "/User/About/", data);
 };
@@ -162,6 +162,10 @@ export const setDiaryImg = img => {
 };
 
 // 文章相關的 api
+// 修改文章 V-
+export const editArticle = data => {
+  return req("patch", "/Board/", data);
+};
 //查看留言 V-v
 export const getComment = (postSeriel, userSeriel) => {
   return req("get", `/Comment/${postSeriel}/${userSeriel}`);
