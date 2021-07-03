@@ -55,6 +55,56 @@
               height="193"
             />
           </div>
+          <!-- 桌遊 -->
+          <div class="tableGame">
+            <img
+              class="tableGameImg"
+              src="../../static/imgs/publicRoom/tableGame.png"
+              alt="桌遊"
+              width="353"
+              height="212"
+            />
+          </div>
+          <!-- 黑糖 -->
+          <div class="dog">
+            <img
+              class="dogImg"
+              src="../../static/imgs/publicRoom/dog.png"
+              alt="黑糖"
+              width="385"
+              height="773"
+            />
+          </div>
+          <!-- 薯片 -->
+          <div class="chips">
+            <img
+              class="chipsImg"
+              src="../../static/imgs/publicRoom/chips.png"
+              alt="薯片"
+              width="257"
+              height="277"
+            />
+          </div>
+          <!-- 倉鼠 -->
+          <div class="mice">
+            <img
+              class="miceImg"
+              src="../../static/imgs/publicRoom/mice.png"
+              alt="倉鼠"
+              width="210"
+              height="227"
+            />
+          </div>
+          <!-- 零食 -->
+          <div class="snack">
+            <img
+              class="snackImg"
+              src="../../static/imgs/publicRoom/snack.png"
+              alt="零食"
+              width="263"
+              height="241"
+            />
+          </div>
           <div v-if="showInfo" class="personalInfoBox">
             <PersonalInfo @leave="closeInfo" :user="userID" :isOwner="false" />
           </div>
@@ -262,8 +312,69 @@ export default {
   height: auto;
   max-height: 100%;
 }
-.personalInfoBox {
+/* 桌遊 */
+.tableGame {
   position: absolute;
-  z-index: 7;
+  left: 68%;
+  top: 81%;
+  width: 11%;
+  height: 35%;
+}
+.tableGameImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+/* 薯片 */
+.chips {
+  position: absolute;
+  left: 76%;
+  top: 76%;
+  width: 3%;
+  height: 8%;
+}
+.chipsImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+/* 零食 */
+/* .snack {
+  position: absolute;
+  left: 69%;
+  top: 79%;
+  width: 11%;
+  height: 35%;
+}
+.snackImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+} */
+/* 黑糖 */
+.dog {
+  position: absolute;
+  left: 26%;
+  top: 75%;
+  width: 4%;
+  height: 14%;
+}
+.dogImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+/* 倉鼠 */
+.mice {
+  position: absolute;
+  left: 63%;
+  top: 80%;
+  width: 4%;
+  height: 8%;
+}
+.miceImg {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
 }
 </style>

@@ -705,7 +705,7 @@ export default {
 .photoTwo {
   position: absolute;
   transform: rotate(4deg);
-  left: 42.8%;
+  left: 42.9%;
   top: 42%;
   width: 20%;
   height: 50%;
@@ -715,7 +715,7 @@ export default {
   width: 100%;
   height: 100%;
 
-  transform: rotate(4deg);
+  transform: rotate(0deg);
 }
 .photoThree {
   position: absolute;
