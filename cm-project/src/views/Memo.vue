@@ -26,13 +26,13 @@
         <aside v-if="!isShow && !isChosed" class="btn">
           <!-- 離開本頁按鈕 -->
           <i class="close__btn fas fa-window-close pointer" @click="goBack"></i>
+          <!-- 新增便條按鈕 -->
           <i
-            class="add__lab fas fa-file-signature pointer"
+            class="add__lab fas fa-plus-circle pointer"
             @click="popupSelection"
           ></i>
         </aside>
       </div>
-      <!-- <section class="base__body"></section> -->
       <div v-if="isShow" class="set-bg">
         <!-- 選擇便條樣式彈窗 -->
         <div class="popup">

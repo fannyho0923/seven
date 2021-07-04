@@ -267,6 +267,7 @@ export default {
             console.log(res3);
             this.password1 = "";
             this.password2 = "";
+            alert("密碼更新成功！！");
           })
           .catch(error => console.log(error));
       }

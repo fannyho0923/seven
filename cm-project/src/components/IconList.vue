@@ -11,7 +11,7 @@
       </li>
       <!-- 查看使用手冊 -->
       <li class="li">
-        <i class="bulb pointer far fa-lightbulb" @click="popInfo"></i>
+        <i class="bulb pointer far fa-lightbulb" @click="popHandbook"></i>
       </li>
       <!-- 查看使用者資訊 -->
       <li class="li">
@@ -26,6 +26,23 @@
       :isOwner="true"
       @move="goMove"
     />
+    <!-- 使用手冊 -->
+    <div v-if="showHandbook" class="handbookBg">
+      <div class="handbook__body mx-auto">
+        <img
+          class="handbookImg img-resp"
+          src="../../static/imgs/publicRoom/handbook.png"
+          alt="使用手冊"
+          width="1268"
+          height="1558"
+        />
+        <!-- 關閉使用手冊按鈕 -->
+        <i
+          class="closeHandbookBtn pointer fas fa-times-circle closeHandbook"
+          @click.self="closeHandbook"
+        ></i>
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -36,7 +53,7 @@ export default {
   data() {
     return {
       userID: this.$store.getters.userSeriel,
-      showInfo: false,
+      showHandbook: false,
       showUserInfo: false,
       navs: [
         {
@@ -111,12 +128,13 @@ export default {
     goPub() {
       this.$router.push("/publicArea");
     },
-    // 跳出資訊
-    popInfo() {
-      this.showInfo = true;
+    // 跳出使用說明
+    popHandbook() {
+      this.showHandbook = true;
     },
-    closeInfo() {
-      this.showInfo = false;
+    // 關閉使用說明
+    closeHandbook() {
+      this.showHandbook = false;
     },
     // 登出
     popUserInfo() {
@@ -215,5 +233,41 @@ export default {
   margin-top: 0.3rem;
   font-size: 1.2vw;
   content: "設定";
+}
+/* 使用手冊 */
+.handbookBg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 50vw;
+  /* background-color: rgba(255, 99, 71, 0.466); */
+}
+.handbook__body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+  height: 100%;
+  /* background-color: yellow; */
+}
+.handbookImg {
+  width: 100%;
+  max-height: 100%;
+}
+.closeHandbook {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 3.6vw;
+  height: 3.6vw;
+  left: 100%;
+  top: 5%;
+  font-size: 4vw;
+  color: rgb(70, 49, 4);
+  background-color: white;
+  border-radius: 50%;
 }
 </style>
