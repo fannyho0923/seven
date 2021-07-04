@@ -4,7 +4,7 @@
       <div class="imgBox">
         <img
           class="img figure img-resp"
-          src="../../static/imgs/memoImg/fridge.png"
+          src="@/assets/imgs/memoImg/fridge.png"
           alt="bg"
           width="800"
           height="600"

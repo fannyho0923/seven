@@ -22,7 +22,7 @@
           <div class="handDrawn">
             <img
               class="handDrawnImg"
-              src="../../static/imgs/publicRoom/handDrawn.png"
+              src="@/assets/imgs/publicRoom/handDrawn.png"
               alt="掛衣架"
               width="127"
               height="345"
@@ -31,7 +31,7 @@
           <div class="hangingPainting">
             <img
               class="hangingPaintingImg"
-              src="../../static/imgs/publicRoom/hangingPainting.png"
+              src="@/assets/imgs/publicRoom/hangingPainting.png"
               alt="壁畫"
               width="638"
               height="188"
@@ -40,7 +40,7 @@
           <div class="tableBox">
             <img
               class="tableImg"
-              src="../../static/imgs/publicRoom/table.png"
+              src="@/assets/imgs/publicRoom/table.png"
               alt="餐桌"
               width="319"
               height="267"
@@ -49,7 +49,7 @@
           <div class="clock">
             <img
               class="clockImg"
-              src="../../static/imgs/publicRoom/clock.png"
+              src="@/assets/imgs/publicRoom/clock.png"
               alt="時鐘"
               width="158"
               height="193"
@@ -59,7 +59,7 @@
           <div class="tableGame">
             <img
               class="tableGameImg"
-              src="../../static/imgs/publicRoom/tableGame.png"
+              src="@/assets/imgs/publicRoom/tableGame.png"
               alt="桌遊"
               width="353"
               height="212"
@@ -69,7 +69,7 @@
           <div class="dog">
             <img
               class="dogImg"
-              src="../../static/imgs/publicRoom/dog.png"
+              src="@/assets/imgs/publicRoom/dog.png"
               alt="黑糖"
               width="385"
               height="773"
@@ -79,7 +79,7 @@
           <div class="chips">
             <img
               class="chipsImg"
-              src="../../static/imgs/publicRoom/chips.png"
+              src="@/assets/imgs/publicRoom/chips.png"
               alt="薯片"
               width="257"
               height="277"
@@ -89,7 +89,7 @@
           <div class="mice">
             <img
               class="miceImg"
-              src="../../static/imgs/publicRoom/mice.png"
+              src="@/assets/imgs/publicRoom/mice.png"
               alt="倉鼠"
               width="210"
               height="227"
@@ -99,7 +99,7 @@
           <div class="block">
             <img
               class="blockImg"
-              src="../../static/imgs/publicRoom/block.png"
+              src="@/assets/imgs/publicRoom/block.png"
               alt="積木"
               width="233"
               height="252"
@@ -109,7 +109,7 @@
           <div class="footPrint">
             <img
               class="footPrintImg"
-              src="../../static/imgs/publicRoom/footPrint.png"
+              src="@/assets/imgs/publicRoom/footPrint.png"
               alt="狗腳印"
               width="272"
               height="107"
@@ -119,7 +119,7 @@
           <div class="catFood">
             <img
               class="catFoodImg"
-              src="../../static/imgs/publicRoom/catFood.png"
+              src="@/assets/imgs/publicRoom/catFood.png"
               alt="貓食"
               width="296"
               height="206"
@@ -129,7 +129,7 @@
           <div class="cat">
             <img
               class="catImg"
-              src="../../static/imgs/publicRoom/cat.png"
+              src="@/assets/imgs/publicRoom/cat.png"
               alt="貓"
               width="260"
               height="249"
@@ -139,7 +139,7 @@
           <div class="dogFood">
             <img
               class="dogFoodImg"
-              src="../../static/imgs/publicRoom/dogFood.png"
+              src="@/assets/imgs/publicRoom/dogFood.png"
               alt="狗食"
               width="302"
               height="152"

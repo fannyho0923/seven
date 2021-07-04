@@ -6,7 +6,7 @@
       <div class="imgBox">
         <img
           class="bgImg img-resp"
-          src="../../static/imgs/room/openDiary.png"
+          src="@/assets/imgs/room/openDiary.png"
           alt="bookPic"
           width="6640"
           height="4638"
@@ -99,7 +99,7 @@
       <div class="penBox">
         <img
           class="penImg img-resp"
-          src="../../static/imgs/room/FeatherPen.png"
+          src="@/assets/imgs/room/FeatherPen.png"
           alt="featherPenPic"
           width="342"
           height="336"
