@@ -5,7 +5,7 @@
         <!-- 左邊照片 -->
         <aside v-show="arr.postImg" class="left__area">
           <img
-            class="img img-resp"
+            class="photoImg img-resp"
             :src="arr.postImg"
             alt="testPic"
             width="200"
@@ -310,9 +310,11 @@ p {
   background-color: #d7e3fcba;
 }
 /* 照片 */
-.img {
+.photoImg {
   max-width: 90%;
   min-width: 70%;
+  max-height: 100%;
+  object-fit: contain;
 }
 /* 右邊文章和留言區 */
 .right__area {
