@@ -104,6 +104,12 @@ export default {
     };
   },
   components: { PersonalInfo },
+  created() {
+    if (this.$store.getters.getNewInfo) {
+      this.showHandbook = true;
+      this.$store.commit("ConfirmIsNew", false);
+    }
+  },
   methods: {
     st(index) {
       return "../static/imgs/pic" + index + ".png";

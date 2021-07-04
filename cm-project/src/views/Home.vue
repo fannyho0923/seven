@@ -191,7 +191,7 @@ export default {
                     .then(res4 => {
                       console.log(res4.data);
                       if (res4.data) {
-                        console.log("打api：新社群");
+                        // console.log("打api：新社群");
                         this.$router.push("/publicArea");
                         return;
                       }

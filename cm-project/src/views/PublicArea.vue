@@ -3,7 +3,7 @@
     <div class="row">
       <!-- 上排導覽 -->
       <header class="base__head">
-        <IconList @move="goMove" />
+        <IconList @move="goMove" newTenant="isNewTenant" />
       </header>
       <div class=" mx-auto">
         <div class="base__body">
@@ -167,6 +167,7 @@ export default {
       userID: "",
       showInfo: false,
       members: [],
+      isNewTenant: false,
       // 門的名子照片與頭像
       doors: [
         {
@@ -222,10 +223,6 @@ export default {
     PersonalInfo
   },
   created() {
-    if (this.$store.getters.getNewInfo) {
-      alert("請參閱手冊");
-      this.$store.commit("ConfirmIsNew", false);
-    }
     //取得使用者資訊
     getUserInfo(this.$store.getters.userSeriel)
       .then(res1 => console.log(res1.data))
@@ -270,9 +267,14 @@ export default {
             //取得社群成員資訊
             getMembers(this.$store.getters.userSeriel)
               .then(res2 => {
-                console.log(res2.data);
-                console.log(res2.data.members);
-                this.members = res2.data.members;
+                let k = 0;
+                this.members = [];
+                for (let i = 0; i < this.doors.length; i++) {
+                  res2.data.hasMember[i]
+                    ? this.members.push(res2.data.members[k++])
+                    : this.members.push(null);
+                }
+                console.log(this.members);
               })
               .catch(error => console.log(error));
           }
