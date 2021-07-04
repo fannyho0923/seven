@@ -132,7 +132,10 @@ export default {
           break;
         // no default
       }
-      this.$emit("choose");
+      // this.$emit("choose");
+    },
+    chooseFunction(count) {
+      this.$emit("choose", this.furnitureItem, count);
     },
     // 打更換牆壁api
     useWall() {
@@ -143,6 +146,7 @@ export default {
       setWall(wallData)
         .then(res => {
           console.log(res.data);
+          this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
     },
@@ -155,6 +159,7 @@ export default {
       setBed(bedData)
         .then(res => {
           console.log(res.data);
+          this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
     },
@@ -167,6 +172,7 @@ export default {
       setDiary(diaryData)
         .then(res => {
           console.log(res.data);
+          this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
     },
@@ -179,6 +185,7 @@ export default {
       setBookcase(bookcaseData)
         .then(res => {
           console.log(res.data);
+          this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
     },
@@ -191,6 +198,7 @@ export default {
       setDesk(deskData)
         .then(res => {
           console.log(res.data);
+          this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
     },
@@ -203,6 +211,7 @@ export default {
       setCloset(closetData)
         .then(res => {
           console.log(res.data);
+          this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
     },
@@ -215,6 +224,7 @@ export default {
       setDecorate(decoData)
         .then(res => {
           console.log(res.data);
+          this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
     }

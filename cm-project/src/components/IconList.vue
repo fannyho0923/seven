@@ -54,53 +54,53 @@ export default {
     return {
       userID: this.$store.getters.userSeriel,
       showHandbook: false,
-      showUserInfo: false,
-      navs: [
-        {
-          name: "game",
-          src: "../static/imgs/pic1.png"
-        },
-        {
-          name: "chat",
-          src: "../static/imgs/pic2.png"
-        },
-        {
-          name: "screenShot",
-          src: "../static/imgs/pic3.png"
-        },
-        {
-          name: "contact",
-          src: "../static/imgs/pic4.png"
-        },
-        {
-          name: "info",
-          src: "../static/imgs/pic5.png"
-        },
-        {
-          name: "public",
-          src: "../static/imgs/pic6.png"
-        },
-        {
-          name: "home",
-          src: "../static/imgs/pic7.png"
-        },
-        {
-          name: "room",
-          src: "../static/imgs/pic8.png"
-        },
-        {
-          name: "music",
-          src: "../static/imgs/pic9.png"
-        },
-        {
-          name: "lang",
-          src: "../static/imgs/pic10.png"
-        },
-        {
-          name: "logout",
-          src: "../static/imgs/pic11.png"
-        }
-      ]
+      showUserInfo: false
+      // navs: [
+      //   {
+      //     name: "game",
+      //     src: "../static/imgs/pic1.png"
+      //   },
+      //   {
+      //     name: "chat",
+      //     src: "../static/imgs/pic2.png"
+      //   },
+      //   {
+      //     name: "screenShot",
+      //     src: "../static/imgs/pic3.png"
+      //   },
+      //   {
+      //     name: "contact",
+      //     src: "../static/imgs/pic4.png"
+      //   },
+      //   {
+      //     name: "info",
+      //     src: "../static/imgs/pic5.png"
+      //   },
+      //   {
+      //     name: "public",
+      //     src: "../static/imgs/pic6.png"
+      //   },
+      //   {
+      //     name: "home",
+      //     src: "../static/imgs/pic7.png"
+      //   },
+      //   {
+      //     name: "room",
+      //     src: "../static/imgs/pic8.png"
+      //   },
+      //   {
+      //     name: "music",
+      //     src: "../static/imgs/pic9.png"
+      //   },
+      //   {
+      //     name: "lang",
+      //     src: "../static/imgs/pic10.png"
+      //   },
+      //   {
+      //     name: "logout",
+      //     src: "../static/imgs/pic11.png"
+      //   }
+      // ]
     };
   },
   components: { PersonalInfo },

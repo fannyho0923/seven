@@ -23,6 +23,7 @@
               v-model="str"
               :placeholder="userName"
               @keyup.enter="checkName"
+              autocomplete="false"
             />
             <i
               v-if="!isEditName && isOwner"
@@ -70,6 +71,7 @@
                 v-model="password1"
                 placeholder="新密碼"
                 @click="editPassword"
+                autocomplete="false"
               />
             </div>
             <!-- 確認密碼輸入欄 -->
@@ -81,6 +83,7 @@
                 v-model="password2"
                 placeholder="確認新密碼"
                 @click="editPassword"
+                autocomplete="false"
               />
               <!-- 修改密碼按鈕 -->
               <div class="editPassBox">

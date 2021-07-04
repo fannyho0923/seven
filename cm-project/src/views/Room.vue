@@ -11,9 +11,10 @@
           <div class="ownerAvatar">
             <img
               v-if="roleID"
-              class="owneImg"
+              class="pointer owneImg"
               :src="'http://35.201.237.18/img/avatar_' + roleID + '.png'"
               alt="房主頭像"
+              @click.self="watchInfo"
             />
           </div>
 
@@ -142,6 +143,9 @@
           </i>
         </div>
       </section>
+      <div v-if="showInfo" class="personalInfoBox">
+        <PersonalInfo @leave="closeInfo" :user="ownerSeriel" :isOwner="false" />
+      </div>
     </div>
   </main>
 </template>
@@ -151,6 +155,7 @@ import { getRoomInfo, userTransferGroup } from "@/js/all.js";
 import Photo from "@/components/Photo.vue";
 import Wardrobe from "@/components/Wardrobe.vue";
 import IconList from "../components/IconList.vue";
+import PersonalInfo from "../components/PersonalInfo.vue";
 export default {
   data() {
     return {
@@ -172,6 +177,8 @@ export default {
       decoSrc: 1,
       ownerName: "",
       roleID: 0,
+      ownerSeriel: 0,
+      showInfo: false,
       wallArr: [
         {
           itemIndex: 1,
@@ -415,7 +422,8 @@ export default {
   components: {
     Photo,
     Wardrobe,
-    IconList
+    IconList,
+    PersonalInfo
   },
   computed: {
     // 背景
@@ -447,6 +455,7 @@ export default {
         this.closetSrc = res1.data.closet;
         this.colorType = res1.data.colorType;
         this.decoSrc = res1.data.deco;
+        this.ownerSeriel = res1.data.ownerSeriel;
         // console.log(this.deskArr[this.deskSrc].src);
       })
       .catch(error => console.log(error));
@@ -543,26 +552,59 @@ export default {
         })
         .catch(error => console.log(error));
     },
-    updateData() {
-      this.roomId = this.$route.query.id;
+    updateData(type, count) {
+      const furnitureEnum = {
+        diary: "日記",
+        bookcase: "書櫃",
+        desk: "書桌",
+        clothcase: "衣櫃",
+        bed: "床組",
+        decoretion: "裝飾",
+        wall: "牆壁"
+      };
+      switch (type) {
+        case furnitureEnum.diary:
+          this.diarySrc = count + 1;
+          break;
+        case furnitureEnum.bookcase:
+          this.bookcaseSrc = count + 1;
+          break;
+        case furnitureEnum.desk:
+          this.deskSrc = count + 1;
+          break;
+        case furnitureEnum.clothcase:
+          this.closetSrc = count + 1;
+          break;
+        case furnitureEnum.bed:
+          this.bedSrc = count + 1;
+          break;
+        case furnitureEnum.decoretion:
+          this.decoSrc = count + 1;
+          break;
+        case furnitureEnum.wall:
+          this.colorType = count + 1;
+          break;
+        // no default
+      }
+      //this.roomId = this.$route.query.id;
       // 取得房間資訊
-      getRoomInfo(this.roomId, this.$store.getters.userSeriel)
-        .then(res1 => {
-          this.isOwner = res1.data.isOwner;
-          console.log(res1.data.isOwner);
-          this.photo1 = res1.data.photo1;
-          this.photo2 = res1.data.photo2;
-          this.photo3 = res1.data.photo3;
-          this.isEnvelope = res1.data.hasNewMail;
-          this.bedSrc = res1.data.bed;
-          this.diarySrc = res1.data.diary;
-          this.bookcaseSrc = res1.data.bookShelf;
-          this.deskSrc = res1.data.desk;
-          this.closetSrc = res1.data.closet;
-          this.colorType = res1.data.colorType;
-          this.decoSrc = res1.data.deco;
-        })
-        .catch(error => console.log(error));
+      // getRoomInfo(this.roomId, this.$store.getters.userSeriel)
+      //   .then(res1 => {
+      //     this.isOwner = res1.data.isOwner;
+      //     console.log(res1.data.isOwner);
+      //     this.photo1 = res1.data.photo1;
+      //     this.photo2 = res1.data.photo2;
+      //     this.photo3 = res1.data.photo3;
+      //     this.isEnvelope = res1.data.hasNewMail;
+      //     this.bedSrc = res1.data.bed;
+      //     this.diarySrc = res1.data.diary;
+      //     this.bookcaseSrc = res1.data.bookShelf;
+      //     this.deskSrc = res1.data.desk;
+      //     this.closetSrc = res1.data.closet;
+      //     this.colorType = res1.data.colorType;
+      //     this.decoSrc = res1.data.deco;
+      //   })
+      //   .catch(error => console.log(error));
     },
     goMove() {
       // 打api：搬到新的社群
@@ -574,6 +616,18 @@ export default {
           }
         })
         .catch(error => console.log(error));
+    },
+    // 查看玩家資訊
+    watchInfo(data) {
+      if (!data) {
+        return;
+      }
+      this.userID = data;
+      this.showInfo = true;
+    },
+    // 關閉玩家資訊
+    closeInfo() {
+      this.showInfo = false;
     }
   }
 };
@@ -688,6 +742,7 @@ export default {
   height: 16%;
   left: 21.7%;
   top: -8px;
+  z-index: 2;
 }
 /* 照片 */
 .photoImg__base {
@@ -779,11 +834,13 @@ export default {
 }
 /* 房主頭像和名稱容器 */
 .ownerBox {
+  position: relative;
   width: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   /* background-color: teal; */
 }
 /* 房主頭像容器 */
@@ -810,5 +867,10 @@ export default {
   width: 100%;
   border-radius: 50%;
   object-fit: contain;
+}
+/* 讓名片可以浮在最上層 */
+.personalInfoBox {
+  position: absolute;
+  z-index: 7;
 }
 </style>

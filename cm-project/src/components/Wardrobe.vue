@@ -344,8 +344,8 @@ export default {
       }
     },
     // 已選擇使用
-    choosed() {
-      this.$emit("choose");
+    choosed(type, img) {
+      this.$emit("choose", type, count);
     },
     //關閉視窗按鈕
     leave() {

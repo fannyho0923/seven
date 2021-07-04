@@ -126,32 +126,6 @@ export default {
       ],
       roomId: 0,
       add: 14 //好友位移
-      // members: [
-      //   {
-      //     src: "../../static/imgs/avatar.png",
-      //     name: "fanny"
-      //   },
-      //   {
-      //     src: "../../static/imgs/avatar.png",
-      //     name: "cody"
-      //   },
-      //   {
-      //     src: "../../static/imgs/avatar.png",
-      //     name: "tony"
-      //   },
-      //   {
-      //     src: "../../static/imgs/avatar.png",
-      //     name: "ben"
-      //   },
-      //   {
-      //     src: "../../static/imgs/avatar.png",
-      //     name: "mila"
-      //   },
-      //   {
-      //     src: "../../static/imgs/avatar.png",
-      //     name: "paul"
-      //   }
-      // ]
     };
   },
   created() {
