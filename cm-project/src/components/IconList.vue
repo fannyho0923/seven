@@ -256,6 +256,7 @@ export default {
   width: 100%;
   max-height: 100%;
 }
+/* 關閉使用手冊按鈕 */
 .closeHandbook {
   display: flex;
   justify-content: center;

@@ -1,9 +1,25 @@
 <template>
   <main class="main">
     <div v-if="colorType" class="row" :style="setLayout">
+      <!-- 導覽列表 -->
       <header class="base__head">
         <IconList @goRoom="changeRoom" @move="goMove" />
       </header>
+      <!-- 房主頭像 -->
+      <div class="ownerBg">
+        <div class="ownerBox">
+          <div class="ownerAvatar"></div>
+          <!-- <img
+            class="owneImg"
+            src="'http://35.201.237.18/img/avatar_'+{{roleID}}+'.png'"
+            alt="房主頭像"
+          /> -->
+
+          <div class="ownerInfo">
+            <p>房主名稱</p>
+          </div>
+        </div>
+      </div>
       <section class="room__body">
         <!-- 房間裝飾 -->
         <div class="decoImgBox ">
@@ -152,6 +168,7 @@ export default {
       closetSrc: 1,
       colorType: 1,
       decoSrc: 1,
+      roleID: 0,
       wallArr: [
         {
           itemIndex: 1,
@@ -505,6 +522,7 @@ export default {
           console.log(res1.data);
           console.log("pppp");
           console.log(res1.data.isOwner);
+          this.roleID = "";
           this.photo1 = res1.data.photo1;
           this.photo2 = res1.data.photo2;
           this.photo3 = res1.data.photo3;
@@ -750,34 +768,26 @@ export default {
   width: 100%;
   /* background-color: rgba(128, 255, 0, 0.384); */
 }
-/* @keyframes fade {
-  from {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  to {
-    opacity: 1;
-  }
+/* 房主頭像容器 */
+.ownerBg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
 }
-@-webkit-keyframes fade {
-  from {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  to {
-    opacity: 1;
-  }
+.ownerBox {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: teal; */
 }
-.blink {
-  color: red;
-  padding: 10px;
-  font-size: 15px;
-  height: 60px;
-  animation: fade 600ms infinite;
-  -webkit-animation: fade 600ms infinite;
-} */
+.ownerAvatar {
+  width: 5.7vw;
+  height: 5.7vw;
+  border-radius: 50%;
+  margin: 1vw 1vw 0 1vw;
+  background-color: rgb(231, 18, 196);
+}
 </style>
