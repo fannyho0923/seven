@@ -52,10 +52,41 @@
       />
       <!-- @inputDone="inputLogIn" -->
     </div>
+    <!-- 使用說明視窗 -->
     <section v-if="showInfo" class="infoBg">
       <div class="info__body">
-        <div class="pointer closeInfoBtn" @click.self="closeInfo">X</div>
+        <article class="article">
+          <h3 class="articleTit">【什麼是七人一室？】</h3>
+          <p class="contentOne">
+            七人一室是一個使用網站模式的背包客棧，同時是一個社群交友的空間，它也可以被定位為一個更注重隱私權的臉書。
+            <br />
+            使用者在陌生社群中記錄自己的生活，如同入住背包客棧中不預期將會遇到各式各樣的室友，
+            藉由窺探室友的小世界來了解對方、發展話題。
+            <br />研究顯示兩個陌生人相遇的概率是0.00487，
+            透過限縮的微型人脈更能夠珍惜在網路世界的萍水相逢，
+            建立人際關係、產生如室友般的緊密互動。
+            <br />本網站採用匿名方式，讓大家沒有人際關係的壓力，沒有人知道誰是誰
+            。玩家可以不用顧慮他人眼光，能自由說出想說的話，更沒有人道德指責或因價值觀不同而開啟筆戰。
+            <br />在客棧中您可以隨時選擇搬離，我們會隨機將您加入其他客棧與不同的室友相遇、相處，並且給予全新的頭貼繼續保持匿名性，
+            進入新客棧中會保有相同的房間設定和生活紀錄，也就是說，您可以不用重新介紹「你是誰」。
+          </p>
+          <h3 class="articleTit">【在七人一室中，可以做些什麼？】</h3>
+          <p class="contentOne">
+            每個玩家註冊後將會隨機加入一個客棧，玩家和客棧中的室友透過文字和相片相互了解。
+            客棧中有公共和各自的私人空間，公共空間中有留言冰箱和電視機，可以寫字條及分享影片給室友們。<br />
+            房間中主要本體有書櫃、電腦和日記本：<br />書櫃可以透過文字和相片紀錄生活、室友們可以來到彼此空間查看房主的書櫃，並留言回應；
+            <br />電腦中存有通訊錄，可以和室友們私訊聊天；
+            <br />日記本是自己的私密紀錄，僅有本人可以查看。
+            <br />另外，網站還有一些附加的功能
+            ，讓入住的玩家們享受其他的樂趣，房內的擺飾可以透過衣櫃進行更換，進入不同室友的領域可以立即透過視覺感受他的個人風格。
+            <br />私人空間的相片牆可以展示三張主題照，能夠迅速讓人看到關於玩家的愛好。
+            <br /><br /><br />在七人一室中，我們懷念在學生時的住宿時光，希望創建更隱密的社交環境，讓大家在微社交圈中避開網路可能的群眾霸凌，不用受到世俗眼光限制，更能自在的說出想說的話。
+            <br />最後，歡迎加入七人一室，請享受你的住宿生活！
+          </p>
+          <p class="little">開發者：何韋含、廖翊涵 誠摯地邀請您入住</p>
+        </article>
       </div>
+      <div class="pointer closeInfoBtn" @click.self="closeInfo">X</div>
     </section>
   </main>
 </template>
@@ -69,6 +100,7 @@ import {
   userAddNewGroup,
   userTransferGroup
 } from "@/js/all.js";
+import Article from "../components/Article.vue";
 
 export default {
   data() {
@@ -89,7 +121,7 @@ export default {
       showInfo: false
     };
   },
-  components: { PopupWindow },
+  components: { PopupWindow, Article },
   methods: {
     //點擊註冊
     atRegiste() {
@@ -307,16 +339,20 @@ export default {
   /* background-color: pink; */
   /* opacity: 0.5; */
 }
-
+/* 使用說明 */
 .info__body {
   position: relative;
   left: 20%;
   width: 60%;
   height: 100%;
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.9;
   border-radius: 15px;
-  border: solid 10px;
+  border: solid 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  word-wrap: break-word;
 }
 /* 關閉使用說明視窗 */
 .closeInfoBtn {
@@ -324,13 +360,33 @@ export default {
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 96%;
+  left: 78%;
   top: -6%;
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  border: solid 10px;
+  border: solid 5px;
   font-size: 4rem;
   background-color: white;
+}
+/* 文章容器 */
+.article {
+  font-size: 1.8rem;
+  padding: 1.2rem;
+  letter-spacing: 0.5rem;
+  overflow: hidden;
+}
+.articleTit {
+  letter-spacing: 0.2rem;
+}
+/* 第一段 */
+.contentOne {
+  font-size: 1.5rem;
+  text-align: justify;
+}
+/* 結語 */
+.little {
+  letter-spacing: 0;
+  font-size: 1rem;
 }
 </style>
