@@ -67,7 +67,7 @@ export default {
       alreadySend: false,
       str: "",
       playlistArr: [],
-      ytSrc: "https://www.youtube.com/embed/EK1UKUtnoWU"
+      ytSrc: "https://www.youtube.com/embed/U68wfoOydkE"
     };
   },
   components: {
@@ -82,15 +82,15 @@ export default {
       })
       .catch(error => console.log(error));
   },
-  updated() {
-    if (this.alreadySend) {
-      this.$nextTick(function() {
-        var div = document.getElementById("data-content");
-        div.scrollTop = div.scrollHeight;
-      });
-      this.alreadySend = false;
-    }
-  },
+  // updated() {
+  //   if (this.alreadySend) {
+  //     this.$nextTick(function() {
+  //       var div = document.getElementById("data-content");
+  //       div.scrollTop = div.scrollHeight;
+  //     });
+  //     this.alreadySend = false;
+  //   }
+  // },
 
   methods: {
     // 切換影片

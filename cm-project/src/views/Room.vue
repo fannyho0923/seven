@@ -8,15 +8,17 @@
       <!-- 房主頭像 -->
       <div class="ownerBg">
         <div class="ownerBox">
-          <div class="ownerAvatar"></div>
-          <!-- <img
-            class="owneImg"
-            src="'http://35.201.237.18/img/avatar_'+{{roleID}}+'.png'"
-            alt="房主頭像"
-          /> -->
+          <div class="ownerAvatar">
+            <img
+              v-if="roleID"
+              class="owneImg"
+              :src="'http://35.201.237.18/img/avatar_' + roleID + '.png'"
+              alt="房主頭像"
+            />
+          </div>
 
           <div class="ownerInfo">
-            <p class="ownerName">房主名稱</p>
+            <p class="ownerName">{{ ownerName }}</p>
           </div>
         </div>
       </div>
@@ -168,6 +170,7 @@ export default {
       closetSrc: 1,
       colorType: 1,
       decoSrc: 1,
+      ownerName: "",
       roleID: 0,
       wallArr: [
         {
@@ -431,6 +434,8 @@ export default {
         this.isOwner = res1.data.isOwner;
         console.log(res1.data);
         console.log(res1.data.isOwner);
+        this.roleID = res1.data.roleId;
+        this.ownerName = res1.data.ownerName;
         this.photo1 = res1.data.photo1;
         this.photo2 = res1.data.photo2;
         this.photo3 = res1.data.photo3;
@@ -522,7 +527,8 @@ export default {
           console.log(res1.data);
           console.log("pppp");
           console.log(res1.data.isOwner);
-          this.roleID = "";
+          this.roleID = res1.data.roleId;
+          this.ownerName = res1.data.ownerName;
           this.photo1 = res1.data.photo1;
           this.photo2 = res1.data.photo2;
           this.photo3 = res1.data.photo3;
@@ -609,12 +615,6 @@ export default {
 }
 .wardrobeImg {
   vertical-align: bottom;
-  /* display: inline-block; */
-  /* flex-direction: column-reverse; */
-  /* width: 100%; */
-  /* height: 100%; */
-  /* object-fit: contain; */
-  /* background-color: rgb(111, 111, 235); */
 }
 .wardrobeImg:hover {
   opacity: 0.5;
@@ -788,14 +788,27 @@ export default {
 }
 /* 房主頭像容器 */
 .ownerAvatar {
-  width: 5.7vw;
-  height: 5.7vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.9vw;
+  height: 5.9vw;
   border-radius: 50%;
   margin: 1vw 1vw 0 1vw;
-  background-color: rgb(231, 18, 196);
+  box-shadow: 0 0 10px;
+  /* background-color: rgb(231, 18, 196); */
 }
 /* 房主名字 */
 .ownerName {
+  margin: 0.5rem 0 0 0;
   font-size: 1.2vw;
+  color: #1d3557;
+  letter-spacing: 0.1rem;
+}
+/* 房間照片 */
+.owneImg {
+  width: 100%;
+  border-radius: 50%;
+  object-fit: contain;
 }
 </style>

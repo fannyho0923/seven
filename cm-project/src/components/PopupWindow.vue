@@ -11,9 +11,9 @@
         v-if="!member"
         type="text"
         v-model="nickName"
-        placeholder="限 1-20 字"
+        placeholder="限 1-10 字"
         minlength="1"
-        maxlength="20"
+        maxlength="10"
         required
       />
       <br v-if="!member" />
