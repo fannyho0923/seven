@@ -16,7 +16,7 @@
           /> -->
 
           <div class="ownerInfo">
-            <p>房主名稱</p>
+            <p class="ownerName">房主名稱</p>
           </div>
         </div>
       </div>
@@ -713,6 +713,7 @@ export default {
 .photoImgOne {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 .photoTwo {
   position: absolute;
@@ -726,7 +727,7 @@ export default {
 .photoImgTwo {
   width: 100%;
   height: 100%;
-
+  object-fit: contain;
   transform: rotate(0deg);
 }
 .photoThree {
@@ -742,6 +743,7 @@ export default {
 .photoImgThree {
   width: 100%;
   height: 100%;
+  object-fit: contain;
   transform: rotate(1deg);
 }
 /* 床 */
@@ -768,13 +770,14 @@ export default {
   width: 100%;
   /* background-color: rgba(128, 255, 0, 0.384); */
 }
-/* 房主頭像容器 */
+/* 房主頭像背景定位 */
 .ownerBg {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
 }
+/* 房主頭像和名稱容器 */
 .ownerBox {
   width: fit-content;
   display: flex;
@@ -783,11 +786,16 @@ export default {
   align-items: center;
   /* background-color: teal; */
 }
+/* 房主頭像容器 */
 .ownerAvatar {
   width: 5.7vw;
   height: 5.7vw;
   border-radius: 50%;
   margin: 1vw 1vw 0 1vw;
   background-color: rgb(231, 18, 196);
+}
+/* 房主名字 */
+.ownerName {
+  font-size: 1.2vw;
 }
 </style>
