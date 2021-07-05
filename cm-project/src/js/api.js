@@ -1,8 +1,10 @@
 import axios from "axios";
 
+var dev = "/api";
+var pro = "http://35.201.237.18";
 // baseURL是你API的主要Domain，之後發請求時只要填相對路徑就可以了
 const instance = axios.create({
-  baseURL: "http://35.201.237.18",
+  baseURL: dev,
   headers: { "Content-Type": "application/json" },
   timeout: 20000
 });

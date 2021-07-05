@@ -184,9 +184,12 @@ export default {
   background-color: rgba(8, 8, 8, 0.377);
 }
 .tv__base {
+  position: relative;
+  top: 20%;
   width: 85vw;
-  margin-top: 12rem;
-  height: 30rem;
+  /* max-height: 440px; */
+  /* height: auto; */
+  /* margin-top: 7vw; */
   /* background-color: cyan; */
 }
 .tv__body {
@@ -194,7 +197,7 @@ export default {
   justify-content: space-around;
   position: relative;
   width: 100%;
-  max-height: 30rem;
+  /* max-height: 30rem; */
   /* background-color: darkgoldenrod; */
 }
 .leftBox {

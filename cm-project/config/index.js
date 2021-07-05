@@ -11,7 +11,7 @@ module.exports = {
     assetsPublicPath: "/",
     proxyTable: {
       "/api": {
-        target: "http://35.201.237.18", //node express api的url位置
+        target: "http://35.201.237.18", //node express api的url位置http://35.201.237.18
         changeOrigin: true,
         pathRewrite: {
           "^/api": ""

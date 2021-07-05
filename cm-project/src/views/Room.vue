@@ -29,7 +29,6 @@
           <img class="decoImg " :src="decoArr[decoSrc - 1].src" alt="裝飾" />
         </div>
         <!-- 相片牆:放相片 -->
-        <!-- 衣櫥:換房間樣式 -->
         <div class="pointer photoImgBox">
           <img
             class="pointer photoImg__base img-resp"
@@ -72,9 +71,14 @@
           :photoThree="photo3"
         />
         <!-- 衣櫃：換背景 -->
-        <div v-if="closetSrc" class="pointer wardrobeImgBox">
+        <div
+          v-if="closetSrc"
+          :class="{ pointer: isOwner }"
+          class=" wardrobeImgBox"
+        >
           <img
-            class="pointer wardrobeImg img-resp"
+            :class="{ pointer: isOwner }"
+            class=" wardrobeImg img-resp"
             :src="closetArr[closetSrc - 1].src"
             alt="wardrobePic"
             width="373"
@@ -110,9 +114,10 @@
           />
         </div>
         <!-- 日記:寫日記 -->
-        <div v-if="diarySrc" class="pointer diaryImgBox">
+        <div :class="{ pointer: isOwner }" v-if="diarySrc" class=" diaryImgBox">
           <img
-            class="pointer diaryImg img-resp"
+            :class="{ pointer: isOwner }"
+            class=" diaryImg img-resp"
             :src="diaryArr[diarySrc - 1].src"
             alt="diaryPic"
             width="628"
@@ -472,6 +477,7 @@ export default {
       if (this.isOwner) {
         this.showWardrobe = true;
       } else {
+        alert("不可以偷看別人衣櫃唷！");
         return;
       }
     },
@@ -513,6 +519,7 @@ export default {
         this.$store.commit("Enter", id);
         this.$router.push({ name: "Diary", query: { id } });
       } else {
+        alert("不可以偷看別人日記歐！");
         return;
       }
     },
@@ -534,8 +541,7 @@ export default {
         .then(res1 => {
           this.isOwner = res1.data.isOwner;
           console.log(res1.data);
-          console.log("pppp");
-          console.log(res1.data.isOwner);
+          // console.log(res1.data.isOwner);
           this.roleID = res1.data.roleId;
           this.ownerName = res1.data.ownerName;
           this.photo1 = res1.data.photo1;

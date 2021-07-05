@@ -1,5 +1,5 @@
 <template>
-  <div class="articleBox  pointer" @click="see">
+  <div class="articleBody  pointer" @click="see">
     <!-- 從後端拿取日期 -->
     <div v-if="arr.postTime" class="day text-center">{{ arr.postTime }}</div>
     <div v-else class="day text-center">{{ date }}</div>
@@ -49,7 +49,7 @@ export default {
 
 <style scoped>
 /* 單篇文章容器 */
-.articleBox {
+.articleBody {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

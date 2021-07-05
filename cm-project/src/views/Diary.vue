@@ -70,6 +70,7 @@
         <!-- 文章 -->
         <div class="article__body">
           <textarea
+            autofocus
             class="textArea"
             v-model="content"
             placeholder="Write something here..."

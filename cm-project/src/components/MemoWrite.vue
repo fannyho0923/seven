@@ -9,6 +9,7 @@
       <article class="articleBox">
         <!-- 給使用者輸入的位置 -->
         <textarea
+          autofocus
           class="textarea"
           name=""
           id=""

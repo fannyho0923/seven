@@ -344,7 +344,7 @@ export default {
       }
     },
     // 已選擇使用
-    choosed(type, img) {
+    choosed(type, count) {
       this.$emit("choose", type, count);
     },
     //關閉視窗按鈕
@@ -496,6 +496,11 @@ export default {
   text-align: center;
   border-radius: 15px;
 }
+
+/* .item:visited {
+  background-color: #be9306;
+  opacity: 0.7;
+} */
 .item:hover {
   background-color: #a8dadc;
   opacity: 0.7;

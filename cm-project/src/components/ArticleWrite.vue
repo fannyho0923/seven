@@ -3,9 +3,9 @@
     <aside class="base">
       <div class="article__body mx-auto">
         <!-- 文字匡 -->
-        <div class="textBox">
+        <div class="mx-auto textBox">
           <textarea
-            class="textArea"
+            class="textArea mx-auto"
             v-model="content"
             placeholder="寫點什麼..."
           ></textarea>
@@ -142,7 +142,8 @@ export default {
   left: 0;
   top: 0;
   width: 100vw;
-  height: 50vw;
+  min-height: 50rem;
+  height: 100vh;
   background-color: rgba(5, 5, 5, 0.404);
 }
 /* 編輯文章匡 */
@@ -152,7 +153,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 10rem;
+  /* margin-top: 10rem; */
   width: 60%;
   height: 36rem;
   /* background-color: rgba(128, 255, 0, 0.548); */
@@ -178,6 +179,8 @@ export default {
   height: 100%;
   font-size: 1.5vw;
   resize: none;
+  padding: 0;
+  border: 0;
 }
 /* 離開按鈕 */
 .leave__btn {
@@ -214,6 +217,7 @@ export default {
   width: 100%;
   height: auto;
   max-height: 100%;
+  object-fit: contain;
 }
 /* 放選取照片按鈕以及照片區塊 */
 .imgBox {
@@ -221,6 +225,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgb(228, 104, 151);
+  transform: translate(0px, 0px);
 }
 /* 新增照片的input(要透明) */
 .input__btn {
@@ -236,9 +242,12 @@ export default {
   height: 100%;
   vertical-align: bottom;
   color: rgb(77, 73, 73);
+  padding: 0;
 }
 /* 整個編輯器以及發布按鈕 */
 .base {
+  position: relative;
+  top: 15%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -249,13 +258,13 @@ export default {
   width: 30%;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
-  background-color: #adb5bd;
-  color: #495057;
-  border: solid 1px #495057;
+  background-color: #c19dbe;
+  color: #884983;
+  border: solid 1px #884983;
   border-radius: 5px;
 }
 .post__btn:hover {
-  background-color: #dee2e6;
+  background-color: #c2a5bf;
   opacity: 0.5;
 }
 

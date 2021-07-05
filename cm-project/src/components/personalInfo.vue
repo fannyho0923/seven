@@ -64,7 +64,9 @@
           <div v-if="isOwner" class="toolBox">
             <!-- 修改密碼輸入欄 -->
             <div class="passBox">
-              修改密碼
+              <p class="passTit1">
+                修改密碼
+              </p>
               <input
                 class="passEdit1 mx-auto"
                 type="password"
@@ -76,7 +78,9 @@
             </div>
             <!-- 確認密碼輸入欄 -->
             <div class="passBox">
-              確認密碼
+              <p class="passTit2">
+                確認密碼
+              </p>
               <input
                 class="passEdit2 mx-auto"
                 type="password"
@@ -369,6 +373,13 @@ export default {
   margin: 0;
   font-size: 2em;
 }
+/* 密碼文字 */
+.passTit1 {
+}
+/* 確認密碼文字 */
+.passTit2 {
+}
+/* 密碼輸入 */
 .passEdit1 {
   width: 60%;
   margin-left: 7px;
@@ -376,9 +387,11 @@ export default {
   background-color: rgba(169, 169, 169, 0.315);
   border-color: transparent;
 }
+/* 確認密碼輸入 */
 .passEdit2 {
   width: 60%;
   margin: 0;
+  padding: 0;
   font-size: 1em;
   background-color: rgba(169, 169, 169, 0.315);
   border-color: transparent;
