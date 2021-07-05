@@ -110,7 +110,7 @@ export default {
       if (!this.content) {
         return;
       }
-      // 打api上傳修改的文章
+      // 打api上傳的文章
       const articleData = {
         userSeriel: this.$store.getters.userSeriel,
         boardType: 3,
@@ -118,11 +118,10 @@ export default {
         postImg: this.imgUrl,
         postText: this.content
       };
-      // 上傳修改的文章
+      // 上傳的文章
       addPrivateArticle(articleData)
         .then(res1 => {
           if (res1.data.result) {
-            console.log(this.imgUrl);
             const NewData = res1.data.postInfo;
             this.$emit("post", NewData);
             this.content = "";
@@ -247,7 +246,7 @@ export default {
 /* 整個編輯器以及發布按鈕 */
 .base {
   position: relative;
-  top: 15%;
+  top: 5vw;
   display: flex;
   flex-direction: column;
   justify-content: center;

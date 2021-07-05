@@ -137,11 +137,13 @@
           />
           <i
             v-if="isOwner && isEnvelope"
+            :style="display"
             class="pointer envelope far fa-envelope"
             @click="goComputer"
           ></i>
           <i
             v-if="isOwner && !isEnvelope"
+            :style="display"
             class="pointer envelope far fa-envelope-open"
             @click="goComputer"
           >
@@ -437,6 +439,34 @@ export default {
       return {
         backgroundImage: `url(${image})`
       };
+    },
+    display() {
+      if (this.deskSrc === 1) {
+        return "top: 6%; left:41%;";
+      }
+      if (this.deskSrc === 2) {
+        return "top: 26%; left:26%;fontSize:3vw;";
+      }
+      if (this.deskSrc === 3) {
+        return "top: 5%; left:49%;";
+      }
+      if (this.deskSrc === 4) {
+        return "top: 24%;left: 9%;font-size: 3vw;";
+      }
+      if (this.deskSrc === 5) {
+        return "top: 8%; left:44%;";
+      }
+      if (this.deskSrc === 6) {
+        return "top: 11%; left:39%;";
+      }
+      if (this.deskSrc === 7) {
+        return "top: 20%; left:30%;";
+      }
+      if (this.deskSrc === 8) {
+        return "top: 8%; left:24%;";
+      } else {
+        return "top: 10%; left:40%;";
+      }
     }
   },
   created() {
@@ -730,11 +760,13 @@ export default {
 /* 信件 */
 .envelope {
   position: absolute;
-  position: absolute;
   display: block;
-  font-size: 4vw;
-  left: 39%;
-  top: 7%;
+  /* font-size: 4vw;
+   left: 39%;
+   top: 7%; */
+  font-size: 3.5vw;
+  left: 40%;
+  top: 10%;
 }
 .envelope:hover {
   opacity: 0.5;
@@ -823,12 +855,13 @@ export default {
 /* 裝飾 */
 .decoImgBox {
   position: absolute;
-  left: 2%;
+  width: 99%;
+  left: 1%;
   top: 3%;
   /* background-color: coral; */
 }
 .decoImg {
-  width: 100%;
+  width: 95%;
   /* background-color: rgba(128, 255, 0, 0.384); */
 }
 /* 房主頭像背景定位 */

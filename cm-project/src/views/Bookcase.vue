@@ -6,7 +6,7 @@
         <div class="articleBox mx-auto">
           <Article
             v-for="(item, index) in articleArr"
-            :key="index"
+            :key="item.postSeriel"
             :arr="articleArr[index]"
             @see="look(index)"
           />
@@ -122,7 +122,6 @@ export default {
     },
     // 文章新增
     alreadyPost(data) {
-      // console.log(data);
       this.articleArr.unshift(data);
       this.closeWriteBox();
     },
@@ -167,9 +166,9 @@ export default {
   position: relative;
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 80%;
   height: 40rem;
-  margin-top: 6rem;
+  margin-top: 3vw;
   /* background-color: aqua; */
 }
 .blogBox {
@@ -218,7 +217,7 @@ export default {
 } */
 /* 捲軸底色 */
 .articleBox::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #ffc0cb;
 }
 /* 捲軸寬度 */

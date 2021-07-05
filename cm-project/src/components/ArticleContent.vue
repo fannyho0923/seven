@@ -288,10 +288,13 @@ p {
 /* 預覽留言框 */
 .base__body {
   position: relative;
+  margin: 0;
+  left: 10%;
   display: flex;
   justify-content: center;
-  margin-top: 7.5rem;
-  width: 70%;
+  margin-top: 2%;
+  /* margin-top: 7.5rem; */
+  width: 76%;
   height: 36.5rem;
   /* background-color: rgb(252, 240, 172); */
   background-color: #f0efeb;
@@ -329,7 +332,7 @@ p {
   height: 50%;
   background-color: #edf2fb;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   flex-wrap: wrap;
   word-wrap: break-word;
 }
@@ -341,7 +344,7 @@ p {
   height: 42%;
   background-color: #abc4ff;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   flex-wrap: wrap;
   word-wrap: break-word;
   padding-top: 0.5rem;
@@ -356,7 +359,7 @@ p {
   resize: none;
   border-color: transparent;
   font-size: 1.5vw;
-  line-height: 1.5rem;
+  line-height: 1.2em;
   outline: none;
   color: #6930c3;
 }

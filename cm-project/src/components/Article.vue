@@ -58,6 +58,8 @@ export default {
   width: 30%;
   min-width: 300px;
   margin-bottom: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   padding: 0.5rem;
   margin-top: 3rem;
   background-color: #f4acb7;
@@ -91,7 +93,7 @@ export default {
 /* 文字 */
 .text {
   padding: 0.5rem;
-  height: 3em;
+  height: 2.8em;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;

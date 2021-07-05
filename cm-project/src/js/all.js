@@ -16,7 +16,7 @@ import req from "./api";
 //   })
 
 // 常呼叫的api
-//上傳圖片(所有要上傳圖片的都要先打這支在將回傳的網址拿來做顯示)
+//上傳圖片(所有要上傳圖片的都要先打這支在將回傳的網址拿來做顯示) V-v
 export const setImg = file => {
   return req("post", "/Image/", file);
 };
@@ -98,7 +98,7 @@ export const setNickName = data => {
   return req("patch", "/User/NickName/", data);
 };
 
-// 修改密碼
+// 修改密碼 V-v
 export const setPw = data => {
   return req("patch", "/User/Pw/", data);
 };
@@ -162,7 +162,7 @@ export const setDiaryImg = img => {
 };
 
 // 文章相關的 api
-// 修改文章 V-
+// 修改文章 V-v
 export const editArticle = data => {
   return req("patch", "/Board/", data);
 };
@@ -194,51 +194,47 @@ export const getChat = (userSeriel, parterUserSeriel) => {
 };
 
 // 房間牆上相簿相關的api
-// 修改牆上照片
+// 修改牆上照片 V-v
 export const setPhoto = data => {
   return req("patch", "/Private/Photo/", data);
 };
-//刪除牆上照片
+//刪除牆上照片 V-v
 export const deletePhoto = (photoIndex, userSeriel) => {
   return req("delete", `/Private/Photo/${photoIndex}/${userSeriel}`);
 };
 
 // 衣櫃相關的api
-// 修改牆壁顏色
+// 修改牆壁顏色 V-v
 export const setWall = data => {
   return req("patch", "/Private/Color/", data);
 };
 
-// 修改衣櫃
+// 修改衣櫃 V-v
 export const setCloset = data => {
   return req("patch", "/Private/Closet/", data);
 };
 
-// 修改床
+// 修改床 V-v
 export const setBed = data => {
   return req("patch", "/Private/Bed/", data);
 };
 
-// 修改書櫃
+// 修改書櫃 V-v
 export const setBookcase = data => {
   return req("patch", "/Private/BookShelf/", data);
 };
 
-// 修改書桌
+// 修改書桌 V-v
 export const setDesk = data => {
   return req("patch", "/Private/Desk/", data);
 };
 
-// 修改日記
+// 修改日記 V-v
 export const setDiary = data => {
   return req("patch", "/Private/Diary/", data);
 };
 
-// 修改裝飾
+// 修改裝飾 V-v
 export const setDecorate = data => {
   return req("patch", "/Private/Deco/", data);
 };
-// 搜尋相關的 api
-export const apiSearch = data =>
-  searchRequest.get(`/Search?searchdata=${data}`);
-export const apiSearchType = () => searchRequest.get(`/SearchType`);

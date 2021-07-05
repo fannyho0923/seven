@@ -111,7 +111,6 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* background-color: rgb(147, 180, 70); */
   padding-left: 0.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
