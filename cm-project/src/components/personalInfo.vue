@@ -492,6 +492,7 @@ export default {
   align-items: center;
   font-size: 1vw;
   margin-bottom: 0.2rem;
+  white-space: nowrap;
 }
 /* 登出和搬家按鈕 */
 .btns {

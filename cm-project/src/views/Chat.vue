@@ -64,6 +64,7 @@
                 v-model="str"
                 @keyup.enter="send"
                 placeholder="請輸入訊息"
+                autofocus
               />
               <i class="plane pointer far fa-paper-plane" @click="send"></i>
             </label>
@@ -112,7 +113,7 @@ export default {
       fromPartner: false,
       str: "", // 我打的話
       chatArr: [],
-      memberName: "Chat Content",
+      memberName: "請選擇聊天對象",
       strArr: [
         { id: "1", str: "yyy" },
         { id: "1", str: "ooo" },

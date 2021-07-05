@@ -6,7 +6,10 @@
     <!-- 分隔線 -->
     <hr class="hr" />
     <!-- 照片塊 -->
-    <div class="imgBox">
+    <div
+      :style="{ width: `${setWidth}px`, height: `${setWidth}px` }"
+      class="imgBox"
+    >
       <img v-if="imgSrc" class="articleImg" :src="imgSrc" alt="發文圖片" />
       <img
         v-if="!imgSrc"
@@ -43,6 +46,12 @@ export default {
     see() {
       this.$emit("see");
     }
+  },
+  computed: {
+    setWidth() {
+      console.log(document.querySelector(".articleBox").offsetWidth / 3);
+      return document.querySelector(".blogBox").offsetWidth / 4;
+    }
   }
 };
 </script>
@@ -70,16 +79,16 @@ export default {
 }
 /* 單篇照片容器 */
 .imgBox {
-  width: 300px;
-  height: 300px;
+  max-width: 100%;
   box-shadow: 0 0 5px #ff93a7;
   background-color: #ffcad4;
 }
 .articleImg {
   width: 100%;
+  width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: top;
   vertical-align: bottom;
   /* background-color: cornflowerblue; */
 }

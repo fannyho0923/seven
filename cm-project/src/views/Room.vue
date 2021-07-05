@@ -585,6 +585,7 @@ export default {
           this.closetSrc = res1.data.closet;
           this.colorType = res1.data.colorType;
           this.decoSrc = res1.data.deco;
+          this.ownerSeriel = res1.data.ownerSeriel;
         })
         .catch(error => console.log(error));
     },
@@ -806,7 +807,8 @@ export default {
 .photoImgOne {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top;
 }
 .photoTwo {
   position: absolute;
@@ -820,7 +822,8 @@ export default {
 .photoImgTwo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top;
   transform: rotate(0deg);
 }
 .photoThree {
@@ -836,7 +839,8 @@ export default {
 .photoImgThree {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top;
   transform: rotate(1deg);
 }
 /* 床 */

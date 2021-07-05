@@ -197,7 +197,7 @@ export default {
   justify-content: space-around;
   position: relative;
   width: 100%;
-  /* max-height: 30rem; */
+  max-height: 30rem;
   /* background-color: darkgoldenrod; */
 }
 .leftBox {

@@ -19,6 +19,9 @@
           :src="furnitures[count].src"
           alt=""
         />
+        <div v-if="!furnitures.length">
+          請選擇左邊家具選項
+        </div>
       </div>
       <div class="right__btn" @click="isNext = true">
         <img

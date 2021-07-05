@@ -168,7 +168,7 @@ export default {
   align-items: center;
   width: 80%;
   height: 40rem;
-  margin-top: 3vw;
+  margin-top: 5.5vw;
   /* background-color: aqua; */
 }
 .blogBox {
@@ -210,6 +210,7 @@ export default {
   overflow-y: auto;
   flex-wrap: wrap;
   word-wrap: break-word;
+  padding: 0 0.5rem;
 }
 /*隐藏滚轮*/
 /* .commentBox::-webkit-scrollbar {

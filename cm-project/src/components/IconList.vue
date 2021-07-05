@@ -165,6 +165,10 @@ export default {
   justify-content: flex-end;
 }
 .ul {
+  position: absolute;
+  margin: 1.2vw 0 0 0;
+  top: 0;
+  right: 0;
   display: flex;
   justify-content: space-around;
   list-style: none;
@@ -186,7 +190,7 @@ export default {
   opacity: 0.5;
 }
 .bed::after {
-  margin-top: 0.3rem;
+  margin-top: 0.3vw;
   font-size: 1.2vw;
   content: "房間";
 }
@@ -202,7 +206,7 @@ export default {
   opacity: 0.5;
 }
 .home::after {
-  margin-top: 0.3rem;
+  margin-top: 0.3vw;
   font-size: 1.2vw;
   content: "大廳";
 }
@@ -219,7 +223,7 @@ export default {
   opacity: 0.5;
 }
 .bulb::after {
-  margin-top: 0.3rem;
+  margin-top: 0.3vw;
   font-size: 1.2vw;
   content: "提示";
 }
@@ -236,7 +240,7 @@ export default {
   opacity: 0.5;
 }
 .user::after {
-  margin-top: 0.3rem;
+  margin-top: 0.3vw;
   font-size: 1.2vw;
   content: "設定";
 }
@@ -277,4 +281,16 @@ export default {
   background-color: white;
   border-radius: 50%;
 }
+
+/* <=480px 套用 */
+/* @media screen and (max-width: 480px) {
+  .bed::after,
+  .user::after,
+  .home::after,
+  .bulb::after {
+    margin-top: 0.3vw;
+    font-size: 0.6vw;
+    content: "設定";
+  }
+} */
 </style>

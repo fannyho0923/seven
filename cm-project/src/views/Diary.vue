@@ -49,7 +49,7 @@
               height="100"
             />
           </div>
-          <button v-if="showImg" class="pointer" @click="reset">
+          <button v-if="showImg" class="pointer resetBtn" @click="reset">
             清除照片
           </button>
         </div>
@@ -290,8 +290,9 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-/* 標題 */
-.title {
+// 清除按鍵
+.resetBtn {
+  font-size: 1vw;
 }
 /* 書本背景 */
 .main {
@@ -370,6 +371,7 @@ export default {
 }
 /* 儲存按鈕 */
 .postBtn {
+  min-width: 45px;
   width: 3.5vw;
   font-size: 1vw;
   background-color: #895637a7;
@@ -464,5 +466,32 @@ export default {
 }
 .closeIcon:hover {
   opacity: 0.5;
+}
+
+// <=1024px 套用
+@media screen and (max-width: 1480px) {
+  .lab__left {
+    position: absolute;
+    left: -34%;
+    top: 125%;
+  }
+  .hr {
+    opacity: 0;
+  }
+  .calendarBox {
+    position: absolute;
+    left: -34%;
+    top: 135%;
+  }
+  .leftBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .imgInputBox {
+    position: absolute;
+    top: 0%;
+    height: 100%;
+  }
 }
 </style>
