@@ -103,16 +103,11 @@ export default {
       type: String
     }
   },
-  created() {
-    // console.log("========");
-    // console.log(this.furnitures);
-  },
   methods: {
     // 套用按鈕
     use() {
       switch (this.furnitureItem) {
         case furnitureEnum.diary:
-          console.log("I am diary");
           this.useDiary();
           break;
         case furnitureEnum.bookcase:
@@ -148,7 +143,7 @@ export default {
       };
       setWall(wallData)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
@@ -161,7 +156,7 @@ export default {
       };
       setBed(bedData)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
@@ -174,7 +169,7 @@ export default {
       };
       setDiary(diaryData)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
@@ -187,7 +182,7 @@ export default {
       };
       setBookcase(bookcaseData)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
@@ -200,7 +195,7 @@ export default {
       };
       setDesk(deskData)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
@@ -213,7 +208,7 @@ export default {
       };
       setCloset(closetData)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));
@@ -226,7 +221,7 @@ export default {
       };
       setDecorate(decoData)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.chooseFunction(this.count);
         })
         .catch(error => console.log(error));

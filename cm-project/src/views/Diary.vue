@@ -241,7 +241,7 @@ export default {
       // 打api：上傳圖片取得imgPath
       setImg(formData)
         .then(res4 => {
-          console.log(res4.data.imgPath);
+          // console.log(res4.data.imgPath);
           // 將圖片路徑記下來
           this.imgUrl = res4.data.imgPath;
           // 打api:新增/修改日記圖片
@@ -251,7 +251,7 @@ export default {
             diaryImgPath: this.imgUrl
           })
             .then(res5 => {
-              console.log(res5.data);
+              // console.log(res5.data);
               // this.showImg = true;
             })
             .catch(error => console.log(error));

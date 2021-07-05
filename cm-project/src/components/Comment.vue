@@ -83,6 +83,7 @@ export default {
   margin-top: 1.5rem;
   word-wrap: break-word;
   overflow: hidden;
+  font-size: 1.2vw;
   /* text-overflow: ellipsis; */
 }
 /* 便條照片 */

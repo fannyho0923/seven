@@ -27,7 +27,7 @@
             <!-- 影片列表容器 -->
             <div class="playlistBox" id="data-content">
               <PlayCard
-                class="pointer"
+                class="pointer playCard"
                 v-for="(item, index) in playlistArr"
                 :key="index"
                 :playlist="playlistArr[index]"
@@ -38,6 +38,7 @@
             <!-- 上傳容器 -->
             <div class="inputBox">
               <input
+                autofocus
                 class="input"
                 type="text"
                 placeholder="請貼上ＹｏｕＴｕｂｅ網址"
@@ -77,7 +78,7 @@ export default {
     // 打api查看看板
     getVedio(this.$store.getters.userSeriel)
       .then(res1 => {
-        console.log(res1.data);
+        // console.log(res1.data);
         this.playlistArr = res1.data.postInfos;
       })
       .catch(error => console.log(error));
@@ -106,14 +107,13 @@ export default {
       if (!this.str) {
         return;
       } else {
-        console.log(this.str);
+        // console.log(this.str);
         var NewArray = new Array();
         var NewArray = this.str.split("v=");
         var ytString = NewArray[1];
         var NewArray2 = new Array();
         var NewArray2 = ytString.split("&");
         ytString = NewArray2[0];
-        console.log(NewArray2[0]);
 
         // 打api取影片名字
         this.$http
@@ -125,7 +125,7 @@ export default {
             }
           })
           .then(res4 => {
-            console.log(res4.data.items[0].snippet.title);
+            // console.log(res4.data.items[0].snippet.title);
             if (res4.status === 200) {
               const addVedioData = {
                 userSeriel: this.$store.getters.userSeriel,
@@ -136,12 +136,12 @@ export default {
               // 打api上傳影片
               addVedio(addVedioData)
                 .then(res2 => {
-                  console.log(res2.data.result);
+                  // console.log(res2.data.result);
                   if (res2.data.result) {
                     // 打api更新查看看板
                     getVedio(this.$store.getters.userSeriel)
                       .then(res1 => {
-                        console.log(res1.data);
+                        // console.log(res1.data);
                         this.playlistArr = res1.data.postInfos;
                         this.title = res1.data.postTitle;
                       })
@@ -161,7 +161,7 @@ export default {
     deleteYT(postSeriel, index) {
       deleteVedio(postSeriel)
         .then(res3 => {
-          console.log(res3.data);
+          // console.log(res3.data);
           if (res3.data.result) {
             this.playlistArr.splice(index, 1);
           }
@@ -269,5 +269,31 @@ export default {
 }
 .leave__btn:hover {
   color: #fed9b7;
+}
+/* <=770px 套用 */
+@media screen and (max-width: 770px) {
+  .tv__body {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+  }
+  .leftBox {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+  }
+  .rightBox {
+    width: 100%;
+    padding: 0;
+  }
+  .playlistBox {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 20rem;
+  }
+  .playCard {
+    width: 100%;
+  }
 }
 </style>

@@ -141,7 +141,7 @@ export default {
           userName: nickName,
           email: mail
         });
-        console.log(RegisteData);
+        // console.log(RegisteData);
         userSignUp(RegisteData)
           .then(res => {
             // console.log(res);
@@ -181,7 +181,7 @@ export default {
             // 驗證社群狀態
             userStatus(this.$store.getters.userSeriel)
               .then(res3 => {
-                console.log(res3.data);
+                // console.log(res3.data);
                 // 未加入社群(-1)
                 if (res3.data.status == -1) {
                   // 全域(Vuex)設定此為第一次加入
@@ -189,7 +189,7 @@ export default {
                   // 打api：新社群
                   userAddNewGroup(this.$store.getters.userSeriel)
                     .then(res4 => {
-                      console.log(res4.data);
+                      // console.log(res4.data);
                       if (res4.data) {
                         // console.log("打api：新社群");
                         this.$router.push("/publicArea");
@@ -203,7 +203,7 @@ export default {
                   // 打api：搬到新的社群
                   userTransferGroup(this.$store.getters.userSeriel)
                     .then(res5 => {
-                      console.log(res5.data);
+                      // console.log(res5.data);
                       if (res5.data) {
                         this.$router.push("/publicArea");
                         return;

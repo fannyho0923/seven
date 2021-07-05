@@ -5,6 +5,7 @@
         <!-- 文字匡 -->
         <div class="mx-auto textBox">
           <textarea
+            autofocus
             class="textArea mx-auto"
             v-model="content"
             placeholder="寫點什麼..."

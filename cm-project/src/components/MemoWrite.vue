@@ -11,8 +11,6 @@
         <textarea
           autofocus
           class="textarea"
-          name=""
-          id=""
           cols="30"
           rows="10"
           v-model="content"
@@ -90,13 +88,18 @@ export default {
 }
 .write__body {
   display: flex;
-  width: 80%;
+  width: 100%;
   align-items: center;
   justify-content: space-around;
   margin: 1rem;
   margin-bottom: 2rem;
 }
+.articleBox {
+  /* font-size: 1.2em; */
+}
+
 .textarea {
+  width: 15vw;
   resize: none;
 }
 .img {
@@ -116,5 +119,15 @@ export default {
 .ok__btn:hover {
   font-weight: 600;
   background-color: pink;
+}
+/* <=768px 套用 */
+@media screen and (max-width: 768px) {
+  .write__body {
+    display: flex;
+    flex-direction: column;
+  }
+  .textarea {
+    width: 80%;
+  }
 }
 </style>

@@ -198,7 +198,7 @@ export default {
       // 打api獲取密碼
       userForget(forgetData)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           if (res.data.result) {
             郵件已寄出, 請檢查信箱;
           }

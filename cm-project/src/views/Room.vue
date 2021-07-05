@@ -475,8 +475,8 @@ export default {
     getRoomInfo(this.roomId, this.$store.getters.userSeriel)
       .then(res1 => {
         this.isOwner = res1.data.isOwner;
-        console.log(res1.data);
-        console.log(res1.data.isOwner);
+        // console.log(res1.data);
+        // console.log(res1.data.isOwner);
         this.roleID = res1.data.roleId;
         this.ownerName = res1.data.ownerName;
         this.photo1 = res1.data.photo1;
@@ -570,7 +570,7 @@ export default {
       getRoomInfo(this.roomId, this.$store.getters.userSeriel)
         .then(res1 => {
           this.isOwner = res1.data.isOwner;
-          console.log(res1.data);
+          // console.log(res1.data);
           // console.log(res1.data.isOwner);
           this.roleID = res1.data.roleId;
           this.ownerName = res1.data.ownerName;

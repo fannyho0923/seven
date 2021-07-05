@@ -236,7 +236,7 @@ export default {
             ? this.members.push(res2.data.members[j++])
             : this.members.push(null);
         }
-        console.log(this.members);
+        // console.log(this.members);
       })
       .catch(error => console.log(error));
   },
@@ -258,7 +258,7 @@ export default {
       // 打api：搬到新的社群
       userTransferGroup(this.$store.getters.userSeriel)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data) {
             //取得使用者資訊
             getUserInfo(this.$store.getters.userSeriel)
@@ -274,7 +274,7 @@ export default {
                     ? this.members.push(res2.data.members[k++])
                     : this.members.push(null);
                 }
-                console.log(this.members);
+                // console.log(this.members);
               })
               .catch(error => console.log(error));
           }

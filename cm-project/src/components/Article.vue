@@ -49,7 +49,6 @@ export default {
   },
   computed: {
     setWidth() {
-      console.log(document.querySelector(".articleBox").offsetWidth / 3);
       return document.querySelector(".blogBox").offsetWidth / 4;
     }
   }

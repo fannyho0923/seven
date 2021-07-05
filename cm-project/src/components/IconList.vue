@@ -119,10 +119,10 @@ export default {
       //取得使用者資訊
       getUserInfo(this.$store.getters.userSeriel)
         .then(res1 => {
-          console.log(res1.data);
+          // console.log(res1.data);
           if (res1.data.result) {
             const id = res1.data.doorIndex;
-            console.log(id);
+            // console.log(id);
             this.$store.commit("Enter", id);
             this.$router.push({ name: "Room", query: { id } });
             this.$emit("goRoom");

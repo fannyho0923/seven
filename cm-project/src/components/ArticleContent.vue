@@ -84,12 +84,7 @@
           </main>
           <!-- 輸入框 -->
           <label class="lab__input">
-            <input
-              class="input"
-              type="text"
-              v-model="str"
-              @keyup.enter="send"
-            />
+            <input autofocus class="input" type="text" v-model="str" />
             <i class="plane pointer far fa-paper-plane" @click="send"></i>
           </label>
         </aside>
@@ -249,6 +244,9 @@ export default {
 </script>
 
 <style scoped>
+.row {
+  margin-top: 6vw;
+}
 p {
   margin: 0;
 }

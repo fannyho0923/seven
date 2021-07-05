@@ -167,7 +167,7 @@ export default {
     // 取得玩家資料;
     getUserInfo(this.user)
       .then(res1 => {
-        console.log(res1.data);
+        // console.log(res1.data);
         this.roleId = res1.data.roleId;
         this.doorIndex = res1.data.doorIndex;
         this.userName = res1.data.userName;
@@ -209,7 +209,7 @@ export default {
         };
         setNickName(nickNameData)
           .then(res2 => {
-            console.log(res2.data);
+            // console.log(res2.data);
             this.userName = this.str;
             this.isEditName = false;
           })
@@ -242,7 +242,7 @@ export default {
       };
       setAbout(aboutData)
         .then(res4 => {
-          console.log(res4);
+          // console.log(res4);
         })
         .catch(error => console.log(error));
     },
@@ -251,7 +251,6 @@ export default {
       // 寫入餅乾
       this.$router.push("/home");
       this.$cookies.remove("token");
-      console.log("yes");
     },
     // 送出新密碼
     checkNewPassword() {
@@ -267,7 +266,7 @@ export default {
         };
         setPw(passwordData)
           .then(res3 => {
-            console.log(res3);
+            // console.log(res3);
             this.password1 = "";
             this.password2 = "";
             alert("密碼更新成功！！");

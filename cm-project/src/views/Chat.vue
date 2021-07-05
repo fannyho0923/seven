@@ -62,7 +62,6 @@
                 class="input"
                 type="text"
                 v-model="str"
-                @keyup.enter="send"
                 placeholder="請輸入訊息"
                 autofocus
               />
@@ -196,10 +195,10 @@ export default {
       this.partnerUserSeriel = partnerUserSeriel;
       getChat(this.$store.getters.userSeriel, this.partnerUserSeriel).then(
         res3 => {
-          console.log(res3.data.messenges);
+          // console.log(res3.data.messenges);
           this.chatArr = res3.data.messenges;
           this.memberName = memberName;
-          console.log(this.memberName);
+          // console.log(this.memberName);
           this.start();
         }
       );
@@ -209,7 +208,7 @@ export default {
         res3 => {
           // console.log(res3.data.messenges);
           this.chatArr = res3.data.messenges;
-          console.log(this.memberName);
+          // console.log(this.memberName);
         }
       );
     }

@@ -153,10 +153,10 @@ export default {
     },
     //刪除便條功能
     delete_Memo(postSeriel, index) {
-      console.log(postSeriel);
+      // console.log(postSeriel);
       deletePublicArticle(postSeriel)
         .then(res3 => {
-          console.log(res3);
+          // console.log(res3);
           if (res3.data.result) {
             this.commentArr.splice(index, 1);
           }
