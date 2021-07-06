@@ -173,44 +173,37 @@ export default {
         {
           id: 1,
           name: "door1",
-          src: "../../static/imgs/doorSkewL.png",
-          img: "../../static/imgs/avatar.png"
+          src: "../../static/imgs/doorSkewL.png"
         },
         {
           id: 2,
           name: "door2",
-          src: "../../static/imgs/doorSkewL.png",
-          img: "../../static/imgs/avatar.png"
+          src: "../../static/imgs/doorSkewL.png"
         },
         {
           id: 3,
           name: "door3",
-          src: "../../static/imgs/door.png",
-          img: "../../static/imgs/avatar.png"
+          src: "../../static/imgs/door.png"
         },
         {
           id: 4,
           name: "door4",
-          src: "../../static/imgs/door.png",
-          img: "../../static/imgs/avatar.png"
+          src: "../../static/imgs/door.png"
         },
         {
           id: 5,
           name: "door5",
-          src: "../../static/imgs/door.png",
-          img: "../../static/imgs/avatar.png"
+          src: "../../static/imgs/door.png"
         },
         {
           id: 6,
           name: "door6",
-          src: "../../static/imgs/doorSkewR.png",
-          img: "../../static/imgs/avatar.png"
+          src: "../../static/imgs/doorSkewR.png"
         },
         {
           id: 7,
           name: "door7",
-          src: "../../static/imgs/doorSkewR.png",
-          img: "../../static/imgs/avatar.png"
+          src: "../../static/imgs/doorSkewR.png"
         }
       ]
     };

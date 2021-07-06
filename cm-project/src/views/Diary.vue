@@ -297,7 +297,7 @@ export default {
 /* 書本背景 */
 .main {
   position: relative;
-  width: 70%;
+  width: 75%;
   /* background-color: pink; */
 }
 /* 背景照片容器 */
@@ -469,29 +469,88 @@ export default {
 }
 
 // <=1024px 套用
-@media screen and (max-width: 1480px) {
-  .lab__left {
+@media screen and (max-width: 1345px) {
+  .main {
+    width: 88%;
+  }
+  .penBox {
+    width: 18vw;
+  }
+}
+@media screen and (max-width: 1140px) {
+  .main {
+    background-image: url("../../static/imgs/room/letter.png");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50rem;
+    min-height: 100vh;
+  }
+  .bgImg {
+    visibility: hidden;
+  }
+  .rightBox {
     position: absolute;
-    left: -34%;
-    top: 125%;
+    left: 51%;
+    top: 8%;
+    width: 42%;
+    height: 50%;
   }
-  .hr {
-    opacity: 0;
+  .imgInputBox {
+    left: 119%;
+    top: 70%;
   }
-  .calendarBox {
-    position: absolute;
-    left: -34%;
-    top: 135%;
+  .leave__btn {
+    min-width: 3rem;
+    min-height: 3rem;
+    left: 94%;
   }
-  .leftBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  .textArea {
+    font-size: 2vw;
+  }
+}
+// <=836px 套用
+@media screen and (max-width: 826px) {
+  .penBox {
+    visibility: hidden;
+  }
+  .main {
+    background-size: contain;
+  }
+  hr {
+    visibility: hidden;
+  }
+  .textArea,
+  .label__btnBox {
+    font-size: 1.5vw;
   }
   .imgInputBox {
     position: absolute;
-    top: 0%;
-    height: 100%;
+    left: -72%;
+    top: -82%;
+  }
+  .leave__btn {
+    min-width: 2rem;
+    min-height: 2rem;
+    left: 85%;
+  }
+  .leftBox {
+    left: 30%;
+    top: 95%;
+  }
+  .rightBox {
+    position: absolute;
+    left: 42%;
+    top: 17%;
+    width: 42%;
+    height: 62%;
+  }
+  .calendarBox {
+    opacity: 1;
+  }
+  .vdp-datepicker__calendar {
+    width: 150px;
   }
 }
 </style>
