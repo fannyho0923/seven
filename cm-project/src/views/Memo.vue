@@ -77,19 +77,19 @@ export default {
       memoId: 1,
       commentArr: [],
       memos: [
-        { id: 1, src: "../../static/imgs/memoImg/post-1.png", deg: 3 },
-        { id: 2, src: "../../static/imgs/memoImg/post-2.png", deg: -5 },
-        { id: 3, src: "../../static/imgs/memoImg/post-3.png", deg: -3 },
-        { id: 4, src: "../../static/imgs/memoImg/post-4.png", deg: 10 },
-        { id: 5, src: "../../static/imgs/memoImg/post-5.png", deg: -5 },
-        { id: 6, src: "../../static/imgs/memoImg/post-6.png", deg: 7 },
-        { id: 7, src: "../../static/imgs/memoImg/post-7.png", deg: 4 },
-        { id: 8, src: "../../static/imgs/memoImg/post-8.png", deg: -15 },
-        { id: 9, src: "../../static/imgs/memoImg/post-9.png", deg: -12 },
-        { id: 10, src: "../../static/imgs/memoImg/post-10.png", deg: -3 },
-        { id: 11, src: "../../static/imgs/memoImg/post-11.png", deg: 7 },
-        { id: 12, src: "../../static/imgs/memoImg/post-12.png", deg: 0 },
-        { id: 13, src: "../../static/imgs/memoImg/post-13.png", deg: 6 }
+        { id: 1, src: require("@/assets/imgs/memoImg/post-1.png"), deg: 3 },
+        { id: 2, src: require("@/assets/imgs/memoImg/post-2.png"), deg: -5 },
+        { id: 3, src: require("@/assets/imgs/memoImg/post-3.png"), deg: -3 },
+        { id: 4, src: require("@/assets/imgs/memoImg/post-4.png"), deg: 10 },
+        { id: 5, src: require("@/assets/imgs/memoImg/post-5.png"), deg: -5 },
+        { id: 6, src: require("@/assets/imgs/memoImg/post-6.png"), deg: 7 },
+        { id: 7, src: require("@/assets/imgs/memoImg/post-7.png"), deg: 4 },
+        { id: 8, src: require("@/assets/imgs/memoImg/post-8.png"), deg: -15 },
+        { id: 9, src: require("@/assets/imgs/memoImg/post-9.png"), deg: -12 },
+        { id: 10, src: require("@/assets/imgs/memoImg/post-10.png"), deg: -3 },
+        { id: 11, src: require("@/assets/imgs/memoImg/post-11.png"), deg: 7 },
+        { id: 12, src: require("@/assets/imgs/memoImg/post-12.png"), deg: 0 },
+        { id: 13, src: require("@/assets/imgs/memoImg/post-13.png"), deg: 6 }
       ]
     };
   },
