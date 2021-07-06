@@ -393,9 +393,6 @@ export default {
   position: relative;
   width: 18px;
   font-size: 1vw;
-  /* left: 44%;
-  top: 82%; */
-  /* background-color: rgb(125, 83, 224); */
 }
 /* 修改密碼的確認取消按鍵 */
 .editPassBox {

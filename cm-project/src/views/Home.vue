@@ -8,7 +8,7 @@
           <header class="home__title">
             <img
               class="titImg"
-              src="../../static/imgs/homeTit.png"
+              src="@/assets/imgs/otherImg/homeTit.png"
               alt="首頁標題"
               width="570"
               height="128"
@@ -26,7 +26,7 @@
         <aside class="home__img mx-auto">
           <img
             class="img img-resp"
-            src="../../static/imgs/apartmentPic.png"
+            src="@/assets/imgs/otherImg/apartmentPic.png"
             alt="apartmentPic"
             width="200"
             height="100"

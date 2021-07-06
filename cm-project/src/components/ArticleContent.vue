@@ -183,7 +183,7 @@ export default {
       // 編輯文章
       editArticle(articleData)
         .then(res1 => {
-          console.log(res1);
+          // console.log(res1);
           this.$emit("edit");
         })
         .catch(error => console.log(error));
@@ -234,7 +234,9 @@ export default {
     // 刪除留言
     deleteAComment(commentSeriel, index) {
       deleteComment(commentSeriel)
-        .then(res3 => console.log(res3.data))
+        .then(res3 => {
+          // console.log(res3.data);
+        })
         .catch(error => console.log(error));
       this.commentArr.splice(index, 1);
       this.isUpdate = false;

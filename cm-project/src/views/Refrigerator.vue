@@ -3,7 +3,7 @@
     <img
       @click="seeMemo"
       class="pointer img img-resp "
-      src="../../static/imgs/refrigerator.png"
+      src="@/assets/imgs/otherImg/refrigerator.png"
       alt="refrigeratorPic"
       width="101"
       height="196"

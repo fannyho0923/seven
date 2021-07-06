@@ -498,7 +498,7 @@ export default {
   },
   watch: {
     "$store.state.doorIndex": function() {
-      console.log(this.$store.getters.doorIndex);
+      // console.log(this.$store.getters.doorIndex);
     }
   },
   methods: {
@@ -524,8 +524,8 @@ export default {
       getRoomInfo(this.roomId, this.$store.getters.userSeriel)
         .then(res1 => {
           this.isOwner = res1.data.isOwner;
-          console.log(res1.data);
-          console.log(res1.data.isOwner);
+          // console.log(res1.data);
+          // console.log(res1.data.isOwner);
           this.photo1 = res1.data.photo1;
           this.photo2 = res1.data.photo2;
           this.photo3 = res1.data.photo3;

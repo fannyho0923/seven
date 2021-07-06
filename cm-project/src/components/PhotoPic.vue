@@ -53,14 +53,16 @@ export default {
           }
           // 將圖片路徑記下來
           this.imgUrl = res1.data.imgPath;
-          console.log(this.imgUrl);
+          // console.log(this.imgUrl);
           // 打aip上傳
           const photoData = {
             userSeriel: this.$store.getters.userSeriel,
             photoIndex: this.photoIndex,
             postImgPath: this.imgUrl
           };
-          setPhoto(photoData).then(res2 => console.log(res2));
+          setPhoto(photoData).then(res2 => {
+            // console.log(res2);
+          });
         })
         .catch(error => console.log(error));
     },
@@ -68,7 +70,9 @@ export default {
     reset() {
       this.imgUrl = null;
       deletePhoto(this.photoIndex, this.$store.getters.userSeriel)
-        .then(res3 => console.log(res3.data))
+        .then(res3 => {
+          // console.log(res3.data);
+        })
         .catch(error => console.log(error));
     }
   }

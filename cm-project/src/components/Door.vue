@@ -29,7 +29,7 @@
     >
       <img
         class="pointer nameTagImg"
-        src="../../static/imgs/publicRoom/nameTag.png"
+        src="@/assets/imgs/publicRoom/nameTag.png"
         alt="nameTag"
         width="100"
         height="72"

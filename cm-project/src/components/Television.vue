@@ -3,7 +3,7 @@
     <div class="tvBox">
       <img
         class="tvImg pointer"
-        src="../../static/imgs/publicRoom/tv.png"
+        src="@/assets/imgs/publicRoom/tv.png"
         alt="TVPic"
         width="309"
         height="288"

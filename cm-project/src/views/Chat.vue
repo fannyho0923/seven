@@ -1,13 +1,12 @@
 <template>
   <div class="main mx-auto">
-    <!-- <header><h1 class="text-center">Chat</h1></header> -->
     <div class="row mx-auto">
       <!-- 背景照片容器 -->
       <div class="imgBox">
         <!-- 背景照片 -->
         <img
           class="computerImg img-resp"
-          src="../../static/imgs/room/computer.png"
+          src="@/assets/imgs/room/computer.png"
           alt="computerPic"
           width="552"
           height="458"
@@ -75,7 +74,7 @@
       <div class="pointer leave__btn" @click="leave">
         <img
           class="closeIcon"
-          src="../../static/imgs/closeIcon.png"
+          src="@/assets/imgs/otherImg/closeIcon.png"
           alt="closeIcon"
           width="252"
           height="252"
@@ -89,20 +88,6 @@
 <script>
 import Member from "@/components/Member.vue";
 import { getChatList, sentChat, getChat } from "@/js/all";
-// 聊天室相關的api
-// 取得聊天室清單
-// export const getChatList = userSeriel => {
-//   return req("get", `/Chat/Members/${userSeriel}`);
-// };
-// 傳送訊息
-// export const sentChat = data => {
-//   return req("post", "/Chat/", data);
-// };
-// 對話訊息
-// export const getChat = (userSeriel, parterUserSeriel) => {
-//   return req("get", `/Chat/${userSeriel}/${parterUserSeriel}`);
-// };
-
 export default {
   data() {
     return {
@@ -132,14 +117,10 @@ export default {
     this.roomId = this.$route.query.id;
     getChatList(this.$store.getters.userSeriel)
       .then(res1 => {
-        console.log(res1.data);
+        // console.log(res1.data);
         this.members = res1.data.members;
       })
       .catch(error => console.log(error));
-
-    // for (let index = 0; index < this.otherArr.length; index++) {
-    //   this.strArr.push(this.otherArr[index]);
-    // }
   },
   updated() {
     this.$nextTick(function() {
@@ -173,7 +154,9 @@ export default {
         messengeTxt: this.str
       };
       sentChat(sendData)
-        .then(res2 => console.log(res2.data))
+        .then(res2 => {
+          // console.log(res2.data);
+        })
         .catch(error => console.log(error));
       this.chatArr.push({
         memberSeriel: this.partnerUserSeriel,
@@ -342,7 +325,6 @@ export default {
   top: 10%;
   width: 60%;
   height: 78%;
-  /* background-color: violet; */
   overflow: hidden;
   overflow-x: hidden;
   overflow-y: auto;
@@ -352,13 +334,10 @@ export default {
 }
 /* 送出的對話容器 */
 .sentence {
-  /* white-space: pre-wrap;
-  word-break: break-all; */
   width: 100%;
   font-size: 2vw;
   left: 40%;
   top: 10%;
-  /* background-color: rgb(163, 39, 163); */
   margin-bottom: 0.5rem;
   display: flex;
   align-items: top;
@@ -370,7 +349,6 @@ export default {
   font-size: 2vw;
   left: 40%;
   top: 10%;
-  /* background-color: rgb(163, 39, 163); */
   margin-bottom: 0.5rem;
   display: flex;
   flex-direction: row;
@@ -418,18 +396,6 @@ export default {
 }
 /* 對方聊天框三角形 */
 .text2::before {
-  /* content: "";
-  border-color: transparent transparent rgb(153, 187, 207) transparent;
-  border-style: solid; */
-  /* 設定邊框大小可拼湊出任意形狀的三角形 */
-  /* border-width: 0 0 1.1vw 1.1vw; */
-  /* 設定 width、height 可更好理解原理 */
-  /* width: 0px;
-  height: 0px;
-  position: absolute;
-  left: -1.2vw;
-  top: calc(50% — 6px); */
-  /* == */
   content: "";
   border-left: 0px solid transparent;
   border-top: 0px solid transparent;
@@ -451,7 +417,6 @@ export default {
   min-height: 50px;
   left: 103%;
   top: -6%;
-  /* background-color: rgb(43, 189, 226); */
 }
 /* 離開按鈕照片 */
 .closeIcon {

@@ -211,10 +211,10 @@ export default {
   },
   methods: {
     // 點選日期查看日記
-    look() {
-      console.log(this.imgUrl);
-      // console.log(this.time.toString().slice(4, 15));
-    },
+    // look() {
+    // console.log(this.imgUrl);
+    // console.log(this.time.toString().slice(4, 15));
+    // },
     // 標記有內容的日期
     customPredictor(date) {
       if (this.highlightedArray.length) {
@@ -267,7 +267,9 @@ export default {
         diaryDay: this.time.toString().slice(4, 15),
         diaryImgPath: ""
       })
-        .then(res5 => console.log(res5.data))
+        .then(res5 => {
+          // console.log(res5.data);
+        })
         .catch(error => console.log(error));
     },
     // 儲存日記文字
