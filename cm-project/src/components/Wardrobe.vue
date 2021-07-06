@@ -32,18 +32,12 @@
               @choose="choosed"
             />
           </div>
-        </aside>
-        <!-- 關閉視窗按鈕 -->
-        <div class="pointer leave__btn" @click="leave">
-          <img
-            class="closeIcon"
-            src="../../static/imgs/closeIcon.png"
-            alt="closeIcon"
-            width="252"
-            height="252"
+          <!-- 關閉視窗按鈕 -->
+          <i
+            class="pointer leave__btn fas fa-times-circle"
             @click.self="leave"
-          />
-        </div>
+          ></i>
+        </aside>
       </section>
     </div>
   </div>
@@ -408,20 +402,22 @@ export default {
 }
 /* 關閉彈窗 */
 .leave__btn {
+  font-family: "Font Awesome 5 Free";
   position: absolute;
-  width: 4vw;
-  height: 4vw;
-  left: 103%;
+  font-size: 4rem;
+  left: 105%;
+  top: 0%;
+  color: #f4acb7;
   /* background-color: rgb(43, 189, 226); */
 }
 /* 離開按鈕照片 */
-.closeIcon {
+/* .closeIcon {
   width: 100%;
   height: auto;
 }
 .closeIcon:hover {
   opacity: 0.5;
-}
+} */
 /* 左邊區塊 */
 .leftBox {
   width: 38%;
@@ -432,6 +428,7 @@ export default {
 }
 /* 右邊區塊 */
 .rightBox {
+  position: relative;
   width: 62%;
   /* height: 100%; */
   background-color: #ddbea9;
@@ -504,5 +501,69 @@ export default {
 .item:hover {
   background-color: #a8dadc;
   opacity: 0.7;
+}
+
+/* <=1130px 套用 */
+@media screen and (max-width: 1130px) {
+  .leftTit {
+    margin: 0;
+    width: fit-content;
+  }
+  .rightTit {
+    margin: 0;
+    width: fit-content;
+  }
+  .wardrobe__base {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    bottom: -30%;
+    width: fit-content;
+    border-radius: 15px;
+    background-color: rgb(212, 150, 248);
+  }
+  .leftBox {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: fit-content;
+    background-color: transparent;
+  }
+  .rightBox {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: fit-content;
+    background-color: transparent;
+  }
+  .list__base {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+  }
+  .list__body {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    margin: 0;
+  }
+  .item {
+    width: 10%;
+    padding: 0.2rem;
+    margin: 0.5rem;
+  }
+  .leave__btn {
+    font-size: 2rem;
+    left: 83%;
+    top: -37%;
+  }
 }
 </style>

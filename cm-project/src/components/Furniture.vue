@@ -315,4 +315,10 @@ export default {
 .furnitureImg {
   width: 100%;
 }
+/* <=1130px 套用 */
+@media screen and (max-width: 1130px) {
+  .imgBox {
+    width: 100%;
+  }
+}
 </style>
