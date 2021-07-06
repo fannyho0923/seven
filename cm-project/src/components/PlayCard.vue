@@ -31,7 +31,7 @@
         >
           <img
             class="pointer"
-            src="../../static/imgs/memoImg/mini_trash.png"
+            src="@/assets/imgs/memoImg/mini_trash.png"
             alt="mini_trash"
             width="20"
             height="20"

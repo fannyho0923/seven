@@ -20,6 +20,7 @@
               controls="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
+              autoplay="1"
             ></iframe>
           </aside>
           <!-- 影片列表及上傳容器 -->
@@ -163,6 +164,9 @@ export default {
         .then(res3 => {
           // console.log(res3.data);
           if (res3.data.result) {
+            if (this.ytSrc == this.playlistArr[index].postYT) {
+              this.ytSrc = "https://www.youtube.com/embed/U68wfoOydkE";
+            }
             this.playlistArr.splice(index, 1);
           }
         })

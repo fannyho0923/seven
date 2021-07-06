@@ -63,239 +63,239 @@ export default {
       wallArr: [
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/bgColor/bg_blue.jpg"
+          src: require("@/assets/imgs/room/bgColor/bg_blue.jpg")
         },
         {
           itemIndex: 2,
-          src: "../../static/imgs/room/bgColor/bg_pink.png"
+          src: require("@/assets/imgs/room/bgColor/bg_pink.png")
         },
         {
           itemIndex: 3,
-          src: "../../static/imgs/room/bgColor/bg_gray.png"
+          src: require("@/assets/imgs/room/bgColor/bg_gray.png")
         },
         {
           itemIndex: 4,
-          src: "../../static/imgs/room/bgColor/bg_green.png"
+          src: require("@/assets/imgs/room/bgColor/bg_green.png")
         },
         {
           itemIndex: 5,
-          src: "../../static/imgs/room/bgColor/bg_purple.png"
+          src: require("@/assets/imgs/room/bgColor/bg_purple.png")
         },
         {
           itemIndex: 6,
-          src: "../../static/imgs/room/bgColor/bg_orange.png"
+          src: require("@/assets/imgs/room/bgColor/bg_orange.png")
         },
         {
           itemIndex: 7,
-          src: "../../static/imgs/room/bgColor/bg_brown.png"
+          src: require("@/assets/imgs/room/bgColor/bg_brown.png")
         }
       ],
       closetArr: [
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/closetColor/closet_1.png"
+          src: require("@/assets/imgs/room/closetColor/closet_1.png")
         },
         {
           itemIndex: 2,
-          src: "../../static/imgs/room/closetColor/closet_2.png"
+          src: require("@/assets/imgs/room/closetColor/closet_2.png")
         },
         {
           itemIndex: 3,
-          src: "../../static/imgs/room/closetColor/closet_3.png"
+          src: require("@/assets/imgs/room/closetColor/closet_3.png")
         },
         {
           itemIndex: 4,
-          src: "../../static/imgs/room/closetColor/closet_4.png"
+          src: require("@/assets/imgs/room/closetColor/closet_4.png")
         },
         {
           itemIndex: 5,
-          src: "../../static/imgs/room/closetColor/closet_5.png"
+          src: require("@/assets/imgs/room/closetColor/closet_5.png")
         },
         {
           itemIndex: 6,
-          src: "../../static/imgs/room/closetColor/closet_6.png"
+          src: require("@/assets/imgs/room/closetColor/closet_6.png")
         },
         {
           itemIndex: 7,
-          src: "../../static/imgs/room/closetColor/closet_7.png"
+          src: require("@/assets/imgs/room/closetColor/closet_7.png")
         },
         {
           itemIndex: 8,
-          src: "../../static/imgs/room/closetColor/closet_8.png"
+          src: require("@/assets/imgs/room/closetColor/closet_8.png")
         }
       ],
       diaryArr: [
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/diaryColor/diary_1.png"
+          src: require("@/assets/imgs/room/diaryColor/diary_1.png")
         },
         {
           itemIndex: 2,
-          src: "../../static/imgs/room/diaryColor/diary_2.png"
+          src: require("@/assets/imgs/room/diaryColor/diary_2.png")
         },
         {
           itemIndex: 3,
-          src: "../../static/imgs/room/diaryColor/diary_3.png"
+          src: require("@/assets/imgs/room/diaryColor/diary_3.png")
         },
         {
           itemIndex: 4,
-          src: "../../static/imgs/room/diaryColor/diary_4.png"
+          src: require("@/assets/imgs/room/diaryColor/diary_4.png")
         },
         {
           itemIndex: 2,
-          src: "../../static/imgs/room/diaryColor/diary_5.png"
+          src: require("@/assets/imgs/room/diaryColor/diary_5.png")
         },
         {
           itemIndex: 3,
-          src: "../../static/imgs/room/diaryColor/diary_6.png"
+          src: require("@/assets/imgs/room/diaryColor/diary_6.png")
         },
         {
           itemIndex: 4,
-          src: "../../static/imgs/room/diaryColor/diary_7.png"
+          src: require("@/assets/imgs/room/diaryColor/diary_7.png")
         }
       ],
       bedArr: [
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/bedColor/bed_brown.png"
+          src: require("@/assets/imgs/room/bedColor/bed_brown.png")
         },
         {
           itemIndex: 2,
-          src: "../../static/imgs/room/bedColor/bed_pink.png"
+          src: require("@/assets/imgs/room/bedColor/bed_pink.png")
         },
         {
           itemIndex: 3,
-          src: "../../static/imgs/room/bedColor/bed_purpleNor.png"
+          src: require("@/assets/imgs/room/bedColor/bed_purpleNor.png")
         },
         {
           itemIndex: 4,
-          src: "../../static/imgs/room/bedColor/bed_red.png"
+          src: require("@/assets/imgs/room/bedColor/bed_red.png")
         },
         {
           itemIndex: 5,
-          src: "../../static/imgs/room/bedColor/bed_purple.png"
+          src: require("@/assets/imgs/room/bedColor/bed_purple.png")
         },
         {
           itemIndex: 6,
-          src: "../../static/imgs/room/bedColor/bed_orange.png"
+          src: require("@/assets/imgs/room/bedColor/bed_orange.png")
         },
         {
           itemIndex: 7,
-          src: "../../static/imgs/room/bedColor/bed_blue.png"
+          src: require("@/assets/imgs/room/bedColor/bed_blue.png")
         }
       ],
       deskArr: [
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/deskColor/desk_1.png"
+          src: require("@/assets/imgs/room/deskColor/desk_1.png")
         },
         {
           itemIndex: 2,
-          src: "../../static/imgs/room/deskColor/desk_2.png"
+          src: require("@/assets/imgs/room/deskColor/desk_2.png")
         },
         {
           itemIndex: 3,
-          src: "../../static/imgs/room/deskColor/desk_3.png"
+          src: require("@/assets/imgs/room/deskColor/desk_3.png")
         },
         {
           itemIndex: 4,
-          src: "../../static/imgs/room/deskColor/desk_4.png"
+          src: require("@/assets/imgs/room/deskColor/desk_4.png")
         },
         {
           itemIndex: 5,
-          src: "../../static/imgs/room/deskColor/desk_5.png"
+          src: require("@/assets/imgs/room/deskColor/desk_5.png")
         },
         {
           itemIndex: 6,
-          src: "../../static/imgs/room/deskColor/desk_6.png"
+          src: require("@/assets/imgs/room/deskColor/desk_6.png")
         },
         {
           itemIndex: 7,
-          src: "../../static/imgs/room/deskColor/desk_7.png"
+          src: require("@/assets/imgs/room/deskColor/desk_7.png")
         },
         {
           itemIndex: 8,
-          src: "../../static/imgs/room/deskColor/desk_8.png"
+          src: require("@/assets/imgs/room/deskColor/desk_8.png")
         }
       ],
       bookcaseArr: [
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_1.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_1.png")
         },
         {
           itemIndex: 2,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_2.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_2.png")
         },
         {
           itemIndex: 3,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_3.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_3.png")
         },
         {
           itemIndex: 4,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_4.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_4.png")
         },
         {
           itemIndex: 5,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_5.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_5.png")
         },
         {
           itemIndex: 6,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_6.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_6.png")
         },
         {
           itemIndex: 7,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_7.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_7.png")
         },
         {
           itemIndex: 8,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_8.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_8.png")
         },
         {
           itemIndex: 9,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_9.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_9.png")
         },
         {
           itemIndex: 10,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_10.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_10.png")
         },
         {
           itemIndex: 11,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_11.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_11.png")
         },
         {
           itemIndex: 12,
-          src: "../../static/imgs/room/bookcaseColor/bookcase_12.png"
+          src: require("@/assets/imgs/room/bookcaseColor/bookcase_12.png")
         }
       ],
       decoArr: [
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/decoColor/deco_1.png"
+          src: require("@/assets/imgs/room/decoColor/deco_1.png")
         },
         {
           itemIndex: 2,
-          src: "../../static/imgs/room/decoColor/deco_2.png"
+          src: require("@/assets/imgs/room/decoColor/deco_2.png")
         },
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/decoColor/deco_3.png"
+          src: require("@/assets/imgs/room/decoColor/deco_3.png")
         },
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/decoColor/deco_4.png"
+          src: require("@/assets/imgs/room/decoColor/deco_4.png")
         },
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/decoColor/deco_5.png"
+          src: require("@/assets/imgs/room/decoColor/deco_5.png")
         },
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/decoColor/deco_6.png"
+          src: require("@/assets/imgs/room/decoColor/deco_6.png")
         },
         {
           itemIndex: 1,
-          src: "../../static/imgs/room/decoColor/deco_7.png"
+          src: require("@/assets/imgs/room/decoColor/deco_7.png")
         }
       ]
     };

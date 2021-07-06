@@ -218,7 +218,9 @@ export default {
   created() {
     //取得使用者資訊
     getUserInfo(this.$store.getters.userSeriel)
-      .then(res1 => console.log(res1.data))
+      .then(res1 => {
+        // console.log(res1.data);
+      })
       .catch(error => console.log(error));
     //取得社群成員資訊
     getMembers(this.$store.getters.userSeriel)
@@ -255,8 +257,12 @@ export default {
           if (res.data) {
             //取得使用者資訊
             getUserInfo(this.$store.getters.userSeriel)
-              .then(res1 => console.log(res1.data))
-              .catch(error => console.log(error));
+              .then(res1 => {
+                // console.log(res1.data);
+              })
+              .catch(error => {
+                // console.log(error);
+              });
             //取得社群成員資訊
             getMembers(this.$store.getters.userSeriel)
               .then(res2 => {
