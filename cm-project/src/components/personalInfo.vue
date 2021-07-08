@@ -46,6 +46,7 @@
             v-model="introduction"
             placeholder="關於我..."
             @click="writeDoc"
+            maxlength="500"
           ></textarea>
           <textarea
             v-else
