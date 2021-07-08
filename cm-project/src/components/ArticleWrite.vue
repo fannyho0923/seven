@@ -296,6 +296,7 @@ export default {
   top: 91%;
   left: 87%;
   font-size: 1vw;
+  color: #f08080;
 }
 @media screen and (max-width: 1113px) {
   .wordCount {

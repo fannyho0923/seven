@@ -66,8 +66,10 @@
               v-if="isEdit"
               v-model="content"
               class="editArticle mx-auto"
+              maxlength="250"
             >
             </textarea>
+            <div class="wordCount">{{ count }}</div>
             <!-- 送出編輯文字 -->
             <div v-if="isEdit" class="postBtn pointer" @click="post">儲存</div>
           </div>
@@ -129,7 +131,8 @@ export default {
       roleID: "",
       content: this.arr.postText,
       isTool: false,
-      isEdit: false
+      isEdit: false,
+      words: 250
     };
   },
   components: {
@@ -162,6 +165,20 @@ export default {
         this.isOwner = res1.data.isOwner;
       })
       .catch(error => console.log(error));
+  },
+  computed: {
+    count() {
+      if (!this.isEdit) {
+        return;
+      }
+      if (!this.content) {
+        return;
+      }
+      if (this.content.length > this.words) {
+        return `${this.words}/${this.words}`;
+      }
+      return `${this.content.length}/${this.words}`;
+    }
   },
   methods: {
     // 編輯文章
@@ -246,6 +263,14 @@ export default {
 </script>
 
 <style scoped>
+/* 字數顯示 */
+.wordCount {
+  position: absolute;
+  top: 41%;
+  left: 84%;
+  font-size: 1vw;
+  color: #6930c3;
+}
 .row {
   margin-top: 6vw;
 }
@@ -517,5 +542,11 @@ p {
 }
 .icon {
   margin-left: 0.2rem;
+}
+/* rwd */
+@media screen and (max-width: 1113px) {
+  .postBtn {
+    left: 80%;
+  }
 }
 </style>

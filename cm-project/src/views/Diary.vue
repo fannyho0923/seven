@@ -310,6 +310,7 @@ export default {
   top: 71%;
   left: 84%;
   font-size: 1vw;
+  color: #5e3023;
 }
 // 清除按鍵
 .resetBtn {
