@@ -52,6 +52,10 @@ export default {
         alert("請輸入文字");
         return;
       }
+      if (this.content.length > 250) {
+        alert("字數不可超過250");
+        return;
+      }
       //將使用者輸入文字以及便條id吐出去儲存
       this.$emit("writeDone", this.content, id);
     }

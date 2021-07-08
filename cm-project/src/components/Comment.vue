@@ -84,7 +84,24 @@ export default {
   word-wrap: break-word;
   overflow: hidden;
   font-size: 1.2vw;
+  word-wrap: break-word;
+  overflow-x: hidden;
+  overflow-y: auto;
   /* text-overflow: ellipsis; */
+}
+/* 捲軸底色 */
+.article::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.187);
+  background-color: #55525302;
+}
+/* 捲軸寬度 */
+.article::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(0, 0, 0, 0.041);
+}
+/* 捲軸本體顏色 */
+.article::-webkit-scrollbar-thumb {
+  background-color: #8a878733;
 }
 /* 便條照片 */
 .img {

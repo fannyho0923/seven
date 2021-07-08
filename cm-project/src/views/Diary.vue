@@ -470,6 +470,7 @@ export default {
   opacity: 0.5;
 }
 
+// rwd
 // <=1024px 套用
 @media screen and (max-width: 1345px) {
   .main {

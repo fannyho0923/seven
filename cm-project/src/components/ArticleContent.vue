@@ -372,7 +372,7 @@ p {
   height: 66%;
   resize: none;
   border-color: transparent;
-  font-size: 1.2vw;
+  font-size: 1.2em;
   line-height: 1.2em;
   outline: none;
   color: #6930c3;
@@ -400,8 +400,8 @@ p {
   height: 60%;
   resize: none;
   border-color: transparent;
-  font-size: 1.5vw;
-  line-height: 1.5rem;
+  font-size: 1.5em;
+  line-height: 1.5em;
   color: #6930c3;
 }
 /* 編輯送出文章 */

@@ -172,9 +172,11 @@ export default {
   /* background-color: aqua; */
 }
 .blogBox {
+  position: relative;
   display: flex;
   max-width: 100%;
   width: 100%;
+  max-width: 1344px;
   height: 90%;
   border-radius: 15px;
   /* background-color: bisque; */
@@ -189,6 +191,8 @@ export default {
   align-items: center;
   width: 5vw;
   height: 5vw;
+  max-width: 93px;
+  max-height: 93px;
   min-width: 50px;
   min-height: 50px;
   font-size: 4rem;
@@ -238,6 +242,8 @@ export default {
   align-items: center;
   width: 5vw;
   height: 5vw;
+  max-width: 93px;
+  max-height: 93px;
   min-width: 50px;
   min-height: 50px;
   left: 103%;

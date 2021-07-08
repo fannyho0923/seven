@@ -272,4 +272,18 @@ export default {
 .commentBox::-webkit-scrollbar-thumb {
   background-color: #bb6573;
 }
+
+/* rwd */
+/* <=495px 套用 */
+@media screen and (max-width: 495px) {
+  .add__lab {
+    position: absolute;
+    top: 45%;
+    font-size: 3rem;
+    color: #f783ac;
+  }
+  .close__btn {
+    font-size: 3rem;
+  }
+}
 </style>
