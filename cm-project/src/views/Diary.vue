@@ -136,7 +136,8 @@ export default {
       preview_list: [],
       image_list: [],
       roomId: 0,
-      highlighted: { customPredictor: this.customPredictor }
+      highlighted: { customPredictor: this.customPredictor },
+      words: 800
     };
   },
   components: {
@@ -212,6 +213,9 @@ export default {
     },
     // 顯示字數
     count() {
+      if (!this.content) {
+        return;
+      }
       if (this.content.length > this.words) {
         return `${this.words}/${this.words}`;
       }
@@ -301,6 +305,12 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.wordCount {
+  position: absolute;
+  top: 71%;
+  left: 84%;
+  font-size: 1vw;
+}
 // 清除按鍵
 .resetBtn {
   font-size: 1vw;
@@ -521,9 +531,17 @@ export default {
   .textArea {
     font-size: 2vw;
   }
+  .wordCount {
+    top: 84%;
+    left: 71%;
+  }
 }
 // <=836px 套用
 @media screen and (max-width: 826px) {
+  .wordCount {
+    top: 100%;
+    left: 25%;
+  }
   .penBox {
     visibility: hidden;
   }

@@ -15,6 +15,7 @@
           rows="10"
           v-model="content"
           placeholder="write your note here..."
+          maxlength="250"
         />
       </article>
     </div>
