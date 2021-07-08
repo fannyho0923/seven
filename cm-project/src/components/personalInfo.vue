@@ -461,6 +461,20 @@ export default {
   border-style: none;
   margin: 0.5rem;
 }
+/* 捲軸底色 */
+.textArea::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f79c13;
+}
+/* 捲軸寬度 */
+.textArea::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+/* 捲軸本體顏色 */
+.textArea::-webkit-scrollbar-thumb {
+  background-color: #f85701;
+}
 .toolBox {
   margin: 0.5rem;
 }

@@ -309,7 +309,7 @@ export default {
   max-height: 100%;
   width: 90%;
   height: 100%;
-  font-size: 2vw;
+  font-size: 1.2vw;
   background-color: transparent;
   border: transparent;
 }
@@ -331,6 +331,20 @@ export default {
   flex-wrap: wrap;
   word-wrap: break-word;
   padding-top: 0.5rem;
+}
+/* 捲軸底色 */
+.chat__content::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #95b3f8;
+}
+/* 捲軸寬度 */
+.chat__content::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+/* 捲軸本體顏色 */
+.chat__content::-webkit-scrollbar-thumb {
+  background-color: #0f54f7;
 }
 /* 送出的對話容器 */
 .sentence {

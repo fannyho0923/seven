@@ -344,10 +344,24 @@ p {
   height: 42%;
   background-color: #abc4ff;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: auto;
   flex-wrap: wrap;
   word-wrap: break-word;
   padding-top: 0.5rem;
+}
+/* 捲軸底色 */
+.commentBox::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #95b3f8;
+}
+/* 捲軸寬度 */
+.commentBox::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+/* 捲軸本體顏色 */
+.commentBox::-webkit-scrollbar-thumb {
+  background-color: #3f76f7;
 }
 /* 純看文章 */
 .article {
@@ -358,10 +372,24 @@ p {
   height: 66%;
   resize: none;
   border-color: transparent;
-  font-size: 1.5vw;
+  font-size: 1.2vw;
   line-height: 1.2em;
   outline: none;
   color: #6930c3;
+}
+/* 捲軸底色 */
+.article::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #95b3f8;
+}
+/* 捲軸寬度 */
+.article::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+/* 捲軸本體顏色 */
+.article::-webkit-scrollbar-thumb {
+  background-color: #3f76f7;
 }
 /* 編輯文章 */
 .editArticle {
