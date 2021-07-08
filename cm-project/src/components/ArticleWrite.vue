@@ -9,7 +9,9 @@
             class="textArea mx-auto"
             v-model="content"
             placeholder="寫點什麼..."
+            maxlength="250"
           ></textarea>
+          <div class="wordCount">{{ count }}</div>
         </div>
         <!-- 照片框 -->
         <div class="imgBox ">
@@ -70,8 +72,22 @@ export default {
       preview: null,
       preview_list: [],
       image_list: [],
-      imgUrl: ""
+      imgUrl: "",
+      words: 250
     };
+  },
+  computed: {
+    count() {
+      if (this.content.length > this.words) {
+        return `${this.words}/${this.words}`;
+      }
+      return `${this.content.length}/${this.words}`;
+    },
+    content() {
+      if (this.content.length > this.words) {
+        return "";
+      }
+    }
   },
   methods: {
     // 關閉視窗
@@ -279,5 +295,10 @@ export default {
 .restBtn:hover {
   opacity: 0.5;
   background-color: #ffdab9;
+}
+.wordCount {
+  position: absolute;
+  top: 91%;
+  left: 93%;
 }
 </style>
