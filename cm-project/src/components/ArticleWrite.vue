@@ -82,11 +82,6 @@ export default {
         return `${this.words}/${this.words}`;
       }
       return `${this.content.length}/${this.words}`;
-    },
-    content() {
-      if (this.content.length > this.words) {
-        return "";
-      }
     }
   },
   methods: {
@@ -299,6 +294,22 @@ export default {
 .wordCount {
   position: absolute;
   top: 91%;
-  left: 93%;
+  left: 87%;
+  font-size: 1vw;
+}
+@media screen and (max-width: 1113px) {
+  .wordCount {
+    left: 69%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .wordCount {
+    left: 69%;
+  }
+}
+@media screen and (max-width: 568px) {
+  .article__body {
+    width: 100%;
+  }
 }
 </style>

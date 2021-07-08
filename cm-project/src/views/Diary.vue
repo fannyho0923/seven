@@ -74,7 +74,9 @@
             class="textArea"
             v-model="content"
             placeholder="Write something here..."
+            maxlength="800"
           ></textarea>
+          <div class="wordCount">{{ count }}</div>
           <div class="btnBox">
             <button
               type="submit"
@@ -207,6 +209,13 @@ export default {
       return `${this.getMonthArray[this.getMonth - 1]}-${this.getDate}-${
         this.getYear
       }`;
+    },
+    // 顯示字數
+    count() {
+      if (this.content.length > this.words) {
+        return `${this.words}/${this.words}`;
+      }
+      return `${this.content.length}/${this.words}`;
     }
   },
   methods: {
