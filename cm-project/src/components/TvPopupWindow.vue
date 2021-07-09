@@ -233,6 +233,20 @@ export default {
   flex-wrap: wrap;
   word-wrap: break-word;
 }
+/* 捲軸底色 */
+.playlistBox::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.187);
+  background-color: #55525302;
+}
+/* 捲軸寬度 */
+.playlistBox::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(0, 0, 0, 0.041);
+}
+/* 捲軸本體顏色 */
+.playlistBox::-webkit-scrollbar-thumb {
+  background-color: rgba(241, 92, 42, 0.829);
+}
 /* 上傳容器 */
 .inputBox {
   display: flex;

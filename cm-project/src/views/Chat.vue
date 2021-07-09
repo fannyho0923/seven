@@ -110,6 +110,7 @@ export default {
         { id: "2", str: "ioio" }
       ],
       roomId: 0,
+      isSay: false,
       add: 14 //好友位移
     };
   },
@@ -123,9 +124,13 @@ export default {
       .catch(error => console.log(error));
   },
   updated() {
+    if (!this.isSay) {
+      return;
+    }
     this.$nextTick(function() {
       var div = document.getElementById("data-list-content");
       div.scrollTop = div.scrollHeight;
+      this.isSay = false;
     });
   },
   methods: {
@@ -153,6 +158,7 @@ export default {
         partnerUserSeriel: this.partnerUserSeriel,
         messengeTxt: this.str
       };
+      this.isSay = true;
       sentChat(sendData)
         .then(res2 => {
           // console.log(res2.data);
@@ -349,7 +355,7 @@ export default {
 /* 送出的對話容器 */
 .sentence {
   width: 100%;
-  font-size: 2vw;
+  font-size: 1.2vw;
   left: 40%;
   top: 10%;
   margin-bottom: 0.5rem;
@@ -360,7 +366,7 @@ export default {
 /* 收到的對話容器 */
 .sentence2 {
   width: 100%;
-  font-size: 2vw;
+  font-size: 1.2vw;
   left: 40%;
   top: 10%;
   margin-bottom: 0.5rem;

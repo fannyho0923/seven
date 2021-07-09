@@ -397,8 +397,8 @@ p {
   height: 66%;
   resize: none;
   border-color: transparent;
-  font-size: 1.2em;
-  line-height: 1.2em;
+  font-size: 1.3em;
+  line-height: 1.3em;
   outline: none;
   color: #6930c3;
 }
@@ -425,9 +425,27 @@ p {
   height: 60%;
   resize: none;
   border-color: transparent;
-  font-size: 1.5em;
-  line-height: 1.5em;
+  font-size: 1.3vw;
   color: #6930c3;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+}
+/* 捲軸底色 */
+.editArticle::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #95b3f8;
+}
+/* 捲軸寬度 */
+.editArticle::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+/* 捲軸本體顏色 */
+.editArticle::-webkit-scrollbar-thumb {
+  background-color: #3f76f7;
 }
 /* 編輯送出文章 */
 .postBtn {

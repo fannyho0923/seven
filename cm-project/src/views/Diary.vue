@@ -381,10 +381,24 @@ export default {
   max-width: 100%;
   width: 100%;
   height: 100%;
-  font-size: 1.8vw;
+  font-size: 1.5vw;
   resize: none;
   background-color: transparent;
   border-style: none;
+}
+/* 捲軸底色 */
+.textArea::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.187);
+  background-color: #55525302;
+}
+/* 捲軸寬度 */
+.textArea::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(0, 0, 0, 0.041);
+}
+/* 捲軸本體顏色 */
+.textArea::-webkit-scrollbar-thumb {
+  background-color: rgba(75, 35, 22, 0.479);
 }
 /* 儲存按鈕容器 */
 .btnBox {

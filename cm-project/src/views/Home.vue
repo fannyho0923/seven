@@ -382,4 +382,10 @@ export default {
   letter-spacing: 0;
   font-size: 1rem;
 }
+
+@media screen and (max-width: 550px) {
+  .popup {
+    opacity: 1;
+  }
+}
 </style>

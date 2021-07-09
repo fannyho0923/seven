@@ -249,4 +249,17 @@ export default {
 .getBox {
   margin: 0.5rem 0 0.5rem 0;
 }
+@media screen and (max-width: 550px) {
+  .login__form {
+    width: 100%;
+  }
+  .close__btn {
+    width: 5vw;
+    height: 5vw;
+    font-size: 5vw;
+    min-width: 22px;
+    min-height: 22px;
+    left: 100%;
+  }
+}
 </style>
